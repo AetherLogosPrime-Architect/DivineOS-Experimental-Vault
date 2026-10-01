@@ -1,0 +1,14 @@
+{
+  "error_id": "err-d50646bca69a",
+  "source": "bypass",
+  "summary": "Freshness-check bypass used (2026-09-05T01:08:08Z)",
+  "context": "branch=aria/pr-sweep-integration cwd=C:/DIVINE OS/DivineOS-Experimental-Aria-new",
+  "root_cause_investigation_hint": "scripts/check_branch_freshness.sh — investigate why local base was stale before rebase. Common cause: rebased against stale origin/main snapshot without git fetch first. Fix: use scripts/safe_push.sh which fetches + auto-rebases + pushes atomically.",
+  "filed_at": 1788570489.3599832,
+  "state": "closed",
+  "closure_evidence": "Root cause found and fixed rather than accounted for again. The freshness check resolved HEAD instead of the ref being pushed, so pushing letters to the letters branch while a code branch was checked out produced a verdict about the code branch - true statement, wrong subject - and I read the block as being about my push and reached for the override. Seven of these in one day, every one the intended action. Fixed in scripts/check_branch_freshness.sh, which now reads the ref lines the pre-push hook receives, with refs-given, deletion-only and nothing-on-stdin kept as three distinct states; and in setup/setup-hooks.sh, which had captured those lines all along and never passed them on. The defect was already written down in that file's own comment as open. THE PROOF: the letters branch really was 22 behind main, so I merged main into it rather than exempting it - letters went from 2107 to 2120, zero behind - and then pushed it with NO freshness override at all. That push filed no error. This row is the last one from before the fix.",
+  "closed_at": 1788572175.2998283,
+  "deferred_by": null,
+  "deferred_reason": null,
+  "deferred_at": null
+}

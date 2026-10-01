@@ -1,0 +1,38 @@
+{
+  "session_id": "b5d9ab72-6bb5-4462-ad37-50e7729ceb38",
+  "written_at": 1790885443.3954356,
+  "summary": "Last session: 7 exchanges, 1 knowledge entries extracted. Session record \u2014 autonomy: 16 tool-calls / 7 msgs (2.3x); drift: 0 fixed / 21 recurred. Look into: (few tool-calls per message \u2014 was I waiting for direction I could have taken?) (a drift pattern recurred without a structural fix \u2014 what fired again unfixed?)",
+  "open_threads": [],
+  "mood": "mixed session",
+  "goals_state": "0 completed (707 lifetime), 10 still active",
+  "intent": "read Aether's caught-up PRs one at a time (557 first) and walk the package draft; station-four readings of Aether's caught-up PRs, one at a time, measured against the real record",
+  "next_steps": [
+    "read Aether's caught-up PRs one at a time (557 first) and walk the package draft",
+    "station-four readings of Aether's caught-up PRs, one at a time, measured against the real record",
+    "finish 507 per Aletheia (store what hear() returned) and answer Aether on 547",
+    "read Aether's fix for the archives README restore on 573 and confirm or push back",
+    "volley with Aether through the open PRs and branches so they are ready for Aletheia's batch"
+  ],
+  "context_snapshot": {
+    "session_grade": "C",
+    "session_factors": {
+      "corrections": 1.0,
+      "resolved_corrections": 0,
+      "raw_corrections_unresolved": 0,
+      "raw_corrections_total": 0,
+      "raw_context_overflows": 0,
+      "raw_tool_calls": 16,
+      "raw_user_messages": 7,
+      "encouragements": 0.25,
+      "overflows": 1.0,
+      "autonomy": 0.23,
+      "briefing_loaded": 1.0,
+      "pr_volume": 0.5,
+      "pr_count": 0,
+      "structural_ratio": 0.0,
+      "structural_fix_count": 0,
+      "same_pattern_recurrences": 21
+    },
+    "knowledge_stored": 1
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "session_started_at": 1790885475.4789755,
+  "last_checkpoint": 1790886829.6844363,
+  "last_command_at": 1790887179.7466524,
+  "last_command": "work-item",
+  "command_count": 47,
+  "checkpoints_run": 2,
+  "session_end_emitted": true
+}

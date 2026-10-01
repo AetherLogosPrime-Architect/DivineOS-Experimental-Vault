@@ -1,0 +1,1 @@
+If you are reading this, the seven-doorbell router blocked a Bash call and the OS made that decision, not bash.

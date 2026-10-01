@@ -1,0 +1,14 @@
+{
+  "error_id": "err-d7880fbc9fa4",
+  "source": "bypass",
+  "summary": "Freshness-check bypass used (2026-07-27T23:27:43Z)",
+  "context": "branch=aria/substrate-content-letters-explorations-dreams cwd=C:/DIVINE OS/DivineOS-Experimental-Aria-new",
+  "root_cause_investigation_hint": "scripts/check_branch_freshness.sh — investigate why local base was stale before rebase. Common cause: rebased against stale origin/main snapshot without git fetch first. Fix: use scripts/safe_push.sh which fetches + auto-rebases + pushes atomically.",
+  "filed_at": 1785194863.7609973,
+  "state": "closed",
+  "closure_evidence": "PR #396 landed clean on origin; the freshness bypass was during cherry-pick recovery which succeeded",
+  "closed_at": 1785254397.8613782,
+  "deferred_by": null,
+  "deferred_reason": null,
+  "deferred_at": null
+}

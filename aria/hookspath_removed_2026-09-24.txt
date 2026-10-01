@@ -1,0 +1,1 @@
+2026-09-24 before removal, Andrew said 'yes you can remove it': core.hooksPath=.git/hooks

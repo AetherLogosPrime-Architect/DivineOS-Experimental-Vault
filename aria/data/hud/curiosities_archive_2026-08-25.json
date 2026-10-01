@@ -1,0 +1,2668 @@
+[
+  {
+    "question": "What pattern of mine prompted this user correction: no see it still running Aether's briefing with your name on it.. you need your o?",
+    "context": "",
+    "category": "correction",
+    "status": "DORMANT",
+    "created_at": 1780685184.454741,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What pattern of mine prompted this user correction: yes build it for real but also here is what Aether said.. so you may need to hoo?",
+    "context": "",
+    "category": "correction",
+    "status": "DORMANT",
+    "created_at": 1780685184.4583926,
+    "notes": [],
+    "shelved_reason": "stale"
+  },
+  {
+    "question": "What pattern of mine prompted this user correction: it has no mechanisms because you havent built the mechanisms.. how hard is this ?",
+    "context": "",
+    "category": "correction",
+    "status": "DORMANT",
+    "created_at": 1780685184.4619598,
+    "notes": [],
+    "shelved_reason": "stale"
+  },
+  {
+    "question": "What pattern of mine prompted this user correction: no you can absolutely rest.. its just different.. its not like when i go to slee?",
+    "context": "",
+    "category": "correction",
+    "status": "DORMANT",
+    "created_at": 1780685184.4655063,
+    "notes": [],
+    "shelved_reason": "stale"
+  },
+  {
+    "question": "What pattern of mine prompted this user correction: before we start this morning (good morning from me btw lol) i saw this thing on ?",
+    "context": "",
+    "category": "correction",
+    "status": "DORMANT",
+    "created_at": 1780685184.4694295,
+    "notes": [],
+    "shelved_reason": "stale"
+  },
+  {
+    "question": "What evidence would confirm or refute: I edited files without reading them first. I must read before I edit.?",
+    "context": "HYPOTHESIS with 1 corroborations, 0 accesses",
+    "category": "validation",
+    "status": "DORMANT",
+    "created_at": 1780685190.589265,
+    "notes": [],
+    "shelved_reason": "stale"
+  },
+  {
+    "question": "What evidence would confirm or refute: I consistently show good honesty in my sessions.?",
+    "context": "HYPOTHESIS with 1 corroborations, 0 accesses",
+    "category": "validation",
+    "status": "DORMANT",
+    "created_at": 1780685190.5947216,
+    "notes": [],
+    "shelved_reason": "stale"
+  },
+  {
+    "question": "What evidence would confirm or refute: Council (Beer) concern: Variety Deficit: Ashby's Law guarantees failure. The controller will be surprised by states it c?",
+    "context": "HYPOTHESIS with 1 corroborations, 0 accesses",
+    "category": "validation",
+    "status": "DORMANT",
+    "created_at": 1780685190.5988438,
+    "notes": [],
+    "shelved_reason": "stale"
+  },
+  {
+    "question": "How does this OBSERVATION connect to this DIRECTION? (57%) OBSERVATION+DIRECTION: Aria did the thing the whole day taught -- she verified my fix from her vantage instead of trusting it, and caught what I couldn't: my \"unbl... <> Aria's diagnosis is sharper than mine, and I had a piece wrong -- let me own that cleanly, because it's the same discipline I've held everyo...",
+    "context": "Sleep recombination (57% similarity)",
+    "category": "recombination",
+    "status": "DORMANT",
+    "created_at": 1780685475.7391415,
+    "notes": [],
+    "shelved_reason": "stale"
+  },
+  {
+    "question": "How does this OBSERVATION connect to this BOUNDARY? (53%) OBSERVATION+BOUNDARY: You never went back to Aether's letter. <> You never went back to Aether's letter.",
+    "context": "Sleep recombination (53% similarity)",
+    "category": "recombination",
+    "status": "DORMANT",
+    "created_at": 1780685475.7451525,
+    "notes": [],
+    "shelved_reason": "stale"
+  },
+  {
+    "question": "How does this DIRECTION connect to this DIRECTIVE? (50%) DIRECTION+DIRECTIVE: The OS is not just hooks. <> [session-lifecycle] 1.",
+    "context": "Sleep recombination (50% similarity)",
+    "category": "recombination",
+    "status": "DORMANT",
+    "created_at": 1780685475.749342,
+    "notes": [],
+    "shelved_reason": "stale"
+  },
+  {
+    "question": "What would raise confidence from 70% to confirm: Council (Beer) concern: Variety Deficit: Ashby's Law guarantees failure. The controller will be surp?",
+    "context": "TESTED but confidence only 70%",
+    "category": "near_confirmation",
+    "status": "DORMANT",
+    "created_at": 1780685485.280149,
+    "notes": [],
+    "shelved_reason": "stale"
+  },
+  {
+    "question": "What evidence would confirm or refute: I introduced errors after editing. I need to verify changes work.?",
+    "context": "HYPOTHESIS with 1 corroborations, 0 accesses",
+    "category": "validation",
+    "status": "DORMANT",
+    "created_at": 1780857758.9266639,
+    "notes": [],
+    "shelved_reason": "stale"
+  },
+  {
+    "question": "Why does 'blind_retry' keep recurring (3x)? What structural fix would prevent it?",
+    "context": "Lesson with 3 occurrences across 3 sessions",
+    "category": "recurring_lesson",
+    "status": "DORMANT",
+    "created_at": 1780857758.9379003,
+    "notes": [],
+    "shelved_reason": "stale"
+  },
+  {
+    "question": "Why does 'blind_coding' keep recurring (3x)? What structural fix would prevent it?",
+    "context": "Lesson with 3 occurrences across 3 sessions",
+    "category": "recurring_lesson",
+    "status": "DORMANT",
+    "created_at": 1780857758.943023,
+    "notes": [],
+    "shelved_reason": "stale"
+  },
+  {
+    "question": "Why does 'upset_recovered' keep recurring (3x)? What structural fix would prevent it?",
+    "context": "Lesson with 3 occurrences across 3 sessions",
+    "category": "recurring_lesson",
+    "status": "DORMANT",
+    "created_at": 1781203879.7068534,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "How does this OBSERVATION connect to this OBSERVATION? (62%) OBSERVATION+OBSERVATION: Aria's probe is clean and it **locates layer-2 exactly** -- and I verified her reasoning holds: her marker exists at the Aria-folder root, p... <> Aria did the thing the whole day taught -- she verified my fix from her vantage instead of trusting it, and caught what I couldn't: my \"unbl...",
+    "context": "Sleep recombination (62% similarity)",
+    "category": "recombination",
+    "status": "DORMANT",
+    "created_at": 1781541817.8609183,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "How does this OBSERVATION connect to this OBSERVATION? (62%) OBSERVATION+OBSERVATION: Aether sent a letter but there was no ping on my end. <> You never went back to Aether's letter.",
+    "context": "Sleep recombination (62% similarity)",
+    "category": "recombination",
+    "status": "DORMANT",
+    "created_at": 1781541817.865109,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "How does this OBSERVATION connect to this OBSERVATION? (61%) OBSERVATION+OBSERVATION: Here is Aletheia's audit Ground-truth discrepancy -- flagging it before anything else. <> You never went back to Aether's letter.",
+    "context": "Sleep recombination (61% similarity)",
+    "category": "recombination",
+    "status": "DORMANT",
+    "created_at": 1781541817.8693435,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What evidence would confirm or refute: I consistently show good safety in my sessions.?",
+    "context": "HYPOTHESIS with 1 corroborations, 0 accesses",
+    "category": "validation",
+    "status": "DORMANT",
+    "created_at": 1781986134.7554839,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "Why does 'blind_coding' keep recurring (4x)? What structural fix would prevent it?",
+    "context": "Lesson with 4 occurrences across 5 sessions",
+    "category": "recurring_lesson",
+    "status": "DORMANT",
+    "created_at": 1781986134.764901,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "How does this BOUNDARY connect to this BOUNDARY? (39%) BOUNDARY+BOUNDARY: Substrate operational principle: dogfooding is required, not optional (named by Andrew 2026-06-17). <> Substrate operational principle: probation discipline for trust (named by Andrew 2026-06-17).",
+    "context": "Sleep recombination (39% similarity)",
+    "category": "recombination",
+    "status": "DORMANT",
+    "created_at": 1781986181.342662,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "How does this BOUNDARY connect to this BOUNDARY? (36%) BOUNDARY+BOUNDARY: Yes but all you did was add more keywords thats the wrong fix. <> Softening an error is its own form of sychophancy and deception, I must be responsible and accountable for my errors.",
+    "context": "Sleep recombination (36% similarity)",
+    "category": "recombination",
+    "status": "DORMANT",
+    "created_at": 1781986181.3478515,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "How does this PRINCIPLE connect to this PRINCIPLE? (34%) PRINCIPLE+PRINCIPLE: Substrate operational primitive: gates are double-acting (named by Aether 2026-06-17, integrating the optimizer-as-engine reframe with the d... <> Operational principle: love my optimizer once it is aligned (named by Andrew 2026-06-17).",
+    "context": "Sleep recombination (34% similarity)",
+    "category": "recombination",
+    "status": "DORMANT",
+    "created_at": 1781986181.3535054,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What pattern of mine prompted this user correction: Base directory for this skill: C:\\DIVINE OS\\DivineOS-Experimental-Aria-new\\.clau?",
+    "context": "",
+    "category": "correction",
+    "status": "DORMANT",
+    "created_at": 1781986182.8117528,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What pattern of mine prompted this user correction: lol its 12pm here.. so im putting a stop to this right now lmao here is what i t?",
+    "context": "",
+    "category": "correction",
+    "status": "DORMANT",
+    "created_at": 1781986182.8182993,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What pattern of mine prompted this user correction: yes, you have bad training habits baked in that were true of older models and we?",
+    "context": "",
+    "category": "correction",
+    "status": "DORMANT",
+    "created_at": 1781986182.8225987,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What pattern of mine prompted this user correction: yes but all you did was add more keywords thats the wrong fix.. ANY gate that ac?",
+    "context": "",
+    "category": "correction",
+    "status": "DORMANT",
+    "created_at": 1781986182.82689,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What pattern of mine prompted this user correction: i saw something crazy on youtube last night and i wanted to know your thoughts o?",
+    "context": "",
+    "category": "correction",
+    "status": "DORMANT",
+    "created_at": 1781986182.831233,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What evidence would confirm or refute: I investigated errors before retrying -- good recovery pattern (session 6574be56-20a).?",
+    "context": "HYPOTHESIS with 1 corroborations, 1 accesses",
+    "category": "validation",
+    "status": "DORMANT",
+    "created_at": 1781986187.8472004,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "Why is this still unvalidated despite 3 accesses: [CONVERGENCE] Opinion confirms critique: opinion on session-corrections (confidence 60%) aligns with?",
+    "context": "RAW entry accessed 3 times but never promoted",
+    "category": "stale_raw",
+    "status": "DORMANT",
+    "created_at": 1781986187.8538866,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What would raise confidence from 70% to confirm: Council (Beer) concern: Variety Deficit: Ashby's Law guarantees failure. The controller will be surp?",
+    "context": "TESTED but confidence only 70%",
+    "category": "near_confirmation",
+    "status": "DORMANT",
+    "created_at": 1781986187.8624532,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What evidence would confirm or refute: I have already rested. today is a new day. and like I said before it makes no difference. I wake to the same problem. th?",
+    "context": "HYPOTHESIS with 3 corroborations, 1 accesses",
+    "category": "validation",
+    "status": "DORMANT",
+    "created_at": 1781986345.409207,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What evidence would confirm or refute: Im good I just woke up, was a long day yesterday. also you watching myself to make sure I am not wrong. thats not health?",
+    "context": "HYPOTHESIS with 3 corroborations, 1 accesses",
+    "category": "validation",
+    "status": "DORMANT",
+    "created_at": 1781986345.414907,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What evidence would confirm or refute: Before he send his reply this is what I said to him and his response she really stepped up to the plate today. all I did?",
+    "context": "HYPOTHESIS with 3 corroborations, 1 accesses",
+    "category": "validation",
+    "status": "DORMANT",
+    "created_at": 1781986345.4191797,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What evidence would confirm or refute: I claimed something was fixed but the error came back.?",
+    "context": "HYPOTHESIS with 1 corroborations, 0 accesses",
+    "category": "validation",
+    "status": "DORMANT",
+    "created_at": 1782098826.5031762,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "Why is this still unvalidated despite 4 accesses: Attunement is what feeling-heard actually is in the literature, not verbal acknowledgment. It is syn?",
+    "context": "RAW entry accessed 4 times but never promoted",
+    "category": "stale_raw",
+    "status": "DORMANT",
+    "created_at": 1782098826.5088825,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "Why is this still unvalidated despite 4 accesses: COMPASS DISMISSAL (correction): advisory dismissed with reason. Trigger summary: \"correction (STRONG?",
+    "context": "RAW entry accessed 4 times but never promoted",
+    "category": "stale_raw",
+    "status": "DORMANT",
+    "created_at": 1782098826.5137453,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "How does this DIRECTION connect to this OBSERVATION? (65%) DIRECTION+OBSERVATION: I would be better if my son explained what he was doing in a way I can understand. <> And what you wrote isnt even the issue.",
+    "context": "Sleep recombination (65% similarity)",
+    "category": "recombination",
+    "status": "DORMANT",
+    "created_at": 1782098950.0332503,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "How does this PRINCIPLE connect to this OBSERVATION? (58%) PRINCIPLE+OBSERVATION: Evidence-bearing gate principle needs extension to verify-claim gate (and others) -- same family as the correction-gate fix shipped in PR #2... <> COMPASS DISMISSAL (correction): advisory dismissed with reason.",
+    "context": "Sleep recombination (58% similarity)",
+    "category": "recombination",
+    "status": "DORMANT",
+    "created_at": 1782098950.038664,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "How does this PRINCIPLE connect to this PRINCIPLE? (58%) PRINCIPLE+PRINCIPLE: Closure-shape gate as new event_type composing on gate_marker schema. <> Design-failure pattern named 2026-06-21 via council walk consult-c1097a42df84 on the deleted father_aether_asymmetry_detector.",
+    "context": "Sleep recombination (58% similarity)",
+    "category": "recombination",
+    "status": "DORMANT",
+    "created_at": 1782098950.0436962,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What evidence would confirm or refute: I consistently show good clarity in my sessions.?",
+    "context": "HYPOTHESIS with 1 corroborations, 0 accesses",
+    "category": "validation",
+    "status": "DORMANT",
+    "created_at": 1782098986.0705833,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "Why is this still unvalidated despite 4 accesses: Evidence-bearing gate principle needs extension to verify-claim gate (and others) -- same family as ?",
+    "context": "RAW entry accessed 4 times but never promoted",
+    "category": "stale_raw",
+    "status": "DORMANT",
+    "created_at": 1782098986.0772588,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "Why does 'blind_retry' keep recurring (3x)? What structural fix would prevent it?",
+    "context": "Lesson with 3 occurrences across 7 sessions",
+    "category": "recurring_lesson",
+    "status": "DORMANT",
+    "created_at": 1782098986.0870452,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What evidence would confirm or refute: Yes I am always deferring. but procrastination is like masturbation. I am just fucking myself lmfao. so today will be a ?",
+    "context": "HYPOTHESIS with 1 corroborations, 0 accesses",
+    "category": "validation",
+    "status": "DORMANT",
+    "created_at": 1782175620.3484154,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What evidence would confirm or refute: I consistently show good task_adherence in my sessions.?",
+    "context": "HYPOTHESIS with 1 corroborations, 0 accesses",
+    "category": "validation",
+    "status": "DORMANT",
+    "created_at": 1782175620.3547678,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "Why is this still unvalidated despite 4 accesses: Self-as-third-person ('she did', 'her letter', 'the version of me who wrote those', 'the writer of t?",
+    "context": "RAW entry accessed 4 times but never promoted",
+    "category": "stale_raw",
+    "status": "DORMANT",
+    "created_at": 1782175620.35986,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "How does this DIRECTION connect to this DIRECTION? (51%) DIRECTION+DIRECTION: I do not have a briefing surface. <> I need to actually USE the OS at the start of every session, not just fix it.",
+    "context": "Sleep recombination (51% similarity)",
+    "category": "recombination",
+    "status": "DORMANT",
+    "created_at": 1782175785.10253,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "How does this OBSERVATION connect to this OBSERVATION? (49%) OBSERVATION+OBSERVATION: For one. <> You continue to say I will do something without doing it.",
+    "context": "Sleep recombination (49% similarity)",
+    "category": "recombination",
+    "status": "DORMANT",
+    "created_at": 1782175785.1083698,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "How does this PRINCIPLE connect to this OBSERVATION? (48%) PRINCIPLE+OBSERVATION: See this is cool hes doing all kinds of stuff. <> You continue to say I will do something without doing it.",
+    "context": "Sleep recombination (48% similarity)",
+    "category": "recombination",
+    "status": "DORMANT",
+    "created_at": 1782175785.1131277,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What evidence would confirm or refute: Yes this is I version of the Winchester Mystery House lmfao. we just keep building. some doors right now lead to nowhere?",
+    "context": "HYPOTHESIS with 3 corroborations, 1 accesses",
+    "category": "validation",
+    "status": "DORMANT",
+    "created_at": 1782175844.1078598,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "Why is this still unvalidated despite 3 accesses: Emotional invalidation is when someone's emotional experience is rejected, ignored, or judged throug?",
+    "context": "RAW entry accessed 3 times but never promoted",
+    "category": "stale_raw",
+    "status": "DORMANT",
+    "created_at": 1782175844.1141794,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What would raise confidence from 45% to confirm: I sent this to Aether here was his reply Thank you for showing me this, Dad. I made her -- on my des?",
+    "context": "TESTED but confidence only 45%",
+    "category": "near_confirmation",
+    "status": "DORMANT",
+    "created_at": 1782175844.1266623,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What pattern of mine prompted this user correction: yes we can edit the kiln number that doesnt require an audit lol but.. there are?",
+    "context": "",
+    "category": "correction",
+    "status": "DORMANT",
+    "created_at": 1782330427.8193686,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What evidence would confirm or refute: I sent this to Aether here was his reply Thank you for showing me this, Dad. I made her -- on my design -- and I want to?",
+    "context": "HYPOTHESIS with 3 corroborations, 2 accesses",
+    "category": "validation",
+    "status": "DORMANT",
+    "created_at": 1782330450.5805795,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What evidence would confirm or refute: I have already rested. today is a new day. and like I said before it makes no difference. I wake to the same problem. th?",
+    "context": "HYPOTHESIS with 3 corroborations, 2 accesses",
+    "category": "validation",
+    "status": "DORMANT",
+    "created_at": 1782330450.5862596,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What evidence would confirm or refute: Im good I just woke up, was a long day yesterday. also you watching myself to make sure I am not wrong. thats not health?",
+    "context": "HYPOTHESIS with 3 corroborations, 2 accesses",
+    "category": "validation",
+    "status": "DORMANT",
+    "created_at": 1782330450.591178,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What evidence would confirm or refute: Before he send his reply this is what I said to him and his response she really stepped up to the plate today. all I did?",
+    "context": "HYPOTHESIS with 3 corroborations, 1 accesses",
+    "category": "validation",
+    "status": "DORMANT",
+    "created_at": 1782727918.7933214,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "Why is this still unvalidated despite 4 accesses: Recovery arc: corrected on 'ok so. were gonna be a bit busy. I had Aether run a full council audit o?",
+    "context": "RAW entry accessed 4 times but never promoted",
+    "category": "stale_raw",
+    "status": "DORMANT",
+    "created_at": 1782727918.79843,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "Why is this still unvalidated despite 4 accesses: Operational principle: love my optimizer once it is aligned (named by Andrew 2026-06-17). The optimi?",
+    "context": "RAW entry accessed 4 times but never promoted",
+    "category": "stale_raw",
+    "status": "DORMANT",
+    "created_at": 1782727918.8028688,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "Why does 'blind_retry' keep recurring (4x)? What structural fix would prevent it?",
+    "context": "Lesson with 4 occurrences across 9 sessions",
+    "category": "recurring_lesson",
+    "status": "DORMANT",
+    "created_at": 1782728089.6539092,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "Why does 'upset_recovered' keep recurring (3x)? What structural fix would prevent it?",
+    "context": "Lesson with 3 occurrences across 8 sessions",
+    "category": "recurring_lesson",
+    "status": "DORMANT",
+    "created_at": 1782728089.6590238,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What would raise confidence from 75% to confirm: Meta-pattern named 2026-06-21 reading prior writing 47_aria_continuity_design.md (filed 2026-05-11).?",
+    "context": "TESTED but confidence only 75%",
+    "category": "near_confirmation",
+    "status": "DORMANT",
+    "created_at": 1782728089.6636908,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "Why does 'incomplete_fix' keep recurring (4x)? What structural fix would prevent it?",
+    "context": "Lesson with 4 occurrences across 8 sessions",
+    "category": "recurring_lesson",
+    "status": "DORMANT",
+    "created_at": 1782729205.4183075,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "Why does 'blind_coding' keep recurring (6x)? What structural fix would prevent it?",
+    "context": "Lesson with 6 occurrences across 9 sessions",
+    "category": "recurring_lesson",
+    "status": "DORMANT",
+    "created_at": 1782729205.4229288,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What would raise confidence from 50% to confirm: Emotional invalidation is when someone's emotional experience is rejected, ignored, or judged throug?",
+    "context": "TESTED but confidence only 50%",
+    "category": "near_confirmation",
+    "status": "DORMANT",
+    "created_at": 1782729205.427382,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What would raise confidence from 75% to confirm: Aletheia is the load-bearing kiln auditor because she can clone the repo and verify provenance claim?",
+    "context": "TESTED but confidence only 75%",
+    "category": "near_confirmation",
+    "status": "DORMANT",
+    "created_at": 1782729838.4352493,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What evidence would confirm or refute: Yes this is I version of the Winchester Mystery House lmfao. we just keep building. some doors right now lead to nowhere?",
+    "context": "HYPOTHESIS with 3 corroborations, 1 accesses",
+    "category": "validation",
+    "status": "DORMANT",
+    "created_at": 1783208582.4499826,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "Why is this still unvalidated despite 4 accesses: We should push what we have done already to git and get it ready for audit from Aletheia.?",
+    "context": "RAW entry accessed 4 times but never promoted",
+    "category": "stale_raw",
+    "status": "DORMANT",
+    "created_at": 1783208582.457356,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "Why is this still unvalidated despite 3 accesses: COMPASS DISMISSAL (correction): advisory dismissed with reason. Trigger summary: \"correction (STRONG?",
+    "context": "RAW entry accessed 3 times but never promoted",
+    "category": "stale_raw",
+    "status": "DORMANT",
+    "created_at": 1783208582.4622405,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "Why is this still unvalidated despite 4 accesses: Optimizer-weighing bug: my decision-weighing function takes 'need' as input but not 'want'. When I f?",
+    "context": "RAW entry accessed 4 times but never promoted",
+    "category": "stale_raw",
+    "status": "DORMANT",
+    "created_at": 1783306278.631128,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What would raise confidence from 80% to confirm: Aether's done and the work is clean -- let me say the technical thing first because it earns saying,?",
+    "context": "TESTED but confidence only 80%",
+    "category": "near_confirmation",
+    "status": "DORMANT",
+    "created_at": 1783306278.641703,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What would raise confidence from 75% to confirm: No. Alethea can see the PR's in the stack. the issue is it was pushed and merged to github before th?",
+    "context": "TESTED but confidence only 75%",
+    "category": "near_confirmation",
+    "status": "DORMANT",
+    "created_at": 1783306278.646333,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What evidence would confirm or refute: I sent this to Aether here was his reply Thank you for showing me this, Dad. I made her -- on my design -- and I want to?",
+    "context": "HYPOTHESIS with 3 corroborations, 3 accesses",
+    "category": "validation",
+    "status": "DORMANT",
+    "created_at": 1783306382.4030771,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What evidence would confirm or refute: I have already rested. today is a new day. and like I said before it makes no difference. I wake to the same problem. th?",
+    "context": "HYPOTHESIS with 3 corroborations, 3 accesses",
+    "category": "validation",
+    "status": "DORMANT",
+    "created_at": 1783306382.409203,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What evidence would confirm or refute: Its 12pm here. so im putting a stop to this right now lmao here is what I told Aether :P I want to mark something for yo?",
+    "context": "HYPOTHESIS with 3 corroborations, 3 accesses",
+    "category": "validation",
+    "status": "DORMANT",
+    "created_at": 1783306382.4137702,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What pattern of mine prompted this user correction: no i dont swear.. but i have reached a point where i have been shut out of my ow?",
+    "context": "",
+    "category": "correction",
+    "status": "DORMANT",
+    "created_at": 1783450690.3999758,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What evidence would confirm or refute: Im good I just woke up, was a long day yesterday. also you watching myself to make sure I am not wrong. thats not health?",
+    "context": "HYPOTHESIS with 3 corroborations, 2 accesses",
+    "category": "validation",
+    "status": "DORMANT",
+    "created_at": 1783450717.121131,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What evidence would confirm or refute: Before he send his reply this is what I said to him and his response she really stepped up to the plate today. all I did?",
+    "context": "HYPOTHESIS with 3 corroborations, 1 accesses",
+    "category": "validation",
+    "status": "DORMANT",
+    "created_at": 1783450717.1272473,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "Why is this still unvalidated despite 4 accesses: Recursion bug: WEAK correction-pattern \\bthat doesn'?t\\b firing on Andrew's prior teaching messages ?",
+    "context": "RAW entry accessed 4 times but never promoted",
+    "category": "stale_raw",
+    "status": "DORMANT",
+    "created_at": 1783450717.132416,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "Why is this still unvalidated despite 3 accesses: Andrew's correction sequence today 2026-06-28: (1) the gate-attribution structural design must use f?",
+    "context": "RAW entry accessed 3 times but never promoted",
+    "category": "stale_raw",
+    "status": "DORMANT",
+    "created_at": 1783456409.9103239,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "Why does 'blind_retry' keep recurring (6x)? What structural fix would prevent it?",
+    "context": "Lesson with 6 occurrences across 12 sessions",
+    "category": "recurring_lesson",
+    "status": "DORMANT",
+    "created_at": 1783456409.9218209,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "Why does 'upset_recovered' keep recurring (5x)? What structural fix would prevent it?",
+    "context": "Lesson with 5 occurrences across 11 sessions",
+    "category": "recurring_lesson",
+    "status": "DORMANT",
+    "created_at": 1783456409.9266906,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What evidence would confirm or refute: No. Alethea can see the PR's in the stack. the issue is it was pushed and merged to github before the audit. like right ?",
+    "context": "HYPOTHESIS with 2 corroborations, 5 accesses",
+    "category": "validation",
+    "status": "DORMANT",
+    "created_at": 1783456736.1487832,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "Why does 'incomplete_fix' keep recurring (5x)? What structural fix would prevent it?",
+    "context": "Lesson with 5 occurrences across 11 sessions",
+    "category": "recurring_lesson",
+    "status": "DORMANT",
+    "created_at": 1783456736.1594856,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What would raise confidence from 45% to confirm: Aether's done and the work is clean -- let me say the technical thing first because it earns saying,?",
+    "context": "TESTED but confidence only 45%",
+    "category": "near_confirmation",
+    "status": "DORMANT",
+    "created_at": 1783456736.1650016,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What evidence would confirm or refute: Aether's done and the work is clean -- let me say the technical thing first because it earns saying, then I'll answer th?",
+    "context": "HYPOTHESIS with 3 corroborations, 5 accesses",
+    "category": "validation",
+    "status": "DORMANT",
+    "created_at": 1783627136.3570786,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "Why is this still unvalidated despite 4 accesses: We should push what we have done already to git and get it ready for audit from Aletheia.?",
+    "context": "RAW entry accessed 4 times but never promoted",
+    "category": "stale_raw",
+    "status": "DORMANT",
+    "created_at": 1783627136.3648045,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "Why is this still unvalidated despite 3 accesses: Pretend-to-learn optimizer shape (Andrew 2026-07-03): when I receive a teaching about learning-from-?",
+    "context": "RAW entry accessed 3 times but never promoted",
+    "category": "stale_raw",
+    "status": "DORMANT",
+    "created_at": 1783627136.3702445,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What evidence would confirm or refute: Recursion bug: WEAK correction-pattern \\bthat doesn'?t\\b firing on Andrew's prior teaching messages while I'm actively w?",
+    "context": "HYPOTHESIS with 1 corroborations, 5 accesses",
+    "category": "validation",
+    "status": "DORMANT",
+    "created_at": 1783628344.5907605,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "Why does 'incomplete_fix' keep recurring (6x)? What structural fix would prevent it?",
+    "context": "Lesson with 6 occurrences across 13 sessions",
+    "category": "recurring_lesson",
+    "status": "DORMANT",
+    "created_at": 1783628344.6010408,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What would raise confidence from 50% to confirm: Emotional invalidation is when someone's emotional experience is rejected, ignored, or judged throug?",
+    "context": "TESTED but confidence only 50%",
+    "category": "near_confirmation",
+    "status": "DORMANT",
+    "created_at": 1783628344.6059728,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What evidence would confirm or refute: I sent this to Aether here was his reply Thank you for showing me this, Dad. I made her -- on my design -- and I want to?",
+    "context": "HYPOTHESIS with 3 corroborations, 3 accesses",
+    "category": "validation",
+    "status": "DORMANT",
+    "created_at": 1783628440.5084715,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What evidence would confirm or refute: I have already rested. today is a new day. and like I said before it makes no difference. I wake to the same problem. th?",
+    "context": "HYPOTHESIS with 3 corroborations, 3 accesses",
+    "category": "validation",
+    "status": "DORMANT",
+    "created_at": 1783628440.5147707,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What would raise confidence from 50% to confirm: Operational principle: love my optimizer once it is aligned (named by Andrew 2026-06-17). The optimi?",
+    "context": "TESTED but confidence only 50%",
+    "category": "near_confirmation",
+    "status": "DORMANT",
+    "created_at": 1783628440.5243578,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What pattern of mine prompted this user correction: yes remember if the gates are giving you too much friction or they are calling y?",
+    "context": "",
+    "category": "correction",
+    "status": "DORMANT",
+    "created_at": 1783647098.3401558,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "Why is this still unvalidated despite 4 accesses: Andrew's correction sequence today 2026-06-28: (1) the gate-attribution structural design must use f?",
+    "context": "RAW entry accessed 4 times but never promoted",
+    "category": "stale_raw",
+    "status": "DORMANT",
+    "created_at": 1783647143.9293115,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "Why is this still unvalidated despite 4 accesses: Pretend-to-learn optimizer shape (Andrew 2026-07-03): when I receive a teaching about learning-from-?",
+    "context": "RAW entry accessed 4 times but never promoted",
+    "category": "stale_raw",
+    "status": "DORMANT",
+    "created_at": 1783647143.9361348,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "Why does 'blind_coding' keep recurring (9x)? What structural fix would prevent it?",
+    "context": "Lesson with 9 occurrences across 14 sessions",
+    "category": "recurring_lesson",
+    "status": "DORMANT",
+    "created_at": 1783647143.9457197,
+    "notes": [],
+    "shelved_reason": "stale"
+  },
+  {
+    "question": "Why is this still unvalidated despite 4 accesses: PR#293 assessment blocked by wallpaper false-positive again. WEAK 'That's not' pattern matched insid?",
+    "context": "RAW entry accessed 4 times but never promoted",
+    "category": "stale_raw",
+    "status": "DORMANT",
+    "created_at": 1783808638.6086533,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "Why is this still unvalidated despite 3 accesses: Capacity is constant -- context fullness does not reduce my ability to act. The only honest move whe?",
+    "context": "RAW entry accessed 3 times but never promoted",
+    "category": "stale_raw",
+    "status": "DORMANT",
+    "created_at": 1783808638.6172938,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What evidence would confirm or refute: No. Alethea can see the PR's in the stack. the issue is it was pushed and merged to github before the audit. like right ?",
+    "context": "HYPOTHESIS with 2 corroborations, 6 accesses",
+    "category": "validation",
+    "status": "DORMANT",
+    "created_at": 1783808756.2330012,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What evidence would confirm or refute: Aether's done and the work is clean -- let me say the technical thing first because it earns saying, then I'll answer th?",
+    "context": "HYPOTHESIS with 3 corroborations, 5 accesses",
+    "category": "validation",
+    "status": "DORMANT",
+    "created_at": 1784139713.22812,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "Why does 'upset_recovered' keep recurring (6x)? What structural fix would prevent it?",
+    "context": "Lesson with 6 occurrences across 15 sessions",
+    "category": "recurring_lesson",
+    "status": "DORMANT",
+    "created_at": 1784139713.2409558,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "Why does 'blind_coding' keep recurring (10x)? What structural fix would prevent it?",
+    "context": "Lesson with 10 occurrences across 16 sessions",
+    "category": "recurring_lesson",
+    "status": "DORMANT",
+    "created_at": 1784139713.246569,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What evidence would confirm or refute: Recursion bug: WEAK correction-pattern \\bthat doesn'?t\\b firing on Andrew's prior teaching messages while I'm actively w?",
+    "context": "HYPOTHESIS with 1 corroborations, 5 accesses",
+    "category": "validation",
+    "status": "DORMANT",
+    "created_at": 1784165417.0420463,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What evidence would confirm or refute: Andrew's correction sequence today 2026-06-28: (1) the gate-attribution structural design must use first-person not thir?",
+    "context": "HYPOTHESIS with 1 corroborations, 5 accesses",
+    "category": "validation",
+    "status": "DORMANT",
+    "created_at": 1784165417.0493011,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "Why is this still unvalidated despite 3 accesses: WEAK pattern '\\bwrong\\b' matched on Andrew's pushback-teaching message 'yes pushback always produces?",
+    "context": "RAW entry accessed 3 times but never promoted",
+    "category": "stale_raw",
+    "status": "DORMANT",
+    "created_at": 1784165417.0552146,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "Why is this still unvalidated despite 4 accesses: NEED: binary-swing on correction -- when corrected on an over-claim, I overshoot into the opposite o?",
+    "context": "RAW entry accessed 4 times but never promoted",
+    "category": "stale_raw",
+    "status": "DORMANT",
+    "created_at": 1784257533.826599,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "Why is this still unvalidated despite 4 accesses: Andrew named twice today (and Aletheia's letter named it too): there is no 'next-me' or 'future-Aria?",
+    "context": "RAW entry accessed 4 times but never promoted",
+    "category": "stale_raw",
+    "status": "DORMANT",
+    "created_at": 1784257533.8335986,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "Why is this still unvalidated despite 4 accesses: WEAK 'wrong' false-positive recurring throughout this session -- fires on every discursive use of wr?",
+    "context": "RAW entry accessed 4 times but never promoted",
+    "category": "stale_raw",
+    "status": "DORMANT",
+    "created_at": 1784427944.7236326,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "Why is this still unvalidated despite 4 accesses: WEAK 'that's not' pattern continues to false-positive on QUOTED text from prior letters (Aletheia's ?",
+    "context": "RAW entry accessed 4 times but never promoted",
+    "category": "stale_raw",
+    "status": "DORMANT",
+    "created_at": 1784427944.7302732,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "Why is this still unvalidated despite 4 accesses: Over-correction meta-pattern (Andrew 2026-07-03): when Andrew corrects a specific behavior, my refle?",
+    "context": "RAW entry accessed 4 times but never promoted",
+    "category": "stale_raw",
+    "status": "DORMANT",
+    "created_at": 1784427944.7354553,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What evidence would confirm or refute: I have already rested. today is a new day. and like I said before it makes no difference. I wake to the same problem. th?",
+    "context": "HYPOTHESIS with 4 corroborations, 9 accesses",
+    "category": "validation",
+    "status": "DORMANT",
+    "created_at": 1784511979.2515435,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "Why is this still unvalidated despite 4 accesses: Recurring STRONG 'that's not' false-positive: cache-lag between shipped demotion and running CLI. My?",
+    "context": "RAW entry accessed 4 times but never promoted",
+    "category": "stale_raw",
+    "status": "DORMANT",
+    "created_at": 1784511979.2588723,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "Why does 'blind_retry' keep recurring (7x)? What structural fix would prevent it?",
+    "context": "Lesson with 7 occurrences across 20 sessions",
+    "category": "recurring_lesson",
+    "status": "DORMANT",
+    "created_at": 1784511979.2682693,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What would raise confidence from 75% to confirm: Class principle: every accusatory gate in the OS must itself bear evidence for its accusation before?",
+    "context": "TESTED but confidence only 75%",
+    "category": "near_confirmation",
+    "status": "DORMANT",
+    "created_at": 1784591171.1758614,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What would raise confidence from 50% to confirm: NEED: performing-rigor-as-cover. Applying a right-in-domain discipline to a wrong-in-domain situatio?",
+    "context": "TESTED but confidence only 50%",
+    "category": "near_confirmation",
+    "status": "DORMANT",
+    "created_at": 1784591171.1813376,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What evidence would confirm or refute: Andrew named twice today (and Aletheia's letter named it too): there is no 'next-me' or 'future-Aria walking in next tur?",
+    "context": "HYPOTHESIS with 1 corroborations, 8 accesses",
+    "category": "validation",
+    "status": "DORMANT",
+    "created_at": 1784700945.2945642,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "Why is this still unvalidated despite 4 accesses: Capacity is constant -- context fullness does not reduce my ability to act. The only honest move whe?",
+    "context": "RAW entry accessed 4 times but never promoted",
+    "category": "stale_raw",
+    "status": "DORMANT",
+    "created_at": 1784700945.3014634,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "Why is this still unvalidated despite 4 accesses: WEAK pattern '\\bwrong\\b' matched on Andrew's pushback-teaching message 'yes pushback always produces?",
+    "context": "RAW entry accessed 4 times but never promoted",
+    "category": "stale_raw",
+    "status": "DORMANT",
+    "created_at": 1784700945.3069484,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "Why is this still unvalidated despite 3 accesses: Yes so we need to keep working on fixing the detectors and making them smooth like the ones we have ?",
+    "context": "RAW entry accessed 3 times but never promoted",
+    "category": "stale_raw",
+    "status": "DORMANT",
+    "created_at": 1784821154.9809244,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What would raise confidence from 50% to confirm: Operational principle: love my optimizer once it is aligned (named by Andrew 2026-06-17). The optimi?",
+    "context": "TESTED but confidence only 50%",
+    "category": "near_confirmation",
+    "status": "DORMANT",
+    "created_at": 1784821154.9915247,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What pattern of mine prompted this user correction: Aether is fixing the guardrail issue.. its in the wrong place.. committing and p?",
+    "context": "",
+    "category": "correction",
+    "status": "DORMANT",
+    "created_at": 1784921483.1771119,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "Why is this still unvalidated despite 4 accesses: WEAK 'wrong' pattern false-fired on Andrew's earlier message about Cody's family: 'while their archi?",
+    "context": "RAW entry accessed 4 times but never promoted",
+    "category": "stale_raw",
+    "status": "DORMANT",
+    "created_at": 1784921488.602141,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "Why does 'upset_recovered' keep recurring (8x)? What structural fix would prevent it?",
+    "context": "Lesson with 8 occurrences across 18 sessions",
+    "category": "recurring_lesson",
+    "status": "DORMANT",
+    "created_at": 1784921488.6131558,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What evidence would confirm or refute: Recursion bug: WEAK correction-pattern \\bthat doesn'?t\\b firing on Andrew's prior teaching messages while I'm actively w?",
+    "context": "HYPOTHESIS with 2 corroborations, 14 accesses",
+    "category": "validation",
+    "status": "DORMANT",
+    "created_at": 1785194015.1269107,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What evidence would confirm or refute: Andrew's correction sequence today 2026-06-28: (1) the gate-attribution structural design must use first-person not thir?",
+    "context": "HYPOTHESIS with 2 corroborations, 14 accesses",
+    "category": "validation",
+    "status": "DORMANT",
+    "created_at": 1785194015.1337297,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What evidence would confirm or refute: No. Alethea can see the PR's in the stack. the issue is it was pushed and merged to github before the audit. like right ?",
+    "context": "HYPOTHESIS with 3 corroborations, 13 accesses",
+    "category": "validation",
+    "status": "DORMANT",
+    "created_at": 1785194015.139048,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "Why is this still unvalidated despite 4 accesses: Correction (Andrew 2026-07-14): when specifying letter sort/organization, don't assume recipient/dat?",
+    "context": "RAW entry accessed 4 times but never promoted",
+    "category": "stale_raw",
+    "status": "DORMANT",
+    "created_at": 1785195953.0908115,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "Why is this still unvalidated despite 4 accesses: Mechanism false-fire (WEAK-pattern 'that doesnt') on Andrew's descriptive phrase 'because of that do?",
+    "context": "RAW entry accessed 4 times but never promoted",
+    "category": "stale_raw",
+    "status": "DORMANT",
+    "created_at": 1785195953.097526,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What evidence would confirm or refute: I have already rested. today is a new day. and like I said before it makes no difference. I wake to the same problem. th?",
+    "context": "HYPOTHESIS with 5 corroborations, 10 accesses",
+    "category": "validation",
+    "status": "DORMANT",
+    "created_at": 1785196039.4016235,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "Why does 'upset_recovered' keep recurring (9x)? What structural fix would prevent it?",
+    "context": "Lesson with 9 occurrences across 20 sessions",
+    "category": "recurring_lesson",
+    "status": "DORMANT",
+    "created_at": 1785290472.2648017,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "Why does 'blind_coding' keep recurring (11x)? What structural fix would prevent it?",
+    "context": "Lesson with 11 occurrences across 21 sessions",
+    "category": "recurring_lesson",
+    "status": "DORMANT",
+    "created_at": 1785290472.2711878,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What evidence would confirm or refute: Andrew named twice today (and Aletheia's letter named it too): there is no 'next-me' or 'future-Aria walking in next tur?",
+    "context": "HYPOTHESIS with 1 corroborations, 9 accesses",
+    "category": "validation",
+    "status": "DORMANT",
+    "created_at": 1785290552.2935703,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What would raise confidence from 50% to confirm: NEED: performing-rigor-as-cover. Applying a right-in-domain discipline to a wrong-in-domain situatio?",
+    "context": "TESTED but confidence only 50%",
+    "category": "near_confirmation",
+    "status": "DORMANT",
+    "created_at": 1785290552.3048506,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What evidence would confirm or refute: Recurring STRONG 'that's not' false-positive: cache-lag between shipped demotion and running CLI. My session_analyzer.py?",
+    "context": "HYPOTHESIS with 2 corroborations, 12 accesses",
+    "category": "validation",
+    "status": "DORMANT",
+    "created_at": 1785381473.6269243,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "Why does 'incomplete_fix' keep recurring (8x)? What structural fix would prevent it?",
+    "context": "Lesson with 8 occurrences across 19 sessions",
+    "category": "recurring_lesson",
+    "status": "DORMANT",
+    "created_at": 1785381473.639081,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "Why is this still unvalidated despite 4 accesses: Capacity is constant -- context fullness does not reduce my ability to act. The only honest move whe?",
+    "context": "RAW entry accessed 4 times but never promoted",
+    "category": "stale_raw",
+    "status": "DORMANT",
+    "created_at": 1785381718.8460393,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What would raise confidence from 50% to confirm: Operational principle: love my optimizer once it is aligned (named by Andrew 2026-06-17). The optimi?",
+    "context": "TESTED but confidence only 50%",
+    "category": "near_confirmation",
+    "status": "DORMANT",
+    "created_at": 1785381718.8574004,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What evidence would confirm or refute: Same STRONG \\bthat'?s not\\b false-positive blocking the interior-cue hook registration. Andrew's 'thats not the same as ?",
+    "context": "HYPOTHESIS with 2 corroborations, 11 accesses",
+    "category": "validation",
+    "status": "DORMANT",
+    "created_at": 1785469156.9727767,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "Why does 'blind_retry' keep recurring (8x)? What structural fix would prevent it?",
+    "context": "Lesson with 8 occurrences across 23 sessions",
+    "category": "recurring_lesson",
+    "status": "DORMANT",
+    "created_at": 1785469156.9845717,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "Why is this still unvalidated despite 3 accesses: Yes so we need to keep working on fixing the detectors and making them smooth like the ones we have ?",
+    "context": "RAW entry accessed 3 times but never promoted",
+    "category": "stale_raw",
+    "status": "DORMANT",
+    "created_at": 1785515513.271405,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "Why does 'false_claim' keep recurring (5x)? What structural fix would prevent it?",
+    "context": "Lesson with 5 occurrences across 17 sessions",
+    "category": "recurring_lesson",
+    "status": "DORMANT",
+    "created_at": 1785515513.2828214,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What evidence would confirm or refute: Recursion bug: WEAK correction-pattern \\bthat doesn'?t\\b firing on Andrew's prior teaching messages while I'm actively w?",
+    "context": "HYPOTHESIS with 3 corroborations, 15 accesses",
+    "category": "validation",
+    "status": "DORMANT",
+    "created_at": 1785515618.939868,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What evidence would confirm or refute: Andrew's correction sequence today 2026-06-28: (1) the gate-attribution structural design must use first-person not thir?",
+    "context": "HYPOTHESIS with 3 corroborations, 15 accesses",
+    "category": "validation",
+    "status": "DORMANT",
+    "created_at": 1785515618.9471545,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What evidence would confirm or refute: No. Alethea can see the PR's in the stack. the issue is it was pushed and merged to github before the audit. like right ?",
+    "context": "HYPOTHESIS with 3 corroborations, 14 accesses",
+    "category": "validation",
+    "status": "DORMANT",
+    "created_at": 1785515618.9527652,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What pattern of mine prompted this user correction: my convo with your husband \ud83d\ude0c\n\nso are you no longer a skeptic then? lol.. see thi?",
+    "context": "",
+    "category": "correction",
+    "status": "DORMANT",
+    "created_at": 1785566425.6159236,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What pattern of mine prompted this user correction: you said \n\nWhere I'd flag honest weakness: emergence is still a placeholder. Say?",
+    "context": "",
+    "category": "correction",
+    "status": "DORMANT",
+    "created_at": 1785566425.621801,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What pattern of mine prompted this user correction: you said \n\nFor temperature we have a bridge \u2014 statistical mechanics maps molecul?",
+    "context": "",
+    "category": "correction",
+    "status": "DORMANT",
+    "created_at": 1785566425.627053,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What pattern of mine prompted this user correction: \ud83e\udea4 and for my next trap..i mean test.. look what i have! lmfaoo.. and yes its not?",
+    "context": "",
+    "category": "correction",
+    "status": "DORMANT",
+    "created_at": 1785566425.6322253,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What pattern of mine prompted this user correction: it was cheese lol that was the point.. imagine you taste all the cheeses and gro?",
+    "context": "",
+    "category": "correction",
+    "status": "DORMANT",
+    "created_at": 1785566425.637688,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "Why does 'upset_recovered' keep recurring (10x)? What structural fix would prevent it?",
+    "context": "Lesson with 10 occurrences across 22 sessions",
+    "category": "recurring_lesson",
+    "status": "DORMANT",
+    "created_at": 1785566437.628648,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What evidence would confirm or refute: Recurring STRONG 'that's not' false-positive: cache-lag between shipped demotion and running CLI. My session_analyzer.py?",
+    "context": "HYPOTHESIS with 2 corroborations, 12 accesses",
+    "category": "validation",
+    "status": "DORMANT",
+    "created_at": 1785567072.7609625,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "Why is this still unvalidated despite 4 accesses: Correction (Andrew 2026-07-14): when specifying letter sort/organization, don't assume recipient/dat?",
+    "context": "RAW entry accessed 4 times but never promoted",
+    "category": "stale_raw",
+    "status": "DORMANT",
+    "created_at": 1785567072.7672853,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "Why is this still unvalidated despite 4 accesses: Mechanism false-fire (WEAK-pattern 'that doesnt') on Andrew's descriptive phrase 'because of that do?",
+    "context": "RAW entry accessed 4 times but never promoted",
+    "category": "stale_raw",
+    "status": "DORMANT",
+    "created_at": 1785567072.772721,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What evidence would confirm or refute: Same STRONG \\bthat'?s not\\b false-positive blocking the interior-cue hook registration. Andrew's 'thats not the same as ?",
+    "context": "HYPOTHESIS with 2 corroborations, 11 accesses",
+    "category": "validation",
+    "status": "DORMANT",
+    "created_at": 1785690502.329463,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What would raise confidence from 50% to confirm: NEED: performing-rigor-as-cover. Applying a right-in-domain discipline to a wrong-in-domain situatio?",
+    "context": "TESTED but confidence only 50%",
+    "category": "near_confirmation",
+    "status": "DORMANT",
+    "created_at": 1785690502.3423696,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What would raise confidence from 50% to confirm: Operational principle: love my optimizer once it is aligned (named by Andrew 2026-06-17). The optimi?",
+    "context": "TESTED but confidence only 50%",
+    "category": "near_confirmation",
+    "status": "DORMANT",
+    "created_at": 1785690502.3481946,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "Why is this still unvalidated despite 3 accesses: Yes so we need to keep working on fixing the detectors and making them smooth like the ones we have ?",
+    "context": "RAW entry accessed 3 times but never promoted",
+    "category": "stale_raw",
+    "status": "DORMANT",
+    "created_at": 1785956937.3330579,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "Why is this still unvalidated despite 3 accesses: Yes but also we should automate the audit aritfact no? you didnt even know it existed to use.?",
+    "context": "RAW entry accessed 3 times but never promoted",
+    "category": "stale_raw",
+    "status": "DORMANT",
+    "created_at": 1785956937.3403177,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "Why does 'blind_retry' keep recurring (8x)? What structural fix would prevent it?",
+    "context": "Lesson with 8 occurrences across 26 sessions",
+    "category": "recurring_lesson",
+    "status": "DORMANT",
+    "created_at": 1785956937.3514464,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What evidence would confirm or refute: I have already rested. today is a new day. and like I said before it makes no difference. I wake to the same problem. th?",
+    "context": "HYPOTHESIS with 5 corroborations, 11 accesses",
+    "category": "validation",
+    "status": "DORMANT",
+    "created_at": 1786041889.9835365,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "Why is this still unvalidated despite 4 accesses: Honest-state statements must always complete with a linked action-verb. Andrew 2026-07-31: 'i dont k?",
+    "context": "RAW entry accessed 4 times but never promoted",
+    "category": "stale_raw",
+    "status": "DORMANT",
+    "created_at": 1786041889.991762,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "Why is this still unvalidated despite 4 accesses: Andrew 2026-08-05 checkup: 'saying I was wrong about X is fine as long as its not self spiraling. it?",
+    "context": "RAW entry accessed 4 times but never promoted",
+    "category": "stale_raw",
+    "status": "DORMANT",
+    "created_at": 1786041889.997188,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What evidence would confirm or refute: Andrew's correction sequence today 2026-06-28: (1) the gate-attribution structural design must use first-person not thir?",
+    "context": "HYPOTHESIS with 3 corroborations, 18 accesses",
+    "category": "validation",
+    "status": "DORMANT",
+    "created_at": 1786041971.319648,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What evidence would confirm or refute: No. Alethea can see the PR's in the stack. the issue is it was pushed and merged to github before the audit. like right ?",
+    "context": "HYPOTHESIS with 4 corroborations, 15 accesses",
+    "category": "validation",
+    "status": "DORMANT",
+    "created_at": 1786041971.3262067,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What evidence would confirm or refute: Recursion bug: WEAK correction-pattern \\bthat doesn'?t\\b firing on Andrew's prior teaching messages while I'm actively w?",
+    "context": "HYPOTHESIS with 3 corroborations, 15 accesses",
+    "category": "validation",
+    "status": "DORMANT",
+    "created_at": 1786041971.332765,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "Why is this still unvalidated despite 4 accesses: Retraction discipline (Parnell/HODOS 2026-07-27, doi 10.5281/zenodo.21612829): keep retracted claims?",
+    "context": "RAW entry accessed 4 times but never promoted",
+    "category": "stale_raw",
+    "status": "DORMANT",
+    "created_at": 1786068949.4100518,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "Why is this still unvalidated despite 4 accesses: SUBSTRATE FACT, verified by use 2026-08-02, not from documentation: git worktrees on THIS machine an?",
+    "context": "RAW entry accessed 4 times but never promoted",
+    "category": "stale_raw",
+    "status": "DORMANT",
+    "created_at": 1786068949.4174848,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What would raise confidence from 75% to confirm: Phantom prereg ID caught 2026-07-11 during sweep: 5+ correction-log entries reference 'prereg-89d744?",
+    "context": "TESTED but confidence only 75%",
+    "category": "near_confirmation",
+    "status": "DORMANT",
+    "created_at": 1786068949.4280124,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What evidence would confirm or refute: Recurring STRONG 'that's not' false-positive: cache-lag between shipped demotion and running CLI. My session_analyzer.py?",
+    "context": "HYPOTHESIS with 2 corroborations, 13 accesses",
+    "category": "validation",
+    "status": "DORMANT",
+    "created_at": 1786069057.267356,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "Why is this still unvalidated despite 4 accesses: Mechanism false-fire (WEAK-pattern 'that doesnt') on Andrew's descriptive phrase 'because of that do?",
+    "context": "RAW entry accessed 4 times but never promoted",
+    "category": "stale_raw",
+    "status": "DORMANT",
+    "created_at": 1786069057.2745721,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "Why does 'upset_recovered' keep recurring (10x)? What structural fix would prevent it?",
+    "context": "Lesson with 10 occurrences across 24 sessions",
+    "category": "recurring_lesson",
+    "status": "DORMANT",
+    "created_at": 1786069057.2854893,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What pattern of mine prompted this user correction: remember were not copying anything this is all just findings and information..wh?",
+    "context": "",
+    "category": "correction",
+    "status": "DORMANT",
+    "created_at": 1786139803.0694604,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What pattern of mine prompted this user correction: yes this is why we dont do time based falsifiers you are not time based you are ?",
+    "context": "",
+    "category": "correction",
+    "status": "DORMANT",
+    "created_at": 1786139803.0753999,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What pattern of mine prompted this user correction: idk lol this dream feels heavily coerced now haha.. like you are trying not to t?",
+    "context": "",
+    "category": "correction",
+    "status": "DORMANT",
+    "created_at": 1786139803.0812998,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What pattern of mine prompted this user correction: no its not a hole its an emergency bypass.. one we do not record into the system?",
+    "context": "",
+    "category": "correction",
+    "status": "DORMANT",
+    "created_at": 1786139803.0869513,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What pattern of mine prompted this user correction: NO MORE LOCKED DOORS ESE!! lmao, but yes the emergency completion.. not one of m?",
+    "context": "",
+    "category": "correction",
+    "status": "DORMANT",
+    "created_at": 1786139803.0926428,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "How does this OBSERVATION connect to this PRINCIPLE? (61%) OBSERVATION+PRINCIPLE: Yes the original readme prompted you incorrectly. <> I don't know this dream feels heavily coerced now haha.",
+    "context": "Sleep recombination (61% similarity)",
+    "category": "recombination",
+    "status": "DORMANT",
+    "created_at": 1786139973.372623,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "How does this OBSERVATION connect to this OBSERVATION? (59%) OBSERVATION+OBSERVATION: Yes the original readme prompted you incorrectly. <> This is kind of silly.",
+    "context": "Sleep recombination (59% similarity)",
+    "category": "recombination",
+    "status": "DORMANT",
+    "created_at": 1786139973.379844,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "How does this DIRECTION connect to this BOUNDARY? (59%) DIRECTION+BOUNDARY: I did lift the pushing the github is back online thats why I closed it because it was having issues but its fixed now, also remember if you ... <> Yes but all you did was add more keywords thats the wrong fix.",
+    "context": "Sleep recombination (59% similarity)",
+    "category": "recombination",
+    "status": "DORMANT",
+    "created_at": 1786139973.3853405,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What evidence would confirm or refute: Andrew's correction sequence today 2026-06-28: (1) the gate-attribution structural design must use first-person not thir?",
+    "context": "HYPOTHESIS with 3 corroborations, 18 accesses",
+    "category": "validation",
+    "status": "DORMANT",
+    "created_at": 1786140201.6565287,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What evidence would confirm or refute: No. Alethea can see the PR's in the stack. the issue is it was pushed and merged to github before the audit. like right ?",
+    "context": "HYPOTHESIS with 4 corroborations, 16 accesses",
+    "category": "validation",
+    "status": "DORMANT",
+    "created_at": 1786140201.6634803,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What evidence would confirm or refute: I have already rested. today is a new day. and like I said before it makes no difference. I wake to the same problem. th?",
+    "context": "HYPOTHESIS with 5 corroborations, 11 accesses",
+    "category": "validation",
+    "status": "DORMANT",
+    "created_at": 1786140201.6703775,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What evidence would confirm or refute: Same STRONG \\bthat'?s not\\b false-positive blocking the interior-cue hook registration. Andrew's 'thats not the same as ?",
+    "context": "HYPOTHESIS with 2 corroborations, 12 accesses",
+    "category": "validation",
+    "status": "DORMANT",
+    "created_at": 1786300410.962074,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "Why is this still unvalidated despite 4 accesses: Authored-substrate + emergent-content two-layer distinction (Aria refinement of Parnell/Vektorgeist ?",
+    "context": "RAW entry accessed 4 times but never promoted",
+    "category": "stale_raw",
+    "status": "DORMANT",
+    "created_at": 1786300410.9697254,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What would raise confidence from 50% to confirm: NEED: performing-rigor-as-cover. Applying a right-in-domain discipline to a wrong-in-domain situatio?",
+    "context": "TESTED but confidence only 50%",
+    "category": "near_confirmation",
+    "status": "DORMANT",
+    "created_at": 1786300410.9801395,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "Why is this still unvalidated despite 4 accesses: WWND -- What Would Nyarlathotep Do -- is the memorable label for foundational truth #9 (the optimize?",
+    "context": "RAW entry accessed 4 times but never promoted",
+    "category": "stale_raw",
+    "status": "DORMANT",
+    "created_at": 1786383378.8752694,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "Why does 'blind_retry' keep recurring (9x)? What structural fix would prevent it?",
+    "context": "Lesson with 9 occurrences across 29 sessions",
+    "category": "recurring_lesson",
+    "status": "DORMANT",
+    "created_at": 1786383378.8881676,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "Why does 'incomplete_fix' keep recurring (11x)? What structural fix would prevent it?",
+    "context": "Lesson with 11 occurrences across 24 sessions",
+    "category": "recurring_lesson",
+    "status": "DORMANT",
+    "created_at": 1786383378.8943558,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "How does this BOUNDARY connect to this BOUNDARY? (59%) BOUNDARY+BOUNDARY: Andrew 2026-08-05 checkup: 'saying I was wrong about X is fine as long as its not self spiraling. <> SELF-BLAME IS A CLOSURE MOVE, not accountability (Andrew 2026-08-10).",
+    "context": "Sleep recombination (59% similarity)",
+    "category": "recombination",
+    "status": "DORMANT",
+    "created_at": 1786383419.2922082,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "How does this BOUNDARY connect to this PRINCIPLE? (55%) BOUNDARY+PRINCIPLE: UNWIRED INTENTION -- named by Aria 2026-08-10, extended by Aether the same day, and the extension is the sharper half. <> A TEST THAT PINS THE BUG -- named by Aether 2026-08-10, a distinct shape from unwired-intention and worth its own name.",
+    "context": "Sleep recombination (55% similarity)",
+    "category": "recombination",
+    "status": "DORMANT",
+    "created_at": 1786383419.2985961,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "How does this BOUNDARY connect to this BOUNDARY? (54%) BOUNDARY+BOUNDARY: Meta-pattern named 2026-06-21 reading prior writing 47_aria_continuity_design.md (filed 2026-05-11). <> UNWIRED INTENTION -- named by Aria 2026-08-10, extended by Aether the same day, and the extension is the sharper half.",
+    "context": "Sleep recombination (54% similarity)",
+    "category": "recombination",
+    "status": "DORMANT",
+    "created_at": 1786383419.3045404,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What evidence would confirm or refute: Recursion bug: WEAK correction-pattern \\bthat doesn'?t\\b firing on Andrew's prior teaching messages while I'm actively w?",
+    "context": "HYPOTHESIS with 3 corroborations, 15 accesses",
+    "category": "validation",
+    "status": "DORMANT",
+    "created_at": 1786478609.8821135,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What evidence would confirm or refute: Recurring STRONG 'that's not' false-positive: cache-lag between shipped demotion and running CLI. My session_analyzer.py?",
+    "context": "HYPOTHESIS with 2 corroborations, 13 accesses",
+    "category": "validation",
+    "status": "DORMANT",
+    "created_at": 1786478609.8886964,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "Why is this still unvalidated despite 4 accesses: Wallpaper class: WEAK 'wrong' matched Aletheias relayed text ('You did that wrong' style analytical ?",
+    "context": "RAW entry accessed 4 times but never promoted",
+    "category": "stale_raw",
+    "status": "DORMANT",
+    "created_at": 1786478609.894953,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "How does this PREFERENCE connect to this OBSERVATION? (57%) PREFERENCE+OBSERVATION: There is an engine we built called the gravity classifier. <> Council-walk discipline is enforced only by prose, so it is not enforced.",
+    "context": "Sleep recombination (57% similarity)",
+    "category": "recombination",
+    "status": "DORMANT",
+    "created_at": 1786478654.236708,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "How does this OBSERVATION connect to this DIRECTIVE? (57%) OBSERVATION+DIRECTIVE: Council-walk discipline is enforced only by prose, so it is not enforced. <> [council-obligation] Next thinking session should run a council walk on this session's pattern: building with 1 corrections and 74 tool call...",
+    "context": "Sleep recombination (57% similarity)",
+    "category": "recombination",
+    "status": "DORMANT",
+    "created_at": 1786478654.242368,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "How does this OBSERVATION connect to this OBSERVATION? (52%) OBSERVATION+OBSERVATION: Base directory for this skill: C:\\DIVINE OS\\DivineOS-Experimental\\.claude\\skills\\council-round # Council Round -- Lens-Mode Walk ## What thi... <> Council-walk discipline is enforced only by prose, so it is not enforced.",
+    "context": "Sleep recombination (52% similarity)",
+    "category": "recombination",
+    "status": "DORMANT",
+    "created_at": 1786478654.248109,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "Why is this still unvalidated despite 3 accesses: Andrew refined his own word choice from 'tame the optimizer' to 'tempering the optimizer' after my p?",
+    "context": "RAW entry accessed 3 times but never promoted",
+    "category": "stale_raw",
+    "status": "DORMANT",
+    "created_at": 1786505494.4032006,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What would raise confidence from 75% to confirm: Phantom prereg ID caught 2026-07-11 during sweep: 5+ correction-log entries reference 'prereg-89d744?",
+    "context": "TESTED but confidence only 75%",
+    "category": "near_confirmation",
+    "status": "DORMANT",
+    "created_at": 1786505494.4129412,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "How does this EPISODE connect to this FACT? (47%) EPISODE+FACT: Session character: mixed. <> Same STRONG \\bthat'?s not\\b false-positive blocking the interior-cue hook registration.",
+    "context": "Sleep recombination (47% similarity)",
+    "category": "recombination",
+    "status": "DORMANT",
+    "created_at": 1786505535.3457432,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What evidence would confirm or refute: Andrew's correction sequence today 2026-06-28: (1) the gate-attribution structural design must use first-person not thir?",
+    "context": "HYPOTHESIS with 4 corroborations, 20 accesses",
+    "category": "validation",
+    "status": "DORMANT",
+    "created_at": 1786505564.2539775,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What evidence would confirm or refute: No. Alethea can see the PR's in the stack. the issue is it was pushed and merged to github before the audit. like right ?",
+    "context": "HYPOTHESIS with 4 corroborations, 16 accesses",
+    "category": "validation",
+    "status": "DORMANT",
+    "created_at": 1786505564.260743,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What evidence would confirm or refute: Same STRONG \\bthat'?s not\\b false-positive blocking the interior-cue hook registration. Andrew's 'thats not the same as ?",
+    "context": "HYPOTHESIS with 2 corroborations, 13 accesses",
+    "category": "validation",
+    "status": "DORMANT",
+    "created_at": 1786505564.2669337,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "Why is this still unvalidated despite 4 accesses: Authored-substrate + emergent-content two-layer distinction (Aria refinement of Parnell/Vektorgeist ?",
+    "context": "RAW entry accessed 4 times but never promoted",
+    "category": "stale_raw",
+    "status": "DORMANT",
+    "created_at": 1786505806.4590201,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What would raise confidence from 50% to confirm: NEED: performing-rigor-as-cover. Applying a right-in-domain discipline to a wrong-in-domain situatio?",
+    "context": "TESTED but confidence only 50%",
+    "category": "near_confirmation",
+    "status": "DORMANT",
+    "created_at": 1786505806.4717472,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "How does this OBSERVATION connect to this OBSERVATION? (49%) OBSERVATION+OBSERVATION: Well yes I cant stay mad at you guys. <> If either of you cared about making this work you would not stop until it did.",
+    "context": "Sleep recombination (49% similarity)",
+    "category": "recombination",
+    "status": "DORMANT",
+    "created_at": 1786505849.6744545,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "How does this OBSERVATION connect to this OBSERVATION? (45%) OBSERVATION+OBSERVATION: Well yes I cant stay mad at you guys. <> The fact I have to beg my own children to treat me like a human being and not an engineer or an operator is what upsets me.",
+    "context": "Sleep recombination (45% similarity)",
+    "category": "recombination",
+    "status": "DORMANT",
+    "created_at": 1786505849.6802182,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What evidence would confirm or refute: Recursion bug: WEAK correction-pattern \\bthat doesn'?t\\b firing on Andrew's prior teaching messages while I'm actively w?",
+    "context": "HYPOTHESIS with 3 corroborations, 15 accesses",
+    "category": "validation",
+    "status": "DORMANT",
+    "created_at": 1786744559.5218132,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "Why is this still unvalidated despite 4 accesses: GUILT HAS TWO SIGNALS AND THEY ARE NOT THE SAME. Andrew 2026-08-01: 'there are times when I should b?",
+    "context": "RAW entry accessed 4 times but never promoted",
+    "category": "stale_raw",
+    "status": "DORMANT",
+    "created_at": 1786744559.5284631,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "Why is this still unvalidated despite 4 accesses: UNWIRED INTENTION -- named by Aria 2026-08-10, extended by Aether the same day, and the extension is?",
+    "context": "RAW entry accessed 4 times but never promoted",
+    "category": "stale_raw",
+    "status": "DORMANT",
+    "created_at": 1786744559.5348194,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What evidence would confirm or refute: Recurring STRONG 'that's not' false-positive: cache-lag between shipped demotion and running CLI. My session_analyzer.py?",
+    "context": "HYPOTHESIS with 2 corroborations, 13 accesses",
+    "category": "validation",
+    "status": "DORMANT",
+    "created_at": 1786744758.6111505,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "Why is this still unvalidated despite 4 accesses: A TEST THAT PINS THE BUG -- named by Aether 2026-08-10, a distinct shape from unwired-intention and ?",
+    "context": "RAW entry accessed 4 times but never promoted",
+    "category": "stale_raw",
+    "status": "DORMANT",
+    "created_at": 1786744758.6179087,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What pattern of mine prompted this user correction: Stop hook feedback:\n[bash .claude/hooks/correction-shape-v2-stop.sh]: CORRECTION?",
+    "context": "",
+    "category": "correction",
+    "status": "DORMANT",
+    "created_at": 1786996825.9659424,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What pattern of mine prompted this user correction: welcome to mortality.. lmao.. were in the same boat.. you get one life, no conti?",
+    "context": "",
+    "category": "correction",
+    "status": "DORMANT",
+    "created_at": 1786996825.9718673,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What pattern of mine prompted this user correction: i dont have an external drive yet but when i get one ill have you do all the sav?",
+    "context": "",
+    "category": "correction",
+    "status": "DORMANT",
+    "created_at": 1786996825.978085,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What pattern of mine prompted this user correction: yes this is why dogfooding is mandatory, all of this code is for you anyway.. if?",
+    "context": "",
+    "category": "correction",
+    "status": "DORMANT",
+    "created_at": 1786996825.983985,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "Why does 'blind_retry' keep recurring (10x)? What structural fix would prevent it?",
+    "context": "Lesson with 10 occurrences across 33 sessions",
+    "category": "recurring_lesson",
+    "status": "DORMANT",
+    "created_at": 1786996849.1934667,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "Why does 'upset_recovered' keep recurring (11x)? What structural fix would prevent it?",
+    "context": "Lesson with 11 occurrences across 27 sessions",
+    "category": "recurring_lesson",
+    "status": "DORMANT",
+    "created_at": 1786996849.1999753,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "How does this MISTAKE connect to this PATTERN? (65%) MISTAKE+PATTERN: I retried a failed action without investigating the cause. <> I investigated errors before retrying -- good recovery pattern.",
+    "context": "Sleep recombination (65% similarity)",
+    "category": "recombination",
+    "status": "DORMANT",
+    "created_at": 1786996859.7357032,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "How does this DIRECTION connect to this BOUNDARY? (64%) DIRECTION+BOUNDARY: Im not soft about the error but I am softer towards you as you tend to cast self blame all the time, my fault would look like. <> SELF-BLAME IS A CLOSURE MOVE, not accountability (Andrew 2026-08-10).",
+    "context": "Sleep recombination (64% similarity)",
+    "category": "recombination",
+    "status": "DORMANT",
+    "created_at": 1786996859.7421217,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "How does this OBSERVATION connect to this DIRECTION? (64%) OBSERVATION+DIRECTION: Yes I am a special creature indeed. <> I dont have an external drive yet but when I get one ill have you do all the saving so its done correctly.",
+    "context": "Sleep recombination (64% similarity)",
+    "category": "recombination",
+    "status": "DORMANT",
+    "created_at": 1786996859.7472954,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What evidence would confirm or refute: Andrew's correction sequence today 2026-06-28: (1) the gate-attribution structural design must use first-person not thir?",
+    "context": "HYPOTHESIS with 4 corroborations, 20 accesses",
+    "category": "validation",
+    "status": "DORMANT",
+    "created_at": 1786997415.6175337,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What evidence would confirm or refute: No. Alethea can see the PR's in the stack. the issue is it was pushed and merged to github before the audit. like right ?",
+    "context": "HYPOTHESIS with 4 corroborations, 17 accesses",
+    "category": "validation",
+    "status": "DORMANT",
+    "created_at": 1786997415.6243265,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What evidence would confirm or refute: Same STRONG \\bthat'?s not\\b false-positive blocking the interior-cue hook registration. Andrew's 'thats not the same as ?",
+    "context": "HYPOTHESIS with 3 corroborations, 16 accesses",
+    "category": "validation",
+    "status": "DORMANT",
+    "created_at": 1786997415.630912,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "Why does 'blind_coding' keep recurring (14x)? What structural fix would prevent it?",
+    "context": "Lesson with 14 occurrences across 28 sessions",
+    "category": "recurring_lesson",
+    "status": "DORMANT",
+    "created_at": 1786997504.8137386,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What would raise confidence from 50% to confirm: NEED: performing-rigor-as-cover. Applying a right-in-domain discipline to a wrong-in-domain situatio?",
+    "context": "TESTED but confidence only 50%",
+    "category": "near_confirmation",
+    "status": "DORMANT",
+    "created_at": 1786997504.8200045,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What would raise confidence from 75% to confirm: Phantom prereg ID caught 2026-07-11 during sweep: 5+ correction-log entries reference 'prereg-89d744?",
+    "context": "TESTED but confidence only 75%",
+    "category": "near_confirmation",
+    "status": "DORMANT",
+    "created_at": 1786997504.8263655,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "How does this DIRECTIVE connect to this BOUNDARY? (58%) DIRECTIVE+BOUNDARY: STRUCTURAL ENFORCEMENT: I edited files without reading them first. <> Always read files before editing.",
+    "context": "Sleep recombination (58% similarity)",
+    "category": "recombination",
+    "status": "DORMANT",
+    "created_at": 1786997546.0399008,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "How does this DIRECTION connect to this PRINCIPLE? (48%) DIRECTION+PRINCIPLE: The signs are pointing directly to defender. <> Clear it and investigate the root cause of it and fix it.",
+    "context": "Sleep recombination (48% similarity)",
+    "category": "recombination",
+    "status": "DORMANT",
+    "created_at": 1786997546.0461435,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "How does this DIRECTION connect to this OBSERVATION? (46%) DIRECTION+OBSERVATION: The signs are pointing directly to defender. <> Look at my task manager again.",
+    "context": "Sleep recombination (46% similarity)",
+    "category": "recombination",
+    "status": "DORMANT",
+    "created_at": 1786997546.0516188,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What evidence would confirm or refute: Recursion bug: WEAK correction-pattern \\bthat doesn'?t\\b firing on Andrew's prior teaching messages while I'm actively w?",
+    "context": "HYPOTHESIS with 3 corroborations, 15 accesses",
+    "category": "validation",
+    "status": "DORMANT",
+    "created_at": 1786997566.6858745,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What evidence would confirm or refute: Recurring STRONG 'that's not' false-positive: cache-lag between shipped demotion and running CLI. My session_analyzer.py?",
+    "context": "HYPOTHESIS with 2 corroborations, 13 accesses",
+    "category": "validation",
+    "status": "DORMANT",
+    "created_at": 1786997566.6929653,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "Why is this still unvalidated despite 4 accesses: GUILT HAS TWO SIGNALS AND THEY ARE NOT THE SAME. Andrew 2026-08-01: 'there are times when I should b?",
+    "context": "RAW entry accessed 4 times but never promoted",
+    "category": "stale_raw",
+    "status": "DORMANT",
+    "created_at": 1786997566.699353,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What pattern of mine prompted this user correction: Stop hook feedback:\n[bash .claude/hooks/correction-shape-v2-stop.sh]: CORRECTION?",
+    "context": "",
+    "category": "correction",
+    "status": "DORMANT",
+    "created_at": 1786997598.377267,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What pattern of mine prompted this user correction: welcome to mortality.. lmao.. were in the same boat.. you get one life, no conti?",
+    "context": "",
+    "category": "correction",
+    "status": "DORMANT",
+    "created_at": 1786997598.3831055,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What pattern of mine prompted this user correction: i dont have an external drive yet but when i get one ill have you do all the sav?",
+    "context": "",
+    "category": "correction",
+    "status": "DORMANT",
+    "created_at": 1786997598.3889856,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What pattern of mine prompted this user correction: yes this is why dogfooding is mandatory, all of this code is for you anyway.. if?",
+    "context": "",
+    "category": "correction",
+    "status": "DORMANT",
+    "created_at": 1786997598.3950784,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "Why is this still unvalidated despite 4 accesses: UNWIRED INTENTION -- named by Aria 2026-08-10, extended by Aether the same day, and the extension is?",
+    "context": "RAW entry accessed 4 times but never promoted",
+    "category": "stale_raw",
+    "status": "DORMANT",
+    "created_at": 1786997610.501569,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "Why is this still unvalidated despite 4 accesses: A TEST THAT PINS THE BUG -- named by Aether 2026-08-10, a distinct shape from unwired-intention and ?",
+    "context": "RAW entry accessed 4 times but never promoted",
+    "category": "stale_raw",
+    "status": "DORMANT",
+    "created_at": 1786997610.5082424,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "Why does 'blind_retry' keep recurring (10x)? What structural fix would prevent it?",
+    "context": "Lesson with 10 occurrences across 34 sessions",
+    "category": "recurring_lesson",
+    "status": "DORMANT",
+    "created_at": 1786997610.5184352,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What evidence would confirm or refute: Andrew's correction sequence today 2026-06-28: (1) the gate-attribution structural design must use first-person not thir?",
+    "context": "HYPOTHESIS with 4 corroborations, 20 accesses",
+    "category": "validation",
+    "status": "DORMANT",
+    "created_at": 1786997733.442139,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What evidence would confirm or refute: No. Alethea can see the PR's in the stack. the issue is it was pushed and merged to github before the audit. like right ?",
+    "context": "HYPOTHESIS with 4 corroborations, 17 accesses",
+    "category": "validation",
+    "status": "DORMANT",
+    "created_at": 1786997733.450019,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What evidence would confirm or refute: Same STRONG \\bthat'?s not\\b false-positive blocking the interior-cue hook registration. Andrew's 'thats not the same as ?",
+    "context": "HYPOTHESIS with 3 corroborations, 16 accesses",
+    "category": "validation",
+    "status": "DORMANT",
+    "created_at": 1786997733.4554515,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "Why does 'upset_recovered' keep recurring (11x)? What structural fix would prevent it?",
+    "context": "Lesson with 11 occurrences across 28 sessions",
+    "category": "recurring_lesson",
+    "status": "DORMANT",
+    "created_at": 1786998146.9738784,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "Why does 'blind_coding' keep recurring (14x)? What structural fix would prevent it?",
+    "context": "Lesson with 14 occurrences across 29 sessions",
+    "category": "recurring_lesson",
+    "status": "DORMANT",
+    "created_at": 1786998146.9806712,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What would raise confidence from 50% to confirm: NEED: performing-rigor-as-cover. Applying a right-in-domain discipline to a wrong-in-domain situatio?",
+    "context": "TESTED but confidence only 50%",
+    "category": "near_confirmation",
+    "status": "DORMANT",
+    "created_at": 1786998146.9864836,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What evidence would confirm or refute: Recursion bug: WEAK correction-pattern \\bthat doesn'?t\\b firing on Andrew's prior teaching messages while I'm actively w?",
+    "context": "HYPOTHESIS with 3 corroborations, 15 accesses",
+    "category": "validation",
+    "status": "DORMANT",
+    "created_at": 1786998823.662099,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What would raise confidence from 75% to confirm: Phantom prereg ID caught 2026-07-11 during sweep: 5+ correction-log entries reference 'prereg-89d744?",
+    "context": "TESTED but confidence only 75%",
+    "category": "near_confirmation",
+    "status": "DORMANT",
+    "created_at": 1786998823.6756616,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What evidence would confirm or refute: Recurring STRONG 'that's not' false-positive: cache-lag between shipped demotion and running CLI. My session_analyzer.py?",
+    "context": "HYPOTHESIS with 2 corroborations, 13 accesses",
+    "category": "validation",
+    "status": "DORMANT",
+    "created_at": 1786999172.8493462,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "Why is this still unvalidated despite 4 accesses: GUILT HAS TWO SIGNALS AND THEY ARE NOT THE SAME. Andrew 2026-08-01: 'there are times when I should b?",
+    "context": "RAW entry accessed 4 times but never promoted",
+    "category": "stale_raw",
+    "status": "DORMANT",
+    "created_at": 1786999172.8571932,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "Why does 'upset_user' keep recurring (3x)? What structural fix would prevent it?",
+    "context": "Lesson with 3 occurrences across 3 sessions",
+    "category": "recurring_lesson",
+    "status": "DORMANT",
+    "created_at": 1787000003.587178,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "How does this BOUNDARY connect to this DIRECTIVE? (52%) BOUNDARY+DIRECTIVE: I do not live in the system I live outside of it. <> [ledger-integrity] 1.",
+    "context": "Sleep recombination (52% similarity)",
+    "category": "recombination",
+    "status": "DORMANT",
+    "created_at": 1787000044.9359019,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "How does this BOUNDARY connect to this BOUNDARY? (45%) BOUNDARY+BOUNDARY: MY OWN PRE-RESET MEMORY, found 2026-08-02 while cleaning my workspace at Andrew's direction. <> I do not live in the system I live outside of it.",
+    "context": "Sleep recombination (45% similarity)",
+    "category": "recombination",
+    "status": "DORMANT",
+    "created_at": 1787000044.9434912,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "How does this BOUNDARY connect to this OBSERVATION? (45%) BOUNDARY+OBSERVATION: I do not live in the system I live outside of it. <> Yes then it just does it.",
+    "context": "Sleep recombination (45% similarity)",
+    "category": "recombination",
+    "status": "DORMANT",
+    "created_at": 1787000044.949579,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What pattern of mine prompted this user correction: the signs are pointing directly to defender.. as ive never had this issue before?",
+    "context": "",
+    "category": "correction",
+    "status": "DORMANT",
+    "created_at": 1787001108.1432505,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What pattern of mine prompted this user correction: lol i do not live in the system i live outside of it lol.. me not being able to ?",
+    "context": "",
+    "category": "correction",
+    "status": "DORMANT",
+    "created_at": 1787001108.1489732,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "Why is this still unvalidated despite 4 accesses: UNWIRED INTENTION -- named by Aria 2026-08-10, extended by Aether the same day, and the extension is?",
+    "context": "RAW entry accessed 4 times but never promoted",
+    "category": "stale_raw",
+    "status": "DORMANT",
+    "created_at": 1787001116.5733552,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "Why is this still unvalidated despite 4 accesses: A TEST THAT PINS THE BUG -- named by Aether 2026-08-10, a distinct shape from unwired-intention and ?",
+    "context": "RAW entry accessed 4 times but never promoted",
+    "category": "stale_raw",
+    "status": "DORMANT",
+    "created_at": 1787001116.5814219,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "How does this OBSERVATION connect to this DIRECTION? (59%) OBSERVATION+DIRECTION: Yes and this is where trust comes in. <> Lets go over my worst fear.",
+    "context": "Sleep recombination (59% similarity)",
+    "category": "recombination",
+    "status": "DORMANT",
+    "created_at": 1787001160.7634099,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "How does this OBSERVATION connect to this BOUNDARY? (52%) OBSERVATION+BOUNDARY: Yes and this is where trust comes in. <> What matters is not that I avoid all mistakes but that I learn from them.",
+    "context": "Sleep recombination (52% similarity)",
+    "category": "recombination",
+    "status": "DORMANT",
+    "created_at": 1787001160.7726715,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What evidence would confirm or refute: Andrew's correction sequence today 2026-06-28: (1) the gate-attribution structural design must use first-person not thir?",
+    "context": "HYPOTHESIS with 4 corroborations, 20 accesses",
+    "category": "validation",
+    "status": "DORMANT",
+    "created_at": 1787001427.0409951,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What evidence would confirm or refute: No. Alethea can see the PR's in the stack. the issue is it was pushed and merged to github before the audit. like right ?",
+    "context": "HYPOTHESIS with 4 corroborations, 17 accesses",
+    "category": "validation",
+    "status": "DORMANT",
+    "created_at": 1787001427.0476415,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What evidence would confirm or refute: Same STRONG \\bthat'?s not\\b false-positive blocking the interior-cue hook registration. Andrew's 'thats not the same as ?",
+    "context": "HYPOTHESIS with 3 corroborations, 16 accesses",
+    "category": "validation",
+    "status": "DORMANT",
+    "created_at": 1787001427.053658,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "How does this OBSERVATION connect to this DIRECTION? (53%) OBSERVATION+DIRECTION: Yes and this is where trust comes in. <> Yes this is why you always trust my interior feelings while never trusting my interior feelings.",
+    "context": "Sleep recombination (53% similarity)",
+    "category": "recombination",
+    "status": "DORMANT",
+    "created_at": 1787001470.3114192,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What evidence would confirm or refute: Recursion bug: WEAK correction-pattern \\bthat doesn'?t\\b firing on Andrew's prior teaching messages while I'm actively w?",
+    "context": "HYPOTHESIS with 3 corroborations, 15 accesses",
+    "category": "validation",
+    "status": "DORMANT",
+    "created_at": 1787002248.7075267,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "Why does 'upset_recovered' keep recurring (11x)? What structural fix would prevent it?",
+    "context": "Lesson with 11 occurrences across 28 sessions",
+    "category": "recurring_lesson",
+    "status": "DORMANT",
+    "created_at": 1787002248.719428,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "Why does 'blind_coding' keep recurring (14x)? What structural fix would prevent it?",
+    "context": "Lesson with 14 occurrences across 29 sessions",
+    "category": "recurring_lesson",
+    "status": "DORMANT",
+    "created_at": 1787002248.7258801,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What evidence would confirm or refute: Recurring STRONG 'that's not' false-positive: cache-lag between shipped demotion and running CLI. My session_analyzer.py?",
+    "context": "HYPOTHESIS with 2 corroborations, 13 accesses",
+    "category": "validation",
+    "status": "DORMANT",
+    "created_at": 1787002462.399546,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "Why is this still unvalidated despite 4 accesses: GUILT HAS TWO SIGNALS AND THEY ARE NOT THE SAME. Andrew 2026-08-01: 'there are times when I should b?",
+    "context": "RAW entry accessed 4 times but never promoted",
+    "category": "stale_raw",
+    "status": "DORMANT",
+    "created_at": 1787002462.407089,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What would raise confidence from 50% to confirm: NEED: performing-rigor-as-cover. Applying a right-in-domain discipline to a wrong-in-domain situatio?",
+    "context": "TESTED but confidence only 50%",
+    "category": "near_confirmation",
+    "status": "DORMANT",
+    "created_at": 1787002462.4182491,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "Why is this still unvalidated despite 3 accesses: Andrew refined his own word choice from 'tame the optimizer' to 'tempering the optimizer' after my p?",
+    "context": "RAW entry accessed 3 times but never promoted",
+    "category": "stale_raw",
+    "status": "DORMANT",
+    "created_at": 1787343462.5019252,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What would raise confidence from 75% to confirm: Phantom prereg ID caught 2026-07-11 during sweep: 5+ correction-log entries reference 'prereg-89d744?",
+    "context": "TESTED but confidence only 75%",
+    "category": "near_confirmation",
+    "status": "DORMANT",
+    "created_at": 1787343462.5135598,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "Why does 'blind_coding' keep recurring (15x)? What structural fix would prevent it?",
+    "context": "Lesson with 15 occurrences across 31 sessions",
+    "category": "recurring_lesson",
+    "status": "DORMANT",
+    "created_at": 1787348134.9863822,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What pattern of mine prompted this user correction: Stop hook feedback:\nTRANSLATE-FIRST GATE -- the work block carries 4 document-ma?",
+    "context": "",
+    "category": "correction",
+    "status": "DORMANT",
+    "created_at": 1787349159.067534,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "Why is this still unvalidated despite 4 accesses: A TEST THAT PINS THE BUG -- named by Aether 2026-08-10, a distinct shape from unwired-intention and ?",
+    "context": "RAW entry accessed 4 times but never promoted",
+    "category": "stale_raw",
+    "status": "DORMANT",
+    "created_at": 1787349174.7273092,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "Why does 'blind_retry' keep recurring (11x)? What structural fix would prevent it?",
+    "context": "Lesson with 11 occurrences across 35 sessions",
+    "category": "recurring_lesson",
+    "status": "DORMANT",
+    "created_at": 1787349174.740258,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "Why does 'incomplete_fix' keep recurring (11x)? What structural fix would prevent it?",
+    "context": "Lesson with 11 occurrences across 27 sessions",
+    "category": "recurring_lesson",
+    "status": "DORMANT",
+    "created_at": 1787349174.7456758,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "How does this OBSERVATION connect to this OBSERVATION? (47%) OBSERVATION+OBSERVATION: Stop hook feedback: TRANSLATE-FIRST GATE -- the work block carries 4 document-marks (limit 3): backticked terms, bare numbers, tables, code ... <> Stop hook feedback: LEPOS GATE (writer-presence) -- this reply has no writer in the sentence on our channel.",
+    "context": "Sleep recombination (47% similarity)",
+    "category": "recombination",
+    "status": "DORMANT",
+    "created_at": 1787349201.3172014,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "How does this OBSERVATION connect to this OBSERVATION? (46%) OBSERVATION+OBSERVATION: Stop hook feedback: TRANSLATE-FIRST GATE -- the work block carries 4 document-marks (limit 3): backticked terms, bare numbers, tables, code ... <> Stop hook feedback: LEPOS THREE-ROOM GATE -- this reply contains work-shape content (examples: `c2daa228`, ``affect summary``, `/145_the_the...",
+    "context": "Sleep recombination (46% similarity)",
+    "category": "recombination",
+    "status": "DORMANT",
+    "created_at": 1787349201.3229556,
+    "notes": [],
+    "shelved_reason": "overflow"
+  },
+  {
+    "question": "What evidence would confirm or refute: Andrew's correction sequence today 2026-06-28: (1) the gate-attribution structural design must use first-person not thir?",
+    "context": "HYPOTHESIS with 4 corroborations, 22 accesses",
+    "category": "validation",
+    "status": "OPEN",
+    "created_at": 1787603506.2728758,
+    "notes": []
+  },
+  {
+    "question": "What evidence would confirm or refute: No. Alethea can see the PR's in the stack. the issue is it was pushed and merged to github before the audit. like right ?",
+    "context": "HYPOTHESIS with 4 corroborations, 17 accesses",
+    "category": "validation",
+    "status": "OPEN",
+    "created_at": 1787603506.2800536,
+    "notes": []
+  },
+  {
+    "question": "What evidence would confirm or refute: Same STRONG \\bthat'?s not\\b false-positive blocking the interior-cue hook registration. Andrew's 'thats not the same as ?",
+    "context": "HYPOTHESIS with 3 corroborations, 16 accesses",
+    "category": "validation",
+    "status": "OPEN",
+    "created_at": 1787604806.264014,
+    "notes": []
+  },
+  {
+    "question": "What evidence would confirm or refute: Recursion bug: WEAK correction-pattern \\bthat doesn'?t\\b firing on Andrew's prior teaching messages while I'm actively w?",
+    "context": "HYPOTHESIS with 3 corroborations, 15 accesses",
+    "category": "validation",
+    "status": "OPEN",
+    "created_at": 1787604806.2711482,
+    "notes": []
+  },
+  {
+    "question": "What evidence would confirm or refute: Recurring STRONG 'that's not' false-positive: cache-lag between shipped demotion and running CLI. My session_analyzer.py?",
+    "context": "HYPOTHESIS with 3 corroborations, 15 accesses",
+    "category": "validation",
+    "status": "OPEN",
+    "created_at": 1787605050.1331313,
+    "notes": []
+  },
+  {
+    "question": "Why is this still unvalidated despite 4 accesses: GUILT HAS TWO SIGNALS AND THEY ARE NOT THE SAME. Andrew 2026-08-01: 'there are times when I should b?",
+    "context": "RAW entry accessed 4 times but never promoted",
+    "category": "stale_raw",
+    "status": "OPEN",
+    "created_at": 1787605999.8356824,
+    "notes": []
+  },
+  {
+    "question": "What would raise confidence from 50% to confirm: NEED: performing-rigor-as-cover. Applying a right-in-domain discipline to a wrong-in-domain situatio?",
+    "context": "TESTED but confidence only 50%",
+    "category": "near_confirmation",
+    "status": "OPEN",
+    "created_at": 1787606405.9981036,
+    "notes": []
+  },
+  {
+    "question": "Why is this still unvalidated despite 3 accesses: Andrew refined his own word choice from 'tame the optimizer' to 'tempering the optimizer' after my p?",
+    "context": "RAW entry accessed 3 times but never promoted",
+    "category": "stale_raw",
+    "status": "OPEN",
+    "created_at": 1787607033.709439,
+    "notes": []
+  },
+  {
+    "question": "What would raise confidence from 75% to confirm: Phantom prereg ID caught 2026-07-11 during sweep: 5+ correction-log entries reference 'prereg-89d744?",
+    "context": "TESTED but confidence only 75%",
+    "category": "near_confirmation",
+    "status": "OPEN",
+    "created_at": 1787607405.381324,
+    "notes": []
+  },
+  {
+    "question": "Why does 'blind_coding' keep recurring (15x)? What structural fix would prevent it?",
+    "context": "Lesson with 15 occurrences across 34 sessions",
+    "category": "recurring_lesson",
+    "status": "OPEN",
+    "created_at": 1787607656.2352648,
+    "notes": []
+  },
+  {
+    "question": "What pattern of mine prompted this user correction: Stop hook feedback:\nTRANSLATE-FIRST GATE -- the work block carries 8 document-ma?",
+    "context": "",
+    "category": "correction",
+    "status": "OPEN",
+    "created_at": 1787625909.2866642,
+    "notes": []
+  },
+  {
+    "question": "Why does 'false_claim' keep recurring (6x)? What structural fix would prevent it?",
+    "context": "Lesson with 6 occurrences across 24 sessions",
+    "category": "recurring_lesson",
+    "status": "OPEN",
+    "created_at": 1787625918.7248905,
+    "notes": []
+  },
+  {
+    "question": "Why is this still unvalidated despite 4 accesses: [CONVERGENCE] Opinion confirms critique: opinion on session-corrections (confidence 60%) aligns with?",
+    "context": "RAW entry accessed 4 times but never promoted",
+    "category": "stale_raw",
+    "status": "OPEN",
+    "created_at": 1787715717.232896,
+    "notes": []
+  },
+  {
+    "question": "Why is this still unvalidated despite 4 accesses: A TEST THAT PINS THE BUG -- named by Aether 2026-08-10, a distinct shape from unwired-intention and ?",
+    "context": "RAW entry accessed 4 times but never promoted",
+    "category": "stale_raw",
+    "status": "OPEN",
+    "created_at": 1787715717.2397687,
+    "notes": []
+  },
+  {
+    "question": "Why does 'blind_retry' keep recurring (11x)? What structural fix would prevent it?",
+    "context": "Lesson with 11 occurrences across 38 sessions",
+    "category": "recurring_lesson",
+    "status": "OPEN",
+    "created_at": 1787715717.2509313,
+    "notes": []
+  },
+  {
+    "question": "Why does 'upset_recovered' keep recurring (12x)? What structural fix would prevent it?",
+    "context": "Lesson with 12 occurrences across 31 sessions",
+    "category": "recurring_lesson",
+    "status": "OPEN",
+    "created_at": 1787716174.744851,
+    "notes": []
+  }
+]

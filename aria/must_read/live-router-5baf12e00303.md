@@ -1,0 +1,1 @@
+The seven-doorbell router made this decision, not bash. The judgment lives in divineos.core.hook_surfaces where a test can reach it.

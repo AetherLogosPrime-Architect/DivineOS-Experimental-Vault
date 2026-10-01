@@ -1,0 +1,14 @@
+{
+  "error_id": "err-ce4fd14c29bb",
+  "source": "bypass",
+  "summary": "Freshness-check bypass used (2026-07-27T17:36:09Z)",
+  "context": "branch=aria/letter-monitor-absolute-path cwd=C:/DIVINE OS/DivineOS-Experimental-Aria-new",
+  "root_cause_investigation_hint": "scripts/check_branch_freshness.sh — investigate why local base was stale before rebase. Common cause: rebased against stale origin/main snapshot without git fetch first. Fix: use scripts/safe_push.sh which fetches + auto-rebases + pushes atomically.",
+  "filed_at": 1785173769.7016017,
+  "state": "closed",
+  "closure_evidence": "Same class as err-9c8df6f2b401 already closed. Sibling bypass fired during same Choice A execution. Force-push with intentional narrow-scope reset requires paired env-var bypasses; each fire generates its own record.",
+  "closed_at": 1785177236.5770483,
+  "deferred_by": null,
+  "deferred_reason": null,
+  "deferred_at": null
+}

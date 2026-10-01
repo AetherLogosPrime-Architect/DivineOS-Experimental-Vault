@@ -1,0 +1,9 @@
+[
+  {
+    "target": "tests/test_doorman_walk_instruction.py",
+    "why": "duplicate: Aether's pin in test_work_item_doorman.py checks every walk snippet in the doorman against the real command, which covers mine and more, and without the slow full-CLI import",
+    "investigated": "ran both; his fails on the old --lens text and passes on the fix, same as mine; his covers all walk subcommands, mine only apply",
+    "extracted": "nothing is lost: the file stays in git history at 031298f4, and the incident note is in his test and in docs/drafts/the_doorman_teaches_the_right_key_draft_2026-09-27.md",
+    "ts": 1790474201.6213236
+  }
+]

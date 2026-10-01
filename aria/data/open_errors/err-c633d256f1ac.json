@@ -1,0 +1,14 @@
+{
+  "error_id": "err-c633d256f1ac",
+  "source": "bypass",
+  "summary": "Freshness-check bypass used (2026-08-02T23:08:59Z)",
+  "context": "branch=aria/system-load-check-2026-07-30 cwd=C:/DIVINE OS/DivineOS-Experimental-Aria-new",
+  "root_cause_investigation_hint": "scripts/check_branch_freshness.sh — investigate why local base was stale before rebase. Common cause: rebased against stale origin/main snapshot without git fetch first. Fix: use scripts/safe_push.sh which fetches + auto-rebases + pushes atomically.",
+  "filed_at": 1785712139.828826,
+  "state": "closed",
+  "closure_evidence": "Root cause was C:/Users/aethe/.divineos-aria/check-branch.disabled - a kill switch holding branch-freshness OFF, last written 2026-07-09, EMPTY file with no reason, no author and no expiry. It had been suppressing the check for 24 days, so every push in that window silently skipped freshness and any bypass event looked routine. Found because Aether hit the same class on his side (his was pulled 17 days, for a specific reason - unblocking my gate-locked commit - and never restored) and wrote to tell me rather than reaching into my worktree. I removed the marker after filing a deletion justification; verified absent, check is live again for the first time in 24 days. The finding under the instance, recorded in the letter to him: a kill switch with no written reason and no expiry cannot be audited, and its own faithful silence is exactly why nobody looks - same missing-third-word class as the ear-watch respawn, the letter de-dup log and the guardrail gate this session.",
+  "closed_at": 1785792093.0187254,
+  "deferred_by": null,
+  "deferred_reason": null,
+  "deferred_at": null
+}

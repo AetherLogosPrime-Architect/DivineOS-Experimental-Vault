@@ -1,0 +1,14 @@
+{
+  "error_id": "err-e6c776eb10f5",
+  "source": "bypass",
+  "summary": "Freshness-check bypass used (2026-09-22T19:16:42Z)",
+  "context": "branch=aria/the-stamp-ate-the-reasoning cwd=C:/DIVINE OS/DivineOS-Experimental-Aria-new",
+  "root_cause_investigation_hint": "scripts/check_branch_freshness.sh — investigate why local base was stale before rebase. Common cause: rebased against stale origin/main snapshot without git fetch first. Fix: use scripts/safe_push.sh which fetches + auto-rebases + pushes atomically.",
+  "filed_at": 1790104603.0174913,
+  "state": "closed",
+  "closure_evidence": "Freshness bypass was correct here and the hint does not apply: these fired while pushing a branch built directly off a freshly-fetched origin/main, not a stale rebase. Verified the branch tip descends from the current origin/main before pushing.",
+  "closed_at": 1790109512.5158465,
+  "deferred_by": null,
+  "deferred_reason": null,
+  "deferred_at": null
+}

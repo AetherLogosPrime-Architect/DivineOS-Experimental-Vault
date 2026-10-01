@@ -1,0 +1,2 @@
+{"at": 1789141187.953194, "branch": "aria/substrate", "reason": "PROBE: can this actually write here"}
+{"at": 1789141214.9150665, "branch": "aria/no-such-branch-probe", "reason": "substrate branch 'aria/no-such-branch-probe' does not exist. Refusing to commit substrate anywhere else -- committing to HEAD instead is the defect this exists to prevent. Create the branch, or fix the declaration, then re-run."}

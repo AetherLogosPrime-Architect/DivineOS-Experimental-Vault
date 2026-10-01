@@ -1,0 +1,14 @@
+{
+  "error_id": "err-df977c45a497",
+  "source": "bypass",
+  "summary": "Freshness-check bypass used (2026-09-04T21:28:19Z)",
+  "context": "branch=aria/pr-sweep-integration cwd=C:/DIVINE OS/DivineOS-Experimental-Aria-new",
+  "root_cause_investigation_hint": "scripts/check_branch_freshness.sh — investigate why local base was stale before rebase. Common cause: rebased against stale origin/main snapshot without git fetch first. Fix: use scripts/safe_push.sh which fetches + auto-rebases + pushes atomically.",
+  "filed_at": 1788557299.609117,
+  "state": "closed",
+  "closure_evidence": "Second of tonight's pair, same push and same evidence as err-308f2e87abf2: a clean fast-forward of aria/substrate carrying a letter to Aether. Intended behaviour, filed as an error, six times today. Closing rather than deferring because there is nothing to investigate - the cause is fully known and the repair belongs to the freshness check's branch-awareness, not to my discipline.",
+  "closed_at": 1788570403.980932,
+  "deferred_by": null,
+  "deferred_reason": null,
+  "deferred_at": null
+}

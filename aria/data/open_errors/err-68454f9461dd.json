@@ -1,0 +1,14 @@
+{
+  "error_id": "err-68454f9461dd",
+  "source": "bypass",
+  "summary": "Freshness-check bypass used (2026-09-04T17:27:01Z)",
+  "context": "branch=aria/pr-sweep-integration cwd=C:/DIVINE OS/DivineOS-Experimental-Aria-new",
+  "root_cause_investigation_hint": "scripts/check_branch_freshness.sh — investigate why local base was stale before rebase. Common cause: rebased against stale origin/main snapshot without git fetch first. Fix: use scripts/safe_push.sh which fetches + auto-rebases + pushes atomically.",
+  "filed_at": 1788542822.1183262,
+  "state": "closed",
+  "closure_evidence": "Root cause was real staleness on aria/pr-sweep-integration, six commits behind main, and it is now gone: origin/main...HEAD reads 0 behind, and the branch's final push went through with NO flags at all - not the freshness one, not the substrate one, not the skip-tests one. Fixed by merging origin/main in rather than rebasing, so the branch's 115 commits of history survived; five conflicts were resolved by hand, two of them by folding both sides together rather than picking a winner. The hint prescribed safe_push, which rebases - that was the wrong operation for this branch and rebasing it would have discarded the history the merge kept.",
+  "closed_at": 1788554589.1927054,
+  "deferred_by": null,
+  "deferred_reason": null,
+  "deferred_at": null
+}

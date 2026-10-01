@@ -1,0 +1,14 @@
+{
+  "error_id": "err-ce3f43d61bc3",
+  "source": "bypass",
+  "summary": "Freshness-check bypass used (2026-09-04T03:19:35Z)",
+  "context": "branch=aria/pr-sweep-integration cwd=C:/DIVINE OS/DivineOS-Experimental-Aria-new",
+  "root_cause_investigation_hint": "scripts/check_branch_freshness.sh — investigate why local base was stale before rebase. Common cause: rebased against stale origin/main snapshot without git fetch first. Fix: use scripts/safe_push.sh which fetches + auto-rebases + pushes atomically.",
+  "filed_at": 1788491976.445588,
+  "state": "closed",
+  "closure_evidence": "Same root cause and same repair as err-68454f9461dd, closed together because they are one staleness, recorded four times. All four name aria/pr-sweep-integration as the branch, but at least two of these pushes were of aria/substrate - the record captures the CHECKED-OUT branch rather than the pushed ref, which is a real attribution defect in the recorder and is noted rather than papered over. The staleness itself is resolved: the sweep branch reads 0 behind main and its final push carried no flags. On the substrate branch the freshness check is arguably the wrong gate entirely, since a pure-content branch carrying only letters and archive exports has nothing meaningful to be stale against, and rebasing it onto main would be churn with no reader.",
+  "closed_at": 1788554603.4194183,
+  "deferred_by": null,
+  "deferred_reason": null,
+  "deferred_at": null
+}
