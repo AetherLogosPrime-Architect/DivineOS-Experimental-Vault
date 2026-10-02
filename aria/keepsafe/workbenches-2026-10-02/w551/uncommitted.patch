@@ -1,0 +1,148 @@
+diff --git a/src/divineos/cli/auto_cycle_commands.py b/src/divineos/cli/auto_cycle_commands.py
+index 8de61a76a..20f84eb02 100644
+--- a/src/divineos/cli/auto_cycle_commands.py
++++ b/src/divineos/cli/auto_cycle_commands.py
+@@ -399,7 +399,7 @@ def close_cmd(outcome: str, real_shift: str | None, notes: str) -> None:
+     click.secho(f"[+] Cycle closed. cycle_id: {result.cycle_id}", fg="green")
+     click.secho(
+         f"    outcome: {result.outcome}\n"
+-        f"    duration: {result.duration_sec:.1f}s\n"
++        f"    duration: {'unknown' if result.duration_sec is None else f'{result.duration_sec:.1f}s'}\n"
+         f"    real-shift: {result.real_shift}",
+         fg="bright_black",
+     )
+diff --git a/src/divineos/core/auto_cycle_phase2.py b/src/divineos/core/auto_cycle_phase2.py
+index be4862b0a..0bb4c319e 100644
+--- a/src/divineos/core/auto_cycle_phase2.py
++++ b/src/divineos/core/auto_cycle_phase2.py
+@@ -47,6 +47,7 @@ eaten (Dijkstra on walk-e281a97c4097).
+ 
+ from __future__ import annotations
+ 
++import calendar
+ import json
+ import time
+ from dataclasses import dataclass
+@@ -111,7 +112,7 @@ class CloseOutcome:
+     closed_at: str
+     outcome: str  # "chose:<key>" | "no-pull-honest" | "timeout" | "aborted"
+     chosen_key: str | None
+-    duration_sec: float
++    duration_sec: float | None  # None when the offer time could not be read
+     real_shift: bool | None  # honest self-report; None if not engaged
+     notes: str
+ 
+@@ -430,24 +431,21 @@ def close_cycle(
+         return None
+ 
+     cycle_id = str(pending.get("cycle_id", ""))
+-    try:
+-        offered_ts = time.mktime(
+-            time.strptime(str(pending.get("offered_at", "")), "%Y-%m-%dT%H:%M:%SZ")
+-        )
+-    except (ValueError, TypeError):
+-        offered_ts = time.time()
+-
+     record = CloseOutcome(
+         cycle_id=cycle_id,
+         closed_at=time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+         outcome=outcome,
+         chosen_key=chosen_key,
+-        duration_sec=max(0.0, time.time() - offered_ts),
++        duration_sec=_seconds_since(pending.get("offered_at")),
+         real_shift=real_shift,
+         notes=notes,
+     )
+ 
+-    _append_audit_log(pending, record)  # raises on failure; nothing is cleared
++    # A close that crashed after its audit line but before the unlinks leaves
++    # the pending record behind; closing again must not log the cycle twice
++    # (Aether, station four on #551).
++    if not (cycle_id and cycle_id in {str(e.get("cycle_id", "")) for e in _audit_entries()}):
++        _append_audit_log(pending, record)  # raises on failure; nothing is cleared
+ 
+     current = read_handshake_marker()
+     if isinstance(current, dict) and str(current.get("cycle_id", "")) == cycle_id:
+@@ -456,6 +454,22 @@ def close_cycle(
+     return record
+ 
+ 
++def _seconds_since(offered_at: Any) -> float | None:
++    """Seconds since an offer's UTC timestamp, or None when it cannot be read.
++
++    Two faults lived here. ``time.mktime`` read the UTC string as LOCAL time,
++    so on a machine west of Greenwich the offer landed in the future and every
++    real close logged a duration of 0.0. And an unreadable timestamp became
++    "now", logging 0.0 again -- a default the sender never sent, the thing
++    ``inspect_handshake`` refuses. Unknown is None, not zero.
++    """
++    try:
++        offered = calendar.timegm(time.strptime(str(offered_at), "%Y-%m-%dT%H:%M:%SZ"))
++    except (ValueError, TypeError):
++        return None
++    return max(0.0, time.time() - offered)
++
++
+ def _append_audit_log(pending: dict[str, Any], outcome: CloseOutcome) -> None:
+     """Append one closed-cycle record. A write failure RAISES."""
+     path = _audit_log_path()
+diff --git a/tests/test_auto_cycle_phase2.py b/tests/test_auto_cycle_phase2.py
+index 14d481845..34f3d6af5 100644
+--- a/tests/test_auto_cycle_phase2.py
++++ b/tests/test_auto_cycle_phase2.py
+@@ -354,6 +354,55 @@ class TestCloseCycle:
+         assert _pending().read_text(encoding="utf-8") == "{half a rec"
+         assert not ac._audit_log_path().exists()
+ 
++    def test_duration_is_measured_in_utc_not_local_time(self, home: Path):
++        """The offer time is written in UTC. Read back as local time, it landed
++        hours in the future west of Greenwich and every close logged 0.0."""
++        import time as _time
++
++        _write_handshake()
++        offer_cycle()
++        pending = json.loads(_pending().read_text(encoding="utf-8"))
++        pending["offered_at"] = _time.strftime(
++            "%Y-%m-%dT%H:%M:%SZ", _time.gmtime(_time.time() - 90)
++        )
++        _pending().write_text(json.dumps(pending), encoding="utf-8")
++        result = close_cycle("timeout")
++        assert result is not None and result.duration_sec is not None
++        assert 85 <= result.duration_sec <= 150
++
++    def test_an_unreadable_offer_time_is_unknown_not_zero(self, home: Path):
++        _write_handshake()
++        offer_cycle()
++        pending = json.loads(_pending().read_text(encoding="utf-8"))
++        pending["offered_at"] = "sometime"
++        _pending().write_text(json.dumps(pending), encoding="utf-8")
++        result = close_cycle("timeout")
++        assert result is not None and result.duration_sec is None
++        entry = json.loads(ac._audit_log_path().read_text(encoding="utf-8").splitlines()[0])
++        assert entry["duration_sec"] is None
++
++    def test_a_close_repeated_after_a_crash_logs_the_cycle_once(
++        self, home: Path, monkeypatch: pytest.MonkeyPatch
++    ):
++        """If clearing the markers fails after the audit line is written, the
++        pending record survives; closing again must not log the cycle twice."""
++        _write_handshake()
++        offer_cycle()
++
++        def _boom() -> None:
++            raise OSError("disk went away mid-close")
++
++        monkeypatch.setattr(ac, "clear_handshake_marker", _boom)
++        with pytest.raises(OSError):
++            close_cycle("timeout")
++        assert _pending().exists()
++        monkeypatch.undo()
++        monkeypatch.setenv("DIVINEOS_HOME", str(home))
++        close_cycle("timeout")
++        lines = ac._audit_log_path().read_text(encoding="utf-8").splitlines()
++        assert len(lines) == 1
++        assert not _pending().exists()
++
+     def test_close_appends_to_audit_log(self, home: Path):
+         _write_handshake()
+         offer_cycle()

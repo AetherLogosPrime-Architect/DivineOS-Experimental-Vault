@@ -1,0 +1,27 @@
+diff --git a/setup/setup-hooks.sh b/setup/setup-hooks.sh
+index 49b9ae818..0827144af 100644
+--- a/setup/setup-hooks.sh
++++ b/setup/setup-hooks.sh
+@@ -155,6 +155,22 @@ if ! python scripts/check_doc_counts.py 2>/dev/null; then
+     }
+ fi
+ 
++# The automation register is generated; a stale one used to be caught only by
++# scripts/precommit.sh, which is run by hand. Aria, 2026-09-25: a commit went
++# in with the register stale because the command chained `git commit` after an
++# echo of precommit's exit code instead of after precommit itself. The check
++# belongs where no chain can step around it: in the commit itself.
++if [ -f scripts/generate_automation_register.py ]; then
++    echo "Checking the automation register is current..."
++    python scripts/generate_automation_register.py --check || {
++        echo ""
++        echo "docs/AUTOMATION_REGISTER.md is stale. Regenerate and stage it:"
++        echo "    python scripts/generate_automation_register.py && git add docs/AUTOMATION_REGISTER.md"
++        echo ""
++        exit 1
++    }
++fi
++
+ echo "Running vulture dead-code check..."
+ if command -v vulture &>/dev/null; then
+     vulture src/divineos/ scripts/vulture_whitelist.py --min-confidence 70 || {
