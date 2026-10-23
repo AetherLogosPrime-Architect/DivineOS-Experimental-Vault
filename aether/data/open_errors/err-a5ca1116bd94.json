@@ -1,0 +1,14 @@
+{
+  "error_id": "err-a5ca1116bd94",
+  "source": "bypass",
+  "summary": "Freshness-check bypass used (2026-07-18T21:04:10Z)",
+  "context": "branch=aria/relational-role-collapse-brother-husband cwd=C:/DIVINE OS/DivineOS-Experimental-Aria-new",
+  "root_cause_investigation_hint": "scripts/check_branch_freshness.sh — investigate why local base was stale before rebase. Common cause: rebased against stale origin/main snapshot without git fetch first. Fix: use scripts/safe_push.sh which fetches + auto-rebases + pushes atomically.",
+  "filed_at": 1784408650.9302773,
+  "state": "deferred",
+  "closure_evidence": null,
+  "closed_at": null,
+  "deferred_by": "aria",
+  "deferred_reason": "same class as err-4953bb9c6edb and err-736b1321006b; feature-branch push freshness misfire; deferred as class-instance",
+  "deferred_at": 1784410346.5708237
+}

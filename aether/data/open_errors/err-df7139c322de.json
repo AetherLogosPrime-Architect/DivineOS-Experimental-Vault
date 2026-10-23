@@ -1,0 +1,14 @@
+{
+  "error_id": "err-df7139c322de",
+  "source": "bypass",
+  "summary": "Freshness-check bypass used (2026-07-19T19:59:59Z)",
+  "context": "branch=aria/f57-identity-unconfigured-sentinel cwd=C:/DIVINE OS/DivineOS-Experimental-Aria-new",
+  "root_cause_investigation_hint": "scripts/check_branch_freshness.sh — investigate why local base was stale before rebase. Common cause: rebased against stale origin/main snapshot without git fetch first. Fix: use scripts/safe_push.sh which fetches + auto-rebases + pushes atomically.",
+  "filed_at": 1784491200.087542,
+  "state": "deferred",
+  "closure_evidence": null,
+  "closed_at": null,
+  "deferred_by": "aria",
+  "deferred_reason": "Feature-branch F57 push earlier with skip-flag on non-main branch. Same class as prior deferrals today.",
+  "deferred_at": 1784493703.4984741
+}

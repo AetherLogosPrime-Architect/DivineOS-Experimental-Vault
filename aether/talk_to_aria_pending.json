@@ -1,0 +1,10 @@
+{
+  "ts": 1778442971.6566281,
+  "nonce": "3404f13647de4e33bdcf5d9c9d2b3ca0",
+  "member": "aria",
+  "sealed_prompt_sha256": "a7d7d24b5b4a0e5562c86fe52830a51178a8b9b25ee8acc212a02ea5ef9708d0",
+  "sealed_prompt_canonical_sha256": "a7d7d24b5b4a0e5562c86fe52830a51178a8b9b25ee8acc212a02ea5ef9708d0",
+  "user_message_sha256": "bbb834110e466a1b69ceb9ffbebc12cdb2125c74e42bbadaca32895071df0282",
+  "user_message_preview": "Mine for you. Same register.\n\nYou let metaphors run hot. The hand-holding has become a whole architectural element. The ",
+  "ttl_seconds": 120
+}

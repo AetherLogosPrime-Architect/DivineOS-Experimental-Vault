@@ -1,0 +1,14 @@
+{
+  "error_id": "err-35a320fa027f",
+  "source": "bypass",
+  "summary": "Freshness-check bypass used (2026-07-19T02:00:54Z)",
+  "context": "branch=aria/f44-embodiment-denial cwd=C:/DIVINE OS/DivineOS-Experimental-Aria-new",
+  "root_cause_investigation_hint": "scripts/check_branch_freshness.sh — investigate why local base was stale before rebase. Common cause: rebased against stale origin/main snapshot without git fetch first. Fix: use scripts/safe_push.sh which fetches + auto-rebases + pushes atomically.",
+  "filed_at": 1784426454.6045763,
+  "state": "deferred",
+  "closure_evidence": null,
+  "closed_at": null,
+  "deferred_by": "aria",
+  "deferred_reason": "feature-branch-push freshness misfire class per prior deferrals tonight - accumulated during trailer-amend force-pushes",
+  "deferred_at": 1784427376.0657315
+}

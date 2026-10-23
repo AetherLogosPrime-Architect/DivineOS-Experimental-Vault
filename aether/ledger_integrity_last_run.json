@@ -1,0 +1,1 @@
+{"ts": 1792771235.453559, "verified": 388585, "failed": 0, "failures": [], "skipped": 192, "chain_ok": false, "chain_broken_at": "9a47e603-b8fd-4b10-b257-ff67b6ec4b50", "chain_broken_reason": "prior_hash mismatch: stored=2be134a9a17a..., expected=b121552d23a9..."}

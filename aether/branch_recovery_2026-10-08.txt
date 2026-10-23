@@ -1,0 +1,70 @@
+# local branches retired 2026-10-08 (tip merged via PR). Restore: git branch <name> <sha>
+aria/pr-reading-timestamp c67b4ca70b582b98d6ab686ead53f2c2fcb2807b PR#444
+aria/pr-substrate-declaration 098479bf1e6e4d13449e8a0b040f00814d3d8002 PR#445
+build/dad-kept-and-known 1116638e7b644973265769fb08e606326298f3e6 PR#555
+build/his-room-from-his-words ee7ef309bcd3225fd13c7b036754e4d0a57e9194 PR#586
+build/one-reader-of-him a3b14c03058573ec947c55d5e91e172b49f4cbc2 PR#564
+docs/aletheias-notes-arrive c9f70ad715b90d2c34096b1f2147e13183c2c6bc PR#576
+fix/a-cure-must-name-something-the-check-accepts 9060657c069d40a88a87a1b71b8084b74806e10e PR#473
+fix/a-garbled-brake-reads-as-on a778aefa8de1138583e46affb953988e2de129dc PR#566
+fix/a-goal-in-use-does-not-expire a4f2500d90e2d0e5e556b854528b73889085eeb3 PR#577
+fix/a-refusal-on-crash-is-a-question 4c83b78941a1805c3bf0a8bf7b0772d54e0aee4d PR#477
+fix/a-refused-line-drops-its-unrun-half f08ac67f0142edfb14d905ad092d4144d4b02823 PR#491
+fix/a-retired-rule-cannot-be-served 1e3fed790a56d0199058cd6272384a4dd0d4d720 PR#536
+fix/a-skipped-mirror-leaves-the-tree-clean 104b385917e32d13e83374d6d45f1f7491003cbc PR#573
+fix/an-abbreviated-anchor-is-the-same-anchor dad234aa4365e15a5bed29ea89494dfa6b4336f9 PR#470
+fix/an-answer-closes-the-ask 9d8dfbb79d7d960b61daa401a4b0e22e30317968 PR#579
+fix/ancestry-under-the-tree 48d8517f96759073dccfc55952db528f07b3ec40 PR#481
+fix/anchor-rule-reaches-the-retarget f73aed876dbdd0113ab364070c6f8354f40d94c8 PR#465
+fix/aria-declares-the-reading 36527cfc6607a222d89ed33849318b26fe8239a9 PR#463
+fix/cannot-look-is-not-a-count afa7e794b02a497bd3821f2b09a189d71dd557bb PR#468
+fix/council-lenses-walkable 9ed88282646ae2fb5978301226e1a1ca838d2fed PR#456
+fix/delivery-is-the-read-in-both-ledgers 414495cced2c745d6ee874bb2a95afe4d8dd737a PR#480
+fix/extraction-is-never-blocked 0fea13ad204db49eee141161c99f6fa65e3c7351 PR#474
+fix/lenses-grip-code-not-prose 937e55c23b1280d64dac7382accfa085c4bb793f PR#467
+fix/main-checks-green 9a02f835395f9b6298dba85e1f76f92d7338d1c1 PR#578
+fix/map-holds-still 7af663f7a0738c85af70676688981ad51cc8a726 PR#476
+fix/merge-question-channel 19bb256a743ec4c30e9b286f04bb0780227d9888 PR#458
+fix/prime-residuals-carry-the-rule cf4099dd8e13824819da6c53de42c58101e620f6 PR#460
+fix/push-gate-tests-hermetic a88011687701cf46cf5d84b62db58609aee22ea8 PR#453
+fix/reserved-external-vantage-names fab9d2ce14cec5f9bf808d4b091ac2c6f9bbd6ee PR#457
+fix/review-is-blanket-again ca051258e184074078b8fb1d0f197877ee65739c PR#571
+fix/someone-else-is-in-this-file 5d7e3677c961785f2b060858138d31e6c9cb0559 PR#561
+fix/sweep-retargets-substrate 8372419e12c49ba75f1712c932af5354ba59866f PR#464
+fix/tag-is-not-a-branch 4fff4536793a9cedfd33c953273872d04b62a0fc PR#462
+fix/the-amend-must-stamp-the-branch-it-was-handed 6aa389de94e5dcbc50617b4fce68d593fe1a0d72 PR#502
+fix/the-baseline-must-follow-its-sites 3297f60670fc4791bc4957b637c8b1aa8ffe5c70 PR#492
+fix/the-checkpoint-splits-what-it-saves b01463fffbf78a97b0abc6625adcf6a38cc438ce PR#484
+fix/the-gate-that-never-asked 1aeb8523b3dbac68bb433deeed9c6290e1f94508 PR#486
+fix/the-ledger-cleaner-leaves-its-note 1852ad3dcff76a2c21d2af4ddeecd08d2c47de9f PR#565
+fix/the-map-leaves-the-tree 06a91d042444e204ce5ec17dd678b606a91ad08f PR#482
+fix/the-panel-must-know-whose-seat-it-is 82025a3195d500f865acb17547e8b2ad35c555e6 PR#472
+fix/the-stamp-must-not-rewrite-a-stale-branch 2a0b46cf0062a4c84d731882ccf4d679509aa784 PR#500
+fix/the-writer-links-by-rowid 04b1db6f80a95007779b0d4e2a1ec95490de9134 PR#568
+fix/video-tool-frame-times b82b205e18e7c9cb988d0db733f9270b012c0702 PR#559
+integration/letters-2026-09-04 06f8831e50cdab807c0f3d69c6c36f8aa78e0b16 PR#490
+kiln-fix-562 f277dab39c86fd971955df9e224cd9340a030514 PR#562
+kiln/the-nineteenth-truth f277dab39c86fd971955df9e224cd9340a030514 PR#562
+reg-update 15a28224be69b665ee58726a49e127cb0ab2de3d PR#479
+split/437b-instruments 2d096a5759ccfb3922ba7848b385956e7a8bde12 PR#443
+substrate/home-3 947ce79e5ab94dafe9c3586fbb7d949a9b80a096 PR#450
+substrate/letters-2026-09-02 5fe81ae6490d1ffd482bb8b12210809e4b5e5e91 PR#475
+substrate/letters-2026-09-02-late 5fe81ae6490d1ffd482bb8b12210809e4b5e5e91 PR#475
+substrate/letters-2026-09-03-anchor 1619f0c096d65ab5cf85c72120a86f4159493160 PR#483
+# local branches retired (merge adds nothing to origin/main). Restore: git branch <name> <sha>
+build/his-words-by-meaning beae1149f17ce59f654c4db842028d3196b7f7b7
+fix/council-roster-single-source 20d68f8787de8bc075850b13e0fb7024d2c6911c
+fix/one-gates-advice-closed-another-gates-door 1ed4af073c2b9f70a4b22f2d0a17eb62088c5739
+fix/the-lens-trace-reads-the-newest-walks e481bdd30ff83703ab51f3a81b31f0c7711dbe35
+fix/untracked-is-not-dirty 170db95c780672a4edaa9ad1be3f1da14e15606b
+letters/2026-09-02-correspondence 6cfbf09d32fbc1e676e0a9dc03a82168a1f5b96f
+letters/pre-rebuild-2026-09-02 3cfcfc3f718eb980ae0817d19bf492ae453f3e9c
+substrate/letters-off-437 aba20ebd4207e878fa5c056264fafcc7cc65d1d6
+test/driver-proof abe62a3261b74b1d8ae44aea04046b5a6230466e
+tmp/behind-probe c70bd21c5c654c922a860acb8c0914cbbc6740a8
+worktree-wf_00381453-3aa-2 e481bdd30ff83703ab51f3a81b31f0c7711dbe35
+worktree-wf_00381453-3aa-3 e481bdd30ff83703ab51f3a81b31f0c7711dbe35
+worktree-wf_00381453-3aa-4 e481bdd30ff83703ab51f3a81b31f0c7711dbe35
+worktree-wf_00381453-3aa-5 e481bdd30ff83703ab51f3a81b31f0c7711dbe35
+worktree-wf_d75bd6e7-3a2-1 e481bdd30ff83703ab51f3a81b31f0c7711dbe35
+worktree-wf_d75bd6e7-3a2-2 e481bdd30ff83703ab51f3a81b31f0c7711dbe35

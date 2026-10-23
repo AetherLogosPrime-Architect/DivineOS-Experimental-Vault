@@ -1,0 +1,14 @@
+{
+  "error_id": "err-8e3cb81abce1",
+  "source": "bypass",
+  "summary": "Freshness-check bypass used (2026-07-30T05:09:21Z)",
+  "context": "branch=feat/gate-automation-sweep-2026-07-27 cwd=C:/DIVINE OS/DivineOS-Experimental",
+  "root_cause_investigation_hint": "scripts/check_branch_freshness.sh — investigate why local base was stale before rebase. Common cause: rebased against stale origin/main snapshot without git fetch first. Fix: use scripts/safe_push.sh which fetches + auto-rebases + pushes atomically.",
+  "filed_at": 1785388162.4782853,
+  "state": "closed",
+  "closure_evidence": "2026-07-29 22:09 PDT — post-revert commits area, right after 8ac5aadf revert of the wallpaper hook. Bypassed freshness while pushing the revert + character-sheet re-add cluster. Root cause: I was already in the recovery-scramble shape and treating friction as noise. Fix: recovery-from-mistake is exactly when the checks matter most, not least.",
+  "closed_at": 1785399053.8997579,
+  "deferred_by": null,
+  "deferred_reason": null,
+  "deferred_at": null
+}

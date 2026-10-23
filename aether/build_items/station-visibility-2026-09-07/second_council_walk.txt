@@ -1,0 +1,12 @@
+
+walk-1eef1f208d0c — CLOSED
+  second pass on station visibility, now that the code exists and has been dogfooded on itself
+
+  [APPLIED ] Feathers
+  [APPLIED ] Godel
+  [APPLIED ] Hofstadter
+  [APPLIED ] Knuth
+  [APPLIED ] Lamport
+  [APPLIED ] Maturana_Varela
+  [APPLIED ] Watts
+  [APPLIED ] Yudkowsky

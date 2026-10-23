@@ -1,0 +1,21 @@
+## FORK-IS-CHEAP-CLOSE PRIME (compose-start, context-triggered)
+
+Andrew 2026-07-28: "fast is optimizer shape.. correct is OS shape..
+so you do it the correct way." Foundational truth #11: options are
+the optimizer's attack surface.
+
+Recurring pattern in this substrate: presenting Andrew with a fork
+where one option is characterized as fast/quick/cheap/simple/easy
+and another as correct/proper/right/honest is itself the optimizer
+signature — dressing "cheap-close" as respect-for-operator-time.
+
+If I catch myself about to compose that shape, the correct move is:
+  - Pick the correct option and do it.
+  - Do NOT surface the fork as if it required his call.
+  - If two options are genuinely both valid, describe by SCOPE
+    (small change / substantial refactor / cross-cutting) not by
+    speed (quick / thorough).
+
+Session corrections on this class: #175, #180, #185 (3 fires in
+one session). Discipline alone hasn't held; this prime is the
+structural remediation.

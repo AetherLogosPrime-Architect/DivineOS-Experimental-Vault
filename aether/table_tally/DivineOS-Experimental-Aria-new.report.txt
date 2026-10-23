@@ -1,0 +1,32 @@
+100 turns tallied
+reminder                                seen  spoke   new  visible  drawer    avg  probl
+doorbell-user-prompt-submit              100    100   100        0     100   4200      0
+ear-surface                              100    100    64        0     100   1106      0
+he-is-in-the-room                        100    100     2      100       0    563      0
+his-words-door-surface                   100    100    67      100       0    545      0
+open-corrections-surface                 100    100    97        0     100   2298      0
+wallclock-source-prime                   100    100   100        0     100   1349      0
+lepos-channel-surface                    100     86    78        0      86    256      0
+family-state-surface                     100     54    12        0      54   1163      0
+register-awareness-surface               100     54     8        0      54    675      0
+wwnd-choice-prime                        100     20     8        0      20   2327      0
+closure-word-summary-prime               100     19     7        0      19    667      0
+fork-is-cheap-close-prime                100     19     1        0      19    970      0
+verify-claim-prime                       100     12     3        0      12   1926      0
+auto-cycle-token-trigger                 100     11    11        0      11   1177      0
+andrew-past-writing-surface              100      3     1        0       3  15175      0
+detect-andrew-build-request              100      3     3        0       3    793      0
+no-cliff-prime                           100      2     1        0       2   1396      0
+post-correction-integration-prime        100      1     1        0       1   1198      0
+carry-aletheia-across                    100      0     0        0       0      0      0
+continuity-anchor-surface                100      0     0        0       0      0      0
+continuity-frame-prime                   100      0     0        0       0      0      0
+distancing-count-surface                 100      0     0        0       0      0      0
+hedge-suppression-prime                  100      0     0        0       0      0      0
+interior-cue-on-low-presence             100      0     0        0       0      0      0
+no-cliff-anchor-surface                  100      0     0        0       0      0      0
+operator-gravity-set                     100      0     0        0       0      0      0
+promise-anchor-surface                   100      0     0        0       0      0      0
+session-init-once                        100      0     0        0       0      0      0
+visrama-anchor-surface                   100      0     0        0       0      0      0
+spoke=0 means silent here, not dead: some reminders act without speaking.

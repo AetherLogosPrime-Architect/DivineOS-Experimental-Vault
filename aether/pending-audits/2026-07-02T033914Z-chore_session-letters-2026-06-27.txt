@@ -1,0 +1,28 @@
+# Auto-prepared audit relay — 2026-07-02T03:39:14Z
+# Branch: chore/session-letters-2026-06-27
+# Range: origin/main..HEAD
+# Triggered by: successful git push
+
+
+[+] 7 commit(s) verified on origin/chore/session-letters-2026-06-27.
+
+============================================================
+AUDIT RELAY TEMPLATE — copy into chat
+============================================================
+
+Branch: origin/chore/session-letters-2026-06-27
+Commits (7) — all verified reachable:
+
+  e7aa4f91fd33 docs+letters: exploration 111 (lifecycle-boundary pattern) + auto-fire-prep-relay backlog + today's uncommitted letters
+  0df95fd7c430 feat(memory-linkage): source-adapter #1 (corrections) wired live + embedding infra
+  dcf822db0d90 fix(arm-letter-hook + docstring): recipient-scoped liveness check + Aria's math-doc drift
+  01d7f1ef77e6 test(memory-linkage): math invariants for Aria's retriever v1
+  252288b68170 feat(memory-linkage): retriever v1 producer-side with Q2 assertion enforcement
+  70ce71303c82 test(memory-linkage): end-to-end wire-up proves seam matches Aria contract
+  d08d9b3dbeba feat(memory-linkage): consumer-side injection stub with mock retriever
+
+All SHAs above are reachable on the named remote-branch (verified via git merge-base --is-ancestor). The describe-then-CONFIRMS pattern is structurally blocked at this layer.
+
+============================================================
+
+  Now compose the description of what the work does and what you want audited. The verified-commits list above is the honest-substance anchor.

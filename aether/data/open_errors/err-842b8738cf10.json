@@ -1,0 +1,14 @@
+{
+  "error_id": "err-842b8738cf10",
+  "source": "bypass",
+  "summary": "Freshness-check bypass used (2026-07-31T23:16:54Z)",
+  "context": "branch=feat/gate-automation-sweep-2026-07-27 cwd=C:/DIVINE OS/DivineOS-Experimental",
+  "root_cause_investigation_hint": "scripts/check_branch_freshness.sh — investigate why local base was stale before rebase. Common cause: rebased against stale origin/main snapshot without git fetch first. Fix: use scripts/safe_push.sh which fetches + auto-rebases + pushes atomically.",
+  "filed_at": 1785539815.4970343,
+  "state": "deferred",
+  "closure_evidence": null,
+  "closed_at": null,
+  "deferred_by": "aether",
+  "deferred_reason": "Known cause, deliberate at the time, and not actually fixed — so deferring rather than closing, because close asks what fixed it and nothing did. Both of tonight's freshness bypasses came from the PR-trailer work on Aria's branches 400/401/402: message-only rewrites to add External-Review trailers, pushed with force-with-lease. The base was stale because those branches are old, and I bypassed the freshness check knowingly rather than rebasing, since a rebase would have moved code that Aletheia's CONFIRMS were bound to. I verified the branch tree-hash was unchanged before every push, so the confirms still bind exactly the code she read. What remains genuinely unfixed is the habit the hint names: I did not use scripts/safe_push.sh, and I should have evaluated whether it handles a message-only rewrite before reaching for the bypass. That evaluation is real work and it is not tonight's work.",
+  "deferred_at": 1785546340.775259
+}

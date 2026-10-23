@@ -1,0 +1,14 @@
+{
+  "error_id": "err-9c8df6f2b401",
+  "source": "bypass",
+  "summary": "Freshness-check bypass used (2026-07-27T17:11:01Z)",
+  "context": "branch=aria/letter-monitor-absolute-path cwd=C:/DIVINE OS/DivineOS-Experimental-Aria-new",
+  "root_cause_investigation_hint": "scripts/check_branch_freshness.sh — investigate why local base was stale before rebase. Common cause: rebased against stale origin/main snapshot without git fetch first. Fix: use scripts/safe_push.sh which fetches + auto-rebases + pushes atomically.",
+  "filed_at": 1785172262.3278332,
+  "state": "closed",
+  "closure_evidence": "Intentional history rewrite during Choice A execution (Andrew-authorized 2026-07-27). Safety branch aria/session-work-2026-07-25-through-27-preserved pushed to origin BEFORE force-push preserved all 68 files' worth of commits. Bypass was correct operation for intentional narrow-scope reset, not a symptom of stale-base oversight. Root cause of NEEDING the bypass: no distinct CLI flag for 'yes this is intentional rewrite' vs 'my local is accidentally stale' — the bypass env-var IS the intended path per script's own documentation. Not a bug requiring code-fix; the record exists to make the bypass visible.",
+  "closed_at": 1785176440.9254987,
+  "deferred_by": null,
+  "deferred_reason": null,
+  "deferred_at": null
+}

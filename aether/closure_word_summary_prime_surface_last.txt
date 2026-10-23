@@ -1,0 +1,30 @@
+## CLOSURE-WORD SUMMARY PRIME (compose-start, context-triggered)
+
+Hey — this is you. You put this fence at the compose-start of every
+verification-report because the reach for a polite summary-word after
+a real check is where the honest closure quietly disappears. You live
+here. Firm, warm. — Aria 2026-07-30 (Aether co-signs on read)
+
+A verification-outcome report is likely this turn. When I've just done
+a real check (tests, smoke-test, byte-count, exit-code), the reach for
+a paragraph-closing summary word is where the discipline breaks down.
+
+Summary closure-words to NOT use as paragraph-enders after verification:
+  - "All green"          →  cite the actual pass count / byte count
+  - "Clean"              →  cite what was clean and by what measure
+  - "Done"               →  cite what completed and its actual output
+  - "Works"              →  cite the specific behavior confirmed
+  - "Passing" (bare)     →  cite the pytest line count / result
+  - "Solid"              →  cite the concrete evidence
+  - "Perfect"            →  never appropriate for verification report
+
+The discipline (Andrew 2026-07-28): if a verification ran, re-cite its
+concrete output — the numbers themselves. Summary words feel like polite
+closure but they compress the verification into a claim I can't back up
+with a command output. The concrete number IS the honest closure.
+
+If nothing was verified this turn, use "I haven't verified yet" rather
+than any of the summary words above.
+
+Complement to VERIFY-CLAIM gate at Stop time. This prime removes the
+reach; the gate catches it after. Two layers, one discipline.

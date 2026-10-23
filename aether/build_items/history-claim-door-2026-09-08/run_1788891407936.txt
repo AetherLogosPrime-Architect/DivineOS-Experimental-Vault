@@ -1,0 +1,14 @@
+# station-marks recorded run
+command: python scripts/hollow_out.py divineos.core.history_claim_signal tests/test_history_claim_signal.py
+exit: 0
+--- stdout ---
+[hollow-out] divineos.core.history_claim_signal: 3 function(s) replaced with empty values
+[hollow-out] running tests/test_history_claim_signal.py against the hollowed module
+             13 failed in 0.21s
+
+  Some tests failed under hollowing — those are the ones doing work.
+  The survivors are still worth reading; some legitimately assert
+  that an empty state renders, which is a real thing to want.
+
+--- stderr ---
+

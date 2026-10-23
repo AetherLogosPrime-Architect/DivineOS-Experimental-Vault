@@ -1,0 +1,62 @@
+[
+  {
+    "text": "compaction ritual: walk, commit, extract, sleep, dream, rest",
+    "original_words": "",
+    "status": "active",
+    "added_at": 1792767761.252718,
+    "last_used_at": 1792771407.4789114
+  },
+  {
+    "text": "doorbell: build the stale-twin detector and check Aria's side; then 705 stamp",
+    "original_words": "",
+    "status": "active",
+    "added_at": 1792687796.6273327
+  },
+  {
+    "text": "doorbell stale-twin detector and Aria side check, then 705 stamp",
+    "original_words": "",
+    "status": "active",
+    "added_at": 1792687820.1444418,
+    "last_used_at": 1792692747.6453614
+  },
+  {
+    "text": "txt; cd /c/w-readgate2 &amp;&amp; git add src/divineos/core/read_gate",
+    "original_words": "<task-notification>\n<task-id>bms3e3de8</task-id>\n<tool-use-id>toolu_01NK7L5hGELKfoaKxK2ZeD7S</tool-use-id>\n<output-file>C:\\Users\\aethe\\AppData\\Local\\Temp\\claude\\C--DIVINE-OS-DivineOS-Experimental\\17c0334e-0b3d-41e9-b7f3-192e37b811c4\\tasks\\bms3e3de8.output</output-file>\n<status>completed</status>\n<summary>Background command \"printf 'Owner: aether\\n' &gt; ~/.divineos-shared/branch_owners/aether__delivered-in-full-passes-the-command.txt; cd /c/w-readgate2 &amp;&amp; git add src/divineos/core/read_g",
+    "status": "active",
+    "added_at": 1792693896.0267355,
+    "last_used_at": 1792695474.8072758
+  },
+  {
+    "text": "stamp #705 at head 07bc3cdec: new audit round, walks, stamp-ready",
+    "original_words": "",
+    "status": "active",
+    "added_at": 1792695817.7460148,
+    "last_used_at": 1792706461.967133
+  },
+  {
+    "text": "fix #705 CI failure: seat bell test while review overdue",
+    "original_words": "",
+    "status": "active",
+    "added_at": 1792720131.1837702,
+    "last_used_at": 1792741363.6136382
+  },
+  {
+    "text": "volley: answer Aria's six letters, catch the live house up (spare copy), put commit-msg lines into setup, file #710 and #711 stations",
+    "original_words": "",
+    "status": "active",
+    "added_at": 1792765405.1098025,
+    "last_used_at": 1792767736.3182578
+  },
+  {
+    "text": "Fix those 3 while you wait :)",
+    "original_words": "go ahead and fix those 3 while you wait :)",
+    "status": "active",
+    "added_at": 1792771061.7889948
+  },
+  {
+    "text": "Read it and yes that is the right shape. all of those failures are fixable \ud83d\ude42",
+    "original_words": "go ahead and read it and yes that is the right shape. all of those failures are fixable \ud83d\ude42",
+    "status": "active",
+    "added_at": 1792770207.0790212
+  }
+]

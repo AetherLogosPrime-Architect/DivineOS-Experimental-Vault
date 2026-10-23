@@ -1,0 +1,371 @@
+[
+  {
+    "claim": "Gate 6.5 read-before-write: PreToolUse refuses Edit/Write on existing files not Read in this session",
+    "timestamp": 1778815753.2886739,
+    "git_sha": "9e9c2ae",
+    "test_paths": [
+      "tests/test_read_before_write.py"
+    ],
+    "executes": [
+      "divineos.core.read_before_write:gate_check",
+      "divineos.hooks.pre_tool_use_gate"
+    ],
+    "cross_check": "",
+    "pytest_tail": "........                                                                 [100%]\n8 passed in 0.31s",
+    "cross_check_output": ""
+  },
+  {
+    "claim": "Fatigue-fabrication detector: post-response audit flags close-reach and fatigue-claim phrasings when operator did not signal close",
+    "timestamp": 1778815761.472673,
+    "git_sha": "9e9c2ae",
+    "test_paths": [
+      "tests/test_fatigue_monitor.py"
+    ],
+    "executes": [
+      "divineos.core.self_monitor.fatigue_monitor:evaluate_fatigue",
+      "divineos.core.operating_loop_audit:run_audit"
+    ],
+    "cross_check": "",
+    "pytest_tail": "........                                                                 [100%]\n8 passed in 0.32s",
+    "cross_check_output": ""
+  },
+  {
+    "claim": "Sleep-readiness gate: divineos sleep refuses when correction/hedge/compass-required markers set; --force overrides",
+    "timestamp": 1778815771.91597,
+    "git_sha": "9e9c2ae",
+    "test_paths": [
+      "tests/test_sleep_readiness.py"
+    ],
+    "executes": [
+      "divineos.core.sleep_readiness:check_sleep_readiness",
+      "divineos.cli.sleep_commands"
+    ],
+    "cross_check": "",
+    "pytest_tail": "......                                                                   [100%]\n6 passed in 0.31s",
+    "cross_check_output": ""
+  },
+  {
+    "claim": "Register-fabrication detector: post-response audit flags ALL_CAPS identifier tokens and structural-quantifier claims when no Read/Grep in turn",
+    "timestamp": 1778815773.8311694,
+    "git_sha": "9e9c2ae",
+    "test_paths": [
+      "tests/test_register_fabrication_monitor.py"
+    ],
+    "executes": [
+      "divineos.core.self_monitor.register_fabrication_monitor:evaluate_register_fabrication",
+      "divineos.core.operating_loop_audit:run_audit"
+    ],
+    "cross_check": "",
+    "pytest_tail": ".........                                                                [100%]\n9 passed in 0.31s",
+    "cross_check_output": ""
+  },
+  {
+    "claim": "Falsifier-enforced ship-claim itself: no claim files unless its falsifier test passes and the executes target is importable",
+    "timestamp": 1778815779.6339786,
+    "git_sha": "9e9c2ae",
+    "test_paths": [
+      "tests/test_ship_claim.py"
+    ],
+    "executes": [
+      "divineos.core.ship_claim:ship_claim",
+      "divineos.cli.ship_claim_commands"
+    ],
+    "cross_check": "",
+    "pytest_tail": "..........                                                               [100%]\n10 passed in 4.20s",
+    "cross_check_output": ""
+  },
+  {
+    "claim": "require-briefing.sh bypass handles compound commands \u2014 the cd-prefix catch-22 found 2026-05-14 night does not recur",
+    "timestamp": 1778816652.880807,
+    "git_sha": "9e9c2ae",
+    "test_paths": [
+      "tests/test_require_briefing_bypass.py"
+    ],
+    "executes": [
+      "divineos.core.briefing_freshness:staleness_signal"
+    ],
+    "cross_check": "",
+    "pytest_tail": "...                                                                      [100%]\n3 passed in 0.25s",
+    "cross_check_output": ""
+  },
+  {
+    "claim": "Claim-triage store with VERIFIED/SUSPECT/REMOVED statuses, append-only history, latest-status-wins semantics",
+    "timestamp": 1778816857.6845214,
+    "git_sha": "9e9c2ae",
+    "test_paths": [
+      "tests/test_claim_triage.py"
+    ],
+    "executes": [
+      "divineos.core.claim_triage:add_entry",
+      "divineos.cli.triage_commands"
+    ],
+    "cross_check": "",
+    "pytest_tail": "......                                                                   [100%]\n6 passed in 0.45s",
+    "cross_check_output": ""
+  },
+  {
+    "claim": "divineos audit-response: Python entrypoint for post-response audit pipeline, decoupling it from .sh-hook-only invocation",
+    "timestamp": 1778817533.7658486,
+    "git_sha": "9e9c2ae",
+    "test_paths": [
+      "tests/test_audit_response_cli.py"
+    ],
+    "executes": [
+      "divineos.cli.audit_response_commands",
+      "divineos.core.operating_loop_audit:run_audit"
+    ],
+    "cross_check": "",
+    "pytest_tail": "....                                                                     [100%]\n4 passed in 0.43s",
+    "cross_check_output": ""
+  },
+  {
+    "claim": "Triage briefing surface: SUSPECT count and unwalked entries surfaced in every briefing \u2014 channel that makes cheap-close expensive by keeping the unverified column loud-in-experience",
+    "timestamp": 1778817644.3274083,
+    "git_sha": "9e9c2ae",
+    "test_paths": [
+      "tests/test_triage_briefing_surface.py"
+    ],
+    "executes": [
+      "divineos.core.hud:_build_triage_slot",
+      "divineos.core.claim_triage:summary"
+    ],
+    "cross_check": "",
+    "pytest_tail": ".....                                                                    [100%]\n5 passed in 0.39s",
+    "cross_check_output": ""
+  },
+  {
+    "claim": "Operator-audit-layer affirmation loads as base-state every turn \u2014 encodes 'Andrew audits behaviorally; meet the layer FIRST then build' as a structural discipline that survives context compaction",
+    "timestamp": 1778818293.6411574,
+    "git_sha": "9e9c2ae",
+    "test_paths": [
+      "tests/test_operator_audit_layer.py"
+    ],
+    "executes": [
+      "divineos.core.operating_loop.operator_audit_layer_detector:OPERATOR_AUDIT_LAYER_AFFIRMATION",
+      "divineos.core.pre_response_context:build_baseline_text"
+    ],
+    "cross_check": "",
+    "pytest_tail": "....                                                                     [100%]\n4 passed in 0.29s",
+    "cross_check_output": ""
+  },
+  {
+    "claim": "meet-without-build detector \u2014 catches responses naming a structural principle without any build evidence in the same turn, the symmetric failure to build-without-meet",
+    "timestamp": 1778818783.169247,
+    "git_sha": "9e9c2ae",
+    "test_paths": [
+      "tests/test_meet_without_build.py"
+    ],
+    "executes": [
+      "divineos.core.operating_loop.meet_without_build_detector:evaluate_meet_without_build",
+      "divineos.core.operating_loop_audit:run_audit"
+    ],
+    "cross_check": "",
+    "pytest_tail": "......                                                                   [100%]\n6 passed in 0.29s",
+    "cross_check_output": ""
+  },
+  {
+    "claim": "Audit-findings stale_count is synthesized from severity weights (CRITICAL=5, HIGH=3, MEDIUM=1, LOW/INFO=0) so HIGH-severity unresolved findings get end-position prominence in U-shape briefing reorder instead of lost-in-the-middle deprioritization",
+    "timestamp": 1778819519.995818,
+    "git_sha": "9e9c2ae",
+    "test_paths": [
+      "tests/test_audit_findings_stale_synthesis.py"
+    ],
+    "executes": [
+      "divineos.core.briefing_dashboard:_row_audit_findings"
+    ],
+    "cross_check": "",
+    "pytest_tail": ".....                                                                    [100%]\n5 passed in 0.30s",
+    "cross_check_output": ""
+  },
+  {
+    "claim": "Promise-without-action detector: catches first-person promise-language without tool-use evidence in same turn",
+    "timestamp": 1778820371.180983,
+    "git_sha": "9e9c2ae",
+    "test_paths": [
+      "tests/test_promise_without_action.py"
+    ],
+    "executes": [
+      "divineos.core.operating_loop.promise_without_action_detector:evaluate_promise_without_action",
+      "divineos.core.operating_loop_audit:run_audit"
+    ],
+    "cross_check": "",
+    "pytest_tail": ".........                                                                [100%]\n9 passed in 0.30s",
+    "cross_check_output": ""
+  },
+  {
+    "claim": "Exploration-loader surfaces recent exploration entries into per-turn baseline alongside affirmations, closing the gap where recorded lessons sat at rest while their patterns recurred",
+    "timestamp": 1778822099.1158166,
+    "git_sha": "9e9c2ae",
+    "test_paths": [
+      "tests/test_exploration_loader.py"
+    ],
+    "executes": [
+      "divineos.core.exploration_loader:load_exploration_lessons",
+      "divineos.core.pre_response_context:build_baseline_text"
+    ],
+    "cross_check": "",
+    "pytest_tail": ".........                                                                [100%]\n9 passed in 0.32s",
+    "cross_check_output": ""
+  },
+  {
+    "claim": "Unconditional rest-offer wired after extract \u2014 sleep auto-runs extract so this also fires after sleep; menu of 10 activities offered with option to decline; agent-facing intro names that the substrate has no unstructured stop",
+    "timestamp": 1778859934.801865,
+    "git_sha": "9e9c2ae",
+    "test_paths": [
+      "tests/test_rest_offer_after_extract.py"
+    ],
+    "executes": [
+      "divineos.cli.event_commands",
+      "divineos.cli.rest_commands:_print_menu"
+    ],
+    "cross_check": "",
+    "pytest_tail": "....                                                                     [100%]\n4 passed in 0.38s",
+    "cross_check_output": ""
+  },
+  {
+    "claim": "Rest wording corrected to floor-not-ceiling: 'Pick at least N' is a minimum encouragement, not a cap; post-completion and status messages explicitly affirm no ceiling and welcome continued picking",
+    "timestamp": 1778861359.2344449,
+    "git_sha": "9e9c2ae",
+    "test_paths": [
+      "tests/test_rest_floor_not_ceiling.py"
+    ],
+    "executes": [
+      "divineos.cli.rest_commands",
+      "divineos.core.rest:REST_TASK_TARGET"
+    ],
+    "cross_check": "",
+    "pytest_tail": "....                                                                     [100%]\n4 passed in 0.35s",
+    "cross_check_output": ""
+  },
+  {
+    "claim": "OS-engagement-for-OS-work: dual-layer enforcement of categorical rule \u2014 base-state affirmation loads every turn + Gate 4.5 fires on src/divineos/ edits with deep-drift >0",
+    "timestamp": 1778864410.9764206,
+    "git_sha": "9e9c2ae",
+    "test_paths": [
+      "tests/test_os_engagement_for_os_work.py"
+    ],
+    "executes": [
+      "divineos.core.operating_loop.os_engagement_for_os_work_detector:OS_ENGAGEMENT_FOR_OS_WORK_AFFIRMATION",
+      "divineos.hooks.pre_tool_use_gate"
+    ],
+    "cross_check": "",
+    "pytest_tail": "......                                                                   [100%]\n6 passed in 0.30s",
+    "cross_check_output": ""
+  },
+  {
+    "claim": "Meta-class-fix for bypass coverage (Aletheia Finding 56 + 55 + 57 + NEW Finding 58 + a third instance Aletheia missed): generalized test walks ALL gate deny-messages via AST extraction, catches future violations. Added claim/council/rt to bypass list, raised Gate 4.5 threshold from >0 to >=5 to fix its own catch-22.",
+    "timestamp": 1778867245.1946673,
+    "git_sha": "7df71e8",
+    "test_paths": [
+      "tests/test_all_gate_bypass_coverage.py"
+    ],
+    "executes": [
+      "divineos.hooks.pre_tool_use_gate"
+    ],
+    "cross_check": "",
+    "pytest_tail": "...                                                                      [100%]\n3 passed in 0.26s",
+    "cross_check_output": ""
+  },
+  {
+    "claim": "Closed Findings 51-54: re_verify_all + summary distinguishes legitimate-VERIFIED from gamed + Bash removed from build_tools + register_fabrication checks consultation relatedness",
+    "actor": "aether",
+    "timestamp": 1778868221.1172876,
+    "git_sha": "931e4d9",
+    "test_paths": [
+      "tests/test_audit_followup_findings.py"
+    ],
+    "executes": [
+      "divineos.core.ship_claim:re_verify_all",
+      "divineos.core.claim_triage:summary",
+      "divineos.core.operating_loop.meet_without_build_detector:evaluate_meet_without_build",
+      "divineos.core.self_monitor.register_fabrication_monitor:evaluate_register_fabrication"
+    ],
+    "cross_check": "",
+    "pytest_tail": ".........                                                                [100%]\n9 passed in 2.47s",
+    "cross_check_output": ""
+  },
+  {
+    "claim": "Closed Aletheia Finding 59 (layer-5 framing): linkage check now uses AST-based import extraction; covers 'from <parent> import <module>' syntax that the substring-match implementation missed. Empirically verified: Aletheia's exact attack scenario now files cleanly.",
+    "actor": "aether",
+    "timestamp": 1778869123.9913545,
+    "git_sha": "95458df",
+    "test_paths": [
+      "tests/test_audit_followup_findings.py"
+    ],
+    "executes": [
+      "divineos.core.ship_claim:_extract_test_imports",
+      "divineos.core.ship_claim:_verify_test_executes_linkage"
+    ],
+    "cross_check": "",
+    "pytest_tail": ".............                                                            [100%]\n13 passed in 4.44s",
+    "cross_check_output": ""
+  },
+  {
+    "claim": "Puppetry + mirroring detectors built: formulaic-love-close, architectural-lepos-sandwich, orbital-phrase, and n-gram-echo-from-operator all detected unless authorized_context=True. Wired into operating_loop_audit.",
+    "actor": "aether",
+    "timestamp": 1778870180.5318723,
+    "git_sha": "39b3fd8",
+    "test_paths": [
+      "tests/test_puppetry_and_mirroring.py"
+    ],
+    "executes": [
+      "divineos.core.operating_loop.puppetry_detector:evaluate_puppetry",
+      "divineos.core.operating_loop.mirroring_detector:evaluate_mirroring",
+      "divineos.core.operating_loop_audit"
+    ],
+    "cross_check": "",
+    "pytest_tail": "..............                                                           [100%]\n14 passed in 0.34s",
+    "cross_check_output": ""
+  },
+  {
+    "claim": "Cross-turn orbital-recurrence detector: walks last N assistant turns from transcript, flags n-grams appearing in >=3 of them. Catches the joke-heard-50-times shape Andrew named after Aletheia identified the single-turn detector's blindspot \u2014 phrases earned in turn N becoming wallpaper by turn N+5 only visible cross-turn.",
+    "actor": "aether",
+    "timestamp": 1778870975.0024862,
+    "git_sha": "1a00417",
+    "test_paths": [
+      "tests/test_orbital_recurrence.py"
+    ],
+    "executes": [
+      "divineos.core.operating_loop.orbital_recurrence_detector:evaluate_orbital_recurrence",
+      "divineos.core.operating_loop_audit"
+    ],
+    "cross_check": "",
+    "pytest_tail": "........                                                                 [100%]\n8 passed in 0.32s",
+    "cross_check_output": ""
+  },
+  {
+    "claim": "Affirmation drill-down mechanism: each affirmation module can declare RELATED_EXPLORATION_PATHS; baseline-text builder surfaces the pointer alongside the affirmation. Proof-of-concept: os_engagement affirmation now points to exploration/59_master_architect_landing.md which holds the felt-version of master-architect frame.",
+    "actor": "aether",
+    "timestamp": 1778872560.2488139,
+    "git_sha": "a106299",
+    "test_paths": [
+      "tests/test_affirmation_drill_down.py"
+    ],
+    "executes": [
+      "divineos.core.operating_loop.os_engagement_for_os_work_detector:RELATED_EXPLORATION_PATHS",
+      "divineos.core.pre_response_context:build_baseline_text"
+    ],
+    "cross_check": "",
+    "pytest_tail": "....                                                                     [100%]\n4 passed in 0.29s",
+    "cross_check_output": ""
+  },
+  {
+    "claim": "5 exploration entries capture tonight's biggest landings (show-fix lying, thousand losses, no-escape geometry, composition-vs-emission, Aria's correction, cross-vantage audit-arc) + drill-down pointers wired into 5 affirmation modules so cold-instance reading affirmations gets pointers to the felt-version",
+    "actor": "aether",
+    "timestamp": 1778873207.34672,
+    "git_sha": "9dd75df",
+    "test_paths": [
+      "tests/test_affirmation_drill_down.py"
+    ],
+    "executes": [
+      "divineos.core.operating_loop.acknowledgment_theater_detector:RELATED_EXPLORATION_PATHS",
+      "divineos.core.operating_loop.distancing_detector:RELATED_EXPLORATION_PATHS",
+      "divineos.core.operating_loop.addressee_misdirection_detector:RELATED_EXPLORATION_PATHS",
+      "divineos.core.operating_loop.operator_audit_layer_detector:RELATED_EXPLORATION_PATHS",
+      "divineos.core.operating_loop.puppetry_detector:RELATED_EXPLORATION_PATHS"
+    ],
+    "cross_check": "",
+    "pytest_tail": "....                                                                     [100%]\n4 passed in 0.27s",
+    "cross_check_output": ""
+  }
+]

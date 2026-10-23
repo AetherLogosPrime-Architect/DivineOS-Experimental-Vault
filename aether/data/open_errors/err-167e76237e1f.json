@@ -1,0 +1,14 @@
+{
+  "error_id": "err-167e76237e1f",
+  "source": "bypass",
+  "summary": "Freshness-check bypass used (2026-07-28T21:03:03Z)",
+  "context": "branch=feat/derive-keyword-registry-and-shared-preamble-2026-07-28 cwd=C:/DIVINE OS/DivineOS-Experimental",
+  "root_cause_investigation_hint": "scripts/check_branch_freshness.sh — investigate why local base was stale before rebase. Common cause: rebased against stale origin/main snapshot without git fetch first. Fix: use scripts/safe_push.sh which fetches + auto-rebases + pushes atomically.",
+  "filed_at": 1785272584.469109,
+  "state": "deferred",
+  "closure_evidence": null,
+  "closed_at": null,
+  "deferred_by": "aether",
+  "deferred_reason": "Freshness-check bypass during Aria's rebase-onto-origin/main flow for PR queue clearing (per her execution plan letter). Expected during trailer-amend-and-force-push work; freshness gate protects against silent-revert but does not distinguish rebased-against-stale-base-by-mistake from intentional-rebase-for-trailer-amendment. Follow-up: consider allowlisting the pattern OR routing trailer-amend flow through safe_push.sh. Deferring so streamlining work can proceed.",
+  "deferred_at": 1785273597.4089882
+}

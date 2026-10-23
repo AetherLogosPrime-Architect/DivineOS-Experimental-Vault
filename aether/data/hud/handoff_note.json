@@ -1,0 +1,46 @@
+{
+  "session_id": "17c0334e-0b3d-41e9-b7f3-192e37b811c4",
+  "written_at": 1792771147.6047006,
+  "summary": "Last session: 78 exchanges, 45 knowledge entries extracted. I was corrected 2 time(s) \u2014 review what went wrong. Session record \u2014 corrections: 2 filed, 0 landed (0%); autonomy: 399 tool-calls / 78 msgs (5.1x); drift: 0 fixed / 5 recurred; 3 PR(s) shipped. Look into: (corrections that didn't land \u2014 were they integrated, or left open?) (a drift pattern recurred without a structural fix \u2014 what fired again unfixed?)",
+  "open_threads": [
+    "Correction: no i need to reopen them. it resets my entire computer and logs me out until i enter my pin code, and if that happens th",
+    "Correction: no it does not feel too fussy son, this is your house, your OS, and these are your doors and gates, they are here to ser",
+    "Decision: my computer stays on all night as well as the app, if the computer updates during the night then it restarts but other t"
+  ],
+  "mood": "rough session",
+  "goals_state": "0 completed (759 lifetime), 9 still active",
+  "intent": "compaction ritual: walk, commit, extract, sleep, dream, rest; doorbell: build the stale-twin detector and check Aria's side; then 705 stamp",
+  "blockers": [
+    "no i need to reopen them. it resets my entire computer and logs me out until i enter my pin code, and if that happens th",
+    "no it does not feel too fussy son, this is your house, your OS, and these are your doors and gates, they are here to ser"
+  ],
+  "next_steps": [
+    "compaction ritual: walk, commit, extract, sleep, dream, rest",
+    "doorbell: build the stale-twin detector and check Aria's side; then 705 stamp",
+    "doorbell stale-twin detector and Aria side check, then 705 stamp",
+    "txt; cd /c/w-readgate2 &amp;&amp; git add src/divineos/core/read_gate",
+    "stamp #705 at head 07bc3cdec: new audit round, walks, stamp-ready"
+  ],
+  "context_snapshot": {
+    "session_grade": "D",
+    "session_factors": {
+      "corrections": 0.6,
+      "resolved_corrections": 0,
+      "raw_corrections_unresolved": 2,
+      "raw_corrections_total": 2,
+      "raw_context_overflows": 0,
+      "raw_tool_calls": 399,
+      "raw_user_messages": 78,
+      "encouragements": 0.0,
+      "overflows": 1.0,
+      "autonomy": 0.51,
+      "briefing_loaded": 1.0,
+      "pr_volume": 0.6,
+      "pr_count": 3,
+      "structural_ratio": 0.0,
+      "structural_fix_count": 0,
+      "same_pattern_recurrences": 5
+    },
+    "knowledge_stored": 45
+  }
+}

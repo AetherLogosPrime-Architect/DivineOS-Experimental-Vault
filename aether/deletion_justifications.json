@@ -1,0 +1,9 @@
+[
+  {
+    "target": "C:/w-a647 C:/w-checks C:/w-pathconv",
+    "why": "Dad's standing instruction (via Aria, 2026-10-20): clear my work-copy folders from the C root, ASAP. These three are residue of finished work copies that git already unregistered.",
+    "investigated": "Each held a repo checkout plus test scratch; git worktree remove deleted the tracked files and stopped on the scratch links. Their branches' PRs are merged (#647, #682, #696) and the branch refs remain. Scanned 16,030 links in my candidates and none pointed outside its own folder, so deleting cannot reach a real folder like a venv.",
+    "extracted": "Nothing: no uncommitted files (status was clean before removal) and no commits unique to the folders.",
+    "ts": 1792514064.2654238
+  }
+]

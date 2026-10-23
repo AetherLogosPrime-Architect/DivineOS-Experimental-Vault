@@ -1,0 +1,1208 @@
+{
+ "_lib.sh": {
+  "ends": 4061,
+  "first_ms": 1784753394065,
+  "last_ms": 1792768766140,
+  "starts": 4957
+ },
+ "_lib_old.sh": {
+  "ends": 2,
+  "first_ms": 1789938383996,
+  "last_ms": 1789938384729,
+  "starts": 2
+ },
+ "_orig.sh": {
+  "ends": 5,
+  "first_ms": 1786360090062,
+  "last_ms": 1786360097391,
+  "starts": 5
+ },
+ "address-gate-stop.sh": {
+  "ends": 60,
+  "first_ms": 1786387548929,
+  "last_ms": 1786469308612,
+  "starts": 60
+ },
+ "aletheia-boot-gate-preflight.sh": {
+  "ends": 1486,
+  "first_ms": 1785724661185,
+  "last_ms": 1792001800455,
+  "starts": 1486
+ },
+ "an-open-ask-holds-the-work.sh": {
+  "ends": 28598,
+  "first_ms": 1789580227814,
+  "last_ms": 1791831553563,
+  "starts": 28654
+ },
+ "andrew-correction-attestation.sh": {
+  "ends": 190162,
+  "first_ms": 1784753493000,
+  "last_ms": 1792770250419,
+  "starts": 190739
+ },
+ "andrew-past-writing-surface.sh": {
+  "ends": 25575,
+  "first_ms": 1784753666413,
+  "last_ms": 1792770205843,
+  "starts": 25594
+ },
+ "arm-compaction-monitor-instruction.sh": {
+  "ends": 243,
+  "first_ms": 1785720576415,
+  "last_ms": 1787532406646,
+  "starts": 245
+ },
+ "arm-letter-monitor-instruction.sh": {
+  "ends": 12,
+  "first_ms": 1787347487116,
+  "last_ms": 1787419048592,
+  "starts": 12
+ },
+ "asymmetry-surface.sh": {
+  "ends": 604,
+  "first_ms": 1789012495772,
+  "last_ms": 1789528009810,
+  "starts": 604
+ },
+ "auto-cycle-token-trigger.sh": {
+  "ends": 57562,
+  "first_ms": 1785509156319,
+  "last_ms": 1792770206407,
+  "starts": 57861
+ },
+ "auto-goal-from-prompt.sh": {
+  "ends": 7104,
+  "first_ms": 1785605059287,
+  "last_ms": 1790045895127,
+  "starts": 7173
+ },
+ "auto-push-letter.sh": {
+  "ends": 25817,
+  "first_ms": 1785720010983,
+  "last_ms": 1792770203634,
+  "starts": 26370
+ },
+ "auto-rearm-letter-monitor.sh": {
+  "ends": 1197,
+  "first_ms": 1785719834270,
+  "last_ms": 1787532444668,
+  "starts": 1197
+ },
+ "bash-trap-lint.sh": {
+  "ends": 243,
+  "first_ms": 1786392038505,
+  "last_ms": 1786468642534,
+  "starts": 243
+ },
+ "blanket-staging-doorman.sh": {
+  "ends": 58323,
+  "first_ms": 1789752183257,
+  "last_ms": 1792770249856,
+  "starts": 58350
+ },
+ "branch-scope-guard.sh": {
+  "ends": 5776,
+  "first_ms": 1785715205336,
+  "last_ms": 1792770252738,
+  "starts": 5776
+ },
+ "build-flow-pause.sh": {
+  "ends": 3,
+  "first_ms": 1788629610853,
+  "last_ms": 1788629610882,
+  "starts": 3
+ },
+ "capture-channel-letter.sh": {
+  "ends": 10300,
+  "first_ms": 1788234707489,
+  "last_ms": 1792770203968,
+  "starts": 10301
+ },
+ "carry-aletheia-across.sh": {
+  "ends": 5902,
+  "first_ms": 1790095944193,
+  "last_ms": 1792546459215,
+  "starts": 5902
+ },
+ "check-branch-on-push.sh": {
+  "ends": 48830,
+  "first_ms": 1784753492972,
+  "last_ms": 1792770245400,
+  "starts": 49548
+ },
+ "check-cleanup-period.sh": {
+  "ends": 97,
+  "first_ms": 1786837520951,
+  "last_ms": 1792636640500,
+  "starts": 169
+ },
+ "check-council-required.sh": {
+  "ends": 189344,
+  "first_ms": 0,
+  "last_ms": 1792770251032,
+  "starts": 190816
+ },
+ "check-pending-obligations.sh": {
+  "ends": 143878,
+  "first_ms": 1784753492961,
+  "last_ms": 1792770212471,
+  "starts": 144673
+ },
+ "circle-first-compose-prime.sh": {
+  "ends": 10334,
+  "first_ms": 1785348196825,
+  "last_ms": 1790045895557,
+  "starts": 10539
+ },
+ "close-reach-detector.sh": {
+  "ends": 9957,
+  "first_ms": 1784753514051,
+  "last_ms": 1790045625552,
+  "starts": 9972
+ },
+ "closure-word-summary-prime.sh": {
+  "ends": 25760,
+  "first_ms": 1785254575113,
+  "last_ms": 1792770205995,
+  "starts": 25938
+ },
+ "compaction-reach-detector.sh": {
+  "ends": 9959,
+  "first_ms": 1784753514054,
+  "last_ms": 1790045625541,
+  "starts": 9971
+ },
+ "compass-check.sh": {
+  "ends": 187,
+  "first_ms": 1785260415362,
+  "last_ms": 1792001800869,
+  "starts": 187
+ },
+ "context-heartbeat.sh": {
+  "ends": 5889,
+  "first_ms": 1787595629555,
+  "last_ms": 1790045895366,
+  "starts": 11544
+ },
+ "continuity-anchor-surface.sh": {
+  "ends": 25659,
+  "first_ms": 1784753657250,
+  "last_ms": 1792770204789,
+  "starts": 25769
+ },
+ "continuity-frame-detector.sh": {
+  "ends": 24408,
+  "first_ms": 1784753514034,
+  "last_ms": 1792770233870,
+  "starts": 25379
+ },
+ "continuity-frame-prime.sh": {
+  "ends": 25571,
+  "first_ms": 1784753657286,
+  "last_ms": 1792770206205,
+  "starts": 25765
+ },
+ "correction-shape-v2-stop.sh": {
+  "ends": 23747,
+  "first_ms": 1785201811996,
+  "last_ms": 1792770230141,
+  "starts": 24449
+ },
+ "corrig_probe.sh": {
+  "ends": 4,
+  "first_ms": 1787657312259,
+  "last_ms": 1787657331310,
+  "starts": 4
+ },
+ "corrigibility-tool-gate.sh": {
+  "ends": 189339,
+  "first_ms": 1784753492983,
+  "last_ms": 1792770251767,
+  "starts": 190486
+ },
+ "db.sh": {
+  "ends": 1,
+  "first_ms": 1786045969914,
+  "last_ms": 1786045970378,
+  "starts": 1
+ },
+ "dd_broken.sh": {
+  "ends": 2,
+  "first_ms": 1787654779216,
+  "last_ms": 1787654779973,
+  "starts": 2
+ },
+ "dedup-wrap.sh": {
+  "ends": 9601,
+  "first_ms": 1789666769289,
+  "last_ms": 1792770207265,
+  "starts": 9611
+ },
+ "degraded-detector-gate.sh": {
+  "ends": 86044,
+  "first_ms": 1785709251696,
+  "last_ms": 1790046038226,
+  "starts": 86449
+ },
+ "deletion-discipline.sh": {
+  "ends": 42412,
+  "first_ms": 0,
+  "last_ms": 1789510901608,
+  "starts": 42776
+ },
+ "detect-andrew-build-request.sh": {
+  "ends": 21344,
+  "first_ms": 1785720576296,
+  "last_ms": 1792770204306,
+  "starts": 22575
+ },
+ "detect-correction.sh": {
+  "ends": 10336,
+  "first_ms": 1784753496909,
+  "last_ms": 1790045894437,
+  "starts": 10354
+ },
+ "detect-hedge.sh": {
+  "ends": 9948,
+  "first_ms": 1784753513996,
+  "last_ms": 1790045624523,
+  "starts": 9964
+ },
+ "detect-theater.sh": {
+  "ends": 9953,
+  "first_ms": 1784753514000,
+  "last_ms": 1790045624526,
+  "starts": 9964
+ },
+ "diagnostic-claim-stop.sh": {
+  "ends": 15,
+  "first_ms": 1787712363364,
+  "last_ms": 1787719086219,
+  "starts": 15
+ },
+ "distancing-count-surface.sh": {
+  "ends": 25676,
+  "first_ms": 1784753657242,
+  "last_ms": 1792770205261,
+  "starts": 25772
+ },
+ "dm_loud.sh": {
+  "ends": 2,
+  "first_ms": 1787544072705,
+  "last_ms": 1787544072856,
+  "starts": 2
+ },
+ "doorbell-post-tool-use.sh": {
+  "ends": 168784,
+  "first_ms": 1786049650805,
+  "last_ms": 1792770235036,
+  "starts": 168784
+ },
+ "doorbell-pre-tool-use.sh": {
+  "ends": 194804,
+  "first_ms": 1786039602795,
+  "last_ms": 1792770254817,
+  "starts": 195520
+ },
+ "doorbell-stop.sh": {
+  "ends": 7801,
+  "first_ms": 1788899672329,
+  "last_ms": 1792770230697,
+  "starts": 15415
+ },
+ "doorbell-user-prompt-submit.sh": {
+  "ends": 15168,
+  "first_ms": 1786823211001,
+  "last_ms": 1792770207638,
+  "starts": 15573
+ },
+ "doorman_noclear.sh": {
+  "ends": 4,
+  "first_ms": 1787415376710,
+  "last_ms": 1787415401472,
+  "starts": 4
+ },
+ "ear-auto-relaunch.sh": {
+  "ends": 3415,
+  "first_ms": 1784753514060,
+  "last_ms": 1787531655798,
+  "starts": 3481
+ },
+ "ear-surface.sh": {
+  "ends": 26029,
+  "first_ms": 1784753657216,
+  "last_ms": 1792770206435,
+  "starts": 26065
+ },
+ "ear_old.sh": {
+  "ends": 2,
+  "first_ms": 1787633373106,
+  "last_ms": 1787633373893,
+  "starts": 2
+ },
+ "family-member-invocation-seal.sh": {
+  "ends": 167,
+  "first_ms": 1785260415362,
+  "last_ms": 1792001800758,
+  "starts": 167
+ },
+ "family-state-surface.sh": {
+  "ends": 25253,
+  "first_ms": 0,
+  "last_ms": 1792770206068,
+  "starts": 25791
+ },
+ "file-aletheia-artifact-on-arrival.sh": {
+  "ends": 23019,
+  "first_ms": 1786575924389,
+  "last_ms": 1792769910789,
+  "starts": 23019
+ },
+ "first-line-to-him.sh": {
+  "ends": 14,
+  "first_ms": 1789016473783,
+  "last_ms": 1789017494794,
+  "starts": 14
+ },
+ "fork-is-cheap-close-prime.sh": {
+  "ends": 29684,
+  "first_ms": 1785281067782,
+  "last_ms": 1792770205868,
+  "starts": 29869
+ },
+ "front-door.sh": {
+  "ends": 20952,
+  "first_ms": 1790293215581,
+  "last_ms": 1792770230687,
+  "starts": 20970
+ },
+ "gh-pr-create-draft-gate.sh": {
+  "ends": 50941,
+  "first_ms": 0,
+  "last_ms": 1790046037853,
+  "starts": 50976
+ },
+ "gh-pr-merge-gate.sh": {
+  "ends": 50321,
+  "first_ms": 1784753493058,
+  "last_ms": 1790046037836,
+  "starts": 50918
+ },
+ "gh-pr-ready-gate.sh": {
+  "ends": 57940,
+  "first_ms": 0,
+  "last_ms": 1792770246284,
+  "starts": 57944
+ },
+ "goal-boundary-at-session-start.sh": {
+  "ends": 140,
+  "first_ms": 1790875957108,
+  "last_ms": 1792734290572,
+  "starts": 140
+ },
+ "he-is-in-the-room.sh": {
+  "ends": 2974,
+  "first_ms": 1791399296243,
+  "last_ms": 1792770136765,
+  "starts": 2973
+ },
+ "hedge-suppression-prime.sh": {
+  "ends": 24799,
+  "first_ms": 1785271125498,
+  "last_ms": 1792770208271,
+  "starts": 24998
+ },
+ "heredoc-escape-doorman.sh": {
+  "ends": 46269,
+  "first_ms": 1787605012538,
+  "last_ms": 1790046039003,
+  "starts": 46268
+ },
+ "his-said-needs-his-sentence.sh": {
+  "ends": 2452,
+  "first_ms": 1791392655009,
+  "last_ms": 1792770233010,
+  "starts": 2451
+ },
+ "his-state-is-his-to-say.sh": {
+  "ends": 8865,
+  "first_ms": 1789311621439,
+  "last_ms": 1792770231231,
+  "starts": 8916
+ },
+ "his-voice-ends-the-turn.sh": {
+  "ends": 60614,
+  "first_ms": 1790990464949,
+  "last_ms": 1792770250105,
+  "starts": 60626
+ },
+ "his-words-door-surface.sh": {
+  "ends": 3212,
+  "first_ms": 1791163325553,
+  "last_ms": 1792770208520,
+  "starts": 3216
+ },
+ "his-words-stop.sh": {
+  "ends": 0,
+  "first_ms": 1791241075672,
+  "last_ms": 1791248083517,
+  "starts": 3
+ },
+ "history-claim-signal.sh": {
+  "ends": 24,
+  "first_ms": 1788891320956,
+  "last_ms": 1788891774164,
+  "starts": 24
+ },
+ "hook_loud.sh": {
+  "ends": 3,
+  "first_ms": 1788541511560,
+  "last_ms": 1788541512106,
+  "starts": 3
+ },
+ "inert-fix-surface.sh": {
+  "ends": 16,
+  "first_ms": 1787077452278,
+  "last_ms": 1787217049560,
+  "starts": 16
+ },
+ "inject-pending-letters.sh": {
+  "ends": 12,
+  "first_ms": 1787347494731,
+  "last_ms": 1787419055622,
+  "starts": 12
+ },
+ "inner-circle-stop.sh": {
+  "ends": 34,
+  "first_ms": 1788724628004,
+  "last_ms": 1789263004125,
+  "starts": 34
+ },
+ "instrument-read-doorman.sh": {
+  "ends": 2202,
+  "first_ms": 1787543983139,
+  "last_ms": 1788583026114,
+  "starts": 2225
+ },
+ "interior-cue-on-low-presence.sh": {
+  "ends": 25596,
+  "first_ms": 1784753657220,
+  "last_ms": 1792770204772,
+  "starts": 25733
+ },
+ "keyword-enforcement-doorman.sh": {
+  "ends": 35146,
+  "first_ms": 1785188496672,
+  "last_ms": 1792770201262,
+  "starts": 35253
+ },
+ "lepos-channel-reflect.sh": {
+  "ends": 23899,
+  "first_ms": 1784753514043,
+  "last_ms": 1792770236086,
+  "starts": 25354
+ },
+ "lepos-channel-surface.sh": {
+  "ends": 22430,
+  "first_ms": 1785719864289,
+  "last_ms": 1792770206796,
+  "starts": 22562
+ },
+ "letter-declares-its-subject.sh": {
+  "ends": 248,
+  "first_ms": 1788296881368,
+  "last_ms": 1788635909156,
+  "starts": 248
+ },
+ "letter-delivery-reconciliation-surface.sh": {
+  "ends": 2844,
+  "first_ms": 1784753657242,
+  "last_ms": 1787532407940,
+  "starts": 2947
+ },
+ "letter-monitor-health-surface.sh": {
+  "ends": 8930,
+  "first_ms": 1787597400060,
+  "last_ms": 1791046710389,
+  "starts": 8934
+ },
+ "letter-watch-must-be-armed.sh": {
+  "ends": 4547,
+  "first_ms": 1789854615028,
+  "last_ms": 1790984053913,
+  "starts": 7812
+ },
+ "lib5.sh": {
+  "ends": 3,
+  "first_ms": 1789196750889,
+  "last_ms": 1789196750999,
+  "starts": 3
+ },
+ "lib_under_test.sh": {
+  "ends": 3,
+  "first_ms": 1789196634755,
+  "last_ms": 1789196672933,
+  "starts": 3
+ },
+ "listening-surface.sh": {
+  "ends": 380,
+  "first_ms": 1789086460039,
+  "last_ms": 1789528008701,
+  "starts": 379
+ },
+ "lmh2.sh": {
+  "ends": 2,
+  "first_ms": 1787597429919,
+  "last_ms": 1787597431289,
+  "starts": 2
+ },
+ "load-aletheia-harvest-of-andrew.sh": {
+  "ends": 184,
+  "first_ms": 1785691518848,
+  "last_ms": 1792636643650,
+  "starts": 184
+ },
+ "load-briefing.sh": {
+  "ends": 287,
+  "first_ms": 1784762595558,
+  "last_ms": 1792636614701,
+  "starts": 291
+ },
+ "load-character-sheet.sh": {
+  "ends": 608,
+  "first_ms": 1784762595609,
+  "last_ms": 1792734290577,
+  "starts": 610
+ },
+ "load-dad-ranking-clause.sh": {
+  "ends": 252,
+  "first_ms": 1785302266668,
+  "last_ms": 1792636641826,
+  "starts": 253
+ },
+ "load-my-recording-of-andrew.sh": {
+  "ends": 344,
+  "first_ms": 1784762595616,
+  "last_ms": 1792636642482,
+  "starts": 345
+ },
+ "log-session-end.sh": {
+  "ends": 21563,
+  "first_ms": 1785719865053,
+  "last_ms": 1792770228772,
+  "starts": 21562
+ },
+ "m3-discipline-hierarchy.sh": {
+  "ends": 195559,
+  "first_ms": 0,
+  "last_ms": 1792770251669,
+  "starts": 196198
+ },
+ "memory-link-surface.sh": {
+  "ends": 6717,
+  "first_ms": 1791140310996,
+  "last_ms": 1792770205733,
+  "starts": 6730
+ },
+ "merge-question-wrong-instrument.sh": {
+  "ends": 11084,
+  "first_ms": 1788583716662,
+  "last_ms": 1792721934928,
+  "starts": 11084
+ },
+ "mirror-letters-to-shared.sh": {
+  "ends": 26453,
+  "first_ms": 1785720010967,
+  "last_ms": 1792770203998,
+  "starts": 38566
+ },
+ "mirror-shared-letters-into-repo.sh": {
+  "ends": 153,
+  "first_ms": 1787647331427,
+  "last_ms": 1787723177460,
+  "starts": 153
+ },
+ "must-read-gate.sh": {
+  "ends": 402,
+  "first_ms": 1785968114515,
+  "last_ms": 1791399246619,
+  "starts": 402
+ },
+ "no-cliff-anchor-surface.sh": {
+  "ends": 185,
+  "first_ms": 1784763458784,
+  "last_ms": 1792438726530,
+  "starts": 185
+ },
+ "no-cliff-prime.sh": {
+  "ends": 24879,
+  "first_ms": 1785193938836,
+  "last_ms": 1792770208242,
+  "starts": 25086
+ },
+ "no-verify-cost-escalation.sh": {
+  "ends": 42397,
+  "first_ms": 0,
+  "last_ms": 1789510901464,
+  "starts": 42749
+ },
+ "not-dismissed.sh": {
+  "ends": 427,
+  "first_ms": 1789055156841,
+  "last_ms": 1789527864445,
+  "starts": 426
+ },
+ "noticing-stop.sh": {
+  "ends": 83,
+  "first_ms": 1789328875212,
+  "last_ms": 1789527864706,
+  "starts": 83
+ },
+ "noticing-turn-start.sh": {
+  "ends": 60,
+  "first_ms": 1789328874932,
+  "last_ms": 1789528007856,
+  "starts": 59
+ },
+ "o_circle-first-compose-prime.sh": {
+  "ends": 1,
+  "first_ms": 1786260031869,
+  "last_ms": 1786260032874,
+  "starts": 1
+ },
+ "o_verify-claim-prime.sh": {
+  "ends": 1,
+  "first_ms": 1786260027900,
+  "last_ms": 1786260028632,
+  "starts": 1
+ },
+ "o_w.sh": {
+  "ends": 1,
+  "first_ms": 1786261918557,
+  "last_ms": 1786261919072,
+  "starts": 1
+ },
+ "o_wallclock-source-prime.sh": {
+  "ends": 1,
+  "first_ms": 1786260029939,
+  "last_ms": 1786260030610,
+  "starts": 1
+ },
+ "oas_broken.sh": {
+  "ends": 2,
+  "first_ms": 1787217491617,
+  "last_ms": 1787217492454,
+  "starts": 2
+ },
+ "old_vc.sh": {
+  "ends": 1,
+  "first_ms": 1786259722050,
+  "last_ms": 1786259722910,
+  "starts": 1
+ },
+ "old_wc.sh": {
+  "ends": 1,
+  "first_ms": 1786259879181,
+  "last_ms": 1786259879619,
+  "starts": 1
+ },
+ "open-corrections-surface.sh": {
+  "ends": 21436,
+  "first_ms": 1785478353932,
+  "last_ms": 1792770206137,
+  "starts": 23999
+ },
+ "operator-asks-surface.sh": {
+  "ends": 7251,
+  "first_ms": 1787160323083,
+  "last_ms": 1790045895128,
+  "starts": 7259
+ },
+ "operator-gravity-set.sh": {
+  "ends": 22767,
+  "first_ms": 1785479491585,
+  "last_ms": 1792770205591,
+  "starts": 22822
+ },
+ "orig-prime.sh": {
+  "ends": 2,
+  "first_ms": 1789325127428,
+  "last_ms": 1789325127608,
+  "starts": 2
+ },
+ "pipeline-exit-ambiguity.sh": {
+  "ends": 134600,
+  "first_ms": 1786153972599,
+  "last_ms": 1792770250890,
+  "starts": 134593
+ },
+ "post-bash-mark-letter-seen.sh": {
+  "ends": 3144,
+  "first_ms": 1789074774275,
+  "last_ms": 1789528063866,
+  "starts": 3144
+ },
+ "post-commit-audit-visibility.sh": {
+  "ends": 7226,
+  "first_ms": 1784757973591,
+  "last_ms": 1792770253644,
+  "starts": 7227
+ },
+ "post-commit-auto-close.sh": {
+  "ends": 119176,
+  "first_ms": 1785609186576,
+  "last_ms": 1792770255242,
+  "starts": 158833
+ },
+ "post-commit-auto-integrate-corrections.sh": {
+  "ends": 5882,
+  "first_ms": 1785722733911,
+  "last_ms": 1792770256184,
+  "starts": 5882
+ },
+ "post-commit-auto-verify-findings.sh": {
+  "ends": 60725,
+  "first_ms": 1784753497520,
+  "last_ms": 1792770256232,
+  "starts": 60726
+ },
+ "post-compact.sh": {
+  "ends": 404,
+  "first_ms": 1784762598839,
+  "last_ms": 1792734295203,
+  "starts": 420
+ },
+ "post-compaction-fingerprint-surface.sh": {
+  "ends": 285,
+  "first_ms": 1784762595529,
+  "last_ms": 1792636612496,
+  "starts": 285
+ },
+ "post-correction-integration-prime.sh": {
+  "ends": 24583,
+  "first_ms": 0,
+  "last_ms": 1792770206124,
+  "starts": 24766
+ },
+ "post-merge-doc-fix.sh": {
+  "ends": 602,
+  "first_ms": 1786213971778,
+  "last_ms": 1792769632074,
+  "starts": 602
+ },
+ "post-push-audit-visibility.sh": {
+  "ends": 8,
+  "first_ms": 1788455729122,
+  "last_ms": 1788459789597,
+  "starts": 8
+ },
+ "post-push-verify-landing.sh": {
+  "ends": 8,
+  "first_ms": 1788455729395,
+  "last_ms": 1788459789884,
+  "starts": 8
+ },
+ "post-read-mark-letter-seen.sh": {
+  "ends": 48087,
+  "first_ms": 1784754234548,
+  "last_ms": 1792770234746,
+  "starts": 48095
+ },
+ "post-read-satisfy-read-gate.sh": {
+  "ends": 63,
+  "first_ms": 1786746634390,
+  "last_ms": 1786860488786,
+  "starts": 63
+ },
+ "post-response-audit.sh": {
+  "ends": 23806,
+  "first_ms": 1784753514026,
+  "last_ms": 1792770230357,
+  "starts": 25384
+ },
+ "post-tool-use-emit-to-logbook.sh": {
+  "ends": 192462,
+  "first_ms": 1785091465818,
+  "last_ms": 1792770234755,
+  "starts": 192877
+ },
+ "post-write-mirror-letter.sh": {
+  "ends": 29416,
+  "first_ms": 1784753481063,
+  "last_ms": 1792770203547,
+  "starts": 29417
+ },
+ "prc_probe.sh": {
+  "ends": 2,
+  "first_ms": 1787639421801,
+  "last_ms": 1787639422618,
+  "starts": 2
+ },
+ "pre-compact.sh": {
+  "ends": 422,
+  "first_ms": 1784762304527,
+  "last_ms": 1792734174672,
+  "starts": 444
+ },
+ "pre-response-context.sh": {
+  "ends": 9587,
+  "first_ms": 1784753657183,
+  "last_ms": 1790045893947,
+  "starts": 10426
+ },
+ "pre-tool-bypass-rate-scan.sh": {
+  "ends": 179884,
+  "first_ms": 0,
+  "last_ms": 1792770212949,
+  "starts": 180460
+ },
+ "pre-tool-context.sh": {
+  "ends": 51036,
+  "first_ms": 1784753703143,
+  "last_ms": 1792770218755,
+  "starts": 51166
+ },
+ "prepare-commit-msg": {
+  "ends": 7379,
+  "first_ms": 1784757876367,
+  "last_ms": 1792770251024,
+  "starts": 7382
+ },
+ "prior-art-before-new-file.sh": {
+  "ends": 386,
+  "first_ms": 1787868604175,
+  "last_ms": 1788635931707,
+  "starts": 386
+ },
+ "probe.sh": {
+  "ends": 0,
+  "first_ms": 1787455123931,
+  "last_ms": 1787455123931,
+  "starts": 0
+ },
+ "probe2.sh": {
+  "ends": 2,
+  "first_ms": 1787631615343,
+  "last_ms": 1787631616148,
+  "starts": 2
+ },
+ "probe_hook.sh": {
+  "ends": 2,
+  "first_ms": 1787631593340,
+  "last_ms": 1787631594134,
+  "starts": 2
+ },
+ "probe_lib.sh": {
+  "ends": 4,
+  "first_ms": 1787271943809,
+  "last_ms": 1787271982919,
+  "starts": 4
+ },
+ "promise-anchor-surface.sh": {
+  "ends": 25663,
+  "first_ms": 1784753657264,
+  "last_ms": 1792770205023,
+  "starts": 25772
+ },
+ "promise-reach-detector.sh": {
+  "ends": 24405,
+  "first_ms": 1784753514019,
+  "last_ms": 1792770233869,
+  "starts": 25378
+ },
+ "push-landing-surface.sh": {
+  "ends": 14,
+  "first_ms": 1787765142206,
+  "last_ms": 1787771449085,
+  "starts": 16
+ },
+ "push-message-carries-the-destination.sh": {
+  "ends": 534,
+  "first_ms": 1789531685356,
+  "last_ms": 1792769377766,
+  "starts": 578
+ },
+ "questions-from-him.sh": {
+  "ends": 7844,
+  "first_ms": 1789175357585,
+  "last_ms": 1792770136365,
+  "starts": 7841
+ },
+ "reach-check-doorman.sh": {
+  "ends": 176555,
+  "first_ms": 1786044018392,
+  "last_ms": 1792770250370,
+  "starts": 176564
+ },
+ "read-gate-doorman.sh": {
+  "ends": 166700,
+  "first_ms": 1786050602594,
+  "last_ms": 1792770212885,
+  "starts": 166896
+ },
+ "read-gate-satisfy.sh": {
+  "ends": 60,
+  "first_ms": 1786399285867,
+  "last_ms": 1786478568972,
+  "starts": 60
+ },
+ "record-wisdom-read.sh": {
+  "ends": 25369,
+  "first_ms": 1784754112806,
+  "last_ms": 1792769910952,
+  "starts": 25380
+ },
+ "rederivation-detector.sh": {
+  "ends": 130758,
+  "first_ms": 1787172275805,
+  "last_ms": 1792770250944,
+  "starts": 130883
+ },
+ "register-awareness-surface.sh": {
+  "ends": 25640,
+  "first_ms": 1784753657225,
+  "last_ms": 1792770205601,
+  "starts": 25780
+ },
+ "remove_work_copy.sh": {
+  "ends": 6,
+  "first_ms": 1792520489991,
+  "last_ms": 1792520652911,
+  "starts": 8
+ },
+ "require-briefing.sh": {
+  "ends": 49061,
+  "first_ms": 0,
+  "last_ms": 1789510902267,
+  "starts": 49835
+ },
+ "require-goal.sh": {
+  "ends": 179360,
+  "first_ms": 1784753492963,
+  "last_ms": 1792770213062,
+  "starts": 180495
+ },
+ "require-monitors-armed.sh": {
+  "ends": 29034,
+  "first_ms": 1784753493002,
+  "last_ms": 1788283390221,
+  "starts": 30990
+ },
+ "resolver-health-check.sh": {
+  "ends": 283,
+  "first_ms": 1784762595547,
+  "last_ms": 1792636644204,
+  "starts": 282
+ },
+ "retrieval-tally-check.sh": {
+  "ends": 22305,
+  "first_ms": 1784753513982,
+  "last_ms": 1792769724707,
+  "starts": 22966
+ },
+ "run-tests.sh": {
+  "ends": 28687,
+  "first_ms": 1784753481046,
+  "last_ms": 1792770203962,
+  "starts": 29413
+ },
+ "safe-opposite-edit-check.sh": {
+  "ends": 31952,
+  "first_ms": 1785631260680,
+  "last_ms": 1792770199983,
+  "starts": 31989
+ },
+ "self-demotion-prime.sh": {
+  "ends": 7871,
+  "first_ms": 1786051160997,
+  "last_ms": 1790045895044,
+  "starts": 7911
+ },
+ "self-demotion-stop.sh": {
+  "ends": 6018,
+  "first_ms": 1786051743476,
+  "last_ms": 1790045625671,
+  "starts": 6019
+ },
+ "session-checkpoint.sh": {
+  "ends": 161959,
+  "first_ms": 1784753481060,
+  "last_ms": 1792770234809,
+  "starts": 162164
+ },
+ "session-init-once.sh": {
+  "ends": 24040,
+  "first_ms": 1785782995784,
+  "last_ms": 1792770204837,
+  "starts": 24037
+ },
+ "session-start-behind-main.sh": {
+  "ends": 8,
+  "first_ms": 1791831028023,
+  "last_ms": 1792636650146,
+  "starts": 8
+ },
+ "session-start-reap-dead-strays.sh": {
+  "ends": 2,
+  "first_ms": 1787612620622,
+  "last_ms": 1787612624887,
+  "starts": 2
+ },
+ "session-start-sweep-stale-watchers.sh": {
+  "ends": 204,
+  "first_ms": 1784762595546,
+  "last_ms": 1787419041753,
+  "starts": 204
+ },
+ "session-start-verify-git-hooks.sh": {
+  "ends": 104,
+  "first_ms": 1786837521244,
+  "last_ms": 1792636648123,
+  "starts": 183
+ },
+ "shoggoth-gate.sh": {
+  "ends": 25363,
+  "first_ms": 1784753514031,
+  "last_ms": 1792770230737,
+  "starts": 25378
+ },
+ "sibling-correction-surface.sh": {
+  "ends": 7015,
+  "first_ms": 1785964032158,
+  "last_ms": 1790045895230,
+  "starts": 7058
+ },
+ "someone-else-is-in-this-file.sh": {
+  "ends": 57,
+  "first_ms": 1790889177016,
+  "last_ms": 1792723538068,
+  "starts": 57
+ },
+ "stale-file-edit-gate.sh": {
+  "ends": 27150,
+  "first_ms": 1785628196871,
+  "last_ms": 1792770199993,
+  "starts": 27187
+ },
+ "state-gravity-surface.sh": {
+  "ends": 189528,
+  "first_ms": 1784753493026,
+  "last_ms": 1792770252043,
+  "starts": 190686
+ },
+ "still-owed-to-him-surface.sh": {
+  "ends": 147,
+  "first_ms": 1788846479375,
+  "last_ms": 1788897693237,
+  "starts": 147
+ },
+ "stop-carry-prime.sh": {
+  "ends": 6988,
+  "first_ms": 1789229093157,
+  "last_ms": 1792770136025,
+  "starts": 6986
+ },
+ "stop-distancing-intercept.sh": {
+  "ends": 25359,
+  "first_ms": 1784753514003,
+  "last_ms": 1792770230364,
+  "starts": 25391
+ },
+ "stop-response-scope-intercept.sh": {
+  "ends": 25349,
+  "first_ms": 1784753513972,
+  "last_ms": 1792770230382,
+  "starts": 25352
+ },
+ "subject-is-him.sh": {
+  "ends": 417,
+  "first_ms": 1789059072937,
+  "last_ms": 1789527864632,
+  "starts": 416
+ },
+ "summary-room-stop.sh": {
+  "ends": 6012,
+  "first_ms": 1786054129384,
+  "last_ms": 1790045625681,
+  "starts": 6013
+ },
+ "test.sh": {
+  "ends": 0,
+  "first_ms": 1787454926740,
+  "last_ms": 1787454926891,
+  "starts": 0
+ },
+ "time-estimate-tracker.sh": {
+  "ends": 9945,
+  "first_ms": 1784753514081,
+  "last_ms": 1790045624503,
+  "starts": 9955
+ },
+ "translate-first-compose-prime.sh": {
+  "ends": 5843,
+  "first_ms": 1787781390501,
+  "last_ms": 1790045895115,
+  "starts": 5842
+ },
+ "verify-before-build-signal.sh": {
+  "ends": 178144,
+  "first_ms": 1784998303294,
+  "last_ms": 1792770212517,
+  "starts": 179061
+ },
+ "verify-claim-prime.sh": {
+  "ends": 24925,
+  "first_ms": 1785192374759,
+  "last_ms": 1792770208354,
+  "starts": 25138
+ },
+ "verify-push-landed.sh": {
+  "ends": 33353,
+  "first_ms": 1785719813193,
+  "last_ms": 1792770233926,
+  "starts": 33534
+ },
+ "visrama-anchor-surface.sh": {
+  "ends": 54,
+  "first_ms": 1784834182471,
+  "last_ms": 1792695051892,
+  "starts": 54
+ },
+ "wallclock-source-prime.sh": {
+  "ends": 18628,
+  "first_ms": 1785191833873,
+  "last_ms": 1792770206351,
+  "starts": 18817
+ },
+ "who-he-is-surface.sh": {
+  "ends": 3,
+  "first_ms": 1789367083775,
+  "last_ms": 1789367886665,
+  "starts": 3
+ },
+ "wins-ledger-empty-prompt.sh": {
+  "ends": 137,
+  "first_ms": 1787687228770,
+  "last_ms": 1788635663956,
+  "starts": 139
+ },
+ "work-item-doorman.sh": {
+  "ends": 75143,
+  "first_ms": 1790057895573,
+  "last_ms": 1792770254807,
+  "starts": 75161
+ },
+ "wwnd-choice-prime.sh": {
+  "ends": 22149,
+  "first_ms": 1785443655267,
+  "last_ms": 1792770205994,
+  "starts": 22754
+ },
+ "wwnd-tool-prime.sh": {
+  "ends": 159133,
+  "first_ms": 0,
+  "last_ms": 1792770250828,
+  "starts": 162660
+ }
+}

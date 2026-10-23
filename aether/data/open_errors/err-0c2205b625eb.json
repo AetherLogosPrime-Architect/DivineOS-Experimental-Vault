@@ -1,0 +1,14 @@
+{
+  "error_id": "err-0c2205b625eb",
+  "source": "bypass",
+  "summary": "RESOLVE-CHECK-SMOKE-TEST — delete me",
+  "context": "",
+  "root_cause_investigation_hint": "",
+  "filed_at": 1784309594.462236,
+  "state": "closed",
+  "closure_evidence": "smoke test cleanup",
+  "closed_at": 1784309595.7779524,
+  "deferred_by": null,
+  "deferred_reason": null,
+  "deferred_at": null
+}

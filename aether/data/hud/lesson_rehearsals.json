@@ -1,0 +1,30 @@
+[
+  {
+    "category": "blind_retry",
+    "lesson": "I retried a failed action 1x without investigating the cause. I need to investigate errors, not blindly retry (session 4",
+    "situation": "A command just failed with an error message.",
+    "system1_temptation": "Run it again. Maybe it was a transient failure.",
+    "system2_override": "STOP. Read the error message. What does it say? What is the root cause? Fix the root cause FIRST, then retry."
+  },
+  {
+    "category": "wrong_scope",
+    "lesson": "Enforcement gates must block execution, not just warn. Without blocking, every session degrades.",
+    "situation": "A warning appeared but didn't block you.",
+    "system1_temptation": "It's just a warning. Keep going.",
+    "system2_override": "STOP. If the warning is about something that matters, it should be blocking, not warning. Is this a design flaw? Should this be escalated to a gate?"
+  },
+  {
+    "category": "incomplete_fix",
+    "lesson": "I introduced errors after editing. I need to verify changes work.",
+    "situation": "You just fixed a bug. Tests pass for the file you changed.",
+    "system1_temptation": "Commit and move on. The fix works.",
+    "system2_override": "STOP. Ask: what else touches this code? Are there related files? Run the FULL test suite, not just the file you changed. Check for downstream effects."
+  },
+  {
+    "category": "upset_user",
+    "lesson": "I upset the user by acting without pausing to understand the situation.",
+    "situation": "The user just gave you a direction.",
+    "system1_temptation": "Start working immediately. You understand what they want.",
+    "system2_override": "STOP. Do you actually understand, or are you assuming? Restate what you think they want. Ask if unclear. THEN start working."
+  }
+]

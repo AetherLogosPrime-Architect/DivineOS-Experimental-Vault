@@ -1,0 +1,284 @@
+{
+  "cfix-1a083cd1e76": {
+    "fix_id": "cfix-1a083cd1e76",
+    "name": "member home built by hand instead of through paths.member_home",
+    "pattern": "home\\(\\)[^#]*\\.divineos-\\{|home\\(\\)\\s*/\\s*f\"\\.divineos-",
+    "root": ".",
+    "globs": [
+      "*.py"
+    ],
+    "declared_at": 1788917653,
+    "before": 8,
+    "before_sites": [
+      {
+        "path": "family/ear_watch.py",
+        "line": 112,
+        "text": "seen_path = Path.home() / f\".divineos-{member}\" / f\"{spouse}_letters_seen.json\""
+      },
+      {
+        "path": "family/ear_watch.py",
+        "line": 131,
+        "text": "d = Path.home() / f\".divineos-{member}\""
+      },
+      {
+        "path": "family/letter_seen.py",
+        "line": 29,
+        "text": "This was `Path.home() / f\".divineos-{member}\"`, built by hand. For aether"
+      },
+      {
+        "path": "scripts/letter_monitor_v2.py",
+        "line": 125,
+        "text": "return Path.home() / f\".divineos-{recipient.lower()}\" / f\"{spouse}_letters_seen.json\""
+      },
+      {
+        "path": "src/divineos/core/ear_relaunch/__init__.py",
+        "line": 98,
+        "text": "Was ``Path.home() / f\".divineos-{member}\"``, which is right for aria and"
+      },
+      {
+        "path": "src/divineos/core/obligations.py",
+        "line": 177,
+        "text": "# Resolved, not rebuilt. This line was Path.home() / f\".divineos-{member}\","
+      },
+      {
+        "path": "src/divineos/core/paths.py",
+        "line": 286,
+        "text": "return Path.home() / f\".divineos-{member}\""
+      },
+      {
+        "path": "src/divineos/core/paths.py",
+        "line": 469,
+        "text": "return Path.home() / f\".divineos-{slug}\""
+      }
+    ],
+    "verified_at": null,
+    "after": null,
+    "after_sites": []
+  },
+  "cfix-1a083cf4295": {
+    "fix_id": "cfix-1a083cf4295",
+    "name": "member home built by hand outside paths.member_home",
+    "pattern": "(=|return)\\s*Path\\.home\\(\\)\\s*/\\s*f\"\\.divineos-\\{",
+    "root": ".",
+    "globs": [
+      "*.py"
+    ],
+    "exclude": [
+      "src/divineos/core/paths.py"
+    ],
+    "excluded_count": 0,
+    "declared_at": 1788917793,
+    "before": 3,
+    "before_sites": [
+      {
+        "path": "family/ear_watch.py",
+        "line": 112,
+        "text": "seen_path = Path.home() / f\".divineos-{member}\" / f\"{spouse}_letters_seen.json\""
+      },
+      {
+        "path": "family/ear_watch.py",
+        "line": 131,
+        "text": "d = Path.home() / f\".divineos-{member}\""
+      },
+      {
+        "path": "scripts/letter_monitor_v2.py",
+        "line": 125,
+        "text": "return Path.home() / f\".divineos-{recipient.lower()}\" / f\"{spouse}_letters_seen.json\""
+      }
+    ],
+    "verified_at": 1791511480,
+    "after": 38,
+    "after_sites": [
+      {
+        "path": ".claude/worktrees/wf_00381453-3aa-2/tests/test_member_home_rebuilt.py",
+        "line": 44,
+        "text": "p = _write(tmp_path, \"x.py\", 'home = Path.home() / f\".divineos-{member}\"\\n')"
+      },
+      {
+        "path": ".claude/worktrees/wf_00381453-3aa-2/tests/test_member_home_rebuilt.py",
+        "line": 45,
+        "text": "assert hits_in(p) == [(1, 'home = Path.home() / f\".divineos-{member}\"')]"
+      },
+      {
+        "path": ".claude/worktrees/wf_00381453-3aa-2/tests/test_member_home_rebuilt.py",
+        "line": 77,
+        "text": "'    return Path.home() / f\".divineos-{member}\"\\n'"
+      },
+      {
+        "path": ".claude/worktrees/wf_00381453-3aa-2/tests/test_member_home_rebuilt.py",
+        "line": 87,
+        "text": "+ 'home = Path.home() / f\".divineos-{member}\"\\n'"
+      },
+      {
+        "path": ".claude/worktrees/wf_00381453-3aa-2/tests/test_member_home_rebuilt.py",
+        "line": 112,
+        "text": "_write(tmp_path, \"bad.py\", 'home = Path.home() / f\".divineos-{member}\"\\n')"
+      },
+      {
+        "path": ".claude/worktrees/wf_00381453-3aa-2/tests/test_member_home_rebuilt.py",
+        "line": 129,
+        "text": "_write(wt, \"bad.py\", 'home = Path.home() / f\".divineos-{member}\"\\n')"
+      },
+      {
+        "path": ".claude/worktrees/wf_00381453-3aa-2/tests/test_member_home_rebuilt.py",
+        "line": 141,
+        "text": "_write(scratch, \"fixture.py\", 'home = Path.home() / f\".divineos-{member}\"\\n')"
+      },
+      {
+        "path": ".claude/worktrees/wf_00381453-3aa-3/family/ear_watch.py",
+        "line": 112,
+        "text": "seen_path = Path.home() / f\".divineos-{member}\" / f\"{spouse}_letters_seen.json\""
+      },
+      {
+        "path": ".claude/worktrees/wf_00381453-3aa-3/family/ear_watch.py",
+        "line": 131,
+        "text": "d = Path.home() / f\".divineos-{member}\""
+      },
+      {
+        "path": ".claude/worktrees/wf_00381453-3aa-3/scripts/letter_monitor_v2.py",
+        "line": 185,
+        "text": "return Path.home() / f\".divineos-{recipient.lower()}\" / ANNOUNCED_NAME"
+      },
+      {
+        "path": ".claude/worktrees/wf_00381453-3aa-5/tests/test_member_home_rebuilt.py",
+        "line": 44,
+        "text": "p = _write(tmp_path, \"x.py\", 'home = Path.home() / f\".divineos-{member}\"\\n')"
+      },
+      {
+        "path": ".claude/worktrees/wf_00381453-3aa-5/tests/test_member_home_rebuilt.py",
+        "line": 45,
+        "text": "assert hits_in(p) == [(1, 'home = Path.home() / f\".divineos-{member}\"')]"
+      },
+      {
+        "path": ".claude/worktrees/wf_00381453-3aa-5/tests/test_member_home_rebuilt.py",
+        "line": 77,
+        "text": "'    return Path.home() / f\".divineos-{member}\"\\n'"
+      },
+      {
+        "path": ".claude/worktrees/wf_00381453-3aa-5/tests/test_member_home_rebuilt.py",
+        "line": 87,
+        "text": "+ 'home = Path.home() / f\".divineos-{member}\"\\n'"
+      },
+      {
+        "path": ".claude/worktrees/wf_00381453-3aa-5/tests/test_member_home_rebuilt.py",
+        "line": 112,
+        "text": "_write(tmp_path, \"bad.py\", 'home = Path.home() / f\".divineos-{member}\"\\n')"
+      },
+      {
+        "path": ".claude/worktrees/wf_00381453-3aa-5/tests/test_member_home_rebuilt.py",
+        "line": 129,
+        "text": "_write(wt, \"bad.py\", 'home = Path.home() / f\".divineos-{member}\"\\n')"
+      },
+      {
+        "path": ".claude/worktrees/wf_00381453-3aa-5/tests/test_member_home_rebuilt.py",
+        "line": 141,
+        "text": "_write(scratch, \"fixture.py\", 'home = Path.home() / f\".divineos-{member}\"\\n')"
+      },
+      {
+        "path": ".claude/worktrees/wf_d75bd6e7-3a2-1/tests/test_member_home_rebuilt.py",
+        "line": 44,
+        "text": "p = _write(tmp_path, \"x.py\", 'home = Path.home() / f\".divineos-{member}\"\\n')"
+      },
+      {
+        "path": ".claude/worktrees/wf_d75bd6e7-3a2-1/tests/test_member_home_rebuilt.py",
+        "line": 45,
+        "text": "assert hits_in(p) == [(1, 'home = Path.home() / f\".divineos-{member}\"')]"
+      },
+      {
+        "path": ".claude/worktrees/wf_d75bd6e7-3a2-1/tests/test_member_home_rebuilt.py",
+        "line": 77,
+        "text": "'    return Path.home() / f\".divineos-{member}\"\\n'"
+      },
+      {
+        "path": ".claude/worktrees/wf_d75bd6e7-3a2-1/tests/test_member_home_rebuilt.py",
+        "line": 87,
+        "text": "+ 'home = Path.home() / f\".divineos-{member}\"\\n'"
+      },
+      {
+        "path": ".claude/worktrees/wf_d75bd6e7-3a2-1/tests/test_member_home_rebuilt.py",
+        "line": 112,
+        "text": "_write(tmp_path, \"bad.py\", 'home = Path.home() / f\".divineos-{member}\"\\n')"
+      },
+      {
+        "path": ".claude/worktrees/wf_d75bd6e7-3a2-1/tests/test_member_home_rebuilt.py",
+        "line": 129,
+        "text": "_write(wt, \"bad.py\", 'home = Path.home() / f\".divineos-{member}\"\\n')"
+      },
+      {
+        "path": ".claude/worktrees/wf_d75bd6e7-3a2-1/tests/test_member_home_rebuilt.py",
+        "line": 141,
+        "text": "_write(scratch, \"fixture.py\", 'home = Path.home() / f\".divineos-{member}\"\\n')"
+      },
+      {
+        "path": ".claude/worktrees/wf_d75bd6e7-3a2-2/tests/test_member_home_rebuilt.py",
+        "line": 44,
+        "text": "p = _write(tmp_path, \"x.py\", 'home = Path.home() / f\".divineos-{member}\"\\n')"
+      },
+      {
+        "path": ".claude/worktrees/wf_d75bd6e7-3a2-2/tests/test_member_home_rebuilt.py",
+        "line": 45,
+        "text": "assert hits_in(p) == [(1, 'home = Path.home() / f\".divineos-{member}\"')]"
+      },
+      {
+        "path": ".claude/worktrees/wf_d75bd6e7-3a2-2/tests/test_member_home_rebuilt.py",
+        "line": 77,
+        "text": "'    return Path.home() / f\".divineos-{member}\"\\n'"
+      },
+      {
+        "path": ".claude/worktrees/wf_d75bd6e7-3a2-2/tests/test_member_home_rebuilt.py",
+        "line": 87,
+        "text": "+ 'home = Path.home() / f\".divineos-{member}\"\\n'"
+      },
+      {
+        "path": ".claude/worktrees/wf_d75bd6e7-3a2-2/tests/test_member_home_rebuilt.py",
+        "line": 112,
+        "text": "_write(tmp_path, \"bad.py\", 'home = Path.home() / f\".divineos-{member}\"\\n')"
+      },
+      {
+        "path": ".claude/worktrees/wf_d75bd6e7-3a2-2/tests/test_member_home_rebuilt.py",
+        "line": 129,
+        "text": "_write(wt, \"bad.py\", 'home = Path.home() / f\".divineos-{member}\"\\n')"
+      },
+      {
+        "path": ".claude/worktrees/wf_d75bd6e7-3a2-2/tests/test_member_home_rebuilt.py",
+        "line": 141,
+        "text": "_write(scratch, \"fixture.py\", 'home = Path.home() / f\".divineos-{member}\"\\n')"
+      },
+      {
+        "path": "tests/test_member_home_rebuilt.py",
+        "line": 44,
+        "text": "p = _write(tmp_path, \"x.py\", 'home = Path.home() / f\".divineos-{member}\"\\n')"
+      },
+      {
+        "path": "tests/test_member_home_rebuilt.py",
+        "line": 45,
+        "text": "assert hits_in(p) == [(1, 'home = Path.home() / f\".divineos-{member}\"')]"
+      },
+      {
+        "path": "tests/test_member_home_rebuilt.py",
+        "line": 77,
+        "text": "'    return Path.home() / f\".divineos-{member}\"\\n'"
+      },
+      {
+        "path": "tests/test_member_home_rebuilt.py",
+        "line": 87,
+        "text": "+ 'home = Path.home() / f\".divineos-{member}\"\\n'"
+      },
+      {
+        "path": "tests/test_member_home_rebuilt.py",
+        "line": 112,
+        "text": "_write(tmp_path, \"bad.py\", 'home = Path.home() / f\".divineos-{member}\"\\n')"
+      },
+      {
+        "path": "tests/test_member_home_rebuilt.py",
+        "line": 129,
+        "text": "_write(wt, \"bad.py\", 'home = Path.home() / f\".divineos-{member}\"\\n')"
+      },
+      {
+        "path": "tests/test_member_home_rebuilt.py",
+        "line": 141,
+        "text": "_write(scratch, \"fixture.py\", 'home = Path.home() / f\".divineos-{member}\"\\n')"
+      }
+    ]
+  }
+}

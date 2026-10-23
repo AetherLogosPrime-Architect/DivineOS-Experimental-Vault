@@ -1,0 +1,9 @@
+# station-marks recorded run
+command: python -m pytest tests/test_station_marks_his_word.py -q --tb=short
+exit: 0
+--- stdout ---
+.......                                                                  [100%]
+7 passed in 0.31s
+
+--- stderr ---
+

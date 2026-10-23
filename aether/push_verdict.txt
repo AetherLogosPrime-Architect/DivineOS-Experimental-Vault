@@ -1,0 +1,1 @@
+2026-10-23T16:01:41Z  head=15396e77b  REFUSED exit=1 (PUSH_FAILED) -- the gate said no; its reason is in the run output

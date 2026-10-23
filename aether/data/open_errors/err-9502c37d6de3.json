@@ -1,0 +1,14 @@
+{
+  "error_id": "err-9502c37d6de3",
+  "source": "bypass",
+  "summary": "SMOKE TEST — delete me",
+  "context": "",
+  "root_cause_investigation_hint": "test only",
+  "filed_at": 1784302808.4617214,
+  "state": "closed",
+  "closure_evidence": "smoke test cleanup — mechanism verified working",
+  "closed_at": 1784302834.6006563,
+  "deferred_by": null,
+  "deferred_reason": null,
+  "deferred_at": null
+}

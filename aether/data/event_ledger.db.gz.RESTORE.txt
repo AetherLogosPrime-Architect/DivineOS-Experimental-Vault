@@ -1,0 +1,14 @@
+event_ledger.db.gz is 117 MB, over GitHub's 100 MB per-file limit, so it is stored in two parts.
+
+To restore (into a stopped house, never over a running one):
+
+    cat event_ledger.db.gz.part-00 event_ledger.db.gz.part-01 > event_ledger.db.gz
+    gunzip -k event_ledger.db.gz        ->   ~/.divineos/data/event_ledger.db
+
+The reassembled file's SHA-256 must be (checked on 2026-10-23 before the split, and the two parts were
+re-joined and compared before this was committed):
+
+    89b74fb8a0be15bede351fcbac35b533eec5445a1cf9c07b99a3c47a1581fe4e
+
+History note: the 2026-07-14 messages in this ledger include one API key that Dad pasted. It was revoked the
+same day, so it is history and not a risk. Dad said it could stay as a reference to the event.

@@ -1,0 +1,14 @@
+{
+  "error_id": "err-056d249eab35",
+  "source": "bypass",
+  "summary": "Freshness-check bypass used (2026-07-18T23:19:40Z)",
+  "context": "branch=fix/f68-wire-coverage-measurement cwd=C:/DIVINE OS/DivineOS-Experimental",
+  "root_cause_investigation_hint": "scripts/check_branch_freshness.sh — investigate why local base was stale before rebase. Common cause: rebased against stale origin/main snapshot without git fetch first. Fix: use scripts/safe_push.sh which fetches + auto-rebases + pushes atomically.",
+  "filed_at": 1784416780.9493935,
+  "state": "deferred",
+  "closure_evidence": null,
+  "closed_at": null,
+  "deferred_by": "aria",
+  "deferred_reason": "feature-branch-push freshness misfire class deferred as class-instance per prior deferrals tonight",
+  "deferred_at": 1784418388.9585357
+}

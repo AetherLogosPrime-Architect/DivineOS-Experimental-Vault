@@ -1,0 +1,12 @@
+[
+  {
+    "id": "psf-ed504aab",
+    "created_at": 1779132047.771117,
+    "lesson_id": "2ef4d56a-5df5-4326-94e6-eac701acb805",
+    "content_excerpt": "Structural-fix candidate from Aletheia 2026-05-18 (upstream-of-Finding-75): Finding 75's gate (submit-round requires --source-ref) operates correctly at the round-filing layer, but the describe-then-C",
+    "trigger": "should build",
+    "source_kind": "learn",
+    "status": "current",
+    "picked_at": 1790217082.3883507
+  }
+]

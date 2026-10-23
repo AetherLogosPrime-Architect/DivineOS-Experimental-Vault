@@ -1,0 +1,14 @@
+{
+  "error_id": "err-97ad45c4e368",
+  "source": "bypass",
+  "summary": "Freshness-check bypass used (2026-08-20T08:31:56Z)",
+  "context": "branch=chore/retire-delivery-cluster cwd=C:/DIVINE OS/DivineOS-Experimental",
+  "root_cause_investigation_hint": "scripts/check_branch_freshness.sh — investigate why local base was stale before rebase. Common cause: rebased against stale origin/main snapshot without git fetch first. Fix: use scripts/safe_push.sh which fetches + auto-rebases + pushes atomically.",
+  "filed_at": 1787214717.1396165,
+  "state": "closed",
+  "closure_evidence": "Legitimate scoped use, not a defect. Traced by timestamp: error stamped 08:31:56Z; commit f390bced 'letter(auto): aether-to-aletheia-2026-08-20-it-was-never-the-hash' landed 01:31:29 local = 08:31:29 UTC. That is auto-push-letter.sh, whose header documents three bypasses scoped to a prose-only push: SKIP_FRESHNESS_CHECK because letters are not shared surfaces, SKIP_TESTS because prose has nothing for pytest to protect, SKIP_MULTIPARTY because letters are not guardrail files. Its safety property is prose-only-by-construction: fires only on family/**/letters/*.md and refuses if the tree carries any non-letter uncommitted change. Separately verified the new auto-push-finished-work.sh, which handles CODE, sets ZERO bypasses (grep -c DIVINEOS_SKIP returns 0), so the code path runs the full gate and only the prose path skips freshness. That split is intended.",
+  "closed_at": 1787218906.410201,
+  "deferred_by": null,
+  "deferred_reason": null,
+  "deferred_at": null
+}

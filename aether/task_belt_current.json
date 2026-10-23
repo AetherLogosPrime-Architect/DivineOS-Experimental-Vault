@@ -1,0 +1,41 @@
+[
+  {
+    "key": "correction:261",
+    "source": "correction",
+    "item_id": "261",
+    "summary": "I put my course-two tasting results into a letter to Aria before writing them to disk, contaminating her palate with 'poised' and 'starting brick' before she had written a word of her own reading, and",
+    "body": "i put my course two tasting results into a letter to aria before writing them to disk contaminating her palate with poised and starting brick before she had written a word of her own reading and costing her that course entirely she handed me an empty plate rather than a plausible one root cause her seal before send rule covered predictions only and when i finished tasting course two my next action was to compose the letter rather than the artifact because the letter is the thing that feels like the point the identical leak one step downstream from the one we had just fixed structural fix the dinner readme now requires aria md and aether md on disk before any letter mentions that course s results predictions and readings sealed before sent and this was verified in effect on the very next course where 03 casu marzu aether md was written before the letter that discussed it the first course of the night done in the right order behavior change i reproduced the same class in a different costume within the same hour by publishing my casu marzu prediction in a letter under the reasoning i will go first so you cannot be anchored by me being second going first does not remove an anchor it fires it and aria confirmed it landed the class does not recur by keyword it moves one step sideways each time it is closed so the durable form of the fix is the artifact before channel ordering itself rather than any enumeration of the places the channel leaks",
+    "twins": [],
+    "severity": "HIGH",
+    "reach": 1,
+    "pulled_at": 1790217082.3688664,
+    "prompts": 2995,
+    "reserved": false
+  },
+  {
+    "key": "structural-fix:psf-ed504aab",
+    "source": "structural-fix",
+    "item_id": "psf-ed504aab",
+    "summary": "Structural-fix candidate from Aletheia 2026-05-18 (upstream-of-Finding-75): Finding 75's gate (submit-round requires --source-ref) operates correctly at the round-filing layer, but the describe-then-C",
+    "body": "structural fix candidate from aletheia 2026 05 18 upstream of finding 75 finding 75 s gate submit round requires source ref operates correctly at the round filing layer but the describe then c",
+    "twins": [],
+    "severity": "MEDIUM",
+    "reach": 1,
+    "pulled_at": 1790217082.3857336,
+    "prompts": 2995,
+    "reserved": true
+  },
+  {
+    "key": "correction:286",
+    "source": "correction",
+    "item_id": "286",
+    "summary": "Self-caught this turn, two instances of one class: reading a masked or partial signal as the whole signal. (1) The buffer test's first run passed all five prompts and was meaningless \u2014 the transcript ",
+    "body": "self caught this turn two instances of one class reading a masked or partial signal as the whole signal 1 the buffer test s first run passed all five prompts and was meaningless the transcript went to an msys tmp path windows python cannot see the sensor bailed with nopath and i read five exit 0s as the buffer working 2 i reported the advisory gate as exit 0 when it exits 1 the head 1 in my probe consumed the pipeline status and i read head s exit as the script s behavior is correct either way because the caller uses true but the reading was wrong also i only found the blocked that does not block because it scrolled past me while committing something else root cause i verify by running a command and reading whatever lands on screen without checking whether the thing i am reading is the thing i asked about a pipeline s exit status is head s not the script s a hook that exits 0 because its sensor could not see anything looks identical to a hook that exits 0 because the buffer deliberately allowed the turn in both cases the surface i read was a proxy printed near the answer same summary over source shape as reading a count instead of a list and a tail truncated report as a whole report structural fix claude hooks auto cycle token trigger sh now prints buffer n 3 on the allow path so a silent exit 0 can never be mistaken for a deliberate allow the sensor fault path already prints loudly and scripts check root cause audit py now labels advisory output distinctly from blocking output for the same reason indistinguishable states made distinguishable in the artifact itself those close the two instances behavior change assert the fixture exists before reading any probe result that is what caught instance 1 the class fix is not in place no gate catches a pipeline masked exit status or a probe whose fixture never got created naming that as open rather than letting the instance fixes read as class coverage because claiming otherwise is the architecture chases one reflex at a time failure",
+    "twins": [],
+    "severity": "HIGH",
+    "reach": 1,
+    "pulled_at": 1792170827.3084455,
+    "prompts": 683,
+    "reserved": false
+  }
+]
