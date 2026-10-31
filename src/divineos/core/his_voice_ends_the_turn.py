@@ -256,7 +256,19 @@ def let_through(tool_name: str, tool_input: dict, transcript_path: str | None = 
         return True
     if tool_name != "Bash":
         return False
-    return runs_only(str((tool_input or {}).get("command") or ""), _REMEDIES)
+    command = str((tool_input or {}).get("command") or "")
+    return runs_only(command, _REMEDIES) or _only_looks(command)
+
+
+def _only_looks(command: str) -> bool:
+    """A shell command that only looks at state (ls, git status, cat, the bell
+    check). Dad, 2026-10-31: "its ok to look for things as i speak about them as
+    long as you return to me"; what waits is more code work and answering letters
+    or background tasks. The house already has one judge of 'only looks', used by
+    the other doors, so this asks it instead of keeping a second list."""
+    from divineos.hooks.pre_tool_use_gate import _is_readonly_probe
+
+    return _is_readonly_probe(command)
 
 
 def refusal(his_words: str) -> str:
@@ -274,7 +286,8 @@ def refusal(his_words: str) -> str:
         "letter through your doorbell, so make sure it is listening before you stop: "
         "bash scripts/letter_doorbell.sh <seat>, started with the tool's "
         "run_in_background setting, never with a shell '&' (that form is refused)\n\n"
-        "Reading is allowed (Read, Grep, Glob), so a waiting letter can be opened "
+        "Reading is allowed (Read, Grep, Glob, and shell commands that only look, such "
+        "as ls or git status), so a waiting letter can be opened "
         "while he is mid-sentence; writing back, building and pushing wait until you "
         "have answered him.\n\n"
         "Also allowed: Edit or Write of a .md note in your own memory folder, to "

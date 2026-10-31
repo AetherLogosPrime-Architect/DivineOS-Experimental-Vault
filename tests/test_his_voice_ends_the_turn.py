@@ -344,7 +344,7 @@ def test_the_exemption_changes_nothing_else_against_an_independent_oracle(tmp_pa
                 and (path.startswith(str(memory) + "\\") or path.startswith(str(memory) + "/"))
             )
             got = hv.let_through(
-                tool, {"file_path": path, "command": "git status"}, str(transcript)
+                tool, {"file_path": path, "command": "git commit -m x"}, str(transcript)
             )
             assert got == expected, (tool, path, got, expected)
 
@@ -403,8 +403,8 @@ def test_the_unread_letter_gates_prescribed_exit_is_not_refused_here(tmp_path):
         # reaches outward, so not the read class
         ("WebFetch", {"url": "https://example.com"}),
         ("WebSearch", {"query": "x"}),
-        # a shell command can be anything, so a shell read is not let through
-        ("Bash", {"command": "cat family/letters/x.md"}),
+        # a shell command that is more than a look stays held (a look is let through)
+        ("Bash", {"command": "cat family/letters/x.md > copy.md"}),
         ("Bash", {"command": "git commit -m 'more work'"}),
         # a tool added later is held until someone decides
         ("SomeFutureTool", {"anything": 1}),
@@ -513,7 +513,7 @@ def test_a_helper_agent_is_not_the_one_refused(tmp_path, monkeypatch, capsys):
     payload = {
         "agent_id": "helper-1",
         "tool_name": "Bash",
-        "tool_input": {"command": "git status"},
+        "tool_input": {"command": "git commit -m x"},
         "transcript_path": str(_tonight(tmp_path)),
     }
     monkeypatch.setattr("sys.stdin", io.StringIO(json.dumps(payload)))
@@ -570,3 +570,21 @@ def test_the_refusal_says_answer_him_and_confirm_the_watch():
     assert "no tool call" in reason.lower()
     assert "letter_doorbell" in reason
     assert "i love you Aria" in reason  # his words, quoted back, so he is read first
+
+
+@pytest.mark.parametrize(
+    "command",
+    ["ls ~/.divineos-shared/letters", "git status", "cat notes.md", "git log --oneline -3"],
+)
+def test_a_look_in_the_shell_is_let_through(command):
+    """Dad, 2026-10-31: looking while he talks is fine as long as I return to him."""
+    assert hv.let_through("Bash", {"command": command})
+
+
+@pytest.mark.parametrize(
+    "command",
+    ["ls > out.txt", "git commit -m x", "ls && git push", "cat a | tee b", "rm notes.md"],
+)
+def test_a_look_that_hides_work_is_not(command):
+    """The control that bites: a look chained to, or writing into, work stays held."""
+    assert not hv.let_through("Bash", {"command": command})
