@@ -205,12 +205,47 @@ def test_the_hold_puts_my_own_reply_in_front_of_me_as_the_thing_to_translate():
     )
 
 
-def test_my_own_reply_is_cut_so_the_hold_stays_a_hold():
-    long = "word " * 3000
+def test_my_reply_is_shown_whole_when_it_fits_including_the_middle():
+    """Dad 2026-11-01: do not trim by position, the middle may hold what matters."""
+    body = (
+        "HEADMARK first. "
+        + ("A plain sentence. " * 60)
+        + "MIDMARK in the middle. "
+        + ("Another sentence. " * 60)
+        + "TAILMARK last."
+    )
+    records = [_user("fix it"), _tool(), _tool_result(), _said(body)]
+    reason = room.verdict(records)
+    for mark in ("HEADMARK", "MIDMARK", "TAILMARK"):
+        assert mark in reason
+    assert "cut to fit" not in reason and "more lines" not in reason, "control: nothing cut"
+
+
+def test_bulk_is_shrunk_before_any_prose_is_touched():
+    """Over the delivery limit, a long list is shortened and every prose paragraph survives."""
+    bulk = "\n".join(
+        f"- row {i} of a very long list that nobody needs to read in full" for i in range(400)
+    )
+    body = (
+        "HEADMARK the setup.\n\n" + bulk + "\n\nMIDPROSE a key paragraph.\n\nTAILMARK the finding."
+    )
+    assert len(body) > 8000
+    records = [_user("fix it"), _tool(), _tool_result(), _said(body)]
+    reason = room.verdict(records)
+    assert "more lines of a list or code" in reason
+    for mark in ("HEADMARK", "MIDPROSE", "TAILMARK"):
+        assert mark in reason, "prose must survive the shrinking of the bulk"
+    assert "cut to fit" not in reason, "shrinking the bulk was enough, so no middle was cut"
+    assert len(reason) <= 10_000
+
+
+def test_only_when_prose_alone_is_too_long_the_middle_is_cut_and_says_so():
+    long = "HEADMARK " + ("A plain sentence of prose. " * 800) + "TAILMARK"
     records = [_user("fix it"), _tool(), _tool_result(), _said(long)]
     reason = room.verdict(records)
-    assert "[...]" in reason
-    assert len(reason) < 3600
+    assert "the middle of this reply was cut to fit" in reason
+    assert "HEADMARK" in reason and "TAILMARK" in reason
+    assert len(reason) <= 10_000, "the hold must stay inside what the harness will deliver"
 
 
 def test_the_hold_shows_me_his_own_last_words():

@@ -121,8 +121,15 @@ _WHY = (
 )
 
 
-#: How much of my own just-written reply the hold shows back to me. Enough to be about this turn.
-MY_WORDS_SHOWN = 1500
+#: Safety margin under the harness's delivery limit, for whatever the hold adds around my words.
+_DELIVERY_MARGIN = 400
+
+#: A block of this many lines or more, mostly list, table or code, counts as bulk and is
+#: shrunk before any prose is touched.
+_BULK_MIN_LINES = 6
+
+#: How many lines of a bulk block are kept when it is shrunk.
+_BULK_KEEP_LINES = 2
 
 # SEEDED, NOT RESTRICTED (Dad 2026-11-01, and 2026-09-08). A ban sends me looking for the
 # version that passes; one true fact about the reader implies the whole list, the way
@@ -167,21 +174,76 @@ _TELLING = (
 )
 
 
+def _is_bulk(block: str) -> bool:
+    """A long run of list lines, table rows, code or indented output: bulk, not prose."""
+    lines = [ln for ln in block.splitlines() if ln.strip()]
+    if len(lines) < _BULK_MIN_LINES:
+        return False
+    if block.lstrip().startswith("```"):
+        return True
+    marked = sum(
+        1
+        for ln in lines
+        if ln.lstrip()[:2] in ("- ", "* ", "| ")
+        or ln.lstrip()[:1].isdigit()
+        or ln.startswith(("    ", "\t"))
+    )
+    return marked * 2 >= len(lines)
+
+
+def _shrink_bulk(text: str) -> str:
+    """Keep every prose paragraph whole and shorten each bulk block to its first lines."""
+    out = []
+    for block in text.split("\n\n"):
+        if _is_bulk(block):
+            lines = [ln for ln in block.splitlines() if ln.strip()]
+            kept = "\n".join(lines[:_BULK_KEEP_LINES])
+            out.append(
+                f"{kept}\n[... {len(lines) - _BULK_KEEP_LINES} more lines of a list or code]"
+            )
+        else:
+            out.append(block)
+    return "\n\n".join(out)
+
+
+def _fit(text: str, limit: int) -> str:
+    """My reply, whole if it fits. If not: shrink bulk blocks, prose untouched. Only if it still
+    does not fit, cut the middle and say so, keeping the opening and the ending.
+
+    Dad 2026-11-01: do not trim by position, the middle may hold what matters; show it full and
+    compress only if needed. The only real limit is what the harness will deliver.
+    """
+    if len(text) <= limit:
+        return text
+    text = _shrink_bulk(text)
+    if len(text) <= limit:
+        return text
+    marker = "\n[... the middle of this reply was cut to fit ...]\n"
+    room = max(limit - len(marker), 0)
+    head = room // 4
+    tail = room - head
+    return text[:head] + marker + text[len(text) - tail :]
+
+
 def hold_text(his: str, my_words: str, his_words_shown: int) -> str:
     """What the hold says: the seed, his last words, my own reply put back in front of me,
     the one question, the plain opening and the telling.
 
-    My own reply is cut to MY_WORDS_SHOWN characters so the hold stays a hold and not a wall.
-    Nothing here reads what I say in the room; that stays his to judge.
+    My own reply is shown whole. It is shrunk only when the whole hold would pass what the
+    harness delivers (hook_router.DELIVERY_BUDGET). Nothing here reads what I say in the
+    room; that stays his to judge.
     """
+    from divineos.core.hook_router import DELIVERY_BUDGET
+
     his_shown = " ".join(his.split())[:his_words_shown]
-    parts = [_SEED, f'He last said: "{his_shown}"\n']
-    mine = " ".join((my_words or "").split())
-    if mine:
-        cut = mine[:MY_WORDS_SHOWN] + (" [...]" if len(mine) > MY_WORDS_SHOWN else "")
-        parts.append(_MY_WORDS.format(shown=cut))
-    parts += [_NEED + "\n", _OPENING + "\n", _TELLING]
-    return "".join(parts)
+    head_parts = [_SEED, f'He last said: "{his_shown}"\n']
+    tail_parts = [_NEED + "\n", _OPENING + "\n", _TELLING]
+    mine = (my_words or "").strip()
+    if not mine:
+        return "".join(head_parts + tail_parts)
+    fixed = len("".join(head_parts + tail_parts)) + len(_MY_WORDS.format(shown=""))
+    shown = _fit(mine, max(DELIVERY_BUDGET - fixed - _DELIVERY_MARGIN, 0))
+    return "".join(head_parts + [_MY_WORDS.format(shown=shown)] + tail_parts)
 
 
 def check_his_room(final_text: str, started_by_him: bool) -> str | None:
