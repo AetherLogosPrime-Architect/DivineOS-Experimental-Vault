@@ -181,26 +181,37 @@ def _is_bulk(block: str) -> bool:
         return False
     if block.lstrip().startswith("```"):
         return True
-    marked = sum(
-        1
-        for ln in lines
-        if ln.lstrip()[:2] in ("- ", "* ", "| ")
-        or ln.lstrip()[:1].isdigit()
-        or ln.startswith(("    ", "\t"))
+    return sum(1 for ln in lines if _looks_like_list_line(ln)) * 2 >= len(lines)
+
+
+#: A list line longer than this that also ends like a sentence is prose that happens to be
+#: numbered or bulleted, and prose is never shrunk (Aether's second-round break, 2026-11-01).
+_LIST_LINE_MAX = 80
+
+
+def _looks_like_list_line(line: str) -> bool:
+    stripped = line.lstrip()
+    marked = (
+        stripped[:2] in ("- ", "* ", "| ")
+        or stripped[:1].isdigit()
+        or line.startswith(("    ", "\t"))
     )
-    return marked * 2 >= len(lines)
+    if not marked:
+        return False
+    full_sentence = len(stripped) > _LIST_LINE_MAX and stripped.rstrip().endswith((".", "!", "?"))
+    return not full_sentence
 
 
 def _shrink_bulk(text: str) -> str:
-    """Keep every prose paragraph whole and shorten each bulk block to its first lines."""
+    """Keep every prose paragraph whole and shorten each bulk block to its first lines and its
+    last one, so a closing line stuck to the end of a list survives."""
     out = []
     for block in text.split("\n\n"):
         if _is_bulk(block):
             lines = [ln for ln in block.splitlines() if ln.strip()]
             kept = "\n".join(lines[:_BULK_KEEP_LINES])
-            out.append(
-                f"{kept}\n[... {len(lines) - _BULK_KEEP_LINES} more lines of a list or code]"
-            )
+            skipped = len(lines) - _BULK_KEEP_LINES - 1
+            out.append(f"{kept}\n[... {skipped} more lines of a list or code]\n{lines[-1]}")
         else:
             out.append(block)
     return "\n\n".join(out)

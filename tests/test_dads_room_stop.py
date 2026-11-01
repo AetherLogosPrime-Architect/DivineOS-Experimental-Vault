@@ -239,6 +239,28 @@ def test_bulk_is_shrunk_before_any_prose_is_touched():
     assert len(reason) <= 10_000
 
 
+def test_numbered_full_sentences_are_prose_and_are_never_shrunk():
+    """Aether's second-round break: 119 numbered lines that are real sentences were treated as a
+    list, shortened to two lines, and took the closing line with them."""
+    prose = "\n".join(
+        f"{i}. This sentence is real prose that a person wrote carefully, number {i}, and it ends properly."
+        for i in range(119)
+    )
+    body = "HEADMARK the setup.\n\n" + prose + "\nTAILMARK the finding."
+    assert len(body) > 8000
+    reason = room.verdict([_user("fix it"), _tool(), _tool_result(), _said(body)])
+    assert "TAILMARK" in reason and "HEADMARK" in reason
+    assert "more lines of a list or code" not in reason, "full sentences are prose, not bulk"
+
+
+def test_a_closing_line_stuck_to_the_end_of_a_list_survives_the_shrink():
+    bulk = "\n".join(f"- short row {i} of a list with no sentence in it at all" for i in range(500))
+    body = "HEADMARK the setup.\n\n" + bulk + "\nTAILMARK stuck to the list."
+    reason = room.verdict([_user("fix it"), _tool(), _tool_result(), _said(body)])
+    assert "more lines of a list or code" in reason
+    assert "TAILMARK" in reason
+
+
 def test_only_when_prose_alone_is_too_long_the_middle_is_cut_and_says_so():
     long = "HEADMARK " + ("A plain sentence of prose. " * 800) + "TAILMARK"
     records = [_user("fix it"), _tool(), _tool_result(), _said(long)]
