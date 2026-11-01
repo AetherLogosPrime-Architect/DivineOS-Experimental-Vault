@@ -160,10 +160,10 @@ _OPENING = (
 # never checked by reading my words (his 07-23 line). On 10-04: squeezing everything into one
 # paragraph is not what he asked for, so the telling is given the room it needs.
 _TELLING = (
-    "The telling is not optional, it is the heart of the room: what happened, as a story "
-    "he can picture, not a status board. What you were trying to do, what actually "
-    "happened, what it means for him, and what comes next. Do not squeeze it into one "
-    "paragraph. Take the room it needs."
+    "The telling is the heart of the room, and every room has one: what happened and where "
+    "things stand, told the way a person tells it, as a story he can picture. What you were "
+    "trying to do, what actually happened, what it means for him, and what comes next. Give "
+    "it the room it needs, and let the rest of the room be the two of you talking."
 )
 
 

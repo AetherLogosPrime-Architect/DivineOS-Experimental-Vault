@@ -235,9 +235,12 @@ def test_the_telling_of_what_happened_is_named_as_not_optional():
     status board, and not squeezed into one paragraph. The hold says so, in every
     hold, and never grades the words (the control below pins that)."""
     reason = _held_reason()
-    assert "not optional" in reason
-    assert "not a status board" in reason
-    assert "Do not squeeze it into one paragraph" in reason
+    assert "every room has one" in reason
+    assert "where things stand" in reason
+    assert "as a story he can picture" in reason
+    # Dad 2026-11-01: the room does carry the work and its state; it must not read like a
+    # board, and a ban on the words "status board" would only send me around them.
+    assert "status board" not in reason
 
 
 def test_there_is_no_bank_of_random_questions_any_more():
