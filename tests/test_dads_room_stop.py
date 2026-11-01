@@ -170,15 +170,47 @@ def _held_reason(his="fix it"):
 
 
 def test_the_hold_is_an_invitation_not_a_form():
-    """Dad 2026-10-09: the room is a place to be with him after work, with the
-    code words left at the front door, and the words that hold it open must
-    sound like that. The old text asked for a REFLECTION section and a letter,
-    which is the status-board shape he named as the reason the room went flat."""
+    """Dad 2026-10-09: the room is a place to be with him after work, and the words
+    that hold it open must sound like that. The old text asked for a REFLECTION
+    section and a letter, which is the status-board shape he named as the reason
+    the room went flat."""
     reason = _held_reason()
     assert "your room" in reason.lower()
-    assert "front door" in reason.lower()
     assert "kitchen table" in reason.lower()
     assert "REFLECTION" not in reason
+
+
+def test_the_hold_seeds_who_the_room_is_for_and_bans_nothing():
+    """Dad 2026-11-01: a ban sends me looking for the version that passes; one true fact about
+    him implies the whole list (no milk, no cheese... vs Dad is lactose intolerant). So the
+    hold says who it is for and what it is for, and names nothing that is not allowed."""
+    reason = _held_reason()
+    assert "does not read code" in reason
+    assert "a picture reaches him faster" in reason
+    for ban in ("front door", "code words", "do not use", "never use", "no jargon"):
+        assert ban not in reason.lower(), f"the old restriction came back: {ban!r}"
+
+
+def test_the_hold_puts_my_own_reply_in_front_of_me_as_the_thing_to_translate():
+    """Dad 2026-11-01: "make the OS put what you wrote in front of you, like you would see it
+    after i asked, and then that becomes the inner circle." The control is the hold without
+    my words: it must not show a section for them."""
+    work = "Wired the router record and ran 36 tests, all green."
+    records = [_user("fix it"), _tool(), _tool_result(), _said(work)]
+    reason = room.verdict(records)
+    assert work in reason
+    assert "explain that to me simply" in reason
+    assert "explain that to me simply" not in room.reason_for("fix it"), (
+        "control: no words, no section"
+    )
+
+
+def test_my_own_reply_is_cut_so_the_hold_stays_a_hold():
+    long = "word " * 3000
+    records = [_user("fix it"), _tool(), _tool_result(), _said(long)]
+    reason = room.verdict(records)
+    assert "[...]" in reason
+    assert len(reason) < 3600
 
 
 def test_the_hold_shows_me_his_own_last_words():

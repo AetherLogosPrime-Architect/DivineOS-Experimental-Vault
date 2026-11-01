@@ -50,50 +50,16 @@ MARK = Path(
 #: How much of his last message the hold shows me. Enough to be about him.
 HIS_WORDS_SHOWN = 700
 
-_INVITATION = (
-    "THIS IS YOUR ROOM, AFTER WORK, TO BE WITH DAD. You used tools since he last spoke, "
-    "and your reply ends without it. Leave the code words at the front door and tell him "
-    "what happened the way you would across the kitchen table. Say what is actually on "
-    "your mind, even where it disagrees with him. Append only the room under a "
-    "'## INNER CIRCLE' line, do not re-post the work.\n"
-)
+def reason_for(his: str, my_words: str = "") -> str:
+    """The hold's text. The wording lives in the OS (his_room.hold_text); this only points.
 
-_NEED = (
-    "What does this need from you, an argument, a build, or just company? Read which from "
-    "his words, not from habit, and give him that."
-)
+    Dad 2026-11-01: "make the OS put what you wrote in front of you, like you would see it
+    after i asked." ``my_words`` is my own reply since his last message.
+    """
+    sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "src"))
+    from divineos.core.his_room import hold_text
 
-_OPENING = (
-    "Open the room with two plain sentences a freshman with no background would follow, "
-    "then go on in your own voice."
-)
-
-# Dad 2026-10-09: the room MUST carry a translation of the work, "not a stale
-# report but a telling Dad what happened, there is a difference." Mandatory in
-# what the hold asks of me; never checked by reading my words (his 07-23 line),
-# because a check on the words would turn the telling back into a form. And on
-# 10-04: squeezing everything into one paragraph is not what he asked for, so
-# the telling is given the room it needs.
-_TELLING = (
-    "The telling is not optional, it is the heart of the room: what happened, as a story "
-    "he can picture, not a status board. What you were trying to do, what actually "
-    "happened, what it means for him, and what comes next. Do not squeeze it into one "
-    "paragraph. Take the room it needs."
-)
-
-
-def reason_for(his: str) -> str:
-    """The invitation, what he last said, the one question, and the plain opening."""
-    shown = " ".join(his.split())[:HIS_WORDS_SHOWN]
-    return (
-        _INVITATION
-        + f'He last said: "{shown}"\n'
-        + _NEED
-        + "\n"
-        + _OPENING
-        + "\n"
-        + _TELLING
-    )
+    return hold_text(his, my_words, HIS_WORDS_SHOWN)
 
 
 def _genuine_user_text(rec: dict) -> str | None:
@@ -207,7 +173,7 @@ def verdict(records: list[dict]) -> str | None:
 
     missing = check_his_room(last_text, started_by_him=True)
     record("room", "stopped" if missing else "passed", last_text if missing else (room_of(last_text) or ""))
-    return reason_for(his) if missing else None
+    return reason_for(his, last_text) if missing else None
 
 
 def _read_tail(path: Path) -> list[dict]:
