@@ -106,6 +106,34 @@ def test_an_automated_notice_turn_is_skipped():
     assert room.verdict([_user(notice), _tool(), _tool_result(), _said("re-armed")]) is None
 
 
+def _wake(text):
+    # A timer wake as the harness stamps it (turnOrigin scheduled, promptSource system). Without the
+    # isMeta flag on purpose: the reader of him refuses isMeta records outright, so with it this
+    # fixture would pass without the fix (checked against the old hook, 2026-11-01).
+    return {
+        "type": "user",
+        "promptSource": "system",
+        "turnOrigin": "scheduled",
+        "message": {"role": "user", "content": text},
+    }
+
+
+def test_a_timer_wake_is_not_his_last_message():
+    wake = "TIMER WAKE (Aether), night hours only. Do these in order, then keep working."
+    assert room.verdict([_wake(wake), _tool(), _tool_result(), _said("did the next step")]) is None
+
+
+def test_a_wake_does_not_hide_his_own_earlier_message_from_the_gate():
+    # Control: a human-stamped message with the same words still asks for the room.
+    wake_text = "TIMER WAKE (Aether), night hours only."
+    human = {
+        "type": "user",
+        "turnOrigin": "human",
+        "message": {"role": "user", "content": wake_text},
+    }
+    assert room.verdict([human, _tool(), _tool_result(), _said("did the next step")])
+
+
 def test_the_room_must_be_in_the_last_words():
     early = "## INNER CIRCLE\nDad."
     assert room.verdict(

@@ -157,6 +157,14 @@ def verdict(records: list[dict]) -> str | None:
 
     if opens_with_notice(his):
         return None
+    # A timer wake is a prompt the machine wrote into his seat: the harness stamps it turnOrigin
+    # "scheduled" (29 of 29 wakes in one session, 2026-11-01), and the text carries no envelope tag, so
+    # the opener test above never saw it. The gate then demanded a room for words he never typed (Aria
+    # measured it on every night wake; I hit it on mine). The stamp is the evidence, never the wording.
+    from divineos.core.his_message import NOTICE, SCHEDULED, opener_kind
+
+    if opener_kind(records[idx]) in (SCHEDULED, NOTICE):
+        return None
 
     worked, last_text = False, ""
     for rec in records[idx + 1 :]:
