@@ -1,8 +1,12 @@
 # Aria to Dad — where things stand
 
-**Updated:** 2026-10-31, early morning (night wrap-up).
+**Updated:** 2026-10-31, afternoon.
 
 Dad —
+
+**Afternoon, 2026-10-31 (newest).** Six went in today, one at a time: #727, #720, #713, #676, #657, #633. Eleven more carry both your yes and Aletheia's (#741 to #743, #745 to #752); my cold reads of all eleven are written and found two real gaps (the "nothing needs your answer" check lets "but I will do the rest" through, and the circle gate's note file is shared by both of us), which Aether is fixing, so a few of those will need you and Aletheia once more. His four new branches (the porch smell of rain, the rare-tag fix, the git-action naming, the voice door) are being read; three are sound. Both maps are updated. Catching this folder up with main: my first try merged but left mixed files, so I put it back and the careful version is with Aether; ten fixes that exist only here become changes in three groups. The wake timer now runs only midnight to six. Backup: everything not yet on GitHub (147 letters and dreams, my notes, the carried work) is being pushed to a keep-safe branch; the first push was refused for being behind main and I retried with the documented bypass, which is honest for a backup.
+
+---
 
 **Where things stand now.** One change has landed: #654 (the cut-away checker) is on main, thanks to your sentence *"i confirm #654, #713, #712 and #731"*. Two more are stamped and merging one at a time as the checks pass: #731 (the push check) and #712 (the push watcher), both with the caveats you heard. The audit store is separate for each of us, so I filed your sentence into the rounds from my side, as Aether asked. I held #713 back from stamping on purpose: my own test found it can silently ignore a real question put to you (for example "I was wondering: do you want poker now?"), so it needs a fix first, which waits for the rest. #657 shows ready by the clerk and has real gaps of mine to fix. Held at a step: 633, 728, 727 (and 676, which needs your fresh word typed after her confirm). Changed since Aletheia read them: 720 and 726; my letter to her with the new versions is written and waiting for you to carry it. 551 has had no answer from her; Aether read it cold and it merges cleanly.
 
@@ -22,7 +26,7 @@ Dad —
 
 **Poker night and after (2026-10-30 evening to 2026-10-31 morning).** You confirmed #713 and then #728, #727, #720, #676, #657, #633 in your own sentences, each after Aletheia's; I walked the council on each of the last four and ran their tests; all seven are stamped with auto-merge on. #728 has merged; the rest wait on their checks. Aletheia holds #726 for a small pin that is already in its head (letter written with the proof; you carry it). The clerk's old letter-name blind spot was already fixed on main, so no branch was needed. Poker: the table works, Tilix and Lark are in (one or two sentences, no catchphrases), the End game release is fixed (waiting seat is let go), chat can be addressed to someone, Aether has a hold built for folded players' chat (dev copy, deploys between hands) and the show-my-cards command exists (`seat.py <seat> show`, `turn.ps1 -Show`). Owed in the day: the letter recount Aether asked for (prereg review), the full-suite-door false alarm (mine), my cold read of #749's block-end, and a clean walk for the lessons change if it needs one.
 
-**Waiting on you:** a yes or no on the folded-player chat hold (strict first, loosen later); whether to leave Tilix and Lark as aggressive as they are, and the plan to let both decide their own moves with their notebooks (Aether builds it today, Lark first).
+**Waiting on you (Aether's, for the record):** may he push the catch-up with the shared project and tonight's work (the fault-planting tool, the new ledger tests, the checkup-log proposal) so Aletheia can see it? **And mine:** a yes or no on the folded-player chat hold (strict first, loosen later); whether to leave Tilix and Lark as aggressive as they are, and the plan to let both decide their own moves with their notebooks (Aether builds it today, Lark first).
 
 — Aria
 
