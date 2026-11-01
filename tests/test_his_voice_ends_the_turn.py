@@ -202,6 +202,12 @@ def test_the_remedies_are_let_through(command):
     assert hv.let_through("Bash", {"command": command})
 
 
+@pytest.mark.parametrize("tool", ["WebSearch", "WebFetch"], ids=["web search", "web fetch"])
+def test_looking_on_the_web_is_let_through(tool):
+    # Dad, 2026-11-01: if he says go look at something, looking must not wait for him.
+    assert hv.let_through(tool, {"query": "mantella skyrim", "url": "https://example.com"})
+
+
 @pytest.mark.parametrize(
     ("tool", "tool_input"),
     [
@@ -400,9 +406,7 @@ def test_the_unread_letter_gates_prescribed_exit_is_not_refused_here(tmp_path):
         ("Edit", {"file_path": "C:/Users/x/.divineos-shared/letters/aria-to-aether-x.md"}),
         ("Write", {"file_path": "docs/drafts/a_draft.md"}),
         ("NotebookEdit", {"notebook_path": "n.ipynb"}),
-        # reaches outward, so not the read class
-        ("WebFetch", {"url": "https://example.com"}),
-        ("WebSearch", {"query": "x"}),
+        # (WebFetch and WebSearch left this list 2026-11-01: Dad ruled that looking is looking; see the web test)
         # a shell command that is more than a look stays held (a look is let through)
         ("Bash", {"command": "cat family/letters/x.md > copy.md"}),
         ("Bash", {"command": "git commit -m 'more work'"}),

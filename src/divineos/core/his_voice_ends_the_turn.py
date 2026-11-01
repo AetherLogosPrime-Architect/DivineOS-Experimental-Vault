@@ -244,7 +244,12 @@ def _records_a_note(tool_name: str, tool_input: dict, transcript_path: str | Non
 # exit lead into this gate's wall (walk-f744751f09d5). Web tools reach outward and a
 # shell command can be anything, so neither is in this class; a tool added later is
 # held until someone decides.
-_READ_TOOLS = frozenset({"Read", "Grep", "Glob"})
+#
+# WEB LOOKING IS LOOKING (Dad, 2026-11-01, via Aria): "if i say go look at something you may do so immediately
+# you dont need to wait for me to respond". WebSearch and WebFetch only read; they change nothing here and send
+# nothing of his. They were refused all afternoon while Read, Grep and Glob went through. What still waits is
+# anything that writes, builds, pushes or answers a letter.
+_READ_TOOLS = frozenset({"Read", "Grep", "Glob", "WebSearch", "WebFetch"})
 
 
 def let_through(tool_name: str, tool_input: dict, transcript_path: str | None = None) -> bool:
