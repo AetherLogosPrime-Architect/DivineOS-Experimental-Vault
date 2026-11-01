@@ -95,19 +95,67 @@ def test_shell_that_never_touches_the_os_is_counted_apart(tmp_path):
     assert hl.inventory(root).detached_files == 1  # only a.sh; the others reach the OS
 
 
-def test_a_doorbell_that_runs_an_os_module_with_dash_m_is_not_detached(tmp_path):
-    """12 of the first 47 'detached' files were exactly this form (2026-10-08)."""
+def test_a_doorbell_that_runs_a_module_of_the_os_is_not_detached(tmp_path):
+    """The `-m divineos...` form is the doorbell the migration wants. The
+    counter did not know it: ten of 45 'detached' files on main were this."""
     root = _tree(
         tmp_path,
-        {"Stop": ["bell.sh", "brain.sh"]},
+        {"Stop": ["bell.sh", "own.sh"]},
         {
-            "bell.sh": '#!/bin/bash\necho "$IN" | "$PY" -m divineos.hooks.some_hook 2>/dev/null\n',
-            "brain.sh": "#!/bin/bash\n# holds its own logic\necho hi\n",
+            "bell.sh": '#!/bin/bash\npython -m divineos.hooks.some_hook "$@"\n',
+            "own.sh": "#!/bin/bash\necho the judgment lives in this file\n",
         },
     )
-    inv = hl.inventory(root)
-    assert inv.detached_files == 1  # brain.sh; the doorbell reaches the OS
-    assert inv.detached_lines == 3  # and it is brain.sh's three lines, not the doorbell's two
+    # Control: own.sh must stay detached, or a loosened pattern calls everything attached.
+    assert hl.inventory(root).detached_files == 1
+
+
+def test_a_doorbell_spelled_with_quotes_or_no_space_is_still_a_doorbell(tmp_path):
+    """The cloud helper's F5 and F6: `-m "divineos.hooks.x"` and `-mdivineos.hooks.x`
+    are real calls the first version of the pattern read as detached."""
+    root = _tree(
+        tmp_path,
+        {"Stop": ["quoted.sh", "tight.sh", "own.sh"]},
+        {
+            "quoted.sh": '#!/bin/bash\nexec "$PYTHON_BIN" -m "divineos.hooks.x"\n',
+            "tight.sh": '#!/bin/bash\nexec "$PYTHON_BIN" -mdivineos.hooks.x\n',
+            "own.sh": "#!/bin/bash\necho the judgment lives in this file\n",
+        },
+    )
+    # Control: own.sh stays detached, so a loosened pattern cannot call everything attached.
+    assert hl.inventory(root).detached_files == 1
+
+
+def test_a_commit_message_or_grep_flag_that_says_divineos_is_not_a_doorbell(tmp_path):
+    """The flag has to belong to an interpreter. A bare `-m divineos` also matched `git commit -m "divineos fix"`,
+    so a script that only commits was counted as attached to the OS."""
+    root = _tree(
+        tmp_path,
+        {"Stop": ["commits.sh", "greps.sh", "bell.sh", "var.sh"]},
+        {
+            "commits.sh": '#!/bin/bash\ngit commit -m "divineos: tidy"\n',
+            "greps.sh": "#!/bin/bash\ngrep -m1 divineos\n",
+            "bell.sh": "#!/bin/bash\npython3 -u -m divineos.hooks.x\n",
+            "var.sh": '#!/bin/bash\nexec "$HOOKPY" -m divineos.hooks.y\n',
+        },
+    )
+    # Two detached (commit, grep), two attached (a python with a flag before -m, and a quoted variable).
+    assert hl.inventory(root).detached_files == 2
+
+
+def test_a_comment_that_names_the_os_does_not_attach_a_script(tmp_path):
+    """Five scripts on main were 'attached' only because a comment said
+    `divineos <word>`; two of them make no OS call at all."""
+    root = _tree(
+        tmp_path,
+        {"Stop": ["talks.sh", "calls.sh"]},
+        {
+            "talks.sh": "#!/bin/bash\n# this will one day run divineos briefing\n  # from divineos import x\necho hi\n",
+            "calls.sh": "#!/bin/bash\n# runs the doorbell\ndivineos briefing\n",
+        },
+    )
+    # talks.sh only mentions the OS in comments (detached); calls.sh really calls it.
+    assert hl.inventory(root).detached_files == 1
 
 
 def test_embedded_python_is_counted_as_judgment_in_the_shell(tmp_path):
@@ -160,6 +208,86 @@ def test_the_event_list_is_the_routers_and_not_a_second_copy():
     # tuple(t) and t[:] both RETURN t for a tuple, so the copy is forced
     # through a list. Caught by this control failing on the first attempt.
     assert hl.EVENTS is not tuple(list(ROUTER_EVENTS))
+
+
+def test_a_hook_that_says_what_it_is_has_a_role_and_one_that_does_not_is_the_worklist(tmp_path):
+    """Dad 2026-11-01: scaffolding (comes down when its replacement is built) or permanent (only
+    I can do it). The control is the unlabeled hook, which must be listed, not assumed fine."""
+    root = _tree(
+        tmp_path,
+        {"Stop": ["s.sh", "p.sh", "none.sh"]},
+        {
+            "s.sh": "#!/bin/bash\n# HOOK-ROLE: scaffold -- replaced by an always-on watcher\nexit 0\n",
+            "p.sh": "#!/bin/bash\n# HOOK-ROLE: permanent -- only I can be with him in the room\nexit 0\n",
+            "none.sh": "#!/bin/bash\nexit 0\n",
+        },
+    )
+    inv = hl.inventory(root)
+    assert inv.roles["s.sh"].kind == "scaffold"
+    assert "always-on watcher" in inv.roles["s.sh"].why
+    assert inv.roles["p.sh"].kind == "permanent"
+    assert inv.roles["none.sh"] is None
+    assert inv.unlabeled == ["none.sh"]
+    assert (inv.count_of("scaffold"), inv.count_of("permanent")) == (1, 1)
+
+
+def test_a_generated_doorbell_is_recognised_without_a_hand_written_label(tmp_path):
+    root = _tree(
+        tmp_path,
+        {"Stop": ["bell.sh"]},
+        {
+            "bell.sh": "#!/bin/bash\n# GENERATED by divineos.core.doorbell_generator. Do not hand-edit\n"
+        },
+    )
+    assert hl.inventory(root).roles["bell.sh"].kind == "doorbell"
+
+
+def test_a_label_with_no_real_reason_is_not_a_label(tmp_path):
+    """A reason shorter than ten characters is not a reason (the cheapest way to dodge it)."""
+    root = _tree(
+        tmp_path,
+        {"Stop": ["thin.sh", "ok.sh"]},
+        {
+            "thin.sh": "# HOOK-ROLE: permanent -- ok\n",
+            "ok.sh": "# HOOK-ROLE: permanent -- only a person can do this one\n",
+        },
+    )
+    inv = hl.inventory(root)
+    assert inv.roles["thin.sh"] is None
+    assert inv.roles["ok.sh"].kind == "permanent", "control: a real reason is accepted"
+
+
+def test_the_same_reason_on_three_hooks_is_flagged_as_copied(tmp_path):
+    same = "# HOOK-ROLE: permanent -- only I can do this myself\n"
+    root = _tree(
+        tmp_path,
+        {"Stop": ["a.sh", "b.sh", "c.sh", "d.sh"]},
+        {
+            "a.sh": same,
+            "b.sh": same,
+            "c.sh": same,
+            "d.sh": "# HOOK-ROLE: permanent -- a different and specific reason\n",
+        },
+    )
+    inv = hl.inventory(root)
+    assert inv.copied_reasons == [("only i can do this myself", 3)]
+    assert "a copied label" in hl.format_inventory(inv)
+
+
+def test_two_hooks_sharing_a_reason_is_not_yet_a_copy(tmp_path):
+    same = "# HOOK-ROLE: permanent -- only I can do this myself\n"
+    root = _tree(tmp_path, {"Stop": ["a.sh", "b.sh"]}, {"a.sh": same, "b.sh": same})
+    assert hl.inventory(root).copied_reasons == []
+
+
+def test_the_report_counts_each_kind_every_run(tmp_path):
+    root = _tree(
+        tmp_path,
+        {"Stop": ["s.sh", "none.sh"]},
+        {"s.sh": "# HOOK-ROLE: scaffold -- replaced by the system\n", "none.sh": "x\n"},
+    )
+    text = hl.format_inventory(hl.inventory(root))
+    assert "1 scaffolding" in text and "1 with no label yet" in text
 
 
 def test_the_live_repository_is_readable_by_this_module():
