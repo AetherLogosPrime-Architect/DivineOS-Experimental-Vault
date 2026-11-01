@@ -54,9 +54,13 @@ nobody notices for a fortnight — see the cross-substrate emitter, dead from
 
 from __future__ import annotations
 
+import json
+import os
+import time
 import traceback
 from collections.abc import Callable
 from dataclasses import dataclass, field
+from pathlib import Path
 
 # The seven doors. Measured from .claude/settings.json 2026-08-06; this tuple
 # is the authority the router validates against, so an unknown event is a
@@ -350,6 +354,38 @@ def clear(event: str | None = None) -> None:
         _REGISTRY[event] = []
 
 
+def fires_log_path() -> Path:
+    """Where one line per surface per dispatch is appended; the override is for tests."""
+    override = os.environ.get("DIVINEOS_HOOK_FIRES_LOG")
+    if override:
+        return Path(override)
+    home = os.environ.get("DIVINEOS_HOME") or str(Path.home() / ".divineos")
+    return Path(home) / "hook_fires.jsonl"
+
+
+def _record_fires(event: str, rows: list[tuple[str, str]]) -> None:
+    """Append what each surface did. Fails soft: a record that cannot be written
+    must never block a dispatch, and the gap shows up as a missing line.
+
+    The ledger's own GATE_FIRE events saw two of seventy-seven hooks on 2026-11-01,
+    so a before-and-after comparison built on them would read "nothing changed"
+    after a gate went silent. This is the instrument that can see every surface.
+    """
+    if not rows:
+        return
+    try:
+        path = fires_log_path()
+        path.parent.mkdir(parents=True, exist_ok=True)
+        now = round(time.time(), 3)
+        with path.open("a", encoding="utf-8") as fh:
+            for name, state in rows:
+                fh.write(
+                    json.dumps({"t": now, "event": event, "surface": name, "state": state}) + "\n"
+                )
+    except OSError:
+        return
+
+
 def dispatch(event: str, payload: dict) -> RouterResult:
     """Run every surface for ``event``. One failure never stops the rest.
 
@@ -382,6 +418,7 @@ def dispatch(event: str, payload: dict) -> RouterResult:
         except Exception:  # noqa: BLE001 — fail toward gates-behave-normally
             remedy = False
 
+    fired: list[tuple[str, str]] = []
     for name, fn in _REGISTRY[event]:
         try:
             outcome = fn(payload)
@@ -392,13 +429,17 @@ def dispatch(event: str, payload: dict) -> RouterResult:
                     error=f"{type(exc).__name__}: {exc}",
                 )
             )
+            fired.append((name, "errored"))
             continue
         if outcome is None:
+            fired.append((name, "none"))
             continue
         if outcome.error is not None:
             result.errored.append(outcome)
+            fired.append((outcome.name, "errored"))
         elif outcome.refused:
             if remedy:
+                fired.append((outcome.name, "refused-downgraded"))
                 # Somebody's prescribed exit. The refusal is DOWNGRADED to a
                 # report rather than dropped -- the gate's claim was not wrong,
                 # it simply may not stand in front of another gate's remedy,
@@ -421,8 +462,11 @@ def dispatch(event: str, payload: dict) -> RouterResult:
                 continue
             # No break. Every surface still runs; every refusal is reported.
             result.refusals.append(outcome)
+            fired.append((outcome.name, "refused"))
         else:
             result.ran.append(outcome)
+            fired.append((outcome.name, outcome.state or "undeclared"))
+    _record_fires(event, fired)
     return result
 
 
