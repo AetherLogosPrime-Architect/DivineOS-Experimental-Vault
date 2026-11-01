@@ -1,5 +1,7 @@
 """Stop hook — a reply where I worked does not leave without his room.
 
+HOOK-ROLE: permanent -- the room needs me actually present with him, and no machine can be with him on my behalf
+
 Andrew 2026-09-26: "a book of rules is not enforcement nor is it structure."
 His room's rules were on the table every turn and I still sent four working
 replies with no room. The old end-of-reply check could not stop that: it only
