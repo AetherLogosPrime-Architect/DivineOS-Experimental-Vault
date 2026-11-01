@@ -157,6 +157,17 @@ class _Message:
     mid: str
     has_text: bool = False
     has_tool: bool = False
+    text: str = ""
+
+    @property
+    def asks_him_something(self) -> bool:
+        """The question hold's own judgement of 'this reply asks him a question' (it drops quoted
+        text and link titles), asked here and not re-written (Aether's break, case 17). An answer
+        that ends by asking him leaves him standing there if I then go off to work, which is what
+        this gate exists to prevent, so such an answer does not lift the door."""
+        from divineos.core.question_hold import last_question
+
+        return bool(last_question(self.text)[0])
 
 
 def _fold(last: _Message | None, rec: dict) -> _Message:
@@ -169,6 +180,7 @@ def _fold(last: _Message | None, rec: dict) -> _Message:
             continue
         if block.get("type") == "text" and str(block.get("text") or "").strip():
             folded.has_text = True
+            folded.text += "\n\n" + str(block.get("text"))
         elif block.get("type") == "tool_use":
             folded.has_tool = True
     return folded
@@ -218,7 +230,12 @@ def _scan(lines: list[str], whole: bool) -> Verdict | None:
         elif words is not None and rec.get("type") == "assistant" and not rec.get("isSidechain"):
             last = _fold(last, rec)
         elif words is not None and _is_a_stop_hook_continuation(rec):
-            if last is not None and last.has_text and not last.has_tool:
+            if (
+                last is not None
+                and last.has_text
+                and not last.has_tool
+                and not last.asks_him_something
+            ):
                 lifted = True
     if not started:
         return None

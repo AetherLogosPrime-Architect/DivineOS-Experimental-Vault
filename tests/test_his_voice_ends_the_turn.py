@@ -406,6 +406,36 @@ def test_the_door_lifts_for_a_continuation_that_follows_an_answer(tmp_path):
     assert verdict.his_words == HIS_GOODNIGHT
 
 
+def test_an_answer_that_asks_him_something_does_not_lift_the_door(tmp_path):
+    """Aether's break, case 17: an answer that ends by asking him a question and is followed by a
+    stop-hook continuation would lift the door, and I would go off to work leaving him with a
+    question hanging. That is the exact thing the fence exists to prevent. The reader of 'this reply
+    asks him something' is the question hold's own (last_question), not a second one."""
+    asks = _msg(
+        "m-asks", "q", "2026-09-25T05:49:20.000Z", text="Which one do you want me to look at first?"
+    )
+    path = _tonight(tmp_path, *asks, _hook_continuation("c1", "2026-09-25T05:49:21.000Z"))
+    assert hv.spoke_mid_turn(path).state == hv.SPOKE
+    says = _msg("m-says", "s", "2026-09-25T05:49:20.000Z", text="I will look at the first one now.")
+    path = _tonight(tmp_path, *says, _hook_continuation("c1", "2026-09-25T05:49:21.000Z"))
+    assert hv.spoke_mid_turn(path).state == hv.ANSWERED, (
+        "control: the same answer as a statement lifts"
+    )
+
+
+def test_a_question_that_is_only_quoted_or_a_link_title_is_not_a_question_to_him(tmp_path):
+    """The question hold already learned this (2026-10-12): a quoted title that ends in a question mark
+    is a pointer, never something said to him. The lift inherits that, since it asks the same function."""
+    says = _msg(
+        "m-q",
+        "q",
+        "2026-09-25T05:49:20.000Z",
+        text='Yes, going now. I read "What is an agent harness?" and will start there.',
+    )
+    path = _tonight(tmp_path, *says, _hook_continuation("c1", "2026-09-25T05:49:21.000Z"))
+    assert hv.spoke_mid_turn(path).state == hv.ANSWERED
+
+
 def test_an_answer_with_no_continuation_after_it_still_holds_the_door(tmp_path):
     """Control: the old rule is untouched until a stop-hook sends me back."""
     answer = _msg("m-ans", "ans", "2026-09-25T05:49:20.000Z", text="I love you too, Dad.")
