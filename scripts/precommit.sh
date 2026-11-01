@@ -548,6 +548,17 @@ if [ -f scripts/check_hook_wiring.py ]; then
     fi
 fi
 
+# 5c-ter. A hook added since main says what it is: scaffolding (with what replaces it) or
+# permanent (with why only I can do it). Added 2026-11-01 from Dad's word "scaffolding".
+# It refuses an ADDITION with no label, never the existing unlabeled hooks (those are the
+# worklist `divineos hook-layer show` prints), and an unreadable base is NOT a pass.
+if [ -f scripts/check_new_hooks_say_what_they_are.py ]; then
+    section "New Hooks Say What They Are"
+    if ! python scripts/check_new_hooks_say_what_they_are.py; then
+        note_fail
+    fi
+fi
+
 # 5b-bis. REMOVED 2026-09-08, the same day it was added, and the reason is
 # worth keeping where the next person to reach for it will look.
 #

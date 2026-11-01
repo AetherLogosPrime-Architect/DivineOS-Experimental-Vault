@@ -1,6 +1,8 @@
 #!/bin/bash
 # HE SAID IT, OR I GUESSED IT — Stop hook.
 #
+# HOOK-ROLE: permanent -- only I know when I am attributing words to him, and only I can put his sentence beside the claim
+#
 # A bell-pull, not a brain. Every decision lives in
 # src/divineos/hooks/his_said_claim.py where it is tested; this resolves an
 # interpreter and passes the turn through. Andrew 2026-09-08: "i dont want an

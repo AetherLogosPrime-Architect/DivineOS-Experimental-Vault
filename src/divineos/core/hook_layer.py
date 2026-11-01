@@ -179,6 +179,26 @@ class HookInventory:
         return {n for names in self.registered.values() for n in names}
 
 
+def registered_in(settings: dict) -> set[str]:
+    """Every script a settings file registers, on any event. The same reading as inventory()."""
+    names: set[str] = set()
+    for matchers in (settings.get("hooks") or {}).values():
+        for matcher in matchers or []:
+            for entry in matcher.get("hooks", []) or []:
+                names.update(_SCRIPT_RE.findall(entry.get("command", "") or ""))
+    return names
+
+
+def new_without_a_role(inv: "HookInventory", base_registered: set[str]) -> list[str]:
+    """Hooks registered now and not at the base, that declare no role.
+
+    New means absent from the base's registered list, the base being named by the caller (a
+    ref, not "now"), so a hook added between two runs is still seen. An existing unlabeled hook
+    is the worklist and is not refused here; only an addition is.
+    """
+    return sorted(n for n, r in inv.roles.items() if r is None and n not in base_registered)
+
+
 def _read_settings(root: Path) -> dict:
     data = json.loads((root / SETTINGS_FILE).read_text(encoding="utf-8"))
     if not isinstance(data, dict):
