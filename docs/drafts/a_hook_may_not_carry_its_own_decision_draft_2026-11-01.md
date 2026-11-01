@@ -37,6 +37,12 @@ A gate that goes silent mid-move without anyone noticing. Before a hook moves: a
 
 The plan needs a record of what actually fires before anything moves and the same record after. First attempt: count `GATE_FIRE` events in the ledger. Over the last three days it holds 381 events and only two distinct gate names (380 are `briefing-not-loaded`, 1 is `distancing_intercept`). Seventy-seven hooks are registered, so the ledger sees two of them. The first run also read the wrong field (`gate_name`, not `gate`) and reported one useless bucket, which is why the count above is the second run. A baseline built on this would be blind to nearly everything and would read as "nothing changed" after a move. So the first build step is not the guard but the record: each doorbell writes one line when it fires (event, script, whether it blocked), so before and after can be compared by the same instrument.
 
+## What the consolidation has to fix, as Dad saw it (2026-11-01, a screenshot of Aether's window)
+
+Three lines in a row reading "Hook re-prompted Claude", each a separate nudge sending him back before he could go on, each one a whole extra turn (and so usage). Dad's questions: *"why do they come one after the other in a row? why cant they all run at once?"* They are timed to run side by side (about two seconds each), but what reaches the model arrives as separate re-prompts; I could not establish from here why the harness hands them over one at a time. Measured on 2026-11-01 from the hold log: over the last 24 hours the promise check stopped me 56 of 144 times and the room check 20 of 60; on Aether 41 of 75 and 52 of 88, so his are held more often, not mine exempt.
+
+The acceptance test is the same window afterward: with the Stop doorbell routing every Stop check through the OS, which already collects all refusals in `RouterResult.refusals` and reports them together, the three lines must become one note. Until a before-and-after of that window shows it, the consolidation is not done. The nearest earlier draft is `the_last_thing_he_reads_is_checked_before_he_reads_it_draft_2026-10-20.md`; nothing in the drafts folder covers combining Stop notes.
+
 ## Open questions for the walk
 
 - Is a threshold of branches needed at all, or is "any branching on text or tool name" the whole definition? A threshold is a number someone can sit just under.
