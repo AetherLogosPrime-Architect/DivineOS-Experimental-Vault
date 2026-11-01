@@ -52,6 +52,13 @@ def main() -> int:
     if verdict.state == hv.UNREADABLE:
         _say(f"could not read {path}; could not look whether he spoke")
         return 0
+    if verdict.state == hv.ANSWERED:
+        # His answer has gone out and a Stop hook sent me back: the work he asked for goes on. The lift is
+        # recorded, so a gate that quietly stops lifting shows as a count of zero and not as silence.
+        from divineos.core.hold_log import record
+
+        record("voice", "lifted_after_answer", verdict.his_words)
+        return 0
     if verdict.state != hv.SPOKE:
         return 0
     sys.stdout.write(hv.refusal(verdict.his_words))

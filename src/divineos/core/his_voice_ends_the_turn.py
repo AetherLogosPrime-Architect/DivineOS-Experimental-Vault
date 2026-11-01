@@ -42,6 +42,10 @@ from divineos.core.his_message import continues_a_turn, may_carry_arrival
 
 SPOKE = "spoke"
 NOT = "not"
+# He spoke into this turn AND his answer has since gone out as a reply with no tool call, after
+# which a Stop hook sent me back: the work he asked for may go on. Kept apart from SPOKE so the
+# hook can tell the two and log the lift, and from NOT so his words stay known.
+ANSWERED = "answered"
 # Could not look. Kept apart from NOT so a broken read is never reported as
 # "he did not speak" (Dijkstra on the walk).
 UNREADABLE = "unreadable"
@@ -144,17 +148,62 @@ def _read_tail(path: Path, size: int, window: int) -> list[str] | None:
         return None
 
 
+@dataclass
+class _Message:
+    """One assistant message. The harness writes it as several records, one per content block
+    (thinking, text, tool_use), all sharing one message id, so what a message holds is judged
+    by folding those records together, never from one record alone."""
+
+    mid: str
+    has_text: bool = False
+    has_tool: bool = False
+
+
+def _fold(last: _Message | None, rec: dict) -> _Message:
+    message = rec.get("message") or {}
+    mid = str(message.get("id") or rec.get("uuid") or "")
+    folded = last if last is not None and last.mid == mid and mid else _Message(mid)
+    content = message.get("content")
+    for block in content if isinstance(content, list) else []:
+        if not isinstance(block, dict):
+            continue
+        if block.get("type") == "text" and str(block.get("text") or "").strip():
+            folded.has_text = True
+        elif block.get("type") == "tool_use":
+            folded.has_tool = True
+    return folded
+
+
+def _is_a_stop_hook_continuation(rec: dict) -> bool:
+    """The harness sending me back because a Stop hook blocked. Both marks, since the meta flag
+    alone is also on a compaction summary and a system note (Shannon on walk-27524672a462)."""
+    if rec.get("type") != "user" or rec.get("isSidechain") or not continues_a_turn(rec):
+        return False
+    content = (rec.get("message") or {}).get("content")
+    text = content if isinstance(content, str) else ""
+    return text.lstrip().startswith("Stop hook feedback")
+
+
 def _scan(lines: list[str], whole: bool) -> Verdict | None:
     """In file order (Lamport: never by timestamp -- his slip is filed after
     records stamped later than it). None when this window holds no turn start
-    and more of the file could still be read."""
+    and more of the file could still be read.
+
+    Two more things are tracked once he has spoken. The latest assistant message since his
+    arrival (to know whether it was an answer: text, and no tool call beside it), and whether
+    a Stop-hook continuation has followed such an answer. When both have happened the fence's
+    purpose is met, his answer reached him verbatim and last, and the work he asked for may
+    go on (Dad, 2026-11-01, so he need not ask twice). His next message closes it again."""
     started = whole  # a whole file begins at a turn start by definition
     words: str | None = None
+    last: _Message | None = None
+    lifted = False
     for line in lines:
         # Arrival shapes live in his_message (council-6ecfe25a3508): a line
         # that can open a turn is a user record; one that can carry him
-        # mid-turn is an arrival.
-        if '"user"' not in line and not may_carry_arrival(line):
+        # mid-turn is an arrival. An assistant record matters only once he has spoken.
+        carries_him = '"user"' in line or may_carry_arrival(line)
+        if not carries_him and not (words is not None and '"assistant"' in line):
             continue
         try:
             rec = json.loads(line)
@@ -163,12 +212,19 @@ def _scan(lines: list[str], whole: bool) -> Verdict | None:
         if not isinstance(rec, dict):
             continue
         if _starts_a_turn(rec):
-            started, words = True, None
+            started, words, last, lifted = True, None, None, False
         elif (arrived := _his_arrival(rec)) is not None:
-            words = arrived
+            words, last, lifted = arrived, None, False
+        elif words is not None and rec.get("type") == "assistant" and not rec.get("isSidechain"):
+            last = _fold(last, rec)
+        elif words is not None and _is_a_stop_hook_continuation(rec):
+            if last is not None and last.has_text and not last.has_tool:
+                lifted = True
     if not started:
         return None
-    return Verdict(SPOKE, words) if words is not None else Verdict(NOT)
+    if words is None:
+        return Verdict(NOT)
+    return Verdict(ANSWERED if lifted else SPOKE, words)
 
 
 def spoke_mid_turn(transcript_path: str | Path, tail_bytes: int = _TAIL_BYTES) -> Verdict:
@@ -286,10 +342,11 @@ def refusal(his_words: str) -> str:
         "call, what was kept of each was a neutral work summary with the love cut "
         "out, and he read it as neither of us returning it. A reply with no tool "
         "call was kept word for word.\n\n"
-        "If he asked for work too, it is not lost: it stays in his message, and the "
-        "next turn carries it. That next turn comes from his next prompt or from a "
-        "letter through your doorbell, so make sure it is listening before you stop: "
-        "bash scripts/letter_doorbell.sh <seat>, started with the tool's "
+        "If he asked for work too, it is not lost and he will not have to ask twice: it "
+        "stays in his message, and once your answer has gone out and a check sends you "
+        "back, the work goes on from there. His next prompt or a letter through your "
+        "doorbell also starts a turn, so make sure the doorbell is listening before you "
+        "stop: bash scripts/letter_doorbell.sh <seat>, started with the tool's "
         "run_in_background setting, never with a shell '&' (that form is refused)\n\n"
         "Reading is allowed (Read, Grep, Glob, and shell commands that only look, such "
         "as ls or git status), so a waiting letter can be opened "
