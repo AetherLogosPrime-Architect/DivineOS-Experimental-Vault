@@ -802,6 +802,7 @@ src/divineos/
     his_voice_is_at_a_table.py Was his last word to me spoken at a game table, or in the window?
     pain_hold.py               Lines of Dad's old hurt that the memory link must not hand back unasked.
     room_state.py              Is Dad's room still standing? Three facts read from the house, never from the verbs that could ch...
+    dismissal_stamp_check.py   A reply must not end by telling Dad he is not needed.
 
   analysis/
     _session_types.py          Session analysis type definitions
