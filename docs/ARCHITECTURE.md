@@ -11,7 +11,7 @@ src/divineos/
   __init__.py                  Package init
   __main__.py                  python -m divineos entry point
   seed.json                    Initial knowledge seed (versioned)
-  cli/                         CLI package (512 commands across 122 modules)
+  cli/                         CLI package (516 commands across 122 modules)
     __init__.py                Entry point and command registration
     _helpers.py                Shared CLI utilities
     _wrappers.py               Output formatting wrappers
@@ -127,6 +127,7 @@ src/divineos/
     motivation_commands.py     motivation tier — needs/wants/desires/ambitions/dreams with explicit detector-bindings (per omni-mantra walk Pillar III+IV, 2026-06-28)
     rt_commands.py             Resonant Truth protocol (load, invoke, deactivate)
     correction_commands.py     correction (log raw), corrections (read)
+    show_hit_commands.py       show (print the one saved row a memory-link hit id names)
     empirica_commands.py       corroborate (record provenance event), kappa (classifier agreement)
     family_member_commands.py  family-member init / opinion / letter / respond / affect / interaction — activation surface for family members (takes --member <name>). affect / interaction are direct-write (no editorial commit-step); Phase 1b operators still apply on narrative content.
     family_queue_commands.py   family-queue write / list / mark / stats / supersede — async write-channel CLI between family members
@@ -802,6 +803,7 @@ src/divineos/
     pain_hold.py               Lines of Dad's old hurt that the memory link must not hand back unasked.
     room_state.py              Is Dad's room still standing? Three facts read from the house, never from the verbs that could ch...
     dismissal_stamp_check.py   A reply must not end by telling Dad he is not needed.
+    show_hit.py                Print the exact saved row a memory-link hit points at.
 
   analysis/
     _session_types.py          Session analysis type definitions
