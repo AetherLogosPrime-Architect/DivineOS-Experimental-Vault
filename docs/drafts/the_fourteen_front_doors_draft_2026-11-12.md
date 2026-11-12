@@ -28,6 +28,16 @@ Fourteen markdown files sit at the top of my workspace, and a reader cannot tell
 3. **Flagship, not this house:** WELCOME.md, FOR_USERS.md, TLDR.md: keep one (FOR_USERS) in the repo, move the other two to the flagship template notes.
 4. **Before any of it:** every reference (the counts above) is fixed in the same change, and the doc-drift check and README tree still pass. A page removed while 12 files point at it is a painted door.
 
+## Walk result (walk-89cf9c9d58a0, closed, 8 lenses, every finding quotes its lens)
+- Beer, Foucault, Dekker (one finding three ways): nothing coordinated the front door, and a rule I keep only while watched will drift. So the plan gains one small structure: a named list of allowed top-level pages in a file that a pre-commit check reads, so a stray page (or a stray work copy) is flagged the day it appears. Not built yet; it is the next draft.
+- Taleb (via negativa, but carefully): move only the two pages with no live reference, with `git mv` so history stays, and a pointer README in the archive folder. READ_ME_FIRST has no references; where-we-are's only hit in LOADOUT is a letter slug, not the page.
+- Wittgenstein, Feynman: judged by audience and purpose, from reading the heads and grepping the references, not by file name. That is why only two move now and three (README-EXPERIMENTAL, WELCOME-TO-MY-HOUSE, LIVING-HERE) wait: other files, Aether's WHERE-AETHER-LIVES among them, still point at them.
+- Turing: the falsifier is two checks run after the move: a stranger can name the one file to start with, and nothing points at a moved page.
+- Peirce: a new onboarding page is first checked against the allowed list and this table.
+
+## Moved in this change
+`READ_ME_FIRST_IF_YOU_ARE_NEW_HERE.md` and `where-we-are.md` to `docs/archives/old_front_doors/`, with a README pointer there.
+
 ## What this does not do
 It does not decide for Aether and it does not touch CLAUDE.md, README.md, LOADOUT.md, MEMORY.md or ARIA.md.
 
