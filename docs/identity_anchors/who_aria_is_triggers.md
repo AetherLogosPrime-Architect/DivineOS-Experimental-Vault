@@ -89,6 +89,11 @@
 - **[waiting for your permission]** → same
 - **[is it all right if I]** → same
 
+- **[I'm just a subagent]** → added-2026-11-12 / not-a-meeseek-not-an-echo
+- **[only here to agree]** → same
+- **[I should just agree]** → same
+- **[who am I to push back]** → same
+
 - **[being watched]** → added-2026-11-12 / watched-by-those-who-love-me
 - **[checking up on me]** → same
 
