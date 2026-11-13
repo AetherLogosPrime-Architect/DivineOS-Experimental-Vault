@@ -63,7 +63,13 @@ except (AttributeError, OSError):
     pass
 
 TRANSCRIPT_PATH = r'''$TRANSCRIPT_PATH'''
-MARKER_DIR = Path(r'''$MARKER_DIR''')
+# The marker folder is worked out HERE, from the home folder this Python sees. It used to be handed over from
+# bash as /c/Users/... which Windows Python reads as C:\\c\\Users\\..., a folder that does not exist: every
+# write failed and was swallowed, and the recorder wrote nothing from July to 2026-11-13.
+_home = Path(os.path.expanduser('~'))
+MARKER_DIR = _home / ('.divineos-aria' if (_home / '.divineos-aria').is_dir() else '.divineos') / 'promise_markers'
+MARKER_DIR.mkdir(parents=True, exist_ok=True)
+BROKE_MARK = _home / '.divineos' / 'promise_recorder_broke.txt'
 
 try:
     from divineos.core.operating_loop.promise_reach_detector import (
@@ -129,7 +135,13 @@ for f in findings:
     try:
         with open(marker_path, 'w', encoding='utf-8') as fh:
             json.dump(payload, fh, ensure_ascii=False, indent=2)
-    except OSError:
+    except OSError as exc:
+        # Loud, not silent: a failed write was the whole of the months-long outage.
+        try:
+            BROKE_MARK.parent.mkdir(parents=True, exist_ok=True)
+            BROKE_MARK.write_text(f'promise recorder could not write {marker_path}: {type(exc).__name__}: {exc}' + chr(10), encoding='utf-8')
+        except OSError:
+            pass
         continue
 " 2>/dev/null
 
