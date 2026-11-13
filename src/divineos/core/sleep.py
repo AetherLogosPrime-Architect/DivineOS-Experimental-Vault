@@ -1467,6 +1467,26 @@ def _merge_phase_result(master: DreamReport, child: dict[str, Any], phase_name: 
         setattr(master, f.name, cval)
 
 
+_CHILD_OUTPUT_TAIL_CHARS = 1500
+
+
+def _child_output_tail(fh) -> str:
+    """The last words of a phase child, so a failed phase can say why.
+
+    Three answers stay apart: it printed nothing, it printed something (the tail),
+    and I could not look. Collapsing them is how a failure got read past.
+    """
+    try:
+        fh.flush()
+        fh.seek(0)
+        text: str = fh.read().strip()
+    except (OSError, ValueError) as e:
+        return f"could not read the child's output ({e})"
+    if not text:
+        return "no error output"
+    return text[-_CHILD_OUTPUT_TAIL_CHARS:]
+
+
 def run_sleep(skip_maintenance: bool = False, _in_process_only: bool = False) -> DreamReport:
     """Run the full sleep cycle. Returns a dream report.
 
@@ -1507,37 +1527,41 @@ def run_sleep(skip_maintenance: bool = False, _in_process_only: bool = False) ->
                 mode="w", suffix=".json", delete=False, encoding="utf-8"
             )
             tmp.close()
+            # NOT a pipe: Windows pipe buffer (~4KB) fills if the child writes
+            # noisy output (CUDA init, warnings) and the child blocks on write
+            # while the parent waits for exit => deadlock. A file never fills,
+            # and its tail is what a failed phase reports (it used to be thrown
+            # away, which is how a pruning failure got read past).
+            out_file = _tempfile.TemporaryFile(mode="w+", encoding="utf-8", errors="replace")
             try:
-                # NOT capture_output: Windows pipe buffer (~4KB) fills if
-                # child writes noisy stderr (CUDA init, warnings) and the
-                # child blocks on write while parent waits for exit ⇒
-                # deadlock. Result is the JSON file anyway, so suppress
-                # child stdout/stderr instead of buffering them.
                 result = _sp.run(
                     ["divineos", "sleep", "--phase", phase_name, "--json-out", tmp.name],
-                    stdout=_sp.DEVNULL,
-                    stderr=_sp.DEVNULL,
+                    stdout=out_file,
+                    stderr=out_file,
                     timeout=600,
                     check=False,
                 )
                 if result.returncode != 0:
-                    report.phase_errors[phase_name] = (
-                        f"subprocess exit {result.returncode} (output suppressed)"
-                    )
+                    why = _child_output_tail(out_file)
+                    report.phase_errors[phase_name] = f"subprocess exit {result.returncode}: {why}"
                     logger.warning(
-                        f"Sleep phase '{phase_name}' subprocess failed: exit={result.returncode}"
+                        f"Sleep phase '{phase_name}' subprocess failed: "
+                        f"exit={result.returncode}: {why}"
                     )
                     continue
                 with open(tmp.name, encoding="utf-8") as _f:
                     child_report = _json.load(_f)
                 _merge_phase_result(report, child_report, phase_name)
             except _sp.TimeoutExpired:
-                report.phase_errors[phase_name] = "subprocess timeout (>600s)"
+                report.phase_errors[phase_name] = (
+                    f"subprocess timeout (>600s): {_child_output_tail(out_file)}"
+                )
                 logger.warning(f"Sleep phase '{phase_name}' subprocess timed out")
             except (OSError, _json.JSONDecodeError, KeyError, TypeError, ValueError) as e:
                 report.phase_errors[phase_name] = f"merge failure: {e}"
                 logger.warning(f"Sleep phase '{phase_name}' merge failed: {e}")
             finally:
+                out_file.close()
                 try:
                     _Path(tmp.name).unlink(missing_ok=True)
                 except OSError:
