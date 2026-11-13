@@ -49,7 +49,7 @@ MARKER_DIR="$HOME/.divineos-aria/promise_markers"
 
 mkdir -p "$MARKER_DIR" 2>/dev/null
 
-PYTHONIOENCODING=utf-8 "$PYTHON_BIN" -c "
+ERR=$(PYTHONIOENCODING=utf-8 "$PYTHON_BIN" -c "
 import sys
 import json
 import time
@@ -59,8 +59,8 @@ from pathlib import Path
 
 try:
     sys.stdout.reconfigure(encoding='utf-8', errors='replace')
-except (AttributeError, OSError):
-    pass
+except (AttributeError, OSError) as exc:
+    print(f'promise recorder: could not set utf-8 output: {type(exc).__name__}: {exc}', file=sys.stderr)
 
 TRANSCRIPT_PATH = r'''$TRANSCRIPT_PATH'''
 # The marker folder is worked out HERE, from the home folder this Python sees. It used to be handed over from
@@ -75,12 +75,14 @@ try:
     from divineos.core.operating_loop.promise_reach_detector import (
         detect_promise_reach,
     )
-except ImportError:
+except ImportError as exc:
+    print(f'promise recorder: cannot import the detector, so nothing is recorded: {exc}', file=sys.stderr)
     sys.exit(0)
 
 # Read last assistant reply from transcript (JSONL, last non-empty
 # assistant message with 'text' content).
 last_reply_text = ''
+_bad_lines = 0
 try:
     with open(TRANSCRIPT_PATH, encoding='utf-8', errors='replace') as f:
         for line in f:
@@ -90,6 +92,7 @@ try:
             try:
                 rec = json.loads(line)
             except (json.JSONDecodeError, ValueError):
+                _bad_lines += 1
                 continue
             msg = rec.get('message', {})
             if not isinstance(msg, dict):
@@ -106,8 +109,12 @@ try:
                     last_reply_text = chr(10).join(parts)
             elif isinstance(content, str):
                 last_reply_text = content
-except OSError:
+except OSError as exc:
+    print(f'promise recorder: could not read the transcript {TRANSCRIPT_PATH}: {type(exc).__name__}: {exc}', file=sys.stderr)
     sys.exit(0)
+
+if _bad_lines:
+    print(f'promise recorder: {_bad_lines} transcript line(s) were not readable JSON and were skipped', file=sys.stderr)
 
 if not last_reply_text.strip():
     sys.exit(0)
@@ -143,6 +150,12 @@ for f in findings:
         except OSError:
             pass
         continue
-" 2>/dev/null
+" 2>&1)
+# Whatever the recorder said on stderr is KEPT, never thrown away (it used to go to /dev/null, which is how a
+# months-long outage stayed invisible). Nothing printed means it ran clean.
+if [ -n "$ERR" ]; then
+    mkdir -p "$HOME/.divineos" 2>/dev/null
+    printf '%s\n' "$ERR" > "$HOME/.divineos/promise_recorder_broke.txt" 2>/dev/null
+fi
 
 exit 0
