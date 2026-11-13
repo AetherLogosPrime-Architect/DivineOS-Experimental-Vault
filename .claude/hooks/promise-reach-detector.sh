@@ -83,6 +83,13 @@ except ImportError as exc:
 # assistant message with 'text' content).
 last_reply_text = ''
 _bad_lines = 0
+_turns = 0
+try:
+    from divineos.core.his_message import UNKNOWN as _UNKNOWN, opener_kind as _opener_kind
+except ImportError as exc:
+    # Markers are then written undated (no turn_index), never not at all, and the reason is kept.
+    _opener_kind, _UNKNOWN = None, None
+    print(f'promise recorder: cannot count turns, markers will be undated: {exc}', file=sys.stderr)
 try:
     with open(TRANSCRIPT_PATH, encoding='utf-8', errors='replace') as f:
         for line in f:
@@ -94,6 +101,10 @@ try:
             except (json.JSONDecodeError, ValueError):
                 _bad_lines += 1
                 continue
+            # Counted as we go, never stored: a transcript can be hundreds of MB and a list of every record would
+            # hold all of it in memory. This is promise_markers.turn_index done one record at a time.
+            if _opener_kind is not None and _opener_kind(rec) != _UNKNOWN:
+                _turns += 1
             msg = rec.get('message', {})
             if not isinstance(msg, dict):
                 continue
@@ -130,8 +141,17 @@ for f in findings:
     key = hashlib.sha256(f.promise_text.encode('utf-8', errors='replace')).hexdigest()[:16]
     marker_path = MARKER_DIR / f'promise_{f.shape.value}_{key}.json'
     if marker_path.exists():
-        # Already tracked — don't overwrite (preserve original timestamp).
-        continue
+        # Already tracked and still open: keep it (preserve the original turn and moment). But a CLOSED marker
+        # with the same words must not swallow a new promise made later, so that gets its own marker.
+        try:
+            _was_closed = bool(json.loads(marker_path.read_text(encoding='utf-8')).get('closed'))
+        except (OSError, ValueError):
+            _was_closed = False
+        if not _was_closed:
+            continue
+        marker_path = MARKER_DIR / f'promise_{f.shape.value}_{key}_t{_turns}.json'
+        if marker_path.exists():
+            continue
     payload = {
         'shape': f.shape.value,
         'trigger_phrase': f.trigger_phrase,
@@ -139,6 +159,12 @@ for f in findings:
         'detected_at_ts': now,
         'detected_at_iso': time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime(now)),
     }
+    # The turn it was made in (a turn start is counted by the harness's own stamp, zero included). Only when
+    # the counter could be loaded; otherwise the marker stays undated and the reason is already on stderr.
+    if _opener_kind is not None:
+        payload['turn_index'] = _turns
+        if _bad_lines:
+            payload['turn_uncertain'] = _bad_lines
     try:
         with open(marker_path, 'w', encoding='utf-8') as fh:
             json.dump(payload, fh, ensure_ascii=False, indent=2)

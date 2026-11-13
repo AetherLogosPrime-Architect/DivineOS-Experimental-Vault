@@ -16,5 +16,8 @@ It does not read my words or decide what a promise is (the recorder does, broadl
 ## Cannot see
 Whether a close told the truth (a false-alarm reason can be false); whether the recorder catches the promises the old hook caught (the replay test, a later piece); two closers racing on one marker (last write wins, both recorded in the marker's own text).
 
+## Follow-up (same day): the recorder writes the turn index
+A small piece of the same walked design (Polya's finding: the module's tests seed turn numbers by hand, so an end-to-end test must show the recorder reading a real transcript). The recorder gains one line of work: after reading the transcript it passes the records to `promise_markers.turn_index` and stores the result as `turn_index` in each marker it writes. Test first: a transcript with three stamped turn starts and a promise at the end must yield a marker with `turn_index` 3, read back through the module as due exactly five turn starts later. If the module cannot be imported the recorder says so on stderr (it already keeps stderr), and writes the marker undated, never none.
+
 ## Falsifier
 After it is live: if a promise ever ages past five turn starts with no due note, or a closed marker reappears as open, remove it.
