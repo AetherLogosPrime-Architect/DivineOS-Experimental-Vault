@@ -195,13 +195,64 @@ def test_a_false_alarm_needs_a_reason_of_real_length(tmp_path):
 # ---- every close is kept, never deleted, and logged ------------------------------------------------
 
 
-def test_a_close_is_kept_in_the_marker_not_deleted(tmp_path):
+def test_a_close_is_kept_in_the_marker_and_moved_not_deleted(tmp_path):
+    """Append-only: a closed marker stays with its close recorded. It moves into closed/ so the live folder holds
+    only open ones and a read costs what is open, not everything ever said (Carmack, walk-80ebe4590204)."""
     path = _marker(tmp_path, "promise_a.json", "I will write the draft", turn=1)
     pm.close(
         tmp_path, "promise_a", "false-alarm", "a figure of speech inside a picture, not a step"
     )
-    assert path.exists(), "append-only: a closed marker stays, with its close recorded"
-    assert json.loads(path.read_text(encoding="utf-8"))["closed"]["kind"] == "false-alarm"
+    assert not path.exists(), "a closed marker leaves the live folder"
+    kept = tmp_path / "closed" / "promise_a.json"
+    assert kept.is_file(), "and is kept, not deleted"
+    assert json.loads(kept.read_text(encoding="utf-8"))["closed"]["kind"] == "false-alarm"
+    state = pm.read_folder(tmp_path)
+    assert state.open == [] and state.closed_names == ["promise_a.json"]
+
+
+# ---- one clock across sessions: a new session must not reset the age ------------------------------
+
+
+def test_a_new_session_continues_the_count_it_does_not_restart_it(tmp_path):
+    """Popper's severe test (walk-80ebe4590204): a plain count of turn starts in ONE transcript restarts at zero in
+    the next session, so a promise made at turn 120 yesterday would sit in the future of today's turn 3 and never
+    fall due. The clock is one monotone count across sessions."""
+    assert pm.advance_turn_now(tmp_path, "session-a", 5) == 5
+    assert pm.advance_turn_now(tmp_path, "session-a", 7) == 7, (
+        "same session: only the new turn starts are added"
+    )
+    assert pm.advance_turn_now(tmp_path, "session-b", 2) == 9, (
+        "a new session adds its starts to the running count"
+    )
+    assert pm.turn_now(tmp_path) == 9
+
+
+def test_the_clock_never_runs_backwards_if_a_session_is_counted_smaller_later(tmp_path):
+    """An unreadable line can make a later count smaller; the clock holds, it does not go back."""
+    assert pm.advance_turn_now(tmp_path, "session-a", 9) == 9
+    assert pm.advance_turn_now(tmp_path, "session-a", 6) == 9
+
+
+def test_turn_now_is_written_whole_or_not_at_all(tmp_path):
+    pm.advance_turn_now(tmp_path, "session-a", 4)
+    assert not list(tmp_path.glob("*.tmp")), "a temporary file must not be left behind"
+    assert json.loads((tmp_path / "turn_now.json").read_text(encoding="utf-8"))["global"] == 4
+
+
+def test_a_corrupt_turn_now_is_could_not_look_not_zero(tmp_path):
+    (tmp_path / "turn_now.json").write_text("{half a file", encoding="utf-8")
+    assert pm.turn_now(tmp_path) is None
+
+
+def test_a_stop_hook_feedback_row_is_never_a_turn_start():
+    """Watts (walk-80ebe4590204): if a bounce counted as a turn, the more the house stopped me the faster my
+    promises went overdue. Measured on the real transcript: those rows carry no turn stamp."""
+    feedback = {
+        "type": "user",
+        "isMeta": True,
+        "message": {"role": "user", "content": "Stop hook feedback:\nx"},
+    }
+    assert pm.turn_index([feedback, feedback]) == 0
 
 
 def test_every_close_is_appended_to_a_log_so_cheap_closes_show_as_a_rate(tmp_path):

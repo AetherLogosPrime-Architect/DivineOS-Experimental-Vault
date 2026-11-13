@@ -213,7 +213,8 @@ def test_a_repeated_promise_after_a_close_is_recorded_again_not_dropped(tmp_path
     )
     state = _markers(home)
     assert len(state.open) == 1, "the repeated promise must be recorded as a new open marker"
-    assert state.open[0].turn == 2
+    # the first session had one turn start and this one has two: ONE running count across sessions, so 1 + 2
+    assert state.open[0].turn == 3
 
 
 def test_a_marker_made_from_a_transcript_with_unreadable_lines_says_its_turn_is_uncertain(tmp_path):

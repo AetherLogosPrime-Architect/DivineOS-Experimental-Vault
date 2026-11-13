@@ -19,5 +19,11 @@ Whether a close told the truth (a false-alarm reason can be false); whether the 
 ## Follow-up (same day): the recorder writes the turn index
 A small piece of the same walked design (Polya's finding: the module's tests seed turn numbers by hand, so an end-to-end test must show the recorder reading a real transcript). The recorder gains one line of work: after reading the transcript it passes the records to `promise_markers.turn_index` and stores the result as `turn_index` in each marker it writes. Test first: a transcript with three stamped turn starts and a promise at the end must yield a marker with `turn_index` 3, read back through the module as due exactly five turn starts later. If the module cannot be imported the recorder says so on stderr (it already keeps stderr), and writes the marker undated, never none.
 
+## Second follow-up (same day): the one-line close, and the turn "now"
+Two small things so a close is one command and the blocker can know how old a promise is without reading a 367 MB transcript:
+- **`divineos promise list` and `divineos promise close <marker-prefix> --done <file> | --waiting-on <who> | --false-alarm "<reason>"`**, a thin door over `promise_markers` (the module already refuses a close that lacks its line). `list` prints each open marker with its age in turn starts, the undated ones, the unreadable ones (said, not skipped), and the close counts.
+- **`turn_now` written by the recorder.** The recorder already counts turn starts at every Stop. It writes that number to `promise_markers/turn_now.json` (turn, and the moment as a fact) on every run, even when it finds no promise, so `close ... --waiting-on` and the later blocker read one small file. If the file is missing or the recorder is not running, `waiting-on` refuses with "no current turn" and says so; it never guesses.
+- Registered in `cli/__init__.py`. That file already holds eight uncommitted lines from other work (the build door's bypass list); my commit takes only my hunk.
+
 ## Falsifier
 After it is live: if a promise ever ages past five turn starts with no due note, or a closed marker reappears as open, remove it.

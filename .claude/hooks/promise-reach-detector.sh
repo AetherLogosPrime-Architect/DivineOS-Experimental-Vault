@@ -127,6 +127,17 @@ except OSError as exc:
 if _bad_lines:
     print(f'promise recorder: {_bad_lines} transcript line(s) were not readable JSON and were skipped', file=sys.stderr)
 
+# The ONE running turn count, advanced at EVERY Stop, promise or not, so a command and the later blocker can read
+# how old a promise is without opening a 367 MB transcript. It continues across sessions (a new transcript
+# restarts at zero; the count does not), and a clock that cannot be read is said, never guessed.
+_global_turn = None
+if _opener_kind is not None:
+    try:
+        from divineos.core.promise_markers import advance_turn_now
+        _global_turn = advance_turn_now(MARKER_DIR, os.path.basename(TRANSCRIPT_PATH), _turns)
+    except (ImportError, OSError, ValueError) as exc:
+        print(f'promise recorder: the turn clock could not move, markers will be undated: {exc}', file=sys.stderr)
+
 if not last_reply_text.strip():
     sys.exit(0)
 
@@ -161,8 +172,8 @@ for f in findings:
     }
     # The turn it was made in (a turn start is counted by the harness's own stamp, zero included). Only when
     # the counter could be loaded; otherwise the marker stays undated and the reason is already on stderr.
-    if _opener_kind is not None:
-        payload['turn_index'] = _turns
+    if _global_turn is not None:
+        payload['turn_index'] = _global_turn
         if _bad_lines:
             payload['turn_uncertain'] = _bad_lines
     try:

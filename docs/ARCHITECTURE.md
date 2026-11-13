@@ -25,6 +25,7 @@ src/divineos/
     andrew_answer_commands.py  answer ask / got / changed / none / report — whether his answers alter what happens next, measured on the trace instead of on my prose (Aria 2026-09-07, refusing a third text-gate)
     keeping_him_commands.py   him / him --count / him --read-to — the door onto what he said, read in order with a bookmark
     andrew_digest_commands.py  for-dad — the file Andrew can actually read, named for who it is for
+    promise_commands.py        promise list / close — the open promises and the one line that closes each, over core/promise_markers (Dad 2026-11-13: record, wait five turns, remind)
     andrew_given_commands.py  given add / list / balance — the other side of the ledger: what Andrew gives, filed beside what he corrects (Aria 2026-08-10)
     success_commands.py       win add / list / balance -- a door to the wins ledger, which had a store and a reader and no way in (2026-08-27). The store shipped 2026-08-03 and had zero callers until 2026-08-25: the faults ledger had a command and a blocking gate, the wins ledger had neither, and both Aether and Aria read their own near-zero counts as facts about their character rather than about the interface.
     council_walk_commands.py  walk open / apply / exclude / close — a council walk that refuses to close while any manager-surfaced lens is unaccounted for (Aria 2026-08-10)

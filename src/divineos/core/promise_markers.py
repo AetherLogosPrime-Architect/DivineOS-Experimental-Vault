@@ -22,6 +22,7 @@ recorder, a CLI and the blocker cannot disagree. Two walks shaped it (walk-82220
 from __future__ import annotations
 
 import json
+import os
 import time
 from dataclasses import dataclass, field
 from pathlib import Path
@@ -54,7 +55,7 @@ class Marker:
 @dataclass
 class FolderState:
     open: list[Marker] = field(default_factory=list)
-    closed: list[Marker] = field(default_factory=list)
+    closed_names: list[str] = field(default_factory=list)
     undated: list[Marker] = field(default_factory=list)
     unreadable: list[str] = field(default_factory=list)
     folder_missing: bool = False
@@ -65,6 +66,70 @@ def turn_index(records: list[dict]) -> int:
     from divineos.core.his_message import UNKNOWN, opener_kind
 
     return sum(1 for rec in records if opener_kind(rec) != UNKNOWN)
+
+
+def default_folder() -> Path:
+    """The marker folder for this seat: the aria home when it exists, else the shared one (as the recorder does)."""
+    home = Path.home()
+    base = home / ".divineos-aria" if (home / ".divineos-aria").is_dir() else home / ".divineos"
+    return base / "promise_markers"
+
+
+def _clock_state(folder: Path) -> dict[str, Any] | None:
+    """The clock file as it stands: a dict, {} when there is none yet, None when it exists but cannot be read."""
+    path = folder / "turn_now.json"
+    if not path.exists():
+        return {}
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return None
+    return data if isinstance(data, dict) else None
+
+
+def advance_turn_now(folder: Path, session: str, session_turns: int) -> int:
+    """Move the one running count of turn starts forward and return it.
+
+    A transcript restarts at zero in every new session, so a plain count would put yesterday's promise in the
+    future of today's turn 3 and it would never fall due (walk-80ebe4590204). This keeps one monotone count
+    across sessions: for the same session only the NEW turn starts are added, for a new session all of its
+    starts are. The count never runs backwards (a later, smaller count from unreadable lines changes nothing).
+    The write is whole-or-nothing. If the file exists but cannot be read the clock is not guessed: this raises.
+    """
+    state = _clock_state(folder)
+    if state is None:
+        raise ValueError(
+            f"turn_now.json in {folder} exists but cannot be read; the clock is not guessed"
+        )
+    raw_total = state.get("global")
+    total: int = raw_total if isinstance(raw_total, int) else 0
+    if state.get("session") == session:
+        raw_seen = state.get("session_turns")
+        seen: int = raw_seen if isinstance(raw_seen, int) else 0
+        added = max(session_turns - seen, 0)
+        kept = max(session_turns, seen)
+    else:
+        added, kept = session_turns, session_turns
+    new_total = total + added
+    folder.mkdir(parents=True, exist_ok=True)
+    tmp = folder / "turn_now.json.tmp"
+    tmp.write_text(
+        json.dumps(
+            {"global": new_total, "session": session, "session_turns": kept, "at": time.time()}
+        ),
+        encoding="utf-8",
+    )
+    os.replace(tmp, folder / "turn_now.json")
+    return new_total
+
+
+def turn_now(folder: Path) -> int | None:
+    """The running turn count at the last Stop, or None when it is missing or unreadable (said, never zero)."""
+    state = _clock_state(folder)
+    if not state:
+        return None
+    value = state.get("global")
+    return value if isinstance(value, int) and not isinstance(value, bool) else None
 
 
 def read_folder(folder: Path) -> FolderState:
@@ -83,12 +148,17 @@ def read_folder(folder: Path) -> FolderState:
             state.unreadable.append(path.name)
             continue
         marker = Marker(path.name, data)
-        if data.get("closed"):
-            state.closed.append(marker)
+        if data.get("closed"):  # a closed marker left in the live folder by an older version
+            state.closed_names.append(path.name)
             continue
         state.open.append(marker)
         if marker.turn is None:
             state.undated.append(marker)
+    closed_dir = folder / "closed"
+    if closed_dir.is_dir():
+        # Names only: the live read costs what is open, never everything ever said.
+        state.closed_names.extend(sorted(p.name for p in closed_dir.glob("promise_*.json")))
+        state.closed_names.sort()
     return state
 
 
@@ -164,6 +234,11 @@ def close(
         folder,
         {"marker": path.name, "kind": kind, "detail": detail, "turn": current_turn, "at": now},
     )
+    if data.get("closed"):
+        # Moved, not deleted: the live folder then holds only what is open (Carmack, walk-80ebe4590204).
+        closed_dir = folder / "closed"
+        closed_dir.mkdir(exist_ok=True)
+        path.replace(closed_dir / path.name)
     return Marker(path.name, data)
 
 
