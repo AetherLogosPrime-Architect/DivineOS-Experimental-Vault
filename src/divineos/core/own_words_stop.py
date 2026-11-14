@@ -26,14 +26,23 @@ from pathlib import Path
 
 from divineos.core.his_words_door import MIN_SIGNAL_WORDS
 from divineos.core.memory_linkage import MemoryLinkagePayload
+from divineos.core.paths import divineos_home
 
 # The embedder keeps its first 256 tokens, about this many characters. A long reply is searched in two
 # windows (its start and its end) so a reply that turns halfway still gets heard.
 MIN_REPLY_WORDS = max(MIN_SIGNAL_WORDS, 25)
 WINDOW_CHARS = 1000
 MAX_ITEMS = 3
-STATE_FILE = Path.home() / ".divineos" / "own_words_shown.json"
-LOG_FILE = Path.home() / ".divineos" / "own_words_log.jsonl"
+
+
+# The seat's OWN data home, not the shared ~/.divineos: both seats run as one Windows user, so a hardcoded
+# Path.home() put both in one file (Aria 2026-11-14: divineos_home() resolves each seat to its own folder).
+def default_state_file() -> Path:
+    return divineos_home() / "own_words_shown.json"
+
+
+def default_log_file() -> Path:
+    return divineos_home() / "own_words_log.jsonl"
 
 
 def my_words(records: list[dict], _genuine_user_text) -> str:
@@ -75,18 +84,54 @@ def _key(payload) -> str:
     return hashlib.sha1(f"{payload.source}|{ref}|{body}".encode()).hexdigest()[:16]
 
 
-def _load_shown(session_id: str, state_file: Path) -> set[str]:
+SESSION_KEEP_SECONDS = 24 * 3600
+
+
+def _read_state(state_file: Path) -> dict:
+    """An unreadable file reads as empty: that fails toward repeating memories, never toward silence."""
     try:
         data = json.loads(state_file.read_text(encoding="utf-8"))
     except (OSError, ValueError):
-        return set()
-    return set(data.get(session_id, [])) if isinstance(data, dict) else set()
+        return {}
+    return data if isinstance(data, dict) else {}
 
 
-def _save_shown(session_id: str, shown: set[str], state_file: Path) -> None:
+def _load_shown(session_id: str, state_file: Path) -> set[str]:
+    entry = _read_state(state_file).get(session_id)
+    if isinstance(entry, dict):  # current format: {"keys": [...], "t": last save}
+        entry = entry.get("keys", [])
+    return set(entry) if isinstance(entry, list) else set()  # a plain list is the old format
+
+
+def _save_shown(
+    session_id: str, shown: set[str], state_file: Path, now: float | None = None
+) -> None:
+    """Keep EVERY live session's list, not just this one.
+
+    Both seats run as the same Windows user and share ~/.divineos, so the old one-session-at-a-time
+    write erased the other seat's list on every save (found 2026-11-14: only the other seat's session
+    was in the file) and the same memories were handed back again and again. A session idle for more
+    than a day is dropped; a quiet one inside the day is kept. An entry with no time (old format) is
+    stamped now when first seen, so it ages out like any other. The write goes to a temp file and is
+    swapped in, so a torn write cannot corrupt both seats. Two saves in the same instant can still
+    lose one update; that race is accepted and named here rather than hidden.
+    """
+    now = time.time() if now is None else now
     state_file.parent.mkdir(parents=True, exist_ok=True)
-    # Only the current session is kept: a new session starts with nothing shown.
-    state_file.write_text(json.dumps({session_id: sorted(shown)}), encoding="utf-8")
+    kept: dict = {}
+    for sid, entry in _read_state(state_file).items():
+        if sid == session_id:
+            continue
+        if isinstance(entry, list):
+            entry = {"keys": entry, "t": now}
+        if isinstance(entry, dict):
+            stamped = {"keys": entry.get("keys", []), "t": entry.get("t", now)}
+            if now - float(stamped["t"]) <= SESSION_KEEP_SECONDS:
+                kept[sid] = stamped
+    kept[session_id] = {"keys": sorted(shown), "t": now}
+    temp = state_file.with_name(state_file.name + ".tmp")
+    temp.write_text(json.dumps(kept), encoding="utf-8")
+    temp.replace(state_file)
 
 
 def _log(entry: dict, log_file: Path) -> None:
@@ -98,11 +143,13 @@ def _log(entry: dict, log_file: Path) -> None:
 def hand_back(
     text: str,
     session_id: str,
-    state_file: Path = STATE_FILE,
-    log_file: Path = LOG_FILE,
+    state_file: Path | None = None,
+    log_file: Path | None = None,
     retrieve=None,
 ) -> tuple[str, str | None]:
     """Return (state, message). state is 'found', 'nothing', 'skipped' or 'could-not-look'."""
+    state_file = state_file or default_state_file()
+    log_file = log_file or default_log_file()
     from divineos.core.his_words_door import NOTICE_PREFIXES
 
     # A line or two of status carries too little meaning to search on (a one-line bell reply brought back

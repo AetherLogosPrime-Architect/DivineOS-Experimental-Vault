@@ -24,8 +24,14 @@ import json
 import time
 from pathlib import Path
 
-LOG_FILE = Path.home() / ".divineos" / "ask_after_his_words_log.jsonl"
+from divineos.core.paths import divineos_home
+
 MAX_SHOWN = 2
+
+
+def default_log_file() -> Path:
+    """The seat's own home, not the shared one; resolved when used so a set home is honoured."""
+    return divineos_home() / "ask_after_his_words_log.jsonl"
 
 
 def _log(entry: dict, log_file: Path) -> None:
@@ -34,10 +40,11 @@ def _log(entry: dict, log_file: Path) -> None:
         fh.write(json.dumps(entry) + "\n")
 
 
-def check(reply: str, log_file: Path = LOG_FILE, look=None) -> tuple[str, str | None]:
+def check(reply: str, log_file: Path | None = None, look=None) -> tuple[str, str | None]:
     """Return (state, message): 'no-question', 'nothing', 'found' or 'could-not-look'."""
     from divineos.core.question_hold import last_question
 
+    log_file = log_file or default_log_file()
     question, _ = last_question(reply)
     if not question:
         return "no-question", None

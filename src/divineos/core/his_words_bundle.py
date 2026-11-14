@@ -24,6 +24,7 @@ import sys
 from collections.abc import Callable
 from pathlib import Path
 
+from divineos.core import ask_finds_surface
 from divineos.core import his_lessons_shelf as shelf
 from divineos.core import his_words_door as door
 
@@ -39,6 +40,10 @@ NOT_STARTED_DOOR = (
 NOT_STARTED_SHELF = (
     "## WHAT HE HAS TAUGHT THAT FITS THIS (his words, found by meaning)\n"
     "Not searched this turn: the lesson shelf itself failed to start.\n"
+)
+NOT_STARTED_FINDS = (
+    "## I ASKED HIM SOMETHING, AND HIS NEAREST WORDS WERE FOUND AFTER IT REACHED HIM\n"
+    "Not checked this turn: the reader of the question log failed to start.\n"
 )
 INDEX_BEHIND = (
     "## HIS WORDS INDEX IS NOT FULLY UP TO DATE THIS TURN\n"
@@ -165,6 +170,8 @@ def run(
     shelf_index: Path = shelf.INDEX_DIR,
     log: Path | None = shelf.LOG,
     spawn: Callable[[Path, Path, Path, Path, Path], bool] | None = None,
+    asks: tuple[Path, Path] | None = None,
+    record: Callable[[dict], None] | None = None,
 ) -> str:
     words = _step(lambda: door.surface(prompt, index_dir=door_index), NOT_STARTED_DOOR)
     taught = _step(
@@ -181,7 +188,15 @@ def run(
         return _behind_note(count, start(corpus, door_index, verified, reread, shelf_index))
 
     behind = _step(caught_up, INDEX_BEHIND)
-    return behind + words + taught
+    # The reader of the question check (walk-5c74eb0b4b35). Off unless the caller hands it the log and the cursor, so
+    # a test world never reads or moves the real ones. Its own step: a failure is spoken under its heading and the
+    # rest still run, so could-not-look never turns into nothing-to-show.
+    finds = (
+        _step(lambda: ask_finds_surface.surface(me, *asks, record=record), NOT_STARTED_FINDS)
+        if asks
+        else ""
+    )
+    return behind + words + finds + taught
 
 
 def _build_main(args: list[str]) -> bool:
@@ -204,5 +219,11 @@ if __name__ == "__main__" and sys.argv[1:2] == ["build"]:
 elif __name__ == "__main__":
     payload = json.loads(sys.stdin.read() or "{}")
     # Bytes, not text: Windows defaults stdout to cp1252, which garbles his words.
-    said = run(str(payload.get("prompt", "")), shelf.seat(Path.cwd()))
+    me = shelf.seat(Path.cwd())
+    said = run(
+        str(payload.get("prompt", "")),
+        me,
+        asks=(ask_finds_surface.default_log_file(), ask_finds_surface.cursor_path(me)),
+        record=ask_finds_surface.record_in_ledger,
+    )
     sys.stdout.buffer.write(said.encode("utf-8"))
