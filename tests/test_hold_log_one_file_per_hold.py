@@ -184,6 +184,58 @@ def test_corrupt_lines_in_the_old_shared_file_are_counted_apart_from_the_new_fil
     assert hold_log.last_skipped == 0 and hold_log.last_skipped_legacy == 1
 
 
+_GOOD = json.dumps(
+    {"at": "x", "t": 1.0, "hold": "room", "outcome": "ok", "first_words": ""}
+).encode()
+_DASH = json.dumps(
+    {"at": "x", "t": 2.0, "hold": "room", "outcome": "dash", "first_words": "a — b"},
+    ensure_ascii=False,
+).encode()
+_EMOJI = json.dumps(
+    {"at": "x", "t": 3.0, "hold": "room", "outcome": "emoji", "first_words": "a \U0001f339 b"},
+    ensure_ascii=False,
+).encode()
+
+
+@pytest.mark.parametrize(
+    "torn",
+    [
+        _DASH[: _DASH.index("—".encode()) + 1],  # cut one byte into an em dash
+        _EMOJI[: _EMOJI.index("\U0001f339".encode()) + 2],  # cut inside an emoji
+        b"\xff",  # a bad byte at the very first position
+        b'igned."}',  # an ASCII fragment, the real tear
+    ],
+)
+def test_a_tear_mid_character_is_skipped_and_counted_never_fatal(tmp_path, torn):
+    """walk-eb4440341013 (Aether): decoding the whole file first made a tear mid-character raise for every row."""
+    (tmp_path / "hold_log_room.jsonl").write_bytes(_GOOD + b"\n" + torn + b"\n" + _GOOD + b"\n")
+    assert [r["outcome"] for r in hold_log.read_all()] == ["ok", "ok"]
+    assert hold_log.last_skipped == 1
+
+
+def test_two_tears_in_a_row_and_a_good_row_between(tmp_path):
+    torn = _DASH[: _DASH.index("—".encode()) + 1]
+    (tmp_path / "hold_log_room.jsonl").write_bytes(torn + b"\n" + torn + b"\n" + _GOOD + b"\n")
+    assert [r["outcome"] for r in hold_log.read_all()] == ["ok"]
+    assert hold_log.last_skipped == 2
+
+
+@pytest.mark.parametrize(
+    "content",
+    [b"", _GOOD, _GOOD + b"\r\n" + _GOOD + b"\r\n", b"   \n" + _GOOD + b"\n", b"\n\n"],
+)
+def test_empty_no_trailing_newline_crlf_and_blank_lines_read_cleanly(tmp_path, content):
+    (tmp_path / "hold_log_room.jsonl").write_bytes(content)
+    rows = hold_log.read_all()
+    assert len(rows) == content.count(b'"outcome"')
+    assert hold_log.last_skipped == 0
+
+
+def test_a_multibyte_row_that_is_whole_reads_back_whole(tmp_path):
+    (tmp_path / "hold_log_room.jsonl").write_bytes(_DASH + b"\n" + _EMOJI + b"\n")
+    assert [r["first_words"] for r in hold_log.read_all()] == ["a — b", "a \U0001f339 b"]
+
+
 def test_a_clean_read_says_zero_skipped(tmp_path):
     hold_log.record("room", "stopped", "a")
     hold_log.read_all()

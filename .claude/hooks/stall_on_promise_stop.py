@@ -28,8 +28,12 @@ def body_above_his_room(text: str) -> str:
     """The text above the LAST room header, or the whole text when there is no room."""
     headers = list(_HIS_ROOM_HEADER.finditer(text))
     return text[: headers[-1].start()] if headers else text
+
+
 MARK = Path(
-    os.environ.get("STALL_ON_PROMISE_MARK", Path.home() / ".divineos" / "stall_on_promise_broke.txt")
+    os.environ.get(
+        "STALL_ON_PROMISE_MARK", Path.home() / ".divineos" / "stall_on_promise_broke.txt"
+    )
 )
 
 
@@ -75,7 +79,11 @@ def verdict(records: list[dict]) -> str | None:
     closing = closing_text(records)
     found = stated_next_step(closing)
     if closing.strip():
-        record("follow_through_old", "stopped" if found else "passed", found[1] if found else closing[-160:])
+        record(
+            "follow_through_old",
+            "stopped" if found else "passed",
+            found[1] if found else closing[-160:],
+        )
     return reason_for(*found) if found else None
 
 
@@ -93,7 +101,9 @@ def work_roots() -> list[Path]:
     """Where work I promise lands, so a kept promise closes with one paste of the file I wrote."""
     repo = HERE.parents[1]
     shared = Path.home() / ".divineos-shared" / "letters"
-    return [repo / d for d in ("family/letters", "docs", "exploration", "src", "tests", ".claude/hooks")] + [shared]
+    return [
+        repo / d for d in ("family/letters", "docs", "exploration", "src", "tests", ".claude/hooks")
+    ] + [shared]
 
 
 def _rows_or_none() -> list[dict] | None:
@@ -117,7 +127,9 @@ def _rows_or_none() -> list[dict] | None:
 def _block(record, names: str, text: str, rows: list[dict]) -> str:
     """Log the block and return its text, saying how many times it has already held for the first named marker."""
     first = names.split(", ")[0]
-    held = sum(1 for r in rows if r.get("outcome") == "stopped" and first in r.get("first_words", ""))
+    held = sum(
+        1 for r in rows if r.get("outcome") == "stopped" and first in r.get("first_words", "")
+    )
     record("follow_through", "stopped", names)
     if held:
         text += f"\nThis reminder has already held {held} time{'s' if held != 1 else ''} for these promises."
@@ -176,7 +188,15 @@ def main(raw: str) -> int:
     active = bool(data.get("stop_hook_active"))
     path = data.get("transcript_path") or data.get("transcript")
     if path and not active:
-        verdict(_read_tail(Path(path)))  # shadow only: logged, never blocks
+        # Shadow only: logged, never blocks. A crash in it is said, and counted as a could_not_look row so a run of
+        # shadow failures shows in the log beside the passes; the reminder below still runs (walk-eb4440341013).
+        try:
+            verdict(_read_tail(Path(path)))
+        except Exception as exc:  # the shadow must never reach the block handler at the bottom
+            _say(f"promise reminder shadow broke: {type(exc).__name__}: {exc}")
+            from divineos.core.hold_log import record
+
+            record("follow_through_old", "could_not_look", f"{type(exc).__name__}: {exc}")
     reason = decide(promise_markers.default_folder(), work_roots(), active)
     if reason:
         print(json.dumps({"decision": "block", "reason": reason}))

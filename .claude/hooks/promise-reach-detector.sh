@@ -42,13 +42,9 @@ if [ -z "$TRANSCRIPT_PATH" ] || [ ! -f "$TRANSCRIPT_PATH" ]; then
     exit 0
 fi
 
-# Marker directory. Per-agent data-home so aria markers don't collide
-# with aether's if both run in the same repo.
-MARKER_DIR="$HOME/.divineos-aria/promise_markers"
-[ -d "$HOME/.divineos-aria" ] || MARKER_DIR="$HOME/.divineos/promise_markers"
-
-mkdir -p "$MARKER_DIR" 2>/dev/null
-
+# The marker folder is the seat's own data home, named by promise_markers.checked_folder below. It used to be chosen
+# here by which directories exist on the machine, so a second seat would have written into the first seat's folder
+# (walk-eb4440341013); the python below makes the directory itself.
 ERR=$(PYTHONIOENCODING=utf-8 "$PYTHON_BIN" -c "
 import sys
 import json
@@ -67,9 +63,16 @@ TRANSCRIPT_PATH = r'''$TRANSCRIPT_PATH'''
 # bash as /c/Users/... which Windows Python reads as C:\\c\\Users\\..., a folder that does not exist: every
 # write failed and was swallowed, and the recorder wrote nothing from July to 2026-11-13.
 _home = Path(os.path.expanduser('~'))
-MARKER_DIR = _home / ('.divineos-aria' if (_home / '.divineos-aria').is_dir() else '.divineos') / 'promise_markers'
-MARKER_DIR.mkdir(parents=True, exist_ok=True)
 BROKE_MARK = _home / '.divineos' / 'promise_recorder_broke.txt'
+# The folder is the seat's own data home, from the one function the reminder and the command also use. If the
+# divineos imported here is not this checkout's (the wrong tree answers for another seat), it writes nothing and says so.
+try:
+    from divineos.core.promise_markers import checked_folder as _checked_folder
+    MARKER_DIR = _checked_folder(Path.cwd())
+except (ImportError, RuntimeError) as exc:
+    print(f'promise recorder: cannot name this seat promise folder, so nothing is recorded: {exc}', file=sys.stderr)
+    sys.exit(0)
+MARKER_DIR.mkdir(parents=True, exist_ok=True)
 
 try:
     from divineos.core.operating_loop.promise_reach_detector import (

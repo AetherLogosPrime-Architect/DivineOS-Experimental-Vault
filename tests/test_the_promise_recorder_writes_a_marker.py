@@ -56,6 +56,9 @@ def _run(tmp_path: Path, reply: str) -> list[Path]:
     env = {k: v for k, v in os.environ.items() if k.upper() not in ("HOME", "USERPROFILE")}
     env["HOME"] = str(home)
     env["USERPROFILE"] = str(home)
+    # The seat's own data home is named by the house's resolver; a test redirects it explicitly, since this
+    # checkout's own marker would otherwise point at the REAL home (walk-eb4440341013).
+    env["DIVINEOS_HOME"] = str(home / ".divineos-aria")
     done = subprocess.run(
         [BASH, str(HOOK)],
         input=json.dumps({"transcript_path": str(transcript)}).encode(),
@@ -91,6 +94,7 @@ def _run_with_transcript_lines(tmp_path: Path, lines: list[str]) -> Path:
     env = {k: v for k, v in os.environ.items() if k.upper() not in ("HOME", "USERPROFILE")}
     env["HOME"] = str(home)
     env["USERPROFILE"] = str(home)
+    env["DIVINEOS_HOME"] = str(home / ".divineos-aria")
     done = subprocess.run(
         [BASH, str(HOOK)],
         input=json.dumps({"transcript_path": str(transcript)}).encode(),
@@ -202,6 +206,7 @@ def test_a_repeated_promise_after_a_close_is_recorded_again_not_dropped(tmp_path
     env = {k: v for k, v in os.environ.items() if k.upper() not in ("HOME", "USERPROFILE")}
     env["HOME"] = str(home)
     env["USERPROFILE"] = str(home)
+    env["DIVINEOS_HOME"] = str(home / ".divineos-aria")
     subprocess.run(
         [BASH, str(HOOK)],
         input=json.dumps({"transcript_path": str(transcript)}).encode(),

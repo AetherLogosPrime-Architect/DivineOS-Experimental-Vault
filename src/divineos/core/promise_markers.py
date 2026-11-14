@@ -69,10 +69,33 @@ def turn_index(records: list[dict]) -> int:
 
 
 def default_folder() -> Path:
-    """The marker folder for this seat: the aria home when it exists, else the shared one (as the recorder does)."""
-    home = Path.home()
-    base = home / ".divineos-aria" if (home / ".divineos-aria").is_dir() else home / ".divineos"
-    return base / "promise_markers"
+    """The marker folder for this seat: its own data home, as the house's resolver names it (`divineos_home`).
+
+    It used to be chosen by which directories exist on the machine (the aria home when it existed), so on a machine
+    with both homes a second seat would have written its promises into the first seat's folder and advanced one
+    shared turn count (Aether's cold read, walk-eb4440341013). The home is a fact about the SEAT: env override, then
+    the checkout's own `.divineos_data_home` marker. Nothing here looks at what else exists.
+    """
+    from divineos.core.paths import divineos_home
+
+    return divineos_home() / "promise_markers"
+
+
+def checked_folder(checkout: Path) -> Path:
+    """`default_folder()`, but only when the divineos in use lives under `checkout`.
+
+    The wrong tree answers for another seat (a bare `python` can import the other checkout), so the recorder asks
+    through this and, when it raises, writes nothing: the failure keeps the invariant that a seat's promises live in
+    that seat's own home (Wayne).
+    """
+    import divineos
+
+    running = Path(divineos.__file__).resolve()
+    if checkout.resolve() not in running.parents:
+        raise RuntimeError(
+            f"divineos was imported from {running}, not from {checkout}; its promises would go to another seat's home"
+        )
+    return default_folder()
 
 
 def _clock_state(folder: Path) -> dict[str, Any] | None:

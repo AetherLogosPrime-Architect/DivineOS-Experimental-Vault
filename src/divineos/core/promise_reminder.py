@@ -97,9 +97,10 @@ def close_ages(folder: Path) -> list[int]:
     if not log.is_file():
         return []
     ages: list[int] = []
-    for line in log.read_text(encoding="utf-8").splitlines():
+    # Bytes, decoded line by line inside the try, so one torn line cannot take the others with it (same as hold_log).
+    for raw in log.read_bytes().split(b"\n"):
         try:
-            row = json.loads(line)
+            row = json.loads(raw.decode("utf-8"))
             if row.get("kind") not in ("done", "false-alarm"):
                 continue
             data = json.loads((folder / "closed" / row["marker"]).read_text(encoding="utf-8"))
@@ -141,6 +142,8 @@ def _text(
     lines.append(
         "This holds once per reply and again at the next reply until each is closed. A close shows a file or a reason; it does not prove the promise was kept."
     )
+    # Which folder this was read from, so a reminder drawn from the wrong seat's promises cannot look like a right one.
+    lines.append(f"Read from: {folder}")
     return "\n".join(lines)
 
 

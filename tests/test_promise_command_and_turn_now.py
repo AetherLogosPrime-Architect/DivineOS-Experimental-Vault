@@ -286,6 +286,9 @@ def test_the_recorder_writes_turn_now_even_when_it_finds_no_promise(tmp_path):
     env = {k: v for k, v in os.environ.items() if k.upper() not in ("HOME", "USERPROFILE")}
     env["HOME"] = str(home)
     env["USERPROFILE"] = str(home)
+    env["DIVINEOS_HOME"] = str(
+        home / ".divineos-aria"
+    )  # the seat's home, named explicitly (walk-eb4440341013)
     subprocess.run(
         [bash, str(hook)],
         input=json.dumps({"transcript_path": str(transcript)}).encode(),

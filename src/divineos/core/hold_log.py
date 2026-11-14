@@ -133,14 +133,18 @@ def read_all(hold: str | None = None) -> list[dict]:
     skipped = skipped_old = 0
     for path in paths:
         try:
-            text = path.read_text(encoding="utf-8")
+            data = path.read_bytes()
         except FileNotFoundError:
             continue
-        for number, line in enumerate(text.splitlines()):
-            if not line.strip():
+        # Bytes, split on the newline byte and decoded line by line INSIDE the try: a tear that cuts a multi-byte
+        # character (a dash or an emoji, which rows carry) raised UnicodeDecodeError for the whole file when the file
+        # was decoded first, and that blocked every reply (Aether's cold read, walk-eb4440341013). A bad line is a
+        # ValueError and is skipped and counted like any other.
+        for number, raw in enumerate(data.split(b"\n")):
+            if not raw.strip():
                 continue
             try:
-                row = json.loads(line)
+                row = json.loads(raw.decode("utf-8"))
                 if not isinstance(row, dict):
                     raise ValueError("not an object")
             except ValueError:

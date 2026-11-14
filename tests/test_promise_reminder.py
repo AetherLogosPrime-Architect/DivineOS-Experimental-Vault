@@ -316,11 +316,50 @@ def test_a_passed_row_says_how_many_promises_are_open(tmp_path):
 
 
 def test_the_hook_reads_the_same_folder_the_command_line_does(tmp_path, monkeypatch):
-    monkeypatch.setattr(Path, "home", classmethod(lambda cls: tmp_path))
-    assert pm.default_folder() == tmp_path / ".divineos" / "promise_markers"
-    (tmp_path / ".divineos-aria").mkdir()
-    assert pm.default_folder() == tmp_path / ".divineos-aria" / "promise_markers"
+    """Both ask the one function, and it follows the seat's own data home, not which directories exist."""
+    monkeypatch.setenv("DIVINEOS_HOME", str(tmp_path / "seat"))
+    assert pm.default_folder() == tmp_path / "seat" / "promise_markers"
     assert "default_folder" in (HOOKS / "stall_on_promise_stop.py").read_text(encoding="utf-8")
+
+
+def test_the_reminder_says_which_folder_it_read_from(tmp_path):
+    """walk-eb4440341013 (Norman): a reminder drawn from the wrong seat's promises must not look like a right one."""
+    folder = _folder(tmp_path)
+    _marker(folder, "promise_a.json", 90)
+    assert f"Read from: {folder}" in reminder_for(folder, roots=[]).text
+
+
+def test_a_close_log_with_a_bad_byte_still_gives_the_good_ages(tmp_path):
+    from divineos.core.promise_reminder import close_ages
+
+    folder = _folder(tmp_path)
+    _marker(folder, "promise_a.json", 93)
+    pm.close(folder, "promise_a", "false-alarm", "that was a hope and not a promise at all", 100)
+    with (folder / "closes.jsonl").open("ab") as handle:
+        handle.write(b'{"kind": "done", "marker": "x\xff')
+    assert close_ages(folder) == [7]
+
+
+def test_a_shadow_that_crashes_is_said_and_logged_and_does_not_stop_the_reminder(
+    tmp_path, monkeypatch, capsys
+):
+    """walk-eb4440341013 (Breaker): the old judgement is shadow only, so its failure must not block a reply."""
+    hook = _hook()
+    folder = _due_folder(tmp_path)
+    transcript = tmp_path / "t.jsonl"
+    transcript.write_text("", encoding="utf-8")
+
+    def broken(_records):
+        raise RuntimeError("the shadow broke")
+
+    monkeypatch.setattr(hook, "verdict", broken)
+    monkeypatch.setattr(pm, "default_folder", lambda: folder)
+    monkeypatch.setattr(hook, "work_roots", lambda: [])
+    code = hook.main(json.dumps({"transcript_path": str(transcript), "stop_hook_active": False}))
+    assert code == 0
+    assert ("follow_through_old", "could_not_look") in _outcomes()
+    assert "the shadow broke" in capsys.readouterr().err
+    assert ("follow_through", "stopped") in _outcomes()  # the reminder still spoke
 
 
 def test_the_marker_keys_the_reminder_reads_are_the_ones_the_recorder_writes():
@@ -335,7 +374,9 @@ def _run_hook(tmp_path, folder_home, payload):
 
     env = {**os.environ, "HOME": str(folder_home), "USERPROFILE": str(folder_home)}
     env["STALL_ON_PROMISE_MARK"] = str(tmp_path / "mark.txt")
-    env["DIVINEOS_HOME"] = str(tmp_path / "dhome")
+    env["DIVINEOS_HOME"] = str(
+        folder_home / ".divineos"
+    )  # the seat's own home: markers and hold log live under it
     return subprocess.run(
         [sys.executable, str(HOOKS / "stall_on_promise_stop.py")],
         input=json.dumps(payload),
