@@ -112,6 +112,69 @@ def test_close_done_with_a_fresh_file(tmp_path):
     assert pm.read_folder(tmp_path).open == []
 
 
+def _clock(folder: Path, now: int) -> None:
+    (folder / "turn_now.json").write_text(
+        json.dumps({"global": now, "session": "s", "session_turns": now, "at": time.time()}),
+        encoding="utf-8",
+    )
+
+
+def _closes(folder: Path) -> list[dict]:
+    lines = (folder / "closes.jsonl").read_text(encoding="utf-8").splitlines()
+    return [json.loads(line) for line in lines]
+
+
+@pytest.mark.parametrize("kind", ["done", "false-alarm"])
+def test_every_close_stamps_the_turn_it_was_made_in_and_says_so(tmp_path, kind):
+    """The close log could not answer 'how long had it waited' because only waiting-on carried a turn."""
+    from divineos.core.promise_reminder import close_ages
+
+    _marker(tmp_path, "promise_a.json", "I will write the draft", turn=10)
+    _clock(tmp_path, 20)
+    deed = tmp_path / "draft.md"
+    deed.write_text("the deed", encoding="utf-8")
+    detail = str(deed) if kind == "done" else "a stance about conduct, nothing a tool could do"
+    result = _run(tmp_path, "close", "promise_a", f"--{kind}", detail)
+    assert result.exit_code == 0 and "turn 21" in result.output
+    assert _closes(tmp_path)[-1]["turn"] == 21
+    assert close_ages(tmp_path) == [11]
+
+
+def test_a_close_with_no_clock_still_closes_and_says_it_has_no_turn(tmp_path):
+    _marker(tmp_path, "promise_a.json", "I will keep trying")
+    result = _run(
+        tmp_path,
+        "close",
+        "promise_a",
+        "--false-alarm",
+        "a stance about conduct, nothing a tool could do",
+    )
+    assert result.exit_code == 0 and "no turn could be stamped" in result.output
+    assert _closes(tmp_path)[-1]["turn"] is None
+
+
+def test_two_closes_in_one_turn_carry_the_same_stamp(tmp_path):
+    _marker(tmp_path, "promise_a.json", "I will write the draft", turn=10)
+    _marker(tmp_path, "promise_b.json", "I will read the letter", turn=11)
+    _clock(tmp_path, 20)
+    reason = "a stance about conduct, nothing a tool could do"
+    _run(tmp_path, "close", "promise_a", "--false-alarm", reason)
+    _run(tmp_path, "close", "promise_b", "--false-alarm", reason)
+    assert [row["turn"] for row in _closes(tmp_path)] == [21, 21]
+
+
+def test_a_promise_bounced_through_waiting_on_is_aged_from_its_last_re_date(tmp_path):
+    """The stamp does not claim the whole wait: after waiting-on the age counts from the re-date."""
+    from divineos.core.promise_reminder import close_ages
+
+    _marker(tmp_path, "promise_a.json", "I will send it after he says go", turn=2)
+    _clock(tmp_path, 20)
+    _run(tmp_path, "close", "promise_a", "--waiting-on", "Dad")
+    _clock(tmp_path, 30)
+    _run(tmp_path, "close", "promise_a", "--false-alarm", "he never said go and I will not send it")
+    assert close_ages(tmp_path) == [10]
+
+
 def test_waiting_on_stamps_the_turn_now_plus_one(tmp_path):
     """turn_now was counted at the end of the last turn; this runs in the middle of the next (Einstein)."""
     _marker(tmp_path, "promise_a.json", "I will send it after he says go", turn=2)

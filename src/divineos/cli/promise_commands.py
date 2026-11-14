@@ -109,16 +109,17 @@ def register(cli: click.Group) -> None:
         if len(given) != 1:
             _refuse(f"Give exactly one of --done, --waiting-on, --false-alarm for {marker}.")
         kind, detail = given[0]
-        current_turn = None
-        if kind == "waiting-on":
-            now = pm.turn_now(folder)
-            if now is None:
-                _refuse(
-                    "turn_now is missing or unreadable, so a re-date cannot be stamped: the recorder writes "
-                    "turn_now.json at the end of every reply."
-                )
-            # turn_now was counted at the end of the LAST turn and this runs in the middle of the next one.
-            current_turn = (now or 0) + 1
+        now = pm.turn_now(folder)
+        if kind == "waiting-on" and now is None:
+            _refuse(
+                "turn_now is missing or unreadable, so a re-date cannot be stamped: the recorder writes "
+                "turn_now.json at the end of every reply."
+            )
+        # Every close is stamped (walk-e674f647e1ee): the log could not say how long a promise waited because
+        # only a re-date carried a turn. turn_now was counted at the end of the LAST turn and this runs in the
+        # middle of the next one, so it is stamped one past. Without a clock done and false-alarm still close,
+        # and the sentence below says no turn was stamped.
+        current_turn = None if now is None else now + 1
         try:
             closed = pm.close(folder, marker, kind, detail, current_turn=current_turn)
         except pm.CloseRefused as exc:
@@ -128,5 +129,9 @@ def register(cli: click.Group) -> None:
             click.echo(
                 f"{closed.name}: still open, waiting on {detail}; due again after {pm.DUE_AFTER_TURNS} turns."
             )
+        elif current_turn is None:
+            click.echo(
+                f"{closed.name}: closed ({kind}), but no turn could be stamped, so its age is not in the log."
+            )
         else:
-            click.echo(f"{closed.name}: closed ({kind}).")
+            click.echo(f"{closed.name}: closed ({kind}) at turn {current_turn}.")
