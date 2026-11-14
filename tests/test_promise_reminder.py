@@ -164,9 +164,10 @@ def _outcomes():
     return [(r["hold"], r["outcome"]) for r in hold_log.read_all()]
 
 
-def test_a_second_stop_in_the_same_reply_passes_but_leaves_a_deferred_row(tmp_path):
+def test_the_retry_of_its_own_block_passes_but_leaves_a_deferred_row(tmp_path):
     folder = _folder(tmp_path)
     _marker(folder, "promise_a.json", 90)
+    hold_log.record("follow_through", "stopped", "promise_a.json")
     assert _hook().decide(folder, roots=[], stop_hook_active=True) is None
     assert ("follow_through", "deferred") in _outcomes()
 
@@ -180,10 +181,15 @@ def test_every_status_and_stop_has_one_answer(tmp_path, state, active):
     else:
         folder = _folder(tmp_path)
         _marker(folder, "promise_a.json", 90 if state == "due" else 99)
+    if state == "due" and active:
+        hold_log.record(
+            "follow_through", "stopped", "promise_a.json"
+        )  # so this stop is its own retry
+    seeded = len(hold_log.read_all())
     reason = _hook().decide(folder, roots=[], stop_hook_active=active)
     expected_block = not active and state in ("due", "could_not_look")
     assert bool(reason) is expected_block
-    rows = _outcomes()
+    rows = _outcomes()[seeded:]
     if active:
         assert rows == ([("follow_through", "deferred")] if state == "due" else [])
     else:
@@ -195,6 +201,77 @@ def test_every_status_and_stop_has_one_answer(tmp_path, state, active):
                 ],
             )
         ]
+
+
+def _seed_rows(*outcomes):
+    for outcome in outcomes:
+        hold_log.record("follow_through", outcome, "seed")
+
+
+def _due_folder(tmp_path):
+    folder = _folder(tmp_path)
+    _marker(folder, "promise_a.json", 90)
+    return folder
+
+
+@pytest.mark.parametrize(
+    "rows,blocks",
+    [
+        ((), True),  # empty log: nothing says this hook blocked, so the flag came from another gate
+        (("passed",), True),
+        (("deferred",), True),
+        (("could_not_look",), True),
+        (("stopped",), False),  # the retry of its own block passes
+        (("stopped", "deferred"), True),
+        (("deferred", "deferred", "stopped"), False),
+    ],
+)
+def test_a_second_stop_blocks_unless_it_is_the_retry_of_its_own_block(tmp_path, rows, blocks):
+    """walk-9c155ee1c052: the harness sets stop_hook_active after ANY gate refused, so the doorbell starved this."""
+    folder = _due_folder(tmp_path)
+    _seed_rows(*rows)
+    reason = _hook().decide(folder, roots=[], stop_hook_active=True)
+    assert bool(reason) is blocks
+    assert _outcomes()[-1] == ("follow_through", "stopped" if blocks else "deferred")
+
+
+def test_a_repeated_block_says_how_many_times_it_has_held_for_that_marker(tmp_path):
+    folder = _due_folder(tmp_path)
+    hold_log.record("follow_through", "stopped", "promise_a.json")
+    hold_log.record("follow_through", "deferred", "promise_a.json")
+    reason = _hook().decide(folder, roots=[], stop_hook_active=True)
+    assert reason and "held 1 time" in reason and "promise_a" in reason
+
+
+def test_the_reminder_never_blocks_two_stops_in_a_row_over_a_long_volley(tmp_path):
+    """The invariant (Dijkstra): over a run of second stops with a due marker it blocks, then passes the retry,
+    then blocks again, so it is never starved and never blocks twice in a row."""
+    folder = _due_folder(tmp_path)
+    hook = _hook()
+    verdicts = [bool(hook.decide(folder, roots=[], stop_hook_active=True)) for _ in range(40)]
+    assert verdicts == [i % 2 == 0 for i in range(40)]
+
+
+def test_an_unreadable_hold_log_never_blocks_a_second_stop(tmp_path, monkeypatch):
+    folder = _due_folder(tmp_path)
+    unreadable = tmp_path / "a_folder_where_the_log_should_be"
+    unreadable.mkdir()
+    monkeypatch.setattr(hold_log, "_log_path", lambda: unreadable)
+    assert _hook().decide(folder, roots=[], stop_hook_active=True) is None
+
+
+def test_corrupt_lines_are_skipped_not_fatal_and_the_last_good_row_counts(tmp_path, capsys):
+    """The real log holds two corrupt lines, and read_all raises on the first; the reminder must still read it."""
+    folder = _due_folder(tmp_path)
+    log = tmp_path / "hold_log.jsonl"
+    good = json.dumps(
+        {"at": "x", "hold": "follow_through", "outcome": "stopped", "first_words": "promise_a.json"}
+    )
+    log.write_text('igned."}' + chr(10) + "{ not json" + chr(10) + good + chr(10), encoding="utf-8")
+    assert (
+        _hook().decide(folder, roots=[], stop_hook_active=True) is None
+    )  # the retry of its own block
+    assert "corrupt line" in capsys.readouterr().err
 
 
 def test_a_passed_row_says_how_many_promises_are_open(tmp_path):

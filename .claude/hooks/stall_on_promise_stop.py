@@ -96,6 +96,45 @@ def work_roots() -> list[Path]:
     return [repo / d for d in ("family/letters", "docs", "exploration", "src", "tests", ".claude/hooks")] + [shared]
 
 
+def _rows_or_none() -> list[dict] | None:
+    """This hook's own recent rows from the hold log, or None when the log cannot be read (said, never read as
+    an empty log: an empty log is found-nothing, an unreadable one is could-not-look)."""
+    sys.path.insert(0, str(HERE.parents[1] / "src"))
+    from divineos.core import hold_log
+
+    # Read it line by line: the real log holds two corrupt lines (written by two hooks at once), and hold_log's own
+    # read_all raises on the first one, which would have blinded this on the very file it is for. Skipped lines are
+    # counted and said, not dropped quietly.
+    try:
+        lines = hold_log._log_path().read_text(encoding="utf-8").splitlines()[-400:]
+    except FileNotFoundError:
+        return []
+    except OSError:
+        return None
+    rows, skipped = [], 0
+    for line in lines:
+        try:
+            row = json.loads(line)
+        except ValueError:
+            skipped += bool(line.strip())
+            continue
+        if isinstance(row, dict) and row.get("hold") == "follow_through":
+            rows.append(row)
+    if skipped:
+        _say(f"promise reminder skipped {skipped} corrupt line(s) in the hold log")
+    return rows
+
+
+def _block(record, names: str, text: str, rows: list[dict]) -> str:
+    """Log the block and return its text, saying how many times it has already held for the first named marker."""
+    first = names.split(", ")[0]
+    held = sum(1 for r in rows if r.get("outcome") == "stopped" and first in r.get("first_words", ""))
+    record("follow_through", "stopped", names)
+    if held:
+        text += f"\nThis reminder has already held {held} time{'s' if held != 1 else ''} for these promises."
+    return text
+
+
 def decide(folder: Path, roots: list[Path], stop_hook_active: bool) -> str | None:
     """The new reader: markers and the turn count, never my words. Returns the text to block with, or None.
 
@@ -112,11 +151,19 @@ def decide(folder: Path, roots: list[Path], stop_hook_active: bool) -> str | Non
     for note in result.notes:
         _say(f"promise reminder: {note}")
     if result.status == "due":
-        if stop_hook_active:
-            record("follow_through", "deferred", ", ".join(result.names))
+        names = ", ".join(result.names)
+        # The harness sets stop_hook_active after ANY Stop hook refused, and the doorbell is one, so in a volley
+        # every stop looks like a second stop and the reminder was starved (walk-9c155ee1c052). The question is
+        # whether THIS hook already blocked on the stop before (dads_room_stop asked the same on 2026-10-31).
+        rows = _rows_or_none()
+        if rows is None:
+            _say("promise reminder could not read the hold log, so it will not block a second stop")
+            return None if stop_hook_active else _block(record, names, result.text, [])
+        own_retry = bool(rows) and rows[-1].get("outcome") == "stopped"
+        if stop_hook_active and own_retry:
+            record("follow_through", "deferred", names)
             return None
-        record("follow_through", "stopped", ", ".join(result.names))
-        return result.text
+        return _block(record, names, result.text, rows)
     if stop_hook_active:
         return None
     if result.status == "could_not_look":
