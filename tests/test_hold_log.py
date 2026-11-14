@@ -49,13 +49,15 @@ def _records(user_text, assistant_text):
     ]
 
 
-def test_the_follow_through_hook_records_both_outcomes():
+def test_the_old_judgement_still_logs_in_shadow_under_its_own_name():
+    """The old sentence judgement no longer blocks; it logs as follow_through_old so the new reader has a counterfactual."""
     sys.path.insert(0, str(HOOKS))
     import stall_on_promise_stop as hook
 
     hook.verdict(_records("hello", "It is done and landed."))
     hook.verdict(_records("hello", "I am writing Aether now."))
     outcomes = [(r["hold"], r["outcome"]) for r in hold_log.read_all()]
-    assert ("follow_through", "passed") in outcomes
-    assert ("follow_through", "stopped") in outcomes
+    assert ("follow_through_old", "passed") in outcomes
+    assert ("follow_through_old", "stopped") in outcomes
+    assert not any(hold == "follow_through" for hold, _ in outcomes)
     json.dumps(hold_log.read_all())
