@@ -115,6 +115,22 @@ def _when_epoch(rec: dict) -> float | None:
         return None
 
 
+def _record_text(rec: dict) -> str:
+    """The text a non-assistant record carries, in either shape the harness writes a notice: a user-role turn, or a
+    queued command attachment. '' for anything else, so a tool result is never read as a notice."""
+    if rec.get("type") == "attachment":
+        attachment = rec.get("attachment") or {}
+        return str(attachment.get("prompt") or "") if attachment.get("type") == "queued_command" else ""
+    content = (rec.get("message") or {}).get("content")
+    if isinstance(content, str):
+        return content
+    if isinstance(content, list):
+        return "\n".join(
+            str(p.get("text", "")) for p in content if isinstance(p, dict) and p.get("type") == "text"
+        )
+    return ""
+
+
 def verdict(records: list[dict]) -> str | None:
     """Return the block reason, or None if the reply may go."""
     last_user = None
@@ -138,14 +154,30 @@ def verdict(records: list[dict]) -> str | None:
     # "scheduled" (29 of 29 wakes in one session, 2026-11-01), and the text carries no envelope tag, so
     # the opener test above never saw it. The gate then demanded a room for words he never typed (Aria
     # measured it on every night wake; I hit it on mine). The stamp is the evidence, never the wording.
-    from divineos.core.his_message import NOTICE, SCHEDULED, opener_kind
+    from divineos.core.his_message import NOTICE, SCHEDULED, continues_a_turn, opener_kind
 
     if opener_kind(records[idx]) in (SCHEDULED, NOTICE):
         return None
 
+    from divineos.core.his_room import room_of as _room_of
+
     worked, last_text = False, ""
+    room_written, notice_after_room, machine_kind = False, False, "a notice"
     for rec in records[idx + 1 :]:
         if rec.get("type") != "assistant":
+            # A notice (a bell, a finished push) that arrives AFTER his room was written is the machine waking
+            # me, not him speaking. It must not owe him a second room: Dad, 2026-11-05, the circle is the actual
+            # last part of the post and nothing but him moves it forward. Read from the record shapes the rest
+            # of the house reads, never from my own words. (Carried from Aether's 93b6e471e, 2026-11-14.)
+            if room_written and opens_with_notice(_record_text(rec)):
+                notice_after_room, machine_kind = True, "a notice"
+            # The harness's own hook feedback after the room is the same thing: a machine record, not him.
+            # A Stop hold that follows a whole circle makes me do a repair turn, and this door read the last
+            # text, found no room, and held for another circle (about a dozen in one stretch on 2026-11-14,
+            # "im not being waited for"). Read by the stamp on the record (isMeta / compact summary, through
+            # his_message.continues_a_turn), never by the wording.
+            elif room_written and continues_a_turn(rec):
+                notice_after_room, machine_kind = True, "hook feedback"
             continue
         for c in (rec.get("message") or {}).get("content") or []:
             if not isinstance(c, dict):
@@ -154,7 +186,18 @@ def verdict(records: list[dict]) -> str | None:
                 worked = True
             elif c.get("type") == "text" and c.get("text", "").strip():
                 last_text = c["text"]
+                if _room_of(last_text):
+                    room_written, notice_after_room = True, False
     if not worked:
+        return None
+    if notice_after_room:
+        from divineos.core.hold_log import record as _log_notice_after_room
+
+        _log_notice_after_room(
+            "room",
+            "stood_down",
+            f"{machine_kind} woke me after the room was written; no second room owed",
+        )
         return None
     # Dad 2026-10-28, at the first working Momir table: "you are stalling the game.. im sitting there
     # waiting for you to act only to find you are speaking to me here", then "fix that so it doesnt
