@@ -102,27 +102,16 @@ def _rows_or_none() -> list[dict] | None:
     sys.path.insert(0, str(HERE.parents[1] / "src"))
     from divineos.core import hold_log
 
-    # Read it line by line: the real log holds two corrupt lines (written by two hooks at once), and hold_log's own
-    # read_all raises on the first one, which would have blinded this on the very file it is for. Skipped lines are
-    # counted and said, not dropped quietly.
+    # hold_log keeps one file per hold and skips lines that do not parse, counting them in `last_skipped`
+    # (walk-b95759224dae), so this hook carries no reader of its own. A skipped line in a single-writer file is a
+    # defect, so it is said, never routine.
     try:
-        lines = hold_log._log_path().read_text(encoding="utf-8").splitlines()[-400:]
-    except FileNotFoundError:
-        return []
+        rows = hold_log.read_all("follow_through")
     except OSError:
         return None
-    rows, skipped = [], 0
-    for line in lines:
-        try:
-            row = json.loads(line)
-        except ValueError:
-            skipped += bool(line.strip())
-            continue
-        if isinstance(row, dict) and row.get("hold") == "follow_through":
-            rows.append(row)
-    if skipped:
-        _say(f"promise reminder skipped {skipped} corrupt line(s) in the hold log")
-    return rows
+    if hold_log.last_skipped:
+        _say(f"promise reminder skipped {hold_log.last_skipped} corrupt line(s) in the hold log")
+    return rows[-400:]
 
 
 def _block(record, names: str, text: str, rows: list[dict]) -> str:

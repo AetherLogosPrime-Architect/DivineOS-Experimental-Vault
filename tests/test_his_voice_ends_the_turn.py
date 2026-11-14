@@ -488,7 +488,7 @@ def test_the_real_hook_lifts_after_an_answer_and_logs_that_it_did(tmp_path, monk
     gate that quietly stops lifting shows as a zero, not as silence (Breaker)."""
     import io
 
-    from divineos.core.hold_log import _log_path
+    from divineos.core.hold_log import read_all
     from divineos.hooks import his_voice_hook
 
     answer = _msg("m-ans", "ans", "2026-09-25T05:49:20.000Z", text="Yes, looking now, Dad.")
@@ -505,7 +505,7 @@ def test_the_real_hook_lifts_after_an_answer_and_logs_that_it_did(tmp_path, monk
     payload["transcript_path"] = str(after)
     monkeypatch.setattr("sys.stdin", io.StringIO(json.dumps(payload)))
     assert his_voice_hook.main() == 0
-    assert "lifted_after_answer" in _log_path().read_text(encoding="utf-8")
+    assert "lifted_after_answer" in [row["outcome"] for row in read_all("voice")]
 
 
 def test_the_real_hook_lets_a_note_through_and_still_refuses_the_work(tmp_path, monkeypatch):

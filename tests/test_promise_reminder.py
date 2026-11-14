@@ -235,6 +235,23 @@ def test_a_second_stop_blocks_unless_it_is_the_retry_of_its_own_block(tmp_path, 
     assert _outcomes()[-1] == ("follow_through", "stopped" if blocks else "deferred")
 
 
+def test_the_hook_reads_its_rows_only_through_hold_log_and_parses_nothing_itself():
+    """walk-aaa47de00741 (Bengio, Peirce): one reader, so a fix to corrupt-line handling is made once."""
+    import inspect
+
+    source = inspect.getsource(_hook()._rows_or_none)
+    assert "read_all(" in source
+    assert "json.loads" not in source and "read_text" not in source
+
+
+def test_a_shadow_row_after_a_stopped_row_does_not_hide_that_it_was_the_retry(tmp_path):
+    """The shadow of the old judgement is another hold; the last row of THIS hold decides (Dennett)."""
+    folder = _due_folder(tmp_path)
+    hold_log.record("follow_through", "stopped", "promise_a.json")
+    hold_log.record("follow_through_old", "passed", "something")
+    assert _hook().decide(folder, roots=[], stop_hook_active=True) is None
+
+
 def test_a_repeated_block_says_how_many_times_it_has_held_for_that_marker(tmp_path):
     folder = _due_folder(tmp_path)
     hold_log.record("follow_through", "stopped", "promise_a.json")
@@ -263,15 +280,31 @@ def test_an_unreadable_hold_log_never_blocks_a_second_stop(tmp_path, monkeypatch
 def test_corrupt_lines_are_skipped_not_fatal_and_the_last_good_row_counts(tmp_path, capsys):
     """The real log holds two corrupt lines, and read_all raises on the first; the reminder must still read it."""
     folder = _due_folder(tmp_path)
-    log = tmp_path / "hold_log.jsonl"
+    log = (
+        tmp_path / "hold_log_follow_through.jsonl"
+    )  # a single-writer file: a bad line here is a defect and is said
     good = json.dumps(
-        {"at": "x", "hold": "follow_through", "outcome": "stopped", "first_words": "promise_a.json"}
+        {
+            "at": "x",
+            "t": 5.0,
+            "hold": "follow_through",
+            "outcome": "stopped",
+            "first_words": "promise_a.json",
+        }
     )
     log.write_text('igned."}' + chr(10) + "{ not json" + chr(10) + good + chr(10), encoding="utf-8")
     assert (
         _hook().decide(folder, roots=[], stop_hook_active=True) is None
     )  # the retry of its own block
     assert "corrupt line" in capsys.readouterr().err
+
+
+def test_known_corrupt_history_in_the_old_file_does_not_raise_a_standing_alarm(tmp_path, capsys):
+    folder = _due_folder(tmp_path)
+    (tmp_path / "hold_log.jsonl").write_text('igned."}' + chr(10), encoding="utf-8")
+    hold_log.record("follow_through", "stopped", "promise_a.json")
+    assert _hook().decide(folder, roots=[], stop_hook_active=True) is None
+    assert "corrupt line" not in capsys.readouterr().err
 
 
 def test_a_passed_row_says_how_many_promises_are_open(tmp_path):
