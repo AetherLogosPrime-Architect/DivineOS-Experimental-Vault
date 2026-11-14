@@ -123,6 +123,46 @@ def _guarded(text: str, start: int, end: int) -> bool:
     return bool(_SAME_TURN_GUARD_RE.search(text[lo:hi]))
 
 
+# A future-tense phrase is not always MY promise. On 2026-11-14 I closed 11 markers as false-alarm against 23 kept,
+# and every one was a sentence of mine that looked like a promise and was a report about one: a negated sentence
+# ("I'm not going to build it": the detector matched from "going to"), my own earlier promise quoted back, a
+# description of what the machine does ("will come back to me after five turns"), another person's plan, a
+# conditional. The words match; the frame around them says otherwise, so these read the frame markers BEFORE the
+# match and never the words inside it. A lexical net narrows this, it does not solve it: the close with a reason
+# (false-alarm) stays as the valve for what a regex cannot tell.
+_NEGATION_BEFORE_RE = re.compile(r"(?:\bnot|n't|\bnever)\s+$", re.IGNORECASE)
+_CONDITIONAL_RE = re.compile(r"\b(?:if|unless)\b", re.IGNORECASE)
+_I_AM_BEFORE_RE = re.compile(r"\bi(?:'m|’m|\s+am)\s+$", re.IGNORECASE)
+_I_BEFORE_RE = re.compile(r"\bi\s+$", re.IGNORECASE)
+_SENTENCE_END_RE = re.compile(r"[.!?]\s+")
+
+
+def _is_report_not_promise(text: str, start: int, trigger: str) -> bool:
+    """True when the match at ``start`` is a report about a promise, not a promise of mine (see the note above)."""
+    line_start = text.rfind("\n", 0, start) + 1
+    line_prefix = text[line_start:start]
+    if line_prefix.lstrip().startswith(">"):  # a block-quoted line is someone's words set apart
+        return True
+    if line_prefix.count('"') % 2 == 1 or line_prefix.count("“") > line_prefix.count("”"):
+        return True  # inside double quotes
+    if line_prefix.count("`") % 2 == 1:
+        return True  # inside inline code
+    ends = list(_SENTENCE_END_RE.finditer(line_prefix))
+    sentence_prefix = line_prefix[ends[-1].end() :] if ends else line_prefix
+    if _NEGATION_BEFORE_RE.search(sentence_prefix):
+        return True
+    low = trigger.lower()
+    if low.startswith(("going to", "gonna")) and not _I_AM_BEFORE_RE.search(sentence_prefix):
+        return True  # someone else is going to, or it is going to
+    if low.startswith(("will come back to", "will address")) and not _I_BEFORE_RE.search(
+        sentence_prefix
+    ):
+        return True  # "it will come back to me": a description of the machine
+    if _CONDITIONAL_RE.search(sentence_prefix):
+        return True  # "if X, I'll Y" promises nothing until X happens
+    return False
+
+
 def detect_promise_reach(text: str) -> list[PromiseReachFinding]:
     """Scan text for promise-shape phrases across all three shapes.
 
@@ -138,6 +178,10 @@ def detect_promise_reach(text: str) -> list[PromiseReachFinding]:
     ):
         for m in pattern.finditer(text):
             if _guarded(text, m.start(), m.end()):
+                continue
+            if shape is not PromiseShape.LINK_TO_LATER_TURN and _is_report_not_promise(
+                text, m.start(), m.group(0)
+            ):
                 continue
             promise_text = m.group(0).strip()
             trigger_phrase = m.group(0)[:60].strip()
