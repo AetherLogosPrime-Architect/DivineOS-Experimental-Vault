@@ -107,6 +107,10 @@ def test_hook_runs_both_searches_in_the_one_door() -> None:
     assert "ask_after_his_words" in text and "hand_back" in text
     # Log-only at Stop: a Stop hold fires after the reply streamed, so it must never block (Aether 2026-11-10).
     assert '"decision"' not in text.split("LOG-ONLY at Stop", 1)[1]
+    # Since 2026-11-14 the own-words find is LEFT for the next prompt (Aether's e88428529), and the ask note is
+    # not: it already reaches me through ask_finds_surface, and a second channel would show it twice.
+    assert "leave_for_next_message(session, message)" in text
+    assert "leave_for_next_message(session, ask_message)" not in text
     assert "own_words_link_stop" in (ROOT / ".claude" / "settings.json").read_text(encoding="utf-8")
 
 

@@ -2629,9 +2629,32 @@ def memory_link_surface(payload: dict) -> SurfaceOutcome | None:
         )
     if block.could_not_run:
         return SurfaceOutcome(name="memory_link", error=block.could_not_run, state="could-not-run")
-    if not block.text:
+    # What my LAST reply brought up rides in here, with his next message, instead of stopping me after the
+    # reply (the Stop echo was 43 percent of my stops on 2026-11-14). Taken as late as possible, so a
+    # surface killed earlier leaves it waiting; an unreadable store reads as nothing waiting.
+    waiting = _take_my_last_reply_echo(payload)
+    text = "\n\n".join(part for part in (block.text, waiting) if part)
+    if not text:
         return SurfaceOutcome(name="memory_link", state="nothing-to-say")
-    return SurfaceOutcome(name="memory_link", output=block.text, state="spoke")
+    return SurfaceOutcome(name="memory_link", output=text, state="spoke")
+
+
+def _take_my_last_reply_echo(payload: dict) -> str:
+    """The memory hand-back my last reply left for this prompt, under its own heading, or ''."""
+    from divineos.core.own_words_stop import take_for_next_message
+
+    # The same fallback the Stop door uses, so a message left without a session id is still found.
+    items = take_for_next_message(str(payload.get("session_id") or "no-session"))
+    if not items:
+        return ""
+    # The old Stop block ended with "I open its source and act on it now", which made each hold cost
+    # another reply. Here the memory is for me to think with, so that instruction is left off.
+    kept = [item.split("\nIf it bears")[0].strip() for item in items]
+    return (
+        "## WHAT MY LAST REPLY BROUGHT UP (memory link)\n"
+        + "\n\n".join(kept)
+        + ("\nIt is for me to think with; I never quote it back to him.")
+    )
 
 
 def context_heartbeat_surface(payload: dict) -> SurfaceOutcome | None:

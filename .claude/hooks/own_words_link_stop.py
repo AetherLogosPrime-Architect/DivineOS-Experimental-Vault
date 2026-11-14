@@ -21,7 +21,7 @@ def main() -> int:
     sys.path.insert(0, str(HERE.parents[1] / "src"))
     from dads_room_stop import _genuine_user_text, _read_tail
 
-    from divineos.core.own_words_stop import hand_back, my_words
+    from divineos.core.own_words_stop import hand_back, leave_for_next_message, my_words
 
     data = json.loads(sys.stdin.read() or "{}")
     if data.get("stop_hook_active") or data.get("agent_id"):
@@ -40,10 +40,24 @@ def main() -> int:
     # searches still run and log (own_words_log, ask_after_his_words_log) so misses and the floor stay
     # measurable; the next-message surface (Aether builds it in dads_table.py) reads those rows and prints
     # them with his next message. Never blocks. A failure to look is still said on stderr.
-    state, message = hand_back(text, str(data.get("session_id") or "no-session"))
+    #
+    # THE OWN-WORDS FIND IS NOW LEFT FOR THE NEXT PROMPT (carried from Aether's e88428529, 2026-11-14): this door
+    # used to log and say nothing, so a find was marked shown and never printed. The memory-link surface prints
+    # what is left here once, with his next message. The ASK note is NOT left: it already has its own reader
+    # (ask_finds_surface, from the ask log), and a second channel would show the same find twice.
+    session = str(data.get("session_id") or "no-session")
+    state, message = hand_back(text, session)
     ask_state, ask_message = ask_check(text)
     if state == "could-not-look":
         print(f"  [own-words link] COULD NOT LOOK: {message}", file=sys.stderr)
+    elif state == "found" and message:
+        try:
+            leave_for_next_message(session, message)
+        except Exception as exc:  # loud, and it never blocks the reply
+            print(
+                f"  [own-words link] COULD NOT LEAVE FOR NEXT MESSAGE: {type(exc).__name__}: {exc}",
+                file=sys.stderr,
+            )
     if ask_state == "could-not-look":
         print(f"  [ask-after-his-words] COULD NOT LOOK: {ask_message}", file=sys.stderr)
     return 0

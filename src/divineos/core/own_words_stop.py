@@ -45,6 +45,70 @@ def default_log_file() -> Path:
     return divineos_home() / "own_words_log.jsonl"
 
 
+def default_pending_file() -> Path:
+    return divineos_home() / "own_words_pending.json"
+
+
+PENDING_KEEP = 3  # items kept per session; the oldest drop first
+
+
+def _write_pending(state: dict, pending_file: Path) -> None:
+    pending_file.parent.mkdir(parents=True, exist_ok=True)
+    temp = pending_file.with_name(pending_file.name + ".tmp")
+    temp.write_text(json.dumps(state), encoding="utf-8")
+    temp.replace(pending_file)
+
+
+def _live_pending(state: dict, now: float) -> dict:
+    """Only sessions saved within the last day, in the current shape."""
+    return {
+        sid: entry
+        for sid, entry in state.items()
+        if isinstance(entry, dict)
+        and isinstance(entry.get("items"), list)
+        and now - float(entry.get("t", 0)) <= SESSION_KEEP_SECONDS
+    }
+
+
+def leave_for_next_message(
+    session_id: str, text: str, pending_file: Path | None = None, now: float | None = None
+) -> None:
+    """Keep a message for the NEXT prompt instead of stopping me with it after the reply.
+
+    The memory echo used to block at Stop: 108 of 252 Stop deliveries on Aether's seat on 2026-11-14 (43%).
+    The Stop door now leaves it here and the next prompt's memory-link surface prints it once. A session's
+    list is capped at PENDING_KEEP items, a session untouched for a day is dropped, an empty message is
+    never stored, and the write is a temp file swapped in. Two writes in the same instant can lose one;
+    that race is accepted and named rather than hidden. (Carried from Aether's e88428529.)
+    """
+    if not text.strip():
+        return
+    pending_file = pending_file or default_pending_file()
+    now = time.time() if now is None else now
+    state = _live_pending(_read_state(pending_file), now)
+    items = list(state.get(session_id, {}).get("items", [])) + [text]
+    state[session_id] = {"items": items[-PENDING_KEEP:], "t": now}
+    _write_pending(state, pending_file)
+
+
+def take_for_next_message(
+    session_id: str, pending_file: Path | None = None, now: float | None = None
+) -> list[str]:
+    """This session's waiting messages, cleared as they are read. An unreadable store reads as none.
+
+    If the caller dies after this returns and before the text reaches the prompt, the memory is lost
+    silently: a missed hand-back is a smaller harm than a repeated one, and the memory link will offer
+    it again.
+    """
+    pending_file = pending_file or default_pending_file()
+    now = time.time() if now is None else now
+    state = _live_pending(_read_state(pending_file), now)
+    items = list(state.pop(session_id, {}).get("items", []))
+    if items:
+        _write_pending(state, pending_file)
+    return items
+
+
 def my_words(records: list[dict], _genuine_user_text) -> str:
     """The text of THIS reply: what I wrote since the last thing said to me, his quoted lines taken out.
 
