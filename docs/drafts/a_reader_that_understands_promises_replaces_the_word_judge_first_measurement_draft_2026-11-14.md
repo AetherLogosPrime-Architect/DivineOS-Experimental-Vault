@@ -29,6 +29,16 @@ Bar, fixed by him before any of this: on sentences BOTH of us labelled the same,
 
 **The limit that governs everything above:** the bar's recall is graded on FIVE promises, so 90 percent means all five and one miss is a failure; the numbers are crude. Item 4 of the bar (the 300 plus the held 36, with the hard ones reported separately) is how to get more agreed positives, and the next step is to pool them, count the agreed positives, and run the best reader on the pool.
 
+## Third measurement: the pool (Aether's letter 520: pool first, say the count before running anything)
+**The count, before any run:** agreed positives **39** (held 15, unseen fifty 19, plain 300: 5), agreed negatives 287. One held sentence (8) is a worked example in the prompt, so it is left out of grading; counting it makes 40. Aether's rule: 40 or more is gradeable, under 30 is not, so 39 is one short of his line, and every number below is read as crude.
+
+**`qwen2.5:14b`, one letter, six examples, temperature 0 (the best of the six readers I tried on the 300):** recall **36 of 39 (92 percent)** (held 14/15, fifty 18/19, plain 4/5), false flags **8 of 287**, and **82 percent of the graded flags are real**. As written, the bar (90 and 80) is met on the pool. I do not call that a pass, for three reasons:
+1. **The pool is not the real population.** Weighted to Aether's own sizes (531 shaped candidates, 8,125 plain), the 6 false flags on the 259 plain negatives become about 186 on the plain side, and the weighted estimate is about **358 real flags to 204 false, 64 percent real**, below 80. The bar as written grades the pool, and deployment is mostly plain sentences.
+2. **I chose this reader after seeing the 300**: one of six configurations, picked by how it scored there, so the plain numbers are tuned and the held and fifty numbers are less so (the six examples came from the held set, which is why one is left out).
+3. Five plain positives, 36 of 39 found: one more miss is 90 percent, so the margin is one sentence.
+
+**The second look as I built it did not work.** Asking the 14b to copy, word for word, the words that show the speaker committing, and dropping the flag if it cannot, took recall from 92 to 31 percent (held 5/15, fifty 7/19, plain 0/5): the model rarely returns an exact span of the sentence. That is a result about this implementation, not about a second look in general.
+
 ## What a better reader needs (a proposal, to be measured, not assumed)
 1. Two steps with quote-or-drop, the reading room's own pattern: ask for the exact act and its verb phrase, copied from the sentence; drop any answer whose quote is not in the reply or does not name an act.
 2. The sentence in its reply (context), not alone, because "I'll do my best" and "I'll build it" differ by what follows.
