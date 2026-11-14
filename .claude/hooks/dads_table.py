@@ -70,7 +70,17 @@ HIS_SECTIONS: tuple[str, ...] = (
 # every turn. 2026-10-04: the memory link found the right things every turn and
 # said them into the drawer, because the split sorted by author, not by whether
 # a section changes. Anything filed for the link never came back unasked.
-RELEVANT_SECTIONS: tuple[str, ...] = ("## THE PAST ON THIS (memory link)",)
+# "## I ASKED HIM SOMETHING" is the question check's reader (core/ask_finds_surface.py). It was missing from this list
+# when the reader first ran for real on 2026-11-11, so the table filed every find in the drawer after the reader had
+# already used it up: built, run, and never seen. tests/test_ask_finds_surface.py ties the two headings together.
+# "## WHAT MY LAST REPLY BROUGHT UP" is what my own last reply found in memory, left by the Stop door and printed once
+# by the memory-link surface. It was missing here when it first ran for real on 2026-11-14: the surface took the
+# message and the table filed it in the drawer. tests/test_the_echo_heading_stays_on_the_table.py ties the two.
+RELEVANT_SECTIONS: tuple[str, ...] = (
+    "## THE PAST ON THIS (memory link)",
+    "## I ASKED HIM SOMETHING",
+    "## WHAT MY LAST REPLY BROUGHT UP",
+)
 
 # His room, in his rules, always on the table. Andrew 2026-09-26: "again the
 # circle is missing and again this is code speak" -- the three-room prime was
