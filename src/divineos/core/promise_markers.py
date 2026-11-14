@@ -87,6 +87,13 @@ def checked_folder(checkout: Path) -> Path:
     The wrong tree answers for another seat (a bare `python` can import the other checkout), so the recorder asks
     through this and, when it raises, writes nothing: the failure keeps the invariant that a seat's promises live in
     that seat's own home (Wayne).
+
+    WHAT IT CHECKS, and no more (Aether's cold read): that `checkout` is an ANCESTOR of the imported `divineos`. It
+    refuses a harmless case (a working folder below the root, such as `docs`) and passes a meaningless one (a folder
+    above every checkout, such as `C:\\`), so it is weaker than its job. It holds in daily use only because the
+    recorder runs `cd "$REPO_ROOT"` before it asks, so `checkout` is always the checkout's root. The stronger
+    question is whether the divineos in use lives in the checkout the hook script itself sits in; that needs a path
+    from bash that Windows Python reads correctly, and is an open follow-up, not something this docstring claims.
     """
     import divineos
 
