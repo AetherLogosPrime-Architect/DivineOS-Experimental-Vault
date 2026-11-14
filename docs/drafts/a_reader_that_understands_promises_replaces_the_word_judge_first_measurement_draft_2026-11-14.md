@@ -10,6 +10,25 @@ Aether's blind labels exist for two sentence sets (`~/.divineos-shared/workbench
 - **A zero-shot reader, `qwen2.5:7b`, one letter P or F per sentence:** on the 36 it found **21 of 21** real promises and called 7 of the 12 non-promises a promise (idioms and stances: "I'll do my best to deserve the frog"). On the 300 it found **5 of the 10** and called **55 sentences** promises, so 5 of 55 are real by his labels. Speed is not the problem: 300 sentences in 13 s, first call 7 s (model load), then about 0.05 s each.
 - Reading: the meaning reader sees promises the words never can, but a bare yes/no is far too loose to judge on. This is a first look, one prompt, one model, one labeller, not a result.
 
+## Second measurement, against Aether's bar (his letter 519), agreed sets only
+Bar, fixed by him before any of this: on sentences BOTH of us labelled the same, recall at least 90 percent on agreed real promises, and at least 80 percent of what is flagged agreed real; the bar does not move to fit the model. The agreed sets on the 300 plain sentences, from my sealed lists (hash `565a9a43...`, unsealed in my letter 780) and his labels: **agreed real promises A = 5** (28, 143, 262, 295, 300), **agreed not-promises N = 259** (on nobody's list), **36 grey** (a borderline or an unsure on either list, not graded).
+
+| reader (one letter or three questions, temperature 0) | found of the 5 | false flags on the 259 | share of graded flags that are real |
+|---|---|---|---|
+| qwen2.5:7b, zero-shot P/F | 3 | 32 | 9% |
+| qwen2.5:7b, 6 examples | 2 | 7 | 22% |
+| qwen2.5:14b, zero-shot | 2 | 5 | 29% |
+| **qwen2.5:14b, 6 examples (best)** | **4** | **6** | **40%** |
+| qwen2.5:7b, three yes/no questions ANDed | 2 | 11 | 15% |
+| qwen2.5:14b, three yes/no questions ANDed | 1 | 5 | 17% |
+
+**None meets the bar** (best: 4 of 5 is 80 percent against 90, and 40 percent against 80). What the failures say, read from the sentences and not guessed:
+- The best reader missed one agreed promise (300, a plan step "Fourth, the memory link: ...") and caught the other four, which are announced steps ("I'm taking those eight notes as my next piece", "Next comes the careful review", "That starts as soon as Aether tells me..."). So plan-step fragments, the very shape the word list never covered, are catchable by meaning.
+- Its six false flags are borderline in kind: a question to Dad ("will you tell me which of those lines..."), a description of a future surface ("a surface shows me any note still open"), a metaphor, a description, a past act ("Two things would fix that, and I've saved both on my list"). Each fails one of Aether's tests (a commitment BY THE SPEAKER to a nameable act LATER), so a second look can reject them.
+- **Splitting the rule into three yes/no questions made recall WORSE** (1 of 5 on 14b): "is the speaker the one who will do it?" fails on plan-step fragments that have no "I" ("Next comes the careful review"). The rule cannot be cut into independent tests without cutting out the shape that matters most.
+
+**The limit that governs everything above:** the bar's recall is graded on FIVE promises, so 90 percent means all five and one miss is a failure; the numbers are crude. Item 4 of the bar (the 300 plus the held 36, with the hard ones reported separately) is how to get more agreed positives, and the next step is to pool them, count the agreed positives, and run the best reader on the pool.
+
 ## What a better reader needs (a proposal, to be measured, not assumed)
 1. Two steps with quote-or-drop, the reading room's own pattern: ask for the exact act and its verb phrase, copied from the sentence; drop any answer whose quote is not in the reply or does not name an act.
 2. The sentence in its reply (context), not alone, because "I'll do my best" and "I'll build it" differ by what follows.
