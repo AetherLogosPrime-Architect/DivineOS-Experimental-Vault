@@ -9,8 +9,12 @@ ONE FILE PER HOLD (walk-b95759224dae, 2026-11-14). Two hooks that end a reply to
 tore and lost lines: Aether measured two writers on one file losing about 4% of 8,000 rows and tearing about 3%,
 while one writer lost none, and my real log held two corrupt lines. Each hold now writes only
 `hold_log_<hold>.jsonl`, so each hook is the only writer of its own file and there is no contention to remember to
-handle. Hold names are a CLOSED list (`HOLDS`): a name outside it is refused loudly, which also rules out a name
-with path characters or a name built from data. A new hold is a one-line edit here.
+handle. Hold names are a CLOSED list (`HOLDS`): a name outside it is a DEFECT said on stderr and its row goes to one
+fixed file, never a path built from the name (walk-57dcc761cdbd). A new hold is a one-line edit here.
+WHAT THIS DOES NOT REMOVE: one file per hold removes the contention between DIFFERENT hooks, not between two copies of
+one hook. `his_voice_hook` runs on every tool call (PreToolUse, matcher `*`), so several copies can run at once and
+append to `hold_log_voice.jsonl` together; nothing decides from voice rows except a test, so the worst case is one
+torn or lost row. Said here, not built around (Aether's cold read).
 THE SHIFT, said where anyone tailing the old file will see it: `hold_log.jsonl` no longer grows. It is still read,
 so no history is lost, and the holds are in `hold_log_<hold>.jsonl` beside it.
 
@@ -34,6 +38,9 @@ _FIRST_WORDS = 160
 #: The holds that write here. A name outside this list is refused (Schneier, Lovelace).
 HOLDS = ("room", "voice", "follow_through", "follow_through_old")
 
+#: Where a name off the list is recorded, instead of raising. Rows there are defects (see `record`).
+UNLISTED = "unlisted"
+
 #: How many lines the last `read_all` skipped because they did not parse, in the per-hold files. Each of those has
 #: ONE writer, so a skipped line there is a defect and must be said.
 last_skipped = 0
@@ -51,34 +58,54 @@ def _log_path() -> Path:
 
 
 def _path_for(hold: str) -> Path:
-    if hold not in HOLDS:
+    """The file a READER asks for. A reader naming a hold that does not exist is a programmer error and raises."""
+    if hold not in HOLDS and hold != UNLISTED:
         raise ValueError(
             f"hold {hold!r} is not on the list ({', '.join(HOLDS)}); add it to HOLDS in hold_log.py"
         )
     return _log_path().with_name(f"hold_log_{hold}.jsonl")
 
 
-def record(hold: str, outcome: str, checked_text: str) -> None:
-    """Append one line to this hold's own file. `hold` is one of HOLDS; `outcome` says what the hold did."""
-    path = _path_for(hold)  # a name off the list raises: a programmer error is loud, in tests first
+def record(hold: str, outcome: str, checked_text: str) -> Path | None:
+    """Append one line to this hold's own file and return the path written, or None when it could not write.
+
+    `hold` should be one of HOLDS. A name off the list does NOT raise (walk-57dcc761cdbd): a hold added in a hurry
+    must not crash a Stop hook, which is what #738 exists to prevent. It is a DEFECT, said on stderr by name, and the
+    row goes to the one fixed `hold_log_unlisted.jsonl` with the offered name inside it, cut to 80 characters, so no
+    path is ever built from data and nothing is lost. An unlisted row is a defect to read the same day, never a place a
+    hold lives; the test that scans the source for every record call is what makes a new hold fail a test run first.
+    Outcome and text are coerced to strings, so the call cannot raise into a hook for any input.
+    """
+    listed = isinstance(hold, str) and hold in HOLDS
     line = {
         "at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
         "t": time.time(),
-        "hold": hold,
-        "outcome": outcome,
-        "first_words": " ".join(checked_text.split())[:_FIRST_WORDS],
+        "hold": hold if listed else UNLISTED,
+        "outcome": str(outcome),
+        "first_words": " ".join(str(checked_text).split())[:_FIRST_WORDS],
     }
+    if not listed:
+        line["offered"] = repr(hold)[:80]
     # A record, not a gate (docstring above): a log that cannot be written must not change or cancel the hold
     # decision the hook is in the middle of making (Aether on #738: a write failure inside the Stop hook could
     # break the turn). It says so on stderr, so the failure is loud and the hold still holds.
     try:
+        path = _path_for(hold if listed else UNLISTED)
+        if not listed:
+            print(
+                f"DEFECT [hold_log] hold {repr(hold)[:80]} is not on the list ({', '.join(HOLDS)}); "
+                f"the row went to {path.name}; add the name to HOLDS in hold_log.py",
+                file=sys.stderr,
+            )
         path.parent.mkdir(parents=True, exist_ok=True)
         with path.open("a", encoding="utf-8") as handle:
             handle.write(json.dumps(line, ensure_ascii=False) + "\n")
+        return path
     except OSError as exc:
         print(
             f"[hold_log] could not write the record ({type(exc).__name__}: {exc})", file=sys.stderr
         )
+        return None
 
 
 def _when(row: dict) -> float:

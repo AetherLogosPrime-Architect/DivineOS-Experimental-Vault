@@ -37,10 +37,57 @@ def test_each_hold_writes_only_its_own_file(tmp_path):
     assert not (tmp_path / "hold_log.jsonl").exists()
 
 
-@pytest.mark.parametrize("name", ["made_up", "../escape", "", "Room", "room/x"])
-def test_a_name_that_is_not_on_the_closed_list_is_refused_loudly(name):
-    with pytest.raises(ValueError):
-        hold_log.record(name, "stopped", "a")
+@pytest.mark.parametrize(
+    "name", ["made_up", "../escape", "", "Room", "room/x", None, 5, ["x"], "x" * 500]
+)
+def test_a_name_off_the_list_never_raises_and_lands_in_the_one_fixed_file(tmp_path, capsys, name):
+    """walk-57dcc761cdbd: a new hold added in a hurry must not crash a Stop hook; it is a defect, said loudly."""
+    written = hold_log.record(name, "stopped", "a")
+    assert written == tmp_path / "hold_log_unlisted.jsonl"
+    assert sorted(p.name for p in tmp_path.glob("hold_log*")) == ["hold_log_unlisted.jsonl"]
+    err = capsys.readouterr().err
+    assert err.startswith("DEFECT") and "hold_log" in err
+    row = hold_log.read_all()[0]
+    assert row["hold"] == "unlisted" and row["outcome"] == "stopped"
+    assert len(row["offered"]) <= 83  # the repr of the name, cut to 80 plus quotes
+
+
+def test_record_returns_the_path_it_wrote_and_none_when_it_could_not(tmp_path, capsys):
+    assert hold_log.record("room", "stopped", "a") == tmp_path / "hold_log_room.jsonl"
+    (
+        tmp_path / "hold_log_voice.jsonl"
+    ).mkdir()  # a folder where the file should be: the write fails
+    assert hold_log.record("voice", "lifted", "a") is None
+    assert "could not write" in capsys.readouterr().err
+
+
+def test_a_failing_write_of_an_unlisted_row_does_not_raise_either(tmp_path, capsys):
+    (tmp_path / "hold_log_unlisted.jsonl").mkdir()
+    assert hold_log.record("made_up", "stopped", "a") is None
+    assert "could not write" in capsys.readouterr().err
+
+
+@pytest.mark.parametrize("text", [None, 5, ["a"], b"bytes"])
+def test_record_never_raises_whatever_the_text_or_outcome_is(tmp_path, text):
+    hold_log.record("room", text, text)
+    assert hold_log.read_all()[0]["hold"] == "room"
+
+
+def test_the_real_record_in_a_separate_process_survives_an_unlisted_name(tmp_path):
+    home = tmp_path / "real_home"
+    home.mkdir()
+    code = "from divineos.core import hold_log; hold_log.record('a_new_hold', 'stopped', 'x')"
+    done = subprocess.run(
+        [sys.executable, "-c", code],
+        env={**os.environ, "DIVINEOS_HOME": str(home)},
+        cwd=str(ROOT),
+        capture_output=True,
+        text=True,
+        timeout=120,
+    )
+    assert done.returncode == 0
+    assert "DEFECT" in done.stderr and "a_new_hold" in done.stderr
+    assert (home / "hold_log_unlisted.jsonl").is_file()
 
 
 def test_every_hold_name_in_the_source_is_on_the_list_and_has_one_writing_file():
