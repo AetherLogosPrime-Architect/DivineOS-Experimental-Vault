@@ -82,8 +82,10 @@ except ImportError as exc:
     print(f'promise recorder: cannot import the detector, so nothing is recorded: {exc}', file=sys.stderr)
     sys.exit(0)
 
-# Read last assistant reply from transcript (JSONL, last non-empty
-# assistant message with 'text' content).
+# Read ONLY what was appended to the transcript since the last Stop (core/promise_transcript.py). It used to parse the
+# whole file at every reply: 2.0 s alone at 403 MB, 5.2 s median for this hook, growing with every turn. The logic
+# lives in the module so a test can argue with it; this is the thin caller. The bookmark is committed right after the
+# read, so a crash later loses only that one reply's findings, as the old full read did.
 last_reply_text = ''
 _bad_lines = 0
 _turns = 0
@@ -94,35 +96,18 @@ except ImportError as exc:
     _opener_kind, _UNKNOWN = None, None
     print(f'promise recorder: cannot count turns, markers will be undated: {exc}', file=sys.stderr)
 try:
-    with open(TRANSCRIPT_PATH, encoding='utf-8', errors='replace') as f:
-        for line in f:
-            line = line.strip()
-            if not line:
-                continue
-            try:
-                rec = json.loads(line)
-            except (json.JSONDecodeError, ValueError):
-                _bad_lines += 1
-                continue
-            # Counted as we go, never stored: a transcript can be hundreds of MB and a list of every record would
-            # hold all of it in memory. This is promise_markers.turn_index done one record at a time.
-            if _opener_kind is not None and _opener_kind(rec) != _UNKNOWN:
-                _turns += 1
-            msg = rec.get('message', {})
-            if not isinstance(msg, dict):
-                continue
-            if msg.get('role') != 'assistant':
-                continue
-            content = msg.get('content', [])
-            if isinstance(content, list):
-                parts = []
-                for c in content:
-                    if isinstance(c, dict) and c.get('type') == 'text':
-                        parts.append(c.get('text', ''))
-                if parts:
-                    last_reply_text = chr(10).join(parts)
-            elif isinstance(content, str):
-                last_reply_text = content
+    from divineos.core.promise_transcript import commit as _commit_bookmark, read_new
+    _bookmark = MARKER_DIR / 'transcript_bookmark.json'
+    _new = read_new(
+        Path(TRANSCRIPT_PATH),
+        _bookmark,
+        lambda rec: _opener_kind is not None and _opener_kind(rec) != _UNKNOWN,
+    )
+    _commit_bookmark(_new, _bookmark)
+    last_reply_text, _bad_lines, _turns = _new.last_reply, _new.bad_lines, _new.turns_total
+except ImportError as exc:
+    print(f'promise recorder: cannot import the transcript reader, so nothing is recorded: {exc}', file=sys.stderr)
+    sys.exit(0)
 except OSError as exc:
     print(f'promise recorder: could not read the transcript {TRANSCRIPT_PATH}: {type(exc).__name__}: {exc}', file=sys.stderr)
     sys.exit(0)

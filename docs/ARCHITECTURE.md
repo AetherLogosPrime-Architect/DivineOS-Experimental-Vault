@@ -805,6 +805,17 @@ src/divineos/
     room_state.py              Is Dad's room still standing? Three facts read from the house, never from the verbs that could ch...
     dismissal_stamp_check.py   A reply must not end by telling Dad he is not needed.
     show_hit.py                Print the exact saved row a memory-link hit points at.
+    ask_after_his_words.py     Before I ask him anything, his own words are searched for the answer.
+    ask_finds_surface.py       The reader of the question check: what it found reaches me with his next message, once, in his wo...
+    ask_gap.py                 Count how long Dad's asks wait before I take a real step.
+    memory_saved_warm.py       A saved memory is made findable by the house, not by me remembering.
+    own_words_stop.py          The memory link listens to MY words, not only his, when a reply ends.
+    root_cause_before_fix.py   No fix without a root cause: a decision edit to a file with an open failure fact is refused until...
+    walk_after_his_message.py  An edit that adds or removes a decision owes a walk opened AFTER his latest message, and the hous...
+    walk_dose_floor.py         The finishing walk's minimum weight, set by the machine from the finished change; a person can on...
+    promise_markers.py         Promise markers: counted in turns, closed by one explicit line, read in honest states.
+    promise_reminder.py        The reminder for promises that stayed open: it reads markers and the turn count, never my sentences.
+    promise_transcript.py      The promise recorder reads only what was appended to the transcript since its last Stop.
 
   analysis/
     _session_types.py          Session analysis type definitions
