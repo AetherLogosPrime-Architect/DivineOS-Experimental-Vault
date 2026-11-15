@@ -1,0 +1,194 @@
+{
+ "addressed_to_him": {
+  "errored": 52,
+  "nothing-to-say": 3204,
+  "refused": 1280,
+  "spoke": 1234
+ },
+ "answer_at_the_table": {
+  "nothing-to-say": 2395,
+  "spoke": 106
+ },
+ "auto_goal": {
+  "nothing-to-say": 3033,
+  "spoke": 180
+ },
+ "cd_drift": {
+  "nothing-to-say": 18914,
+  "refused": 308
+ },
+ "close_reach": {
+  "nothing-to-say": 4016,
+  "spoke": 69
+ },
+ "compaction_reach": {
+  "nothing-to-say": 4044,
+  "spoke": 16
+ },
+ "compound_branch_change": {
+  "nothing-to-say": 19001,
+  "refused": 8
+ },
+ "context_heartbeat": {
+  "nothing-to-say": 3090
+ },
+ "correction_arrest": {
+  "errored": 51,
+  "nothing-to-say": 2995
+ },
+ "correction_marker": {
+  "nothing-to-say": 3090
+ },
+ "degraded_detectors": {
+  "nothing-to-say": 19003
+ },
+ "deletion_discipline": {
+  "nothing-to-say": 18980,
+  "refused": 60
+ },
+ "dismissal_stamp": {
+  "nothing-to-say": 3479,
+  "refused": 234
+ },
+ "family_words": {
+  "nothing-to-say": 1039,
+  "refused": 1
+ },
+ "full_suite_by_hand": {
+  "nothing-to-say": 18954,
+  "refused": 137
+ },
+ "hedge_audit": {
+  "nothing-to-say": 4048
+ },
+ "heredoc_escape": {
+  "nothing-to-say": 18955,
+  "refused": 150
+ },
+ "his_standing_verdict": {
+  "nothing-to-say": 110,
+  "spoke": 11850
+ },
+ "his_words": {
+  "nothing-to-say": 5677,
+  "refused": 15
+ },
+ "hook_syntax": {
+  "nothing-to-say": 17099,
+  "spoke": 4
+ },
+ "landed_claim": {
+  "nothing-to-say": 3955,
+  "refused": 263
+ },
+ "letter_claims": {
+  "none": 16833,
+  "undeclared": 833
+ },
+ "must_read": {
+  "none": 18999,
+  "refused": 4,
+  "undeclared": 4
+ },
+ "no_fix_claim": {
+  "nothing-to-say": 4045,
+  "refused": 3
+ },
+ "no_verify_cost": {
+  "nothing-to-say": 19003
+ },
+ "operator_asks": {
+  "nothing-to-say": 616,
+  "spoke": 8309
+ },
+ "order_question": {
+  "nothing-to-say": 3980,
+  "refused": 201
+ },
+ "pr_create_gate": {
+  "nothing-to-say": 19003
+ },
+ "pr_merge_freshness": {
+  "nothing-to-say": 19003
+ },
+ "pr_merge_gate": {
+  "nothing-to-say": 19003
+ },
+ "pre_response_context": {
+  "spoke": 9508
+ },
+ "refusal_stretch": {
+  "none": 42,
+  "undeclared": 49804
+ },
+ "repeated_reply": {
+  "nothing-to-say": 4048
+ },
+ "require_briefing": {
+  "none": 19003
+ },
+ "retrieval_tally": {
+  "nothing-to-say": 3008
+ },
+ "self_demotion_prime": {
+  "spoke": 9508
+ },
+ "self_demotion_stop": {
+  "nothing-to-say": 3988,
+  "spoke": 202
+ },
+ "sibling_correction": {
+  "nothing-to-say": 2519,
+  "spoke": 1935
+ },
+ "slashed_ref_path": {
+  "nothing-to-say": 18991,
+  "refused": 40
+ },
+ "still_owed_to_him": {
+  "spoke": 9508
+ },
+ "stop_runs_killed": {
+  "nothing-to-say": 3078,
+  "spoke": 23
+ },
+ "summary_room": {
+  "nothing-to-say": 3861,
+  "refused": 544
+ },
+ "theater_audit": {
+  "nothing-to-say": 4048
+ },
+ "time_estimate": {
+  "nothing-to-say": 4048
+ },
+ "translation_floor": {
+  "nothing-to-say": 3097,
+  "refused": 26,
+  "spoke": 3048
+ },
+ "trial_in_days": {
+  "nothing-to-say": 18998,
+  "refused": 17
+ },
+ "unread_letter": {
+  "none": 17566,
+  "refused": 1532,
+  "refused-downgraded": 82,
+  "undeclared": 2721
+ },
+ "unspoken_to_letter": {
+  "nothing-to-say": 3959,
+  "refused": 60
+ },
+ "waiting_claim": {
+  "nothing-to-say": 1040
+ },
+ "windowless_launch": {
+  "nothing-to-say": 13317,
+  "refused": 8
+ },
+ "work_item_doorman": {
+  "refused": 78
+ }
+}

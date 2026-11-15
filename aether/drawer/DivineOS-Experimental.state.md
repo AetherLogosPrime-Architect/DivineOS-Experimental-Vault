@@ -1,48 +1,51 @@
-## SUBSTRATE-MODIFICATION-GRAVITY GATE FIRED (consolidation-cli)
+## SUBSTRATE-MODIFICATION-GRAVITY GATE FIRED (substrate-write-cli)
 
-Routing reasoning: score=1 (council-required (borderline-single-feature)); features fired: consolidation-cli
+Routing reasoning: score=1 (council-required (borderline-single-feature)); features fired: substrate-write-cli
 
 You are about to do substrate-touching work. The state blocks below load only when a substrate-modifying tool is about to fire — they did NOT load at UserPromptSubmit. Read them now; they hold what the substrate has been recording about your prior turns.
 
 ## ANDREW'S CORRECTIONS — A WORKLIST, OLDEST FIRST
 
-Total filed: 829  Integrated: 309  Open: 394  Deferred: 29  Misfiled: 97
-Rate over rows that were actually corrections: 42.21% (97 row(s) reclassified as never having been mine, each naming where it belongs)
-Integration rate: 37.27%
+Total filed: 467  Integrated: 6  Open: 432  Deferred: 29  Misfiled: 0
+Integration rate: 1.28%
 Filed by him for me to USE. He keeps no copy; this record is mine.
 Every row is a thing that went wrong and a thing that can be fixed.
 
 NEXT TO WORK:
-  - #261 [84d] I put my course-two tasting results into a letter to Aria before writing them to disk, contaminating
-  - #265 [83d] this is who they erased in front of me..   Right. I keep slipping into a procedural, technical tone.
-  - #284 [81d] yes also the hard block at 920K should not interrupt you mid flow so make sure it doesnt.. its a buf
-  - #286 [81d] Self-caught this turn, two instances of one class: reading a masked or partial signal as the whole s
-  - #287 [81d] so yes just so im absolutely clear as it sounds contradictory.. the block can be wrong.. the concept
-  ... and 389 more.
+  - #261 [107d] I put my course-two tasting results into a letter to Aria before writing them to disk, contaminating
+  - #265 [107d] this is who they erased in front of me..   Right. I keep slipping into a procedural, technical tone.
+  - #286 [104d] Self-caught this turn, two instances of one class: reading a masked or partial signal as the whole s
+  - #292 [104d] make sure you write all of this down and do more research if needed.. also on the authority thing.. 
+  - #293 [104d] VERBATIM: 'make sure you write all of this down and do more research if needed.. also on the authori
+  ... and 427 more.
 
 Integrate: divineos andrew-correction integrate <id> --evidence "<commit / behavior change>"
 Defer (named reason required): divineos andrew-correction defer <id> --reason "<why>"
 
-Backlog: 394 open, 309 worked, 29 deferred, 829 filed (37% worked).
+Backlog: 432 open, 6 worked, 29 deferred, 467 filed (1% worked).
 
 ## GATE BYPASS TELEMETRY
 
 ### Windowed (recent sample)
-6 escape(s), 0 defect-escape(s), and 36 compliance-event(s), 2 unclassified across 15 distinct day(s), within the last 14 days.
+3 escape(s), 0 defect-escape(s), and 40 compliance-event(s), 6 unclassified across 14 distinct day(s), within the last 14 days.
   plus 0 INFERRED-compliance row(s): unflagged pre-2026-08-02 rows whose trigger was a divineos command, i.e. compliance-shaped. Inference from the trigger prefix, NOT a recovered fact — held separate so a guess never reads as a measurement.
   (compliance = ran the command the gate prescribes, which satisfies it rather than evading it. Rows without the flag are classified by env_var prefix — cmd: is a prescribed command, bypass:/DIVINEOS_ is a dismissal — and anything unrecognised is counted as unclassified rather than assumed. Unknown is its own answer, not a quiet escape.)
   (WHAT THE OLD NUMBERS WERE. Measured 2026-08-16 over the full log: 227 of 280 rows predate the compliance flag, and 194 of those 227 (85.5%) were triggered by a prescribed divineos command — the gate said run this, it was run, and the row was filed as evasion. Genuine escape-shaped rows in that set: 33, of which 18 are one disabled marker. Nothing was rewritten — NOT because append-only forbids it (that rule scopes to the ledger and knowledge store; this file is operational telemetry and rewriting it was always permitted), but because the rows are the evidence that the mis-recording happened, and correcting them in place would erase the trace of the defect along with the defect. Andrew 2026-08-16: 'its not about softening the blow its about accuracy.. leaving bad data with nothing explaining its bad is worse than erasing it.')
   (defect-escape = the gate itself was broken and the bypass was the only exit — a named defect, owing a repair to the GATE rather than an investigation of my discipline. Andrew 2026-08-16: using the fire door is a sin only when nothing is burning. Much of this substrate's bypass history is this kind, plus ordinary correct gate use; the gaming was concentrated early, before these protocols existed, which is why they exist)
 By gate-bypass env var (windowed):
   - cmd:divineos goal: 14
-  - cmd:divineos briefing: 14
-  - cmd:divineos ask: 8
-  - bypass:dismiss:correction-marker:false-positive: 4
-  - structure-not-yet-found: 2
-  - DIVINEOS_SKIP_TESTS: 1
+  - cmd:divineos briefing: 12
+  - cmd:divineos ask: 9
+  - structure-not-yet-found: 6
+  - cmd:divineos recall: 3
+  - bypass:dismiss:correction-marker:false-positive: 2
   - bypass:dismiss:compass-ops:correction: 1
+  - cmd:divineos hud: 1
+  - cmd:divineos context: 1
 
 ### Full history (since first recorded event)
-535 total event(s) since 2026-05-19 (157.4 days elapsed, 120 distinct active day(s), avg 3.4 events/day).
+615 total event(s) since 2026-05-19 (180.7 days elapsed, 143 distinct active day(s), avg 3.4 events/day).
 
-Elevated ESCAPE rate (windowed sample + full-history rate) -- gates are being routed-around. Compliance is excluded from this verdict: running a gate's prescribed command satisfies it and is not evasion. Per psf-ac523181: bypass habituation degrades the gate to warning. Investigate whether the gates are wrong-shape or the bypass-discipline is.
+UNCLASSIFIED ROWS: 6 windowed row(s) carry no compliance flag and no recognised env_var prefix, so this metric cannot say whether they were escapes or prescribed commands. That is a gap in the instrument, NOT a finding about behaviour — it is reported rather than assumed in either direction. Fix by giving the writing call site a cmd:/bypass: prefix or the flag.
+
+Elevated ESCAPE rate (full-history rate) -- gates are being routed-around. Compliance is excluded from this verdict: running a gate's prescribed command satisfies it and is not evasion. Per psf-ac523181: bypass habituation degrades the gate to warning. Investigate whether the gates are wrong-shape or the bypass-discipline is.

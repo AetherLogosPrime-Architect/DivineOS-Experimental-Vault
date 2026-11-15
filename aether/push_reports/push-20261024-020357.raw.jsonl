@@ -1,0 +1,1030 @@
+{"k": "present", "n": 0, "t": 1792831564.91, "pid": 416, "ppid": 35364, "name": "bash.exe", "worker": false}
+{"k": "present", "n": 0, "t": 1792831564.91, "pid": 7268, "ppid": 49948, "name": "python.exe", "worker": false}
+{"k": "present", "n": 0, "t": 1792831564.91, "pid": 7292, "ppid": 11928, "name": "python.exe", "worker": false}
+{"k": "present", "n": 0, "t": 1792831564.91, "pid": 11224, "ppid": 32944, "name": "python.exe", "worker": false}
+{"k": "present", "n": 0, "t": 1792831564.91, "pid": 12640, "ppid": 36216, "name": "bash.exe", "worker": false}
+{"k": "present", "n": 0, "t": 1792831564.91, "pid": 15092, "ppid": 7268, "name": "python.exe", "worker": false}
+{"k": "present", "n": 0, "t": 1792831564.91, "pid": 15160, "ppid": 24560, "name": "cmd.exe", "worker": false}
+{"k": "present", "n": 0, "t": 1792831564.91, "pid": 16896, "ppid": 28648, "name": "bash.exe", "worker": false}
+{"k": "present", "n": 0, "t": 1792831564.91, "pid": 19344, "ppid": 26876, "name": "bash.exe", "worker": false}
+{"k": "present", "n": 0, "t": 1792831564.91, "pid": 21380, "ppid": 52628, "name": "bash.exe", "worker": false}
+{"k": "present", "n": 0, "t": 1792831564.91, "pid": 26876, "ppid": 16896, "name": "bash.exe", "worker": false}
+{"k": "present", "n": 0, "t": 1792831564.91, "pid": 32944, "ppid": 38564, "name": "python.exe", "worker": false}
+{"k": "present", "n": 0, "t": 1792831564.91, "pid": 33752, "ppid": 28648, "name": "bash.exe", "worker": false}
+{"k": "present", "n": 0, "t": 1792831564.91, "pid": 36216, "ppid": 28648, "name": "bash.exe", "worker": false}
+{"k": "present", "n": 0, "t": 1792831564.91, "pid": 38564, "ppid": 41292, "name": "bash.exe", "worker": false}
+{"k": "present", "n": 0, "t": 1792831564.91, "pid": 39896, "ppid": 43120, "name": "git.exe", "worker": false}
+{"k": "present", "n": 0, "t": 1792831564.91, "pid": 40196, "ppid": 39896, "name": "bash.exe", "worker": false}
+{"k": "present", "n": 0, "t": 1792831564.91, "pid": 41292, "ppid": 33752, "name": "bash.exe", "worker": false}
+{"k": "present", "n": 0, "t": 1792831564.91, "pid": 43120, "ppid": 44608, "name": "bash.exe", "worker": false}
+{"k": "present", "n": 0, "t": 1792831564.91, "pid": 43868, "ppid": 28648, "name": "bash.exe", "worker": false}
+{"k": "present", "n": 0, "t": 1792831564.91, "pid": 44608, "ppid": 45144, "name": "bash.exe", "worker": false}
+{"k": "present", "n": 0, "t": 1792831564.91, "pid": 45144, "ppid": 29652, "name": "bash.exe", "worker": false}
+{"k": "present", "n": 0, "t": 1792831564.91, "pid": 46400, "ppid": 19344, "name": "python.exe", "worker": false}
+{"k": "present", "n": 0, "t": 1792831564.91, "pid": 49388, "ppid": 18036, "name": "bash.exe", "worker": false}
+{"k": "present", "n": 0, "t": 1792831564.91, "pid": 49644, "ppid": 53856, "name": "bash.exe", "worker": false}
+{"k": "present", "n": 0, "t": 1792831564.91, "pid": 49696, "ppid": 54404, "name": "bash.exe", "worker": false}
+{"k": "present", "n": 0, "t": 1792831564.91, "pid": 49948, "ppid": 40196, "name": "bash.exe", "worker": false}
+{"k": "present", "n": 0, "t": 1792831564.91, "pid": 51444, "ppid": 39896, "name": "git.exe", "worker": false}
+{"k": "present", "n": 0, "t": 1792831564.91, "pid": 53688, "ppid": 43868, "name": "bash.exe", "worker": false}
+{"k": "present", "n": 0, "t": 1792831564.91, "pid": 54404, "ppid": 48936, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 1, "t": 1792831566.1, "pid": 18408, "ppid": 55808, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 1, "t": 1792831566.1, "pid": 416, "ppid": 35364, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 2, "t": 1792831567.33, "pid": 44272, "ppid": 18408, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 2, "t": 1792831567.33, "pid": 46964, "ppid": 44272, "name": "git.exe", "worker": false}
+{"k": "started", "n": 2, "t": 1792831567.33, "pid": 48000, "ppid": 46964, "name": "git.exe", "worker": false}
+{"k": "ended", "n": 4, "t": 1792831569.41, "pid": 44272, "ppid": 18408, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 4, "t": 1792831569.41, "pid": 46964, "ppid": 44272, "name": "git.exe", "worker": false}
+{"k": "ended", "n": 4, "t": 1792831569.41, "pid": 48000, "ppid": 46964, "name": "git.exe", "worker": false}
+{"k": "tick", "n": 4, "t": 1792831569.41}
+{"k": "started", "n": 5, "t": 1792831570.43, "pid": 7956, "ppid": 27624, "name": "python.exe", "worker": false}
+{"k": "started", "n": 5, "t": 1792831570.43, "pid": 27624, "ppid": 30952, "name": "python.exe", "worker": false}
+{"k": "started", "n": 5, "t": 1792831570.43, "pid": 30952, "ppid": 48476, "name": "python.exe", "worker": false}
+{"k": "tick", "n": 8, "t": 1792831573.41}
+{"k": "tick", "n": 12, "t": 1792831577.62}
+{"k": "tick", "n": 16, "t": 1792831581.75}
+{"k": "tick", "n": 20, "t": 1792831585.89}
+{"k": "tick", "n": 24, "t": 1792831590.0}
+{"k": "tick", "n": 28, "t": 1792831594.06}
+{"k": "tick", "n": 32, "t": 1792831598.25}
+{"k": "tick", "n": 36, "t": 1792831602.39}
+{"k": "tick", "n": 40, "t": 1792831606.88}
+{"k": "tick", "n": 44, "t": 1792831611.11}
+{"k": "tick", "n": 48, "t": 1792831615.57}
+{"k": "tick", "n": 52, "t": 1792831619.71}
+{"k": "tick", "n": 56, "t": 1792831623.92}
+{"k": "tick", "n": 60, "t": 1792831628.12}
+{"k": "tick", "n": 64, "t": 1792831632.34}
+{"k": "tick", "n": 68, "t": 1792831636.59}
+{"k": "tick", "n": 72, "t": 1792831640.79}
+{"k": "tick", "n": 76, "t": 1792831645.08}
+{"k": "tick", "n": 80, "t": 1792831649.26}
+{"k": "tick", "n": 84, "t": 1792831653.48}
+{"k": "tick", "n": 88, "t": 1792831657.66}
+{"k": "tick", "n": 92, "t": 1792831662.06}
+{"k": "tick", "n": 96, "t": 1792831666.36}
+{"k": "tick", "n": 100, "t": 1792831670.81}
+{"k": "tick", "n": 104, "t": 1792831676.25}
+{"k": "started", "n": 105, "t": 1792831677.54, "pid": 14432, "ppid": 35304, "name": "git.exe", "worker": false}
+{"k": "started", "n": 106, "t": 1792831678.91, "pid": 16088, "ppid": 22080, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 106, "t": 1792831678.91, "pid": 14432, "ppid": 35304, "name": "git.exe", "worker": false}
+{"k": "ended", "n": 107, "t": 1792831680.23, "pid": 16088, "ppid": 22080, "name": "bash.exe", "worker": false}
+{"k": "tick", "n": 108, "t": 1792831681.6}
+{"k": "started", "n": 111, "t": 1792831685.44, "pid": 45120, "ppid": 22080, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 111, "t": 1792831685.44, "pid": 53508, "ppid": 45120, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 112, "t": 1792831686.74, "pid": 7460, "ppid": 22080, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 112, "t": 1792831686.74, "pid": 55200, "ppid": 7460, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 112, "t": 1792831686.74, "pid": 45120, "ppid": 22080, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 112, "t": 1792831686.74, "pid": 53508, "ppid": 45120, "name": "bash.exe", "worker": false}
+{"k": "tick", "n": 112, "t": 1792831686.74}
+{"k": "started", "n": 113, "t": 1792831688.06, "pid": 20444, "ppid": 22080, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 113, "t": 1792831688.06, "pid": 48468, "ppid": 20444, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 113, "t": 1792831688.06, "pid": 7460, "ppid": 22080, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 113, "t": 1792831688.06, "pid": 55200, "ppid": 7460, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 114, "t": 1792831689.35, "pid": 20348, "ppid": 42920, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 114, "t": 1792831689.35, "pid": 20444, "ppid": 22080, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 114, "t": 1792831689.35, "pid": 48468, "ppid": 20444, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 115, "t": 1792831690.56, "pid": 15040, "ppid": 43708, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 115, "t": 1792831690.56, "pid": 43708, "ppid": 22080, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 115, "t": 1792831690.56, "pid": 20348, "ppid": 42920, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 116, "t": 1792831691.72, "pid": 2996, "ppid": 22080, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 116, "t": 1792831691.72, "pid": 40164, "ppid": 2996, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 116, "t": 1792831691.72, "pid": 15040, "ppid": 43708, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 116, "t": 1792831691.72, "pid": 43708, "ppid": 22080, "name": "bash.exe", "worker": false}
+{"k": "tick", "n": 116, "t": 1792831691.72}
+{"k": "started", "n": 117, "t": 1792831692.86, "pid": 55040, "ppid": 55252, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 117, "t": 1792831692.86, "pid": 55252, "ppid": 22080, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 117, "t": 1792831692.86, "pid": 2996, "ppid": 22080, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 117, "t": 1792831692.86, "pid": 40164, "ppid": 2996, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 118, "t": 1792831694.05, "pid": 55040, "ppid": 55252, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 118, "t": 1792831694.05, "pid": 55252, "ppid": 22080, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 120, "t": 1792831696.49, "pid": 8952, "ppid": 22080, "name": "bash.exe", "worker": false}
+{"k": "tick", "n": 120, "t": 1792831696.49}
+{"k": "started", "n": 121, "t": 1792831697.6, "pid": 49984, "ppid": 56100, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 121, "t": 1792831697.6, "pid": 56100, "ppid": 22080, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 121, "t": 1792831697.6, "pid": 8952, "ppid": 22080, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 122, "t": 1792831699.07, "pid": 49984, "ppid": 56100, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 122, "t": 1792831699.07, "pid": 56100, "ppid": 22080, "name": "bash.exe", "worker": false}
+{"k": "tick", "n": 124, "t": 1792831702.03}
+{"k": "started", "n": 127, "t": 1792831706.39, "pid": 14772, "ppid": 30580, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 127, "t": 1792831706.39, "pid": 30580, "ppid": 22080, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 128, "t": 1792831707.88, "pid": 14772, "ppid": 30580, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 128, "t": 1792831707.88, "pid": 30580, "ppid": 22080, "name": "bash.exe", "worker": false}
+{"k": "tick", "n": 128, "t": 1792831707.88}
+{"k": "started", "n": 130, "t": 1792831710.83, "pid": 16576, "ppid": 22080, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 131, "t": 1792831712.25, "pid": 16576, "ppid": 22080, "name": "bash.exe", "worker": false}
+{"k": "tick", "n": 132, "t": 1792831713.67}
+{"k": "started", "n": 133, "t": 1792831714.95, "pid": 40068, "ppid": 22080, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 134, "t": 1792831716.3, "pid": 40068, "ppid": 22080, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 136, "t": 1792831718.82, "pid": 35352, "ppid": 22080, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 136, "t": 1792831718.82, "pid": 48696, "ppid": 35352, "name": "bash.exe", "worker": false}
+{"k": "tick", "n": 136, "t": 1792831718.82}
+{"k": "ended", "n": 137, "t": 1792831720.21, "pid": 35352, "ppid": 22080, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 137, "t": 1792831720.21, "pid": 48696, "ppid": 35352, "name": "bash.exe", "worker": false}
+{"k": "tick", "n": 140, "t": 1792831724.11}
+{"k": "tick", "n": 144, "t": 1792831728.79}
+{"k": "tick", "n": 148, "t": 1792831733.43}
+{"k": "tick", "n": 152, "t": 1792831738.46}
+{"k": "started", "n": 155, "t": 1792831742.26, "pid": 22604, "ppid": 22080, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 156, "t": 1792831743.49, "pid": 22604, "ppid": 22080, "name": "bash.exe", "worker": false}
+{"k": "tick", "n": 156, "t": 1792831743.49}
+{"k": "started", "n": 159, "t": 1792831746.95, "pid": 44168, "ppid": 22080, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 160, "t": 1792831748.06, "pid": 17124, "ppid": 44168, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 160, "t": 1792831748.06, "pid": 21340, "ppid": 26988, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 160, "t": 1792831748.06, "pid": 26988, "ppid": 17124, "name": "bash.exe", "worker": false}
+{"k": "tick", "n": 160, "t": 1792831748.06}
+{"k": "ended", "n": 161, "t": 1792831749.2, "pid": 17124, "ppid": 44168, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 161, "t": 1792831749.2, "pid": 21340, "ppid": 26988, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 161, "t": 1792831749.2, "pid": 26988, "ppid": 17124, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 161, "t": 1792831749.2, "pid": 44168, "ppid": 22080, "name": "bash.exe", "worker": false}
+{"k": "tick", "n": 164, "t": 1792831752.5}
+{"k": "started", "n": 167, "t": 1792831756.31, "pid": 15672, "ppid": 44676, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 168, "t": 1792831757.78, "pid": 33104, "ppid": 52596, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 168, "t": 1792831757.78, "pid": 15672, "ppid": 44676, "name": "bash.exe", "worker": false}
+{"k": "tick", "n": 168, "t": 1792831757.78}
+{"k": "ended", "n": 169, "t": 1792831759.23, "pid": 33104, "ppid": 52596, "name": "bash.exe", "worker": false}
+{"k": "tick", "n": 172, "t": 1792831763.78}
+{"k": "started", "n": 173, "t": 1792831765.21, "pid": 32248, "ppid": 22080, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 174, "t": 1792831766.55, "pid": 32248, "ppid": 22080, "name": "bash.exe", "worker": false}
+{"k": "tick", "n": 176, "t": 1792831769.42}
+{"k": "started", "n": 179, "t": 1792831773.67, "pid": 8260, "ppid": 35688, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 180, "t": 1792831775.06, "pid": 8260, "ppid": 35688, "name": "bash.exe", "worker": false}
+{"k": "tick", "n": 180, "t": 1792831775.06}
+{"k": "started", "n": 181, "t": 1792831776.53, "pid": 26380, "ppid": 22080, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 181, "t": 1792831776.53, "pid": 44344, "ppid": 26380, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 182, "t": 1792831777.78, "pid": 8632, "ppid": 20304, "name": "python.exe", "worker": false}
+{"k": "started", "n": 182, "t": 1792831777.78, "pid": 9120, "ppid": 20304, "name": "python.exe", "worker": false}
+{"k": "started", "n": 182, "t": 1792831777.78, "pid": 35344, "ppid": 20304, "name": "python.exe", "worker": false}
+{"k": "started", "n": 182, "t": 1792831777.78, "pid": 52436, "ppid": 20304, "name": "python.exe", "worker": false}
+{"k": "started", "n": 182, "t": 1792831777.78, "pid": 53544, "ppid": 20304, "name": "python.exe", "worker": false}
+{"k": "started", "n": 182, "t": 1792831777.78, "pid": 55268, "ppid": 20304, "name": "python.exe", "worker": false}
+{"k": "ended", "n": 182, "t": 1792831777.78, "pid": 26380, "ppid": 22080, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 182, "t": 1792831777.78, "pid": 44344, "ppid": 26380, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 183, "t": 1792831779.03, "pid": 45956, "ppid": 22080, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 183, "t": 1792831779.03, "pid": 46368, "ppid": 45956, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 184, "t": 1792831780.39, "pid": 35344, "ppid": 20304, "name": "python.exe", "worker": false}
+{"k": "ended", "n": 184, "t": 1792831780.39, "pid": 45956, "ppid": 22080, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 184, "t": 1792831780.39, "pid": 46368, "ppid": 45956, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 184, "t": 1792831780.39, "pid": 52436, "ppid": 20304, "name": "python.exe", "worker": false}
+{"k": "ended", "n": 184, "t": 1792831780.39, "pid": 53544, "ppid": 20304, "name": "python.exe", "worker": false}
+{"k": "ended", "n": 184, "t": 1792831780.39, "pid": 55268, "ppid": 20304, "name": "python.exe", "worker": false}
+{"k": "tick", "n": 184, "t": 1792831780.39}
+{"k": "started", "n": 185, "t": 1792831781.62, "pid": 23644, "ppid": 47012, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 185, "t": 1792831781.62, "pid": 47012, "ppid": 22080, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 185, "t": 1792831781.62, "pid": 8632, "ppid": 20304, "name": "python.exe", "worker": false}
+{"k": "ended", "n": 185, "t": 1792831781.62, "pid": 9120, "ppid": 20304, "name": "python.exe", "worker": false}
+{"k": "started", "n": 186, "t": 1792831782.93, "pid": 6676, "ppid": 22080, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 186, "t": 1792831782.93, "pid": 45740, "ppid": 6676, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 186, "t": 1792831782.93, "pid": 23644, "ppid": 47012, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 186, "t": 1792831782.93, "pid": 47012, "ppid": 22080, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 187, "t": 1792831784.06, "pid": 45740, "ppid": 6676, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 188, "t": 1792831785.35, "pid": 6676, "ppid": 22080, "name": "bash.exe", "worker": false}
+{"k": "tick", "n": 188, "t": 1792831785.35}
+{"k": "tick", "n": 192, "t": 1792831790.56}
+{"k": "tick", "n": 196, "t": 1792831795.07}
+{"k": "tick", "n": 200, "t": 1792831799.83}
+{"k": "started", "n": 204, "t": 1792831804.64, "pid": 43732, "ppid": 20304, "name": "python.exe", "worker": false}
+{"k": "tick", "n": 204, "t": 1792831804.64}
+{"k": "ended", "n": 205, "t": 1792831805.83, "pid": 43732, "ppid": 20304, "name": "python.exe", "worker": false}
+{"k": "started", "n": 207, "t": 1792831808.19, "pid": 54400, "ppid": 20304, "name": "python.exe", "worker": false}
+{"k": "started", "n": 207, "t": 1792831808.19, "pid": 55996, "ppid": 22080, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 208, "t": 1792831809.36, "pid": 27944, "ppid": 20304, "name": "python.exe", "worker": false}
+{"k": "ended", "n": 208, "t": 1792831809.36, "pid": 54400, "ppid": 20304, "name": "python.exe", "worker": false}
+{"k": "tick", "n": 208, "t": 1792831809.36}
+{"k": "ended", "n": 209, "t": 1792831810.56, "pid": 27944, "ppid": 20304, "name": "python.exe", "worker": false}
+{"k": "ended", "n": 209, "t": 1792831810.56, "pid": 55996, "ppid": 22080, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 210, "t": 1792831811.73, "pid": 3252, "ppid": 47484, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 211, "t": 1792831812.93, "pid": 3252, "ppid": 47484, "name": "bash.exe", "worker": false}
+{"k": "tick", "n": 212, "t": 1792831814.08}
+{"k": "started", "n": 213, "t": 1792831815.23, "pid": 47264, "ppid": 51652, "name": "python.exe", "worker": false}
+{"k": "started", "n": 213, "t": 1792831815.23, "pid": 52324, "ppid": 20304, "name": "python.exe", "worker": false}
+{"k": "ended", "n": 214, "t": 1792831816.33, "pid": 52324, "ppid": 20304, "name": "python.exe", "worker": false}
+{"k": "tick", "n": 216, "t": 1792831818.65}
+{"k": "started", "n": 220, "t": 1792831823.54, "pid": 48776, "ppid": 20304, "name": "python.exe", "worker": false}
+{"k": "tick", "n": 220, "t": 1792831823.54}
+{"k": "started", "n": 221, "t": 1792831824.65, "pid": 43932, "ppid": 44096, "name": "python.exe", "worker": false}
+{"k": "ended", "n": 221, "t": 1792831824.65, "pid": 47264, "ppid": 51652, "name": "python.exe", "worker": false}
+{"k": "ended", "n": 221, "t": 1792831824.65, "pid": 48776, "ppid": 20304, "name": "python.exe", "worker": false}
+{"k": "started", "n": 222, "t": 1792831825.72, "pid": 38016, "ppid": 20304, "name": "python.exe", "worker": false}
+{"k": "ended", "n": 223, "t": 1792831826.79, "pid": 38016, "ppid": 20304, "name": "python.exe", "worker": false}
+{"k": "tick", "n": 224, "t": 1792831827.87}
+{"k": "started", "n": 226, "t": 1792831830.22, "pid": 15592, "ppid": 56212, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 227, "t": 1792831831.32, "pid": 15592, "ppid": 56212, "name": "bash.exe", "worker": false}
+{"k": "tick", "n": 228, "t": 1792831832.43}
+{"k": "started", "n": 230, "t": 1792831834.98, "pid": 6032, "ppid": 20304, "name": "python.exe", "worker": false}
+{"k": "started", "n": 230, "t": 1792831834.98, "pid": 33832, "ppid": 9072, "name": "python.exe", "worker": false}
+{"k": "ended", "n": 230, "t": 1792831834.98, "pid": 43932, "ppid": 44096, "name": "python.exe", "worker": false}
+{"k": "tick", "n": 232, "t": 1792831837.59}
+{"k": "tick", "n": 236, "t": 1792831842.64}
+{"k": "ended", "n": 237, "t": 1792831844.19, "pid": 33832, "ppid": 9072, "name": "python.exe", "worker": false}
+{"k": "started", "n": 239, "t": 1792831846.63, "pid": 20960, "ppid": 20304, "name": "python.exe", "worker": false}
+{"k": "ended", "n": 239, "t": 1792831846.63, "pid": 6032, "ppid": 20304, "name": "python.exe", "worker": false}
+{"k": "ended", "n": 240, "t": 1792831847.94, "pid": 20960, "ppid": 20304, "name": "python.exe", "worker": false}
+{"k": "tick", "n": 240, "t": 1792831847.94}
+{"k": "started", "n": 243, "t": 1792831851.61, "pid": 4000, "ppid": 41588, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 244, "t": 1792831852.87, "pid": 4000, "ppid": 41588, "name": "bash.exe", "worker": false}
+{"k": "tick", "n": 244, "t": 1792831852.87}
+{"k": "started", "n": 245, "t": 1792831854.07, "pid": 12792, "ppid": 36076, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 246, "t": 1792831855.31, "pid": 12792, "ppid": 36076, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 247, "t": 1792831856.5, "pid": 6020, "ppid": 22080, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 247, "t": 1792831856.5, "pid": 18460, "ppid": 41588, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 247, "t": 1792831856.5, "pid": 53164, "ppid": 18460, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 248, "t": 1792831857.72, "pid": 37416, "ppid": 22080, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 248, "t": 1792831857.72, "pid": 52868, "ppid": 37416, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 248, "t": 1792831857.72, "pid": 55368, "ppid": 41588, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 248, "t": 1792831857.72, "pid": 6020, "ppid": 22080, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 248, "t": 1792831857.72, "pid": 18460, "ppid": 41588, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 248, "t": 1792831857.72, "pid": 53164, "ppid": 18460, "name": "bash.exe", "worker": false}
+{"k": "tick", "n": 248, "t": 1792831857.72}
+{"k": "ended", "n": 249, "t": 1792831858.95, "pid": 37416, "ppid": 22080, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 249, "t": 1792831858.95, "pid": 52868, "ppid": 37416, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 249, "t": 1792831858.95, "pid": 55368, "ppid": 41588, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 250, "t": 1792831860.01, "pid": 10872, "ppid": 42708, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 250, "t": 1792831860.01, "pid": 42708, "ppid": 41588, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 251, "t": 1792831861.36, "pid": 10872, "ppid": 42708, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 251, "t": 1792831861.36, "pid": 42708, "ppid": 41588, "name": "bash.exe", "worker": false}
+{"k": "tick", "n": 252, "t": 1792831862.76}
+{"k": "tick", "n": 256, "t": 1792831868.17}
+{"k": "started", "n": 258, "t": 1792831871.01, "pid": 10256, "ppid": 41588, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 258, "t": 1792831871.01, "pid": 22896, "ppid": 10256, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 259, "t": 1792831872.41, "pid": 10256, "ppid": 41588, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 259, "t": 1792831872.41, "pid": 22896, "ppid": 10256, "name": "bash.exe", "worker": false}
+{"k": "tick", "n": 260, "t": 1792831873.76}
+{"k": "tick", "n": 264, "t": 1792831879.28}
+{"k": "tick", "n": 268, "t": 1792831884.9}
+{"k": "started", "n": 272, "t": 1792831890.48, "pid": 10220, "ppid": 20304, "name": "bash.exe", "worker": false}
+{"k": "tick", "n": 272, "t": 1792831890.48}
+{"k": "started", "n": 273, "t": 1792831891.72, "pid": 28640, "ppid": 30428, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 273, "t": 1792831891.72, "pid": 30428, "ppid": 20304, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 273, "t": 1792831891.72, "pid": 10220, "ppid": 20304, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 274, "t": 1792831892.98, "pid": 14652, "ppid": 33048, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 274, "t": 1792831892.98, "pid": 33048, "ppid": 20304, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 274, "t": 1792831892.98, "pid": 28640, "ppid": 30428, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 274, "t": 1792831892.98, "pid": 30428, "ppid": 20304, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 275, "t": 1792831894.29, "pid": 32140, "ppid": 55336, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 275, "t": 1792831894.29, "pid": 41064, "ppid": 49364, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 275, "t": 1792831894.29, "pid": 45272, "ppid": 20304, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 275, "t": 1792831894.29, "pid": 49364, "ppid": 41588, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 275, "t": 1792831894.29, "pid": 51196, "ppid": 45272, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 275, "t": 1792831894.29, "pid": 14652, "ppid": 33048, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 275, "t": 1792831894.29, "pid": 33048, "ppid": 20304, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 276, "t": 1792831895.65, "pid": 26852, "ppid": 46376, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 276, "t": 1792831895.65, "pid": 34120, "ppid": 36400, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 276, "t": 1792831895.65, "pid": 36400, "ppid": 22080, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 276, "t": 1792831895.65, "pid": 46376, "ppid": 41588, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 276, "t": 1792831895.65, "pid": 32140, "ppid": 55336, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 276, "t": 1792831895.65, "pid": 41064, "ppid": 49364, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 276, "t": 1792831895.65, "pid": 45272, "ppid": 20304, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 276, "t": 1792831895.65, "pid": 49364, "ppid": 41588, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 276, "t": 1792831895.65, "pid": 51196, "ppid": 45272, "name": "bash.exe", "worker": false}
+{"k": "tick", "n": 276, "t": 1792831895.65}
+{"k": "started", "n": 277, "t": 1792831896.94, "pid": 32628, "ppid": 20304, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 277, "t": 1792831896.94, "pid": 26852, "ppid": 46376, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 277, "t": 1792831896.94, "pid": 34120, "ppid": 36400, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 277, "t": 1792831896.94, "pid": 36400, "ppid": 22080, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 277, "t": 1792831896.94, "pid": 46376, "ppid": 41588, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 278, "t": 1792831898.27, "pid": 3028, "ppid": 53188, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 278, "t": 1792831898.27, "pid": 10220, "ppid": 36880, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 278, "t": 1792831898.27, "pid": 21340, "ppid": 20304, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 278, "t": 1792831898.27, "pid": 53188, "ppid": 21340, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 278, "t": 1792831898.27, "pid": 32628, "ppid": 20304, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 279, "t": 1792831899.56, "pid": 13024, "ppid": 41588, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 279, "t": 1792831899.56, "pid": 44340, "ppid": 13024, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 279, "t": 1792831899.56, "pid": 3028, "ppid": 53188, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 279, "t": 1792831899.56, "pid": 10220, "ppid": 36880, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 279, "t": 1792831899.56, "pid": 21340, "ppid": 20304, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 279, "t": 1792831899.56, "pid": 53188, "ppid": 21340, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 280, "t": 1792831900.86, "pid": 14956, "ppid": 20304, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 280, "t": 1792831900.86, "pid": 13024, "ppid": 41588, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 280, "t": 1792831900.86, "pid": 44340, "ppid": 13024, "name": "bash.exe", "worker": false}
+{"k": "tick", "n": 280, "t": 1792831900.86}
+{"k": "started", "n": 281, "t": 1792831902.13, "pid": 25348, "ppid": 52396, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 281, "t": 1792831902.13, "pid": 44112, "ppid": 41588, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 281, "t": 1792831902.13, "pid": 52396, "ppid": 20304, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 281, "t": 1792831902.13, "pid": 56216, "ppid": 44112, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 281, "t": 1792831902.13, "pid": 14956, "ppid": 20304, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 282, "t": 1792831903.43, "pid": 25348, "ppid": 52396, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 282, "t": 1792831903.43, "pid": 44112, "ppid": 41588, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 282, "t": 1792831903.43, "pid": 52396, "ppid": 20304, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 282, "t": 1792831903.43, "pid": 56216, "ppid": 44112, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 283, "t": 1792831904.69, "pid": 20392, "ppid": 41588, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 283, "t": 1792831904.69, "pid": 24300, "ppid": 31484, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 283, "t": 1792831904.69, "pid": 40504, "ppid": 20392, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 284, "t": 1792831906.0, "pid": 17224, "ppid": 51712, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 284, "t": 1792831906.0, "pid": 18816, "ppid": 49220, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 284, "t": 1792831906.0, "pid": 49220, "ppid": 20304, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 284, "t": 1792831906.0, "pid": 51712, "ppid": 55000, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 284, "t": 1792831906.0, "pid": 55000, "ppid": 41588, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 284, "t": 1792831906.0, "pid": 20392, "ppid": 41588, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 284, "t": 1792831906.0, "pid": 24300, "ppid": 31484, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 284, "t": 1792831906.0, "pid": 40504, "ppid": 20392, "name": "bash.exe", "worker": false}
+{"k": "tick", "n": 284, "t": 1792831906.0}
+{"k": "ended", "n": 285, "t": 1792831907.23, "pid": 17224, "ppid": 51712, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 285, "t": 1792831907.23, "pid": 49220, "ppid": 20304, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 285, "t": 1792831907.23, "pid": 51712, "ppid": 55000, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 285, "t": 1792831907.23, "pid": 55000, "ppid": 41588, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 286, "t": 1792831908.46, "pid": 14052, "ppid": 20304, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 286, "t": 1792831908.46, "pid": 28924, "ppid": 14052, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 286, "t": 1792831908.46, "pid": 18816, "ppid": 49220, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 287, "t": 1792831909.7, "pid": 14052, "ppid": 20304, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 287, "t": 1792831909.7, "pid": 28924, "ppid": 14052, "name": "bash.exe", "worker": false}
+{"k": "tick", "n": 288, "t": 1792831910.88}
+{"k": "tick", "n": 292, "t": 1792831915.98}
+{"k": "started", "n": 295, "t": 1792831919.8, "pid": 26084, "ppid": 20304, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 296, "t": 1792831921.16, "pid": 23108, "ppid": 55720, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 296, "t": 1792831921.16, "pid": 26084, "ppid": 20304, "name": "bash.exe", "worker": false}
+{"k": "tick", "n": 296, "t": 1792831921.16}
+{"k": "ended", "n": 297, "t": 1792831922.45, "pid": 23108, "ppid": 55720, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 298, "t": 1792831923.79, "pid": 24132, "ppid": 43116, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 298, "t": 1792831923.79, "pid": 43116, "ppid": 20304, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 299, "t": 1792831924.98, "pid": 24132, "ppid": 43116, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 299, "t": 1792831924.98, "pid": 43116, "ppid": 20304, "name": "bash.exe", "worker": false}
+{"k": "tick", "n": 300, "t": 1792831926.12}
+{"k": "started", "n": 303, "t": 1792831929.89, "pid": 4000, "ppid": 51736, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 304, "t": 1792831931.08, "pid": 18816, "ppid": 41588, "name": "python.exe", "worker": false}
+{"k": "started", "n": 304, "t": 1792831931.08, "pid": 27152, "ppid": 20304, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 304, "t": 1792831931.08, "pid": 30080, "ppid": 44040, "name": "python.exe", "worker": false}
+{"k": "started", "n": 304, "t": 1792831931.08, "pid": 44040, "ppid": 18816, "name": "cmd.exe", "worker": false}
+{"k": "ended", "n": 304, "t": 1792831931.08, "pid": 4000, "ppid": 51736, "name": "bash.exe", "worker": false}
+{"k": "tick", "n": 304, "t": 1792831931.08}
+{"k": "ended", "n": 305, "t": 1792831932.33, "pid": 18816, "ppid": 41588, "name": "python.exe", "worker": false}
+{"k": "ended", "n": 305, "t": 1792831932.33, "pid": 27152, "ppid": 20304, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 305, "t": 1792831932.33, "pid": 30080, "ppid": 44040, "name": "python.exe", "worker": false}
+{"k": "ended", "n": 305, "t": 1792831932.33, "pid": 44040, "ppid": 18816, "name": "cmd.exe", "worker": false}
+{"k": "tick", "n": 308, "t": 1792831935.71}
+{"k": "started", "n": 309, "t": 1792831936.88, "pid": 36104, "ppid": 41588, "name": "python.exe", "worker": false}
+{"k": "started", "n": 309, "t": 1792831936.88, "pid": 42876, "ppid": 36104, "name": "cmd.exe", "worker": false}
+{"k": "started", "n": 309, "t": 1792831936.88, "pid": 50364, "ppid": 42876, "name": "python.exe", "worker": false}
+{"k": "started", "n": 311, "t": 1792831939.06, "pid": 26288, "ppid": 41588, "name": "python.exe", "worker": false}
+{"k": "ended", "n": 311, "t": 1792831939.06, "pid": 36104, "ppid": 41588, "name": "python.exe", "worker": false}
+{"k": "ended", "n": 311, "t": 1792831939.06, "pid": 42876, "ppid": 36104, "name": "cmd.exe", "worker": false}
+{"k": "ended", "n": 311, "t": 1792831939.06, "pid": 50364, "ppid": 42876, "name": "python.exe", "worker": false}
+{"k": "started", "n": 312, "t": 1792831940.18, "pid": 41752, "ppid": 44264, "name": "python.exe", "worker": false}
+{"k": "started", "n": 312, "t": 1792831940.18, "pid": 44264, "ppid": 26288, "name": "cmd.exe", "worker": false}
+{"k": "tick", "n": 312, "t": 1792831940.18}
+{"k": "started", "n": 313, "t": 1792831941.26, "pid": 19336, "ppid": 41588, "name": "cmd.exe", "worker": false}
+{"k": "started", "n": 313, "t": 1792831941.26, "pid": 55680, "ppid": 19336, "name": "python.exe", "worker": false}
+{"k": "ended", "n": 313, "t": 1792831941.26, "pid": 26288, "ppid": 41588, "name": "python.exe", "worker": false}
+{"k": "ended", "n": 313, "t": 1792831941.26, "pid": 41752, "ppid": 44264, "name": "python.exe", "worker": false}
+{"k": "ended", "n": 313, "t": 1792831941.26, "pid": 44264, "ppid": 26288, "name": "cmd.exe", "worker": false}
+{"k": "tick", "n": 316, "t": 1792831944.68}
+{"k": "tick", "n": 320, "t": 1792831949.49}
+{"k": "tick", "n": 324, "t": 1792831954.03}
+{"k": "tick", "n": 328, "t": 1792831958.6}
+{"k": "started", "n": 330, "t": 1792831961.2, "pid": 6728, "ppid": 50652, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 330, "t": 1792831961.2, "pid": 33844, "ppid": 45304, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 330, "t": 1792831961.2, "pid": 45304, "ppid": 22080, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 330, "t": 1792831961.2, "pid": 50652, "ppid": 20304, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 330, "t": 1792831961.2, "pid": 19336, "ppid": 41588, "name": "cmd.exe", "worker": false}
+{"k": "ended", "n": 330, "t": 1792831961.2, "pid": 55680, "ppid": 19336, "name": "python.exe", "worker": false}
+{"k": "ended", "n": 331, "t": 1792831962.33, "pid": 50652, "ppid": 20304, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 332, "t": 1792831963.63, "pid": 3532, "ppid": 33844, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 332, "t": 1792831963.63, "pid": 6728, "ppid": 50652, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 332, "t": 1792831963.63, "pid": 33844, "ppid": 45304, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 332, "t": 1792831963.63, "pid": 45304, "ppid": 22080, "name": "bash.exe", "worker": false}
+{"k": "tick", "n": 332, "t": 1792831963.63}
+{"k": "ended", "n": 333, "t": 1792831964.97, "pid": 3532, "ppid": 33844, "name": "bash.exe", "worker": false}
+{"k": "tick", "n": 336, "t": 1792831968.44}
+{"k": "started", "n": 338, "t": 1792831970.92, "pid": 3944, "ppid": 49576, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 339, "t": 1792831972.14, "pid": 11704, "ppid": 35200, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 339, "t": 1792831972.14, "pid": 3944, "ppid": 49576, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 340, "t": 1792831973.29, "pid": 30896, "ppid": 22080, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 340, "t": 1792831973.29, "pid": 33736, "ppid": 30896, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 340, "t": 1792831973.29, "pid": 11704, "ppid": 35200, "name": "bash.exe", "worker": false}
+{"k": "tick", "n": 340, "t": 1792831973.29}
+{"k": "started", "n": 341, "t": 1792831974.47, "pid": 25176, "ppid": 22080, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 341, "t": 1792831974.47, "pid": 39900, "ppid": 25176, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 341, "t": 1792831974.47, "pid": 30896, "ppid": 22080, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 341, "t": 1792831974.47, "pid": 33736, "ppid": 30896, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 342, "t": 1792831975.72, "pid": 7408, "ppid": 55548, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 342, "t": 1792831975.72, "pid": 55548, "ppid": 22080, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 342, "t": 1792831975.72, "pid": 25176, "ppid": 22080, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 342, "t": 1792831975.72, "pid": 39900, "ppid": 25176, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 343, "t": 1792831977.05, "pid": 7408, "ppid": 55548, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 343, "t": 1792831977.05, "pid": 55548, "ppid": 22080, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 344, "t": 1792831978.32, "pid": 13824, "ppid": 52496, "name": "bash.exe", "worker": false}
+{"k": "tick", "n": 344, "t": 1792831978.32}
+{"k": "started", "n": 345, "t": 1792831979.55, "pid": 32588, "ppid": 44672, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 345, "t": 1792831979.55, "pid": 13824, "ppid": 52496, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 346, "t": 1792831980.94, "pid": 5448, "ppid": 22080, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 346, "t": 1792831980.94, "pid": 32588, "ppid": 44672, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 347, "t": 1792831982.31, "pid": 5448, "ppid": 22080, "name": "bash.exe", "worker": false}
+{"k": "tick", "n": 348, "t": 1792831983.58}
+{"k": "tick", "n": 352, "t": 1792831989.0}
+{"k": "tick", "n": 356, "t": 1792831994.14}
+{"k": "tick", "n": 360, "t": 1792831998.71}
+{"k": "started", "n": 364, "t": 1792832003.71, "pid": 2152, "ppid": 20304, "name": "bash.exe", "worker": false}
+{"k": "tick", "n": 364, "t": 1792832003.71}
+{"k": "started", "n": 365, "t": 1792832005.02, "pid": 7252, "ppid": 42360, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 365, "t": 1792832005.02, "pid": 25712, "ppid": 50256, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 365, "t": 1792832005.02, "pid": 2152, "ppid": 20304, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 366, "t": 1792832006.38, "pid": 2740, "ppid": 20304, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 366, "t": 1792832006.39, "pid": 7252, "ppid": 42360, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 366, "t": 1792832006.39, "pid": 25712, "ppid": 50256, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 367, "t": 1792832007.82, "pid": 4412, "ppid": 53636, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 367, "t": 1792832007.82, "pid": 53636, "ppid": 20304, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 367, "t": 1792832007.82, "pid": 2740, "ppid": 20304, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 368, "t": 1792832009.05, "pid": 4412, "ppid": 53636, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 368, "t": 1792832009.05, "pid": 53636, "ppid": 20304, "name": "bash.exe", "worker": false}
+{"k": "tick", "n": 368, "t": 1792832009.05}
+{"k": "started", "n": 369, "t": 1792832010.22, "pid": 4376, "ppid": 20304, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 370, "t": 1792832011.48, "pid": 3432, "ppid": 20304, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 370, "t": 1792832011.48, "pid": 16112, "ppid": 3432, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 370, "t": 1792832011.48, "pid": 4376, "ppid": 20304, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 371, "t": 1792832012.75, "pid": 3432, "ppid": 20304, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 371, "t": 1792832012.75, "pid": 16112, "ppid": 3432, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 372, "t": 1792832013.92, "pid": 43232, "ppid": 50928, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 372, "t": 1792832013.92, "pid": 49572, "ppid": 43232, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 372, "t": 1792832013.92, "pid": 50928, "ppid": 20304, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 372, "t": 1792832013.92, "pid": 56100, "ppid": 49572, "name": "bash.exe", "worker": false}
+{"k": "tick", "n": 372, "t": 1792832013.92}
+{"k": "started", "n": 373, "t": 1792832015.13, "pid": 17096, "ppid": 20304, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 373, "t": 1792832015.13, "pid": 21340, "ppid": 17096, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 373, "t": 1792832015.13, "pid": 43232, "ppid": 50928, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 373, "t": 1792832015.13, "pid": 49572, "ppid": 43232, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 373, "t": 1792832015.13, "pid": 50928, "ppid": 20304, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 373, "t": 1792832015.13, "pid": 56100, "ppid": 49572, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 374, "t": 1792832016.27, "pid": 4000, "ppid": 8280, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 374, "t": 1792832016.27, "pid": 8280, "ppid": 21340, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 374, "t": 1792832016.27, "pid": 49280, "ppid": 4000, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 375, "t": 1792832017.42, "pid": 4000, "ppid": 8280, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 375, "t": 1792832017.42, "pid": 8280, "ppid": 21340, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 375, "t": 1792832017.42, "pid": 17096, "ppid": 20304, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 375, "t": 1792832017.42, "pid": 21340, "ppid": 17096, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 375, "t": 1792832017.42, "pid": 49280, "ppid": 4000, "name": "bash.exe", "worker": false}
+{"k": "tick", "n": 376, "t": 1792832018.62}
+{"k": "tick", "n": 380, "t": 1792832023.33}
+{"k": "tick", "n": 384, "t": 1792832027.81}
+{"k": "started", "n": 386, "t": 1792832030.14, "pid": 53628, "ppid": 41588, "name": "python.exe", "worker": false}
+{"k": "tick", "n": 388, "t": 1792832032.39}
+{"k": "ended", "n": 390, "t": 1792832035.03, "pid": 53628, "ppid": 41588, "name": "python.exe", "worker": false}
+{"k": "tick", "n": 392, "t": 1792832037.75}
+{"k": "tick", "n": 396, "t": 1792832042.73}
+{"k": "started", "n": 397, "t": 1792832044.2, "pid": 14484, "ppid": 41588, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 397, "t": 1792832044.2, "pid": 29212, "ppid": 14484, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 398, "t": 1792832045.53, "pid": 3960, "ppid": 54964, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 398, "t": 1792832045.53, "pid": 14484, "ppid": 41588, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 398, "t": 1792832045.53, "pid": 29212, "ppid": 14484, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 399, "t": 1792832046.82, "pid": 12648, "ppid": 41588, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 399, "t": 1792832046.82, "pid": 3960, "ppid": 54964, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 400, "t": 1792832048.08, "pid": 12648, "ppid": 41588, "name": "bash.exe", "worker": false}
+{"k": "tick", "n": 400, "t": 1792832048.08}
+{"k": "started", "n": 401, "t": 1792832049.43, "pid": 764, "ppid": 54400, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 402, "t": 1792832050.86, "pid": 764, "ppid": 54400, "name": "bash.exe", "worker": false}
+{"k": "tick", "n": 404, "t": 1792832053.8}
+{"k": "tick", "n": 408, "t": 1792832058.87}
+{"k": "started", "n": 410, "t": 1792832061.37, "pid": 2324, "ppid": 41588, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 410, "t": 1792832061.37, "pid": 30472, "ppid": 2324, "name": "bash.exe", "worker": false}
+{"k": "tick", "n": 412, "t": 1792832063.97}
+{"k": "ended", "n": 413, "t": 1792832065.24, "pid": 2324, "ppid": 41588, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 413, "t": 1792832065.24, "pid": 30472, "ppid": 2324, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 414, "t": 1792832066.57, "pid": 22644, "ppid": 44104, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 414, "t": 1792832066.57, "pid": 44104, "ppid": 41588, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 416, "t": 1792832069.18, "pid": 22644, "ppid": 44104, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 416, "t": 1792832069.18, "pid": 44104, "ppid": 41588, "name": "bash.exe", "worker": false}
+{"k": "tick", "n": 416, "t": 1792832069.18}
+{"k": "started", "n": 417, "t": 1792832070.35, "pid": 52312, "ppid": 55800, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 417, "t": 1792832070.35, "pid": 55800, "ppid": 41588, "name": "bash.exe", "worker": false}
+{"k": "tick", "n": 420, "t": 1792832073.87}
+{"k": "ended", "n": 422, "t": 1792832076.17, "pid": 52312, "ppid": 55800, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 422, "t": 1792832076.17, "pid": 55800, "ppid": 41588, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 423, "t": 1792832077.39, "pid": 2368, "ppid": 41168, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 423, "t": 1792832077.39, "pid": 41168, "ppid": 41588, "name": "bash.exe", "worker": false}
+{"k": "tick", "n": 424, "t": 1792832078.95}
+{"k": "ended", "n": 425, "t": 1792832080.22, "pid": 41168, "ppid": 41588, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 426, "t": 1792832081.34, "pid": 2368, "ppid": 41168, "name": "bash.exe", "worker": false}
+{"k": "tick", "n": 428, "t": 1792832083.76}
+{"k": "started", "n": 432, "t": 1792832088.59, "pid": 47468, "ppid": 22080, "name": "git.exe", "worker": false}
+{"k": "tick", "n": 432, "t": 1792832088.59}
+{"k": "ended", "n": 436, "t": 1792832093.17, "pid": 47468, "ppid": 22080, "name": "git.exe", "worker": false}
+{"k": "tick", "n": 436, "t": 1792832093.17}
+{"k": "started", "n": 438, "t": 1792832095.46, "pid": 16160, "ppid": 22080, "name": "git.exe", "worker": false}
+{"k": "ended", "n": 439, "t": 1792832096.61, "pid": 16160, "ppid": 22080, "name": "git.exe", "worker": false}
+{"k": "tick", "n": 440, "t": 1792832097.78}
+{"k": "started", "n": 441, "t": 1792832098.9, "pid": 32344, "ppid": 22080, "name": "git.exe", "worker": false}
+{"k": "ended", "n": 442, "t": 1792832100.24, "pid": 32344, "ppid": 22080, "name": "git.exe", "worker": false}
+{"k": "tick", "n": 444, "t": 1792832102.75}
+{"k": "tick", "n": 448, "t": 1792832107.26}
+{"k": "started", "n": 449, "t": 1792832108.5, "pid": 24732, "ppid": 2416, "name": "pythonw.exe", "worker": false}
+{"k": "started", "n": 449, "t": 1792832108.5, "pid": 45076, "ppid": 20304, "name": "python.exe", "worker": false}
+{"k": "started", "n": 451, "t": 1792832111.06, "pid": 48264, "ppid": 22080, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 451, "t": 1792832111.06, "pid": 49488, "ppid": 48264, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 452, "t": 1792832112.3, "pid": 48264, "ppid": 22080, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 452, "t": 1792832112.3, "pid": 49488, "ppid": 48264, "name": "bash.exe", "worker": false}
+{"k": "tick", "n": 452, "t": 1792832112.3}
+{"k": "started", "n": 453, "t": 1792832113.69, "pid": 15224, "ppid": 41588, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 453, "t": 1792832113.69, "pid": 45076, "ppid": 20304, "name": "python.exe", "worker": false}
+{"k": "started", "n": 454, "t": 1792832115.05, "pid": 36648, "ppid": 22080, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 454, "t": 1792832115.05, "pid": 49316, "ppid": 36648, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 454, "t": 1792832115.05, "pid": 15224, "ppid": 41588, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 454, "t": 1792832115.05, "pid": 24732, "ppid": 2416, "name": "pythonw.exe", "worker": false}
+{"k": "started", "n": 455, "t": 1792832116.3, "pid": 33684, "ppid": 49316, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 455, "t": 1792832116.3, "pid": 41856, "ppid": 33684, "name": "python.exe", "worker": false}
+{"k": "started", "n": 455, "t": 1792832116.3, "pid": 43280, "ppid": 41856, "name": "python.exe", "worker": false}
+{"k": "tick", "n": 456, "t": 1792832117.39}
+{"k": "tick", "n": 460, "t": 1792832122.07}
+{"k": "started", "n": 461, "t": 1792832123.31, "pid": 28208, "ppid": 41588, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 461, "t": 1792832123.31, "pid": 34668, "ppid": 28208, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 462, "t": 1792832124.45, "pid": 6660, "ppid": 41588, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 462, "t": 1792832124.45, "pid": 36404, "ppid": 6660, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 462, "t": 1792832124.45, "pid": 28208, "ppid": 41588, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 462, "t": 1792832124.45, "pid": 34668, "ppid": 28208, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 464, "t": 1792832126.74, "pid": 36404, "ppid": 6660, "name": "bash.exe", "worker": false}
+{"k": "tick", "n": 464, "t": 1792832126.74}
+{"k": "started", "n": 465, "t": 1792832127.9, "pid": 14800, "ppid": 41588, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 465, "t": 1792832127.9, "pid": 40316, "ppid": 14800, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 465, "t": 1792832127.9, "pid": 48036, "ppid": 20304, "name": "python.exe", "worker": false}
+{"k": "ended", "n": 465, "t": 1792832127.9, "pid": 6660, "ppid": 41588, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 466, "t": 1792832129.02, "pid": 14632, "ppid": 40316, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 466, "t": 1792832129.02, "pid": 56024, "ppid": 20304, "name": "python.exe", "worker": false}
+{"k": "ended", "n": 466, "t": 1792832129.02, "pid": 48036, "ppid": 20304, "name": "python.exe", "worker": false}
+{"k": "started", "n": 467, "t": 1792832130.18, "pid": 5512, "ppid": 20304, "name": "python.exe", "worker": false}
+{"k": "ended", "n": 467, "t": 1792832130.18, "pid": 14632, "ppid": 40316, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 467, "t": 1792832130.18, "pid": 56024, "ppid": 20304, "name": "python.exe", "worker": false}
+{"k": "started", "n": 468, "t": 1792832131.48, "pid": 52688, "ppid": 55000, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 468, "t": 1792832131.48, "pid": 55000, "ppid": 41588, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 468, "t": 1792832131.48, "pid": 5512, "ppid": 20304, "name": "python.exe", "worker": false}
+{"k": "ended", "n": 468, "t": 1792832131.48, "pid": 14800, "ppid": 41588, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 468, "t": 1792832131.48, "pid": 40316, "ppid": 14800, "name": "bash.exe", "worker": false}
+{"k": "tick", "n": 468, "t": 1792832131.48}
+{"k": "ended", "n": 469, "t": 1792832132.68, "pid": 52688, "ppid": 55000, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 469, "t": 1792832132.68, "pid": 55000, "ppid": 41588, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 470, "t": 1792832133.89, "pid": 18460, "ppid": 37984, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 470, "t": 1792832133.89, "pid": 37984, "ppid": 41588, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 471, "t": 1792832135.16, "pid": 4024, "ppid": 41588, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 471, "t": 1792832135.16, "pid": 48700, "ppid": 4024, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 471, "t": 1792832135.16, "pid": 18460, "ppid": 37984, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 471, "t": 1792832135.16, "pid": 37984, "ppid": 41588, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 472, "t": 1792832136.39, "pid": 48700, "ppid": 4024, "name": "bash.exe", "worker": false}
+{"k": "tick", "n": 472, "t": 1792832136.39}
+{"k": "started", "n": 473, "t": 1792832137.56, "pid": 32264, "ppid": 41588, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 473, "t": 1792832137.56, "pid": 51720, "ppid": 32264, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 473, "t": 1792832137.56, "pid": 4024, "ppid": 41588, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 474, "t": 1792832138.83, "pid": 32264, "ppid": 41588, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 474, "t": 1792832138.83, "pid": 51720, "ppid": 32264, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 476, "t": 1792832141.26, "pid": 7736, "ppid": 20304, "name": "python.exe", "worker": false}
+{"k": "started", "n": 476, "t": 1792832141.26, "pid": 20208, "ppid": 52880, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 476, "t": 1792832141.26, "pid": 52880, "ppid": 41588, "name": "bash.exe", "worker": false}
+{"k": "tick", "n": 476, "t": 1792832141.26}
+{"k": "ended", "n": 477, "t": 1792832142.51, "pid": 7736, "ppid": 20304, "name": "python.exe", "worker": false}
+{"k": "ended", "n": 477, "t": 1792832142.51, "pid": 20208, "ppid": 52880, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 477, "t": 1792832142.51, "pid": 52880, "ppid": 41588, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 478, "t": 1792832143.76, "pid": 47836, "ppid": 41588, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 478, "t": 1792832143.76, "pid": 48684, "ppid": 47836, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 479, "t": 1792832145.07, "pid": 35060, "ppid": 35860, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 479, "t": 1792832145.07, "pid": 35860, "ppid": 41588, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 479, "t": 1792832145.07, "pid": 33684, "ppid": 49316, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 479, "t": 1792832145.07, "pid": 36648, "ppid": 22080, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 479, "t": 1792832145.07, "pid": 41856, "ppid": 33684, "name": "python.exe", "worker": false}
+{"k": "ended", "n": 479, "t": 1792832145.07, "pid": 43280, "ppid": 41856, "name": "python.exe", "worker": false}
+{"k": "ended", "n": 479, "t": 1792832145.07, "pid": 47836, "ppid": 41588, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 479, "t": 1792832145.07, "pid": 48684, "ppid": 47836, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 479, "t": 1792832145.07, "pid": 49316, "ppid": 36648, "name": "bash.exe", "worker": false}
+{"k": "tick", "n": 480, "t": 1792832146.36}
+{"k": "ended", "n": 481, "t": 1792832147.48, "pid": 35060, "ppid": 35860, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 481, "t": 1792832147.48, "pid": 35860, "ppid": 41588, "name": "bash.exe", "worker": false}
+{"k": "tick", "n": 484, "t": 1792832150.75}
+{"k": "started", "n": 485, "t": 1792832151.84, "pid": 25116, "ppid": 20304, "name": "python.exe", "worker": false}
+{"k": "started", "n": 486, "t": 1792832152.93, "pid": 56268, "ppid": 20304, "name": "python.exe", "worker": false}
+{"k": "ended", "n": 486, "t": 1792832152.93, "pid": 25116, "ppid": 20304, "name": "python.exe", "worker": false}
+{"k": "started", "n": 487, "t": 1792832154.07, "pid": 28156, "ppid": 20304, "name": "python.exe", "worker": false}
+{"k": "ended", "n": 487, "t": 1792832154.07, "pid": 56268, "ppid": 20304, "name": "python.exe", "worker": false}
+{"k": "started", "n": 488, "t": 1792832155.16, "pid": 3520, "ppid": 20304, "name": "python.exe", "worker": false}
+{"k": "ended", "n": 488, "t": 1792832155.16, "pid": 28156, "ppid": 20304, "name": "python.exe", "worker": false}
+{"k": "tick", "n": 488, "t": 1792832155.16}
+{"k": "started", "n": 489, "t": 1792832156.25, "pid": 21112, "ppid": 20304, "name": "python.exe", "worker": false}
+{"k": "ended", "n": 489, "t": 1792832156.25, "pid": 3520, "ppid": 20304, "name": "python.exe", "worker": false}
+{"k": "ended", "n": 490, "t": 1792832157.37, "pid": 21112, "ppid": 20304, "name": "python.exe", "worker": false}
+{"k": "started", "n": 491, "t": 1792832158.42, "pid": 25924, "ppid": 20304, "name": "python.exe", "worker": false}
+{"k": "tick", "n": 492, "t": 1792832159.46}
+{"k": "started", "n": 493, "t": 1792832160.53, "pid": 49024, "ppid": 20304, "name": "python.exe", "worker": false}
+{"k": "ended", "n": 493, "t": 1792832160.53, "pid": 25924, "ppid": 20304, "name": "python.exe", "worker": false}
+{"k": "started", "n": 494, "t": 1792832161.69, "pid": 11924, "ppid": 41588, "name": "git.exe", "worker": false}
+{"k": "ended", "n": 494, "t": 1792832161.69, "pid": 49024, "ppid": 20304, "name": "python.exe", "worker": false}
+{"k": "ended", "n": 495, "t": 1792832162.82, "pid": 11924, "ppid": 41588, "name": "git.exe", "worker": false}
+{"k": "tick", "n": 496, "t": 1792832163.97}
+{"k": "tick", "n": 500, "t": 1792832168.5}
+{"k": "tick", "n": 504, "t": 1792832173.14}
+{"k": "started", "n": 505, "t": 1792832174.28, "pid": 2848, "ppid": 8584, "name": "python.exe", "worker": false}
+{"k": "started", "n": 505, "t": 1792832174.28, "pid": 8584, "ppid": 40452, "name": "python.exe", "worker": false}
+{"k": "started", "n": 505, "t": 1792832174.28, "pid": 39312, "ppid": 41588, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 507, "t": 1792832176.63, "pid": 2848, "ppid": 8584, "name": "python.exe", "worker": false}
+{"k": "ended", "n": 507, "t": 1792832176.63, "pid": 8584, "ppid": 40452, "name": "python.exe", "worker": false}
+{"k": "ended", "n": 507, "t": 1792832176.63, "pid": 39312, "ppid": 41588, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 508, "t": 1792832177.81, "pid": 19248, "ppid": 50988, "name": "python.exe", "worker": false}
+{"k": "started", "n": 508, "t": 1792832177.81, "pid": 26368, "ppid": 41588, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 508, "t": 1792832177.81, "pid": 34116, "ppid": 20304, "name": "python.exe", "worker": false}
+{"k": "started", "n": 508, "t": 1792832177.81, "pid": 46464, "ppid": 19248, "name": "python.exe", "worker": false}
+{"k": "tick", "n": 508, "t": 1792832177.81}
+{"k": "started", "n": 509, "t": 1792832178.9, "pid": 24256, "ppid": 20304, "name": "python.exe", "worker": false}
+{"k": "ended", "n": 509, "t": 1792832178.9, "pid": 34116, "ppid": 20304, "name": "python.exe", "worker": false}
+{"k": "ended", "n": 509, "t": 1792832178.9, "pid": 46464, "ppid": 19248, "name": "python.exe", "worker": false}
+{"k": "started", "n": 510, "t": 1792832180.07, "pid": 50656, "ppid": 20304, "name": "python.exe", "worker": false}
+{"k": "ended", "n": 510, "t": 1792832180.08, "pid": 19248, "ppid": 50988, "name": "python.exe", "worker": false}
+{"k": "ended", "n": 510, "t": 1792832180.08, "pid": 24256, "ppid": 20304, "name": "python.exe", "worker": false}
+{"k": "ended", "n": 510, "t": 1792832180.08, "pid": 26368, "ppid": 41588, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 511, "t": 1792832181.2, "pid": 12324, "ppid": 20304, "name": "python.exe", "worker": false}
+{"k": "started", "n": 511, "t": 1792832181.2, "pid": 25552, "ppid": 27196, "name": "python.exe", "worker": false}
+{"k": "started", "n": 511, "t": 1792832181.2, "pid": 41084, "ppid": 25552, "name": "python.exe", "worker": false}
+{"k": "started", "n": 511, "t": 1792832181.2, "pid": 43900, "ppid": 41588, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 511, "t": 1792832181.2, "pid": 50656, "ppid": 20304, "name": "python.exe", "worker": false}
+{"k": "started", "n": 512, "t": 1792832182.29, "pid": 53484, "ppid": 20304, "name": "python.exe", "worker": false}
+{"k": "ended", "n": 512, "t": 1792832182.29, "pid": 12324, "ppid": 20304, "name": "python.exe", "worker": false}
+{"k": "tick", "n": 512, "t": 1792832182.29}
+{"k": "ended", "n": 513, "t": 1792832183.5, "pid": 25552, "ppid": 27196, "name": "python.exe", "worker": false}
+{"k": "ended", "n": 513, "t": 1792832183.5, "pid": 41084, "ppid": 25552, "name": "python.exe", "worker": false}
+{"k": "ended", "n": 513, "t": 1792832183.5, "pid": 43900, "ppid": 41588, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 513, "t": 1792832183.5, "pid": 53484, "ppid": 20304, "name": "python.exe", "worker": false}
+{"k": "started", "n": 514, "t": 1792832184.6, "pid": 15824, "ppid": 41588, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 514, "t": 1792832184.6, "pid": 54296, "ppid": 20304, "name": "python.exe", "worker": false}
+{"k": "started", "n": 515, "t": 1792832185.71, "pid": 20448, "ppid": 55516, "name": "python.exe", "worker": false}
+{"k": "started", "n": 515, "t": 1792832185.71, "pid": 54552, "ppid": 54296, "name": "python.exe", "worker": false}
+{"k": "started", "n": 515, "t": 1792832185.71, "pid": 56224, "ppid": 20448, "name": "python.exe", "worker": false}
+{"k": "ended", "n": 516, "t": 1792832186.98, "pid": 15824, "ppid": 41588, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 516, "t": 1792832186.98, "pid": 20448, "ppid": 55516, "name": "python.exe", "worker": false}
+{"k": "ended", "n": 516, "t": 1792832186.98, "pid": 56224, "ppid": 20448, "name": "python.exe", "worker": false}
+{"k": "tick", "n": 516, "t": 1792832186.98}
+{"k": "tick", "n": 520, "t": 1792832191.53}
+{"k": "ended", "n": 521, "t": 1792832192.67, "pid": 54296, "ppid": 20304, "name": "python.exe", "worker": false}
+{"k": "ended", "n": 521, "t": 1792832192.67, "pid": 54552, "ppid": 54296, "name": "python.exe", "worker": false}
+{"k": "started", "n": 522, "t": 1792832193.78, "pid": 49764, "ppid": 20304, "name": "python.exe", "worker": false}
+{"k": "started", "n": 523, "t": 1792832194.86, "pid": 45632, "ppid": 20304, "name": "python.exe", "worker": false}
+{"k": "ended", "n": 523, "t": 1792832194.86, "pid": 49764, "ppid": 20304, "name": "python.exe", "worker": false}
+{"k": "started", "n": 524, "t": 1792832195.94, "pid": 25348, "ppid": 20304, "name": "python.exe", "worker": false}
+{"k": "ended", "n": 524, "t": 1792832195.94, "pid": 45632, "ppid": 20304, "name": "python.exe", "worker": false}
+{"k": "tick", "n": 524, "t": 1792832195.94}
+{"k": "started", "n": 525, "t": 1792832197.04, "pid": 55100, "ppid": 20304, "name": "python.exe", "worker": false}
+{"k": "ended", "n": 525, "t": 1792832197.04, "pid": 25348, "ppid": 20304, "name": "python.exe", "worker": false}
+{"k": "ended", "n": 526, "t": 1792832198.11, "pid": 55100, "ppid": 20304, "name": "python.exe", "worker": false}
+{"k": "tick", "n": 528, "t": 1792832200.3}
+{"k": "tick", "n": 532, "t": 1792832204.65}
+{"k": "tick", "n": 536, "t": 1792832209.13}
+{"k": "started", "n": 539, "t": 1792832212.41, "pid": 39944, "ppid": 20304, "name": "python.exe", "worker": false}
+{"k": "started", "n": 540, "t": 1792832213.51, "pid": 30108, "ppid": 20304, "name": "python.exe", "worker": false}
+{"k": "ended", "n": 540, "t": 1792832213.51, "pid": 39944, "ppid": 20304, "name": "python.exe", "worker": false}
+{"k": "tick", "n": 540, "t": 1792832213.51}
+{"k": "ended", "n": 541, "t": 1792832214.8, "pid": 30108, "ppid": 20304, "name": "python.exe", "worker": false}
+{"k": "started", "n": 542, "t": 1792832216.13, "pid": 46500, "ppid": 20304, "name": "python.exe", "worker": false}
+{"k": "ended", "n": 543, "t": 1792832217.36, "pid": 46500, "ppid": 20304, "name": "python.exe", "worker": false}
+{"k": "tick", "n": 544, "t": 1792832218.62}
+{"k": "started", "n": 547, "t": 1792832222.45, "pid": 44644, "ppid": 20304, "name": "python.exe", "worker": false}
+{"k": "started", "n": 548, "t": 1792832223.75, "pid": 54568, "ppid": 20304, "name": "python.exe", "worker": false}
+{"k": "ended", "n": 548, "t": 1792832223.75, "pid": 44644, "ppid": 20304, "name": "python.exe", "worker": false}
+{"k": "tick", "n": 548, "t": 1792832223.75}
+{"k": "ended", "n": 549, "t": 1792832225.01, "pid": 54568, "ppid": 20304, "name": "python.exe", "worker": false}
+{"k": "started", "n": 552, "t": 1792832228.43, "pid": 13044, "ppid": 44808, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 552, "t": 1792832228.43, "pid": 54116, "ppid": 20304, "name": "python.exe", "worker": false}
+{"k": "tick", "n": 552, "t": 1792832228.43}
+{"k": "started", "n": 553, "t": 1792832229.56, "pid": 44180, "ppid": 20304, "name": "python.exe", "worker": false}
+{"k": "ended", "n": 553, "t": 1792832229.56, "pid": 13044, "ppid": 44808, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 553, "t": 1792832229.56, "pid": 54116, "ppid": 20304, "name": "python.exe", "worker": false}
+{"k": "started", "n": 554, "t": 1792832230.67, "pid": 33916, "ppid": 44808, "name": "python.exe", "worker": false}
+{"k": "ended", "n": 554, "t": 1792832230.67, "pid": 44180, "ppid": 20304, "name": "python.exe", "worker": false}
+{"k": "tick", "n": 556, "t": 1792832232.96}
+{"k": "tick", "n": 560, "t": 1792832237.86}
+{"k": "started", "n": 561, "t": 1792832239.04, "pid": 11332, "ppid": 51164, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 561, "t": 1792832239.04, "pid": 18248, "ppid": 41588, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 561, "t": 1792832239.04, "pid": 34716, "ppid": 18248, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 561, "t": 1792832239.04, "pid": 51164, "ppid": 52772, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 561, "t": 1792832239.04, "pid": 52772, "ppid": 34716, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 561, "t": 1792832239.04, "pid": 33916, "ppid": 44808, "name": "python.exe", "worker": false}
+{"k": "started", "n": 562, "t": 1792832240.15, "pid": 2980, "ppid": 20304, "name": "git.exe", "worker": false}
+{"k": "started", "n": 562, "t": 1792832240.15, "pid": 20716, "ppid": 44808, "name": "python.exe", "worker": false}
+{"k": "ended", "n": 563, "t": 1792832241.5, "pid": 2980, "ppid": 20304, "name": "git.exe", "worker": false}
+{"k": "ended", "n": 563, "t": 1792832241.5, "pid": 11332, "ppid": 51164, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 563, "t": 1792832241.5, "pid": 18248, "ppid": 41588, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 563, "t": 1792832241.5, "pid": 34716, "ppid": 18248, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 563, "t": 1792832241.5, "pid": 51164, "ppid": 52772, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 563, "t": 1792832241.5, "pid": 52772, "ppid": 34716, "name": "bash.exe", "worker": false}
+{"k": "tick", "n": 564, "t": 1792832242.82}
+{"k": "started", "n": 566, "t": 1792832245.97, "pid": 1820, "ppid": 41588, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 567, "t": 1792832247.21, "pid": 1820, "ppid": 41588, "name": "bash.exe", "worker": false}
+{"k": "tick", "n": 568, "t": 1792832248.28}
+{"k": "started", "n": 571, "t": 1792832252.32, "pid": 36040, "ppid": 41588, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 572, "t": 1792832253.55, "pid": 36040, "ppid": 41588, "name": "bash.exe", "worker": false}
+{"k": "tick", "n": 572, "t": 1792832253.55}
+{"k": "tick", "n": 576, "t": 1792832258.12}
+{"k": "started", "n": 580, "t": 1792832263.11, "pid": 2996, "ppid": 54116, "name": "bash.exe", "worker": false}
+{"k": "tick", "n": 580, "t": 1792832263.11}
+{"k": "ended", "n": 581, "t": 1792832264.41, "pid": 2996, "ppid": 54116, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 584, "t": 1792832268.31, "pid": 15776, "ppid": 20304, "name": "bash.exe", "worker": false}
+{"k": "tick", "n": 584, "t": 1792832268.31}
+{"k": "ended", "n": 585, "t": 1792832269.57, "pid": 15776, "ppid": 20304, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 586, "t": 1792832270.84, "pid": 24132, "ppid": 41588, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 587, "t": 1792832272.01, "pid": 24132, "ppid": 41588, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 588, "t": 1792832273.28, "pid": 18272, "ppid": 41588, "name": "bash.exe", "worker": false}
+{"k": "tick", "n": 588, "t": 1792832273.28}
+{"k": "started", "n": 589, "t": 1792832274.5, "pid": 15864, "ppid": 41588, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 589, "t": 1792832274.5, "pid": 18272, "ppid": 41588, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 590, "t": 1792832275.82, "pid": 2368, "ppid": 20304, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 590, "t": 1792832275.82, "pid": 15864, "ppid": 41588, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 590, "t": 1792832275.82, "pid": 20716, "ppid": 44808, "name": "python.exe", "worker": false}
+{"k": "started", "n": 591, "t": 1792832277.03, "pid": 25216, "ppid": 41588, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 591, "t": 1792832277.03, "pid": 2368, "ppid": 20304, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 592, "t": 1792832278.51, "pid": 25216, "ppid": 41588, "name": "bash.exe", "worker": false}
+{"k": "tick", "n": 592, "t": 1792832278.51}
+{"k": "started", "n": 593, "t": 1792832279.82, "pid": 41948, "ppid": 20304, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 594, "t": 1792832281.11, "pid": 41948, "ppid": 20304, "name": "bash.exe", "worker": false}
+{"k": "tick", "n": 596, "t": 1792832283.66}
+{"k": "started", "n": 598, "t": 1792832286.32, "pid": 18100, "ppid": 2416, "name": "pythonw.exe", "worker": false}
+{"k": "tick", "n": 600, "t": 1792832288.76}
+{"k": "started", "n": 601, "t": 1792832289.94, "pid": 36400, "ppid": 32248, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 601, "t": 1792832289.94, "pid": 54752, "ppid": 20304, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 602, "t": 1792832291.1, "pid": 18100, "ppid": 2416, "name": "pythonw.exe", "worker": false}
+{"k": "ended", "n": 604, "t": 1792832293.49, "pid": 54752, "ppid": 20304, "name": "bash.exe", "worker": false}
+{"k": "tick", "n": 604, "t": 1792832293.49}
+{"k": "started", "n": 606, "t": 1792832296.06, "pid": 28812, "ppid": 20304, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 606, "t": 1792832296.06, "pid": 44240, "ppid": 50748, "name": "bash.exe", "worker": false}
+{"k": "tick", "n": 608, "t": 1792832298.22}
+{"k": "ended", "n": 609, "t": 1792832299.3, "pid": 28812, "ppid": 20304, "name": "bash.exe", "worker": false}
+{"k": "tick", "n": 612, "t": 1792832302.89}
+{"k": "ended", "n": 614, "t": 1792832305.12, "pid": 36400, "ppid": 32248, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 616, "t": 1792832307.71, "pid": 3980, "ppid": 41588, "name": "git.exe", "worker": false}
+{"k": "tick", "n": 616, "t": 1792832307.71}
+{"k": "ended", "n": 617, "t": 1792832309.01, "pid": 3980, "ppid": 41588, "name": "git.exe", "worker": false}
+{"k": "ended", "n": 618, "t": 1792832310.43, "pid": 44240, "ppid": 50748, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 619, "t": 1792832311.7, "pid": 8872, "ppid": 20304, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 619, "t": 1792832311.7, "pid": 38720, "ppid": 36808, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 619, "t": 1792832311.7, "pid": 55248, "ppid": 44808, "name": "python.exe", "worker": false}
+{"k": "ended", "n": 620, "t": 1792832312.91, "pid": 55248, "ppid": 44808, "name": "python.exe", "worker": false}
+{"k": "tick", "n": 620, "t": 1792832312.91}
+{"k": "ended", "n": 622, "t": 1792832315.27, "pid": 8872, "ppid": 20304, "name": "bash.exe", "worker": false}
+{"k": "tick", "n": 624, "t": 1792832317.5}
+{"k": "tick", "n": 628, "t": 1792832322.15}
+{"k": "started", "n": 631, "t": 1792832325.73, "pid": 3980, "ppid": 44808, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 631, "t": 1792832325.73, "pid": 53536, "ppid": 3980, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 632, "t": 1792832326.95, "pid": 16848, "ppid": 29132, "name": "python.exe", "worker": false}
+{"k": "started", "n": 632, "t": 1792832326.95, "pid": 29132, "ppid": 53536, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 632, "t": 1792832326.95, "pid": 54372, "ppid": 16848, "name": "python.exe", "worker": false}
+{"k": "ended", "n": 632, "t": 1792832326.95, "pid": 38720, "ppid": 36808, "name": "bash.exe", "worker": false}
+{"k": "tick", "n": 632, "t": 1792832326.95}
+{"k": "tick", "n": 636, "t": 1792832331.65}
+{"k": "started", "n": 637, "t": 1792832332.87, "pid": 23364, "ppid": 20304, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 638, "t": 1792832333.96, "pid": 4372, "ppid": 52436, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 638, "t": 1792832333.96, "pid": 23364, "ppid": 20304, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 639, "t": 1792832335.03, "pid": 4372, "ppid": 52436, "name": "bash.exe", "worker": false}
+{"k": "tick", "n": 640, "t": 1792832336.08}
+{"k": "tick", "n": 644, "t": 1792832340.55}
+{"k": "started", "n": 648, "t": 1792832344.89, "pid": 19988, "ppid": 20284, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 648, "t": 1792832344.89, "pid": 20284, "ppid": 20304, "name": "bash.exe", "worker": false}
+{"k": "tick", "n": 648, "t": 1792832344.89}
+{"k": "ended", "n": 649, "t": 1792832346.02, "pid": 19988, "ppid": 20284, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 649, "t": 1792832346.02, "pid": 20284, "ppid": 20304, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 650, "t": 1792832347.17, "pid": 2216, "ppid": 52568, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 650, "t": 1792832347.17, "pid": 10820, "ppid": 20304, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 651, "t": 1792832348.3, "pid": 4892, "ppid": 32312, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 651, "t": 1792832348.3, "pid": 32312, "ppid": 20304, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 651, "t": 1792832348.3, "pid": 2216, "ppid": 52568, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 651, "t": 1792832348.3, "pid": 10820, "ppid": 20304, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 652, "t": 1792832349.35, "pid": 4892, "ppid": 32312, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 652, "t": 1792832349.35, "pid": 32312, "ppid": 20304, "name": "bash.exe", "worker": false}
+{"k": "tick", "n": 652, "t": 1792832349.35}
+{"k": "started", "n": 653, "t": 1792832350.42, "pid": 55424, "ppid": 20304, "name": "git.exe", "worker": false}
+{"k": "ended", "n": 654, "t": 1792832351.45, "pid": 55424, "ppid": 20304, "name": "git.exe", "worker": false}
+{"k": "tick", "n": 656, "t": 1792832353.74}
+{"k": "ended", "n": 658, "t": 1792832356.32, "pid": 3980, "ppid": 44808, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 658, "t": 1792832356.32, "pid": 16848, "ppid": 29132, "name": "python.exe", "worker": false}
+{"k": "ended", "n": 658, "t": 1792832356.32, "pid": 29132, "ppid": 53536, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 658, "t": 1792832356.32, "pid": 53536, "ppid": 3980, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 658, "t": 1792832356.32, "pid": 54372, "ppid": 16848, "name": "python.exe", "worker": false}
+{"k": "tick", "n": 660, "t": 1792832358.76}
+{"k": "started", "n": 661, "t": 1792832359.89, "pid": 4344, "ppid": 29248, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 662, "t": 1792832361.03, "pid": 4344, "ppid": 29248, "name": "bash.exe", "worker": false}
+{"k": "tick", "n": 664, "t": 1792832363.25}
+{"k": "tick", "n": 668, "t": 1792832368.16}
+{"k": "tick", "n": 672, "t": 1792832373.19}
+{"k": "started", "n": 673, "t": 1792832374.44, "pid": 26616, "ppid": 42708, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 673, "t": 1792832374.44, "pid": 42708, "ppid": 41588, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 675, "t": 1792832377.07, "pid": 13560, "ppid": 41588, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 675, "t": 1792832377.07, "pid": 36320, "ppid": 37216, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 675, "t": 1792832377.07, "pid": 37216, "ppid": 20304, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 675, "t": 1792832377.07, "pid": 52876, "ppid": 13560, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 675, "t": 1792832377.07, "pid": 26616, "ppid": 42708, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 675, "t": 1792832377.07, "pid": 42708, "ppid": 41588, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 676, "t": 1792832378.36, "pid": 13560, "ppid": 41588, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 676, "t": 1792832378.36, "pid": 36320, "ppid": 37216, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 676, "t": 1792832378.36, "pid": 37216, "ppid": 20304, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 676, "t": 1792832378.36, "pid": 52876, "ppid": 13560, "name": "bash.exe", "worker": false}
+{"k": "tick", "n": 676, "t": 1792832378.36}
+{"k": "started", "n": 677, "t": 1792832379.68, "pid": 24300, "ppid": 38164, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 677, "t": 1792832379.68, "pid": 38164, "ppid": 20304, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 678, "t": 1792832380.96, "pid": 35868, "ppid": 50756, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 678, "t": 1792832380.96, "pid": 50756, "ppid": 41588, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 678, "t": 1792832380.96, "pid": 24300, "ppid": 38164, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 678, "t": 1792832380.96, "pid": 38164, "ppid": 20304, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 679, "t": 1792832382.2, "pid": 42816, "ppid": 55008, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 679, "t": 1792832382.2, "pid": 55008, "ppid": 20304, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 679, "t": 1792832382.2, "pid": 35868, "ppid": 50756, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 679, "t": 1792832382.2, "pid": 50756, "ppid": 41588, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 680, "t": 1792832383.51, "pid": 32888, "ppid": 41588, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 680, "t": 1792832383.51, "pid": 47228, "ppid": 32888, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 680, "t": 1792832383.51, "pid": 42816, "ppid": 55008, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 680, "t": 1792832383.51, "pid": 55008, "ppid": 20304, "name": "bash.exe", "worker": false}
+{"k": "tick", "n": 680, "t": 1792832383.51}
+{"k": "started", "n": 681, "t": 1792832384.81, "pid": 27704, "ppid": 20304, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 681, "t": 1792832384.81, "pid": 53832, "ppid": 27704, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 681, "t": 1792832384.81, "pid": 32888, "ppid": 41588, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 681, "t": 1792832384.81, "pid": 47228, "ppid": 32888, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 682, "t": 1792832386.12, "pid": 27704, "ppid": 20304, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 682, "t": 1792832386.12, "pid": 53832, "ppid": 27704, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 683, "t": 1792832387.38, "pid": 30364, "ppid": 48136, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 683, "t": 1792832387.38, "pid": 48136, "ppid": 20304, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 684, "t": 1792832388.6, "pid": 30868, "ppid": 41588, "name": "git.exe", "worker": false}
+{"k": "ended", "n": 684, "t": 1792832388.6, "pid": 30364, "ppid": 48136, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 684, "t": 1792832388.6, "pid": 48136, "ppid": 20304, "name": "bash.exe", "worker": false}
+{"k": "tick", "n": 684, "t": 1792832388.6}
+{"k": "started", "n": 685, "t": 1792832389.82, "pid": 47864, "ppid": 51400, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 685, "t": 1792832389.82, "pid": 51400, "ppid": 20304, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 685, "t": 1792832389.82, "pid": 30868, "ppid": 41588, "name": "git.exe", "worker": false}
+{"k": "started", "n": 686, "t": 1792832391.06, "pid": 7748, "ppid": 47500, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 686, "t": 1792832391.06, "pid": 47500, "ppid": 41588, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 686, "t": 1792832391.06, "pid": 47864, "ppid": 51400, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 686, "t": 1792832391.06, "pid": 51400, "ppid": 20304, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 687, "t": 1792832392.22, "pid": 1020, "ppid": 49376, "name": "python.exe", "worker": false}
+{"k": "started", "n": 687, "t": 1792832392.22, "pid": 29612, "ppid": 7748, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 687, "t": 1792832392.22, "pid": 32560, "ppid": 49300, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 687, "t": 1792832392.22, "pid": 49300, "ppid": 20304, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 687, "t": 1792832392.22, "pid": 49376, "ppid": 29612, "name": "python.exe", "worker": false}
+{"k": "ended", "n": 688, "t": 1792832393.41, "pid": 32560, "ppid": 49300, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 688, "t": 1792832393.41, "pid": 49300, "ppid": 20304, "name": "bash.exe", "worker": false}
+{"k": "tick", "n": 688, "t": 1792832393.41}
+{"k": "started", "n": 689, "t": 1792832394.58, "pid": 9684, "ppid": 50340, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 689, "t": 1792832394.58, "pid": 50340, "ppid": 20304, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 691, "t": 1792832396.89, "pid": 55224, "ppid": 9684, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 691, "t": 1792832396.89, "pid": 50340, "ppid": 20304, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 692, "t": 1792832398.08, "pid": 7148, "ppid": 20304, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 692, "t": 1792832398.08, "pid": 52152, "ppid": 7148, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 692, "t": 1792832398.08, "pid": 9684, "ppid": 50340, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 692, "t": 1792832398.08, "pid": 55224, "ppid": 9684, "name": "bash.exe", "worker": false}
+{"k": "tick", "n": 692, "t": 1792832398.08}
+{"k": "ended", "n": 693, "t": 1792832399.41, "pid": 7148, "ppid": 20304, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 693, "t": 1792832399.41, "pid": 52152, "ppid": 7148, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 694, "t": 1792832400.72, "pid": 19032, "ppid": 55508, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 695, "t": 1792832402.03, "pid": 14776, "ppid": 20304, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 695, "t": 1792832402.03, "pid": 35232, "ppid": 14776, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 695, "t": 1792832402.03, "pid": 19032, "ppid": 55508, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 696, "t": 1792832403.2, "pid": 2840, "ppid": 36112, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 696, "t": 1792832403.2, "pid": 36112, "ppid": 20304, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 696, "t": 1792832403.2, "pid": 14776, "ppid": 20304, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 696, "t": 1792832403.2, "pid": 35232, "ppid": 14776, "name": "bash.exe", "worker": false}
+{"k": "tick", "n": 696, "t": 1792832403.2}
+{"k": "ended", "n": 697, "t": 1792832404.5, "pid": 36112, "ppid": 20304, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 698, "t": 1792832405.73, "pid": 2840, "ppid": 36112, "name": "bash.exe", "worker": false}
+{"k": "tick", "n": 700, "t": 1792832408.19}
+{"k": "started", "n": 701, "t": 1792832409.27, "pid": 15848, "ppid": 20304, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 701, "t": 1792832409.27, "pid": 55916, "ppid": 15848, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 702, "t": 1792832410.4, "pid": 38840, "ppid": 43932, "name": "python.exe", "worker": false}
+{"k": "started", "n": 702, "t": 1792832410.4, "pid": 43932, "ppid": 55916, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 702, "t": 1792832410.4, "pid": 55404, "ppid": 38840, "name": "python.exe", "worker": false}
+{"k": "tick", "n": 704, "t": 1792832412.49}
+{"k": "tick", "n": 708, "t": 1792832416.8}
+{"k": "tick", "n": 712, "t": 1792832421.08}
+{"k": "ended", "n": 713, "t": 1792832422.13, "pid": 1020, "ppid": 49376, "name": "python.exe", "worker": false}
+{"k": "ended", "n": 713, "t": 1792832422.13, "pid": 7748, "ppid": 47500, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 713, "t": 1792832422.13, "pid": 29612, "ppid": 7748, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 713, "t": 1792832422.13, "pid": 47500, "ppid": 41588, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 713, "t": 1792832422.13, "pid": 49376, "ppid": 29612, "name": "python.exe", "worker": false}
+{"k": "ended", "n": 715, "t": 1792832424.49, "pid": 38840, "ppid": 43932, "name": "python.exe", "worker": false}
+{"k": "ended", "n": 715, "t": 1792832424.49, "pid": 43932, "ppid": 55916, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 715, "t": 1792832424.49, "pid": 55404, "ppid": 38840, "name": "python.exe", "worker": false}
+{"k": "started", "n": 716, "t": 1792832425.89, "pid": 19368, "ppid": 20448, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 716, "t": 1792832425.89, "pid": 20448, "ppid": 46404, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 716, "t": 1792832425.89, "pid": 41660, "ppid": 51976, "name": "python.exe", "worker": false}
+{"k": "started", "n": 716, "t": 1792832425.89, "pid": 50656, "ppid": 41660, "name": "python.exe", "worker": false}
+{"k": "tick", "n": 716, "t": 1792832425.89}
+{"k": "started", "n": 717, "t": 1792832427.17, "pid": 54288, "ppid": 50656, "name": "python.exe", "worker": false}
+{"k": "ended", "n": 717, "t": 1792832427.17, "pid": 19368, "ppid": 20448, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 717, "t": 1792832427.17, "pid": 20448, "ppid": 46404, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 718, "t": 1792832428.51, "pid": 41660, "ppid": 51976, "name": "python.exe", "worker": false}
+{"k": "ended", "n": 718, "t": 1792832428.51, "pid": 50656, "ppid": 41660, "name": "python.exe", "worker": false}
+{"k": "ended", "n": 718, "t": 1792832428.51, "pid": 54288, "ppid": 50656, "name": "python.exe", "worker": false}
+{"k": "started", "n": 719, "t": 1792832429.87, "pid": 27076, "ppid": 46404, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 719, "t": 1792832429.87, "pid": 15848, "ppid": 20304, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 719, "t": 1792832429.87, "pid": 55916, "ppid": 15848, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 720, "t": 1792832431.23, "pid": 46908, "ppid": 47392, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 720, "t": 1792832431.23, "pid": 47392, "ppid": 46404, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 720, "t": 1792832431.23, "pid": 27076, "ppid": 46404, "name": "bash.exe", "worker": false}
+{"k": "tick", "n": 720, "t": 1792832431.23}
+{"k": "started", "n": 721, "t": 1792832432.54, "pid": 5400, "ppid": 20376, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 721, "t": 1792832432.54, "pid": 20376, "ppid": 20304, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 722, "t": 1792832433.79, "pid": 36984, "ppid": 44116, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 722, "t": 1792832433.79, "pid": 44116, "ppid": 20304, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 722, "t": 1792832433.79, "pid": 48144, "ppid": 54880, "name": "python.exe", "worker": false}
+{"k": "started", "n": 722, "t": 1792832433.79, "pid": 54580, "ppid": 48144, "name": "python.exe", "worker": false}
+{"k": "started", "n": 722, "t": 1792832433.79, "pid": 54880, "ppid": 11260, "name": "python.exe", "worker": false}
+{"k": "ended", "n": 722, "t": 1792832433.79, "pid": 5400, "ppid": 20376, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 722, "t": 1792832433.79, "pid": 20376, "ppid": 20304, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 723, "t": 1792832434.92, "pid": 29272, "ppid": 51756, "name": "python.exe", "worker": false}
+{"k": "started", "n": 723, "t": 1792832434.92, "pid": 35200, "ppid": 29272, "name": "python.exe", "worker": false}
+{"k": "started", "n": 723, "t": 1792832434.92, "pid": 51756, "ppid": 36984, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 724, "t": 1792832436.06, "pid": 48144, "ppid": 54880, "name": "python.exe", "worker": false}
+{"k": "ended", "n": 724, "t": 1792832436.06, "pid": 54580, "ppid": 48144, "name": "python.exe", "worker": false}
+{"k": "ended", "n": 724, "t": 1792832436.06, "pid": 54880, "ppid": 11260, "name": "python.exe", "worker": false}
+{"k": "tick", "n": 724, "t": 1792832436.06}
+{"k": "started", "n": 725, "t": 1792832437.23, "pid": 3960, "ppid": 27600, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 725, "t": 1792832437.23, "pid": 27600, "ppid": 46404, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 725, "t": 1792832437.23, "pid": 46908, "ppid": 47392, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 725, "t": 1792832437.23, "pid": 47392, "ppid": 46404, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 727, "t": 1792832439.43, "pid": 35580, "ppid": 42584, "name": "python.exe", "worker": false}
+{"k": "started", "n": 727, "t": 1792832439.43, "pid": 42584, "ppid": 50100, "name": "python.exe", "worker": false}
+{"k": "started", "n": 727, "t": 1792832439.43, "pid": 50100, "ppid": 3960, "name": "bash.exe", "worker": false}
+{"k": "tick", "n": 728, "t": 1792832440.49}
+{"k": "tick", "n": 732, "t": 1792832444.73}
+{"k": "tick", "n": 736, "t": 1792832449.01}
+{"k": "tick", "n": 740, "t": 1792832453.23}
+{"k": "tick", "n": 744, "t": 1792832457.5}
+{"k": "tick", "n": 748, "t": 1792832461.69}
+{"k": "ended", "n": 750, "t": 1792832463.98, "pid": 29272, "ppid": 51756, "name": "python.exe", "worker": false}
+{"k": "ended", "n": 750, "t": 1792832463.98, "pid": 35200, "ppid": 29272, "name": "python.exe", "worker": false}
+{"k": "ended", "n": 750, "t": 1792832463.98, "pid": 35580, "ppid": 42584, "name": "python.exe", "worker": false}
+{"k": "ended", "n": 750, "t": 1792832463.98, "pid": 36984, "ppid": 44116, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 750, "t": 1792832463.98, "pid": 42584, "ppid": 50100, "name": "python.exe", "worker": false}
+{"k": "ended", "n": 750, "t": 1792832463.98, "pid": 44116, "ppid": 20304, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 750, "t": 1792832463.98, "pid": 50100, "ppid": 3960, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 750, "t": 1792832463.98, "pid": 51756, "ppid": 36984, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 751, "t": 1792832465.11, "pid": 28624, "ppid": 52348, "name": "python.exe", "worker": false}
+{"k": "started", "n": 751, "t": 1792832465.11, "pid": 40932, "ppid": 28624, "name": "python.exe", "worker": false}
+{"k": "started", "n": 751, "t": 1792832465.11, "pid": 52348, "ppid": 2596, "name": "python.exe", "worker": false}
+{"k": "tick", "n": 752, "t": 1792832466.23}
+{"k": "ended", "n": 753, "t": 1792832467.41, "pid": 27600, "ppid": 46404, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 753, "t": 1792832467.41, "pid": 28624, "ppid": 52348, "name": "python.exe", "worker": false}
+{"k": "ended", "n": 753, "t": 1792832467.41, "pid": 40932, "ppid": 28624, "name": "python.exe", "worker": false}
+{"k": "ended", "n": 753, "t": 1792832467.41, "pid": 52348, "ppid": 2596, "name": "python.exe", "worker": false}
+{"k": "ended", "n": 754, "t": 1792832468.48, "pid": 3960, "ppid": 27600, "name": "bash.exe", "worker": false}
+{"k": "tick", "n": 756, "t": 1792832470.6}
+{"k": "tick", "n": 760, "t": 1792832474.98}
+{"k": "tick", "n": 764, "t": 1792832479.41}
+{"k": "tick", "n": 768, "t": 1792832483.69}
+{"k": "started", "n": 772, "t": 1792832488.21, "pid": 46792, "ppid": 56076, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 772, "t": 1792832488.21, "pid": 56076, "ppid": 50284, "name": "bash.exe", "worker": false}
+{"k": "tick", "n": 772, "t": 1792832488.21}
+{"k": "started", "n": 774, "t": 1792832490.4, "pid": 6100, "ppid": 47324, "name": "python.exe", "worker": false}
+{"k": "started", "n": 774, "t": 1792832490.4, "pid": 43252, "ppid": 14128, "name": "python.exe", "worker": false}
+{"k": "started", "n": 774, "t": 1792832490.4, "pid": 47324, "ppid": 43252, "name": "python.exe", "worker": false}
+{"k": "ended", "n": 775, "t": 1792832491.55, "pid": 43252, "ppid": 14128, "name": "python.exe", "worker": false}
+{"k": "ended", "n": 775, "t": 1792832491.55, "pid": 47324, "ppid": 43252, "name": "python.exe", "worker": false}
+{"k": "ended", "n": 776, "t": 1792832492.82, "pid": 6100, "ppid": 47324, "name": "python.exe", "worker": false}
+{"k": "ended", "n": 776, "t": 1792832492.82, "pid": 46792, "ppid": 56076, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 776, "t": 1792832492.82, "pid": 56076, "ppid": 50284, "name": "bash.exe", "worker": false}
+{"k": "tick", "n": 776, "t": 1792832492.82}
+{"k": "tick", "n": 780, "t": 1792832497.07}
+{"k": "tick", "n": 784, "t": 1792832501.19}
+{"k": "tick", "n": 788, "t": 1792832505.45}
+{"k": "tick", "n": 792, "t": 1792832509.6}
+{"k": "tick", "n": 796, "t": 1792832513.77}
+{"k": "tick", "n": 800, "t": 1792832517.92}
+{"k": "tick", "n": 804, "t": 1792832522.09}
+{"k": "tick", "n": 808, "t": 1792832526.3}
+{"k": "started", "n": 812, "t": 1792832530.81, "pid": 46272, "ppid": 49332, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 812, "t": 1792832530.81, "pid": 49332, "ppid": 22264, "name": "bash.exe", "worker": false}
+{"k": "tick", "n": 812, "t": 1792832530.81}
+{"k": "started", "n": 813, "t": 1792832531.88, "pid": 49404, "ppid": 46272, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 813, "t": 1792832531.88, "pid": 53076, "ppid": 49404, "name": "python.exe", "worker": false}
+{"k": "started", "n": 813, "t": 1792832531.88, "pid": 54584, "ppid": 53076, "name": "python.exe", "worker": false}
+{"k": "started", "n": 814, "t": 1792832533.12, "pid": 49024, "ppid": 36320, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 814, "t": 1792832533.12, "pid": 55436, "ppid": 49024, "name": "bash.exe", "worker": false}
+{"k": "started", "n": 815, "t": 1792832534.17, "pid": 12152, "ppid": 34572, "name": "python.exe", "worker": false}
+{"k": "started", "n": 815, "t": 1792832534.17, "pid": 34572, "ppid": 51516, "name": "python.exe", "worker": false}
+{"k": "started", "n": 815, "t": 1792832534.17, "pid": 51516, "ppid": 55436, "name": "bash.exe", "worker": false}
+{"k": "tick", "n": 816, "t": 1792832535.19}
+{"k": "tick", "n": 820, "t": 1792832539.3}
+{"k": "tick", "n": 824, "t": 1792832543.46}
+{"k": "tick", "n": 828, "t": 1792832547.56}
+{"k": "tick", "n": 832, "t": 1792832551.71}
+{"k": "tick", "n": 836, "t": 1792832555.84}
+{"k": "tick", "n": 840, "t": 1792832560.01}
+{"k": "ended", "n": 841, "t": 1792832561.08, "pid": 46272, "ppid": 49332, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 841, "t": 1792832561.08, "pid": 49332, "ppid": 22264, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 841, "t": 1792832561.08, "pid": 49404, "ppid": 46272, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 841, "t": 1792832561.08, "pid": 53076, "ppid": 49404, "name": "python.exe", "worker": false}
+{"k": "ended", "n": 841, "t": 1792832561.08, "pid": 54584, "ppid": 53076, "name": "python.exe", "worker": false}
+{"k": "ended", "n": 843, "t": 1792832563.32, "pid": 49024, "ppid": 36320, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 843, "t": 1792832563.32, "pid": 51516, "ppid": 55436, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 843, "t": 1792832563.32, "pid": 55436, "ppid": 49024, "name": "bash.exe", "worker": false}
+{"k": "ended", "n": 844, "t": 1792832564.34, "pid": 12152, "ppid": 34572, "name": "python.exe", "worker": false}
+{"k": "ended", "n": 844, "t": 1792832564.34, "pid": 34572, "ppid": 51516, "name": "python.exe", "worker": false}
+{"k": "tick", "n": 844, "t": 1792832564.34}
+{"k": "tick", "n": 848, "t": 1792832568.49}
+{"k": "tick", "n": 852, "t": 1792832572.91}
+{"k": "tick", "n": 856, "t": 1792832577.16}
+{"k": "tick", "n": 860, "t": 1792832581.28}
+{"k": "tick", "n": 864, "t": 1792832585.38}
+{"k": "tick", "n": 868, "t": 1792832589.57}
+{"k": "tick", "n": 872, "t": 1792832593.72}
+{"k": "tick", "n": 876, "t": 1792832597.8}
+{"k": "tick", "n": 880, "t": 1792832601.98}
+{"k": "tick", "n": 884, "t": 1792832606.05}
+{"k": "tick", "n": 888, "t": 1792832610.21}
+{"k": "tick", "n": 892, "t": 1792832614.27}
+{"k": "tick", "n": 896, "t": 1792832618.45}
+{"k": "tick", "n": 900, "t": 1792832622.59}
+{"k": "tick", "n": 904, "t": 1792832626.79}
+{"k": "tick", "n": 908, "t": 1792832630.9}
+{"k": "ended", "n": 909, "t": 1792832631.94, "pid": 7956, "ppid": 27624, "name": "python.exe", "worker": false}
+{"k": "ended", "n": 909, "t": 1792832631.94, "pid": 27624, "ppid": 30952, "name": "python.exe", "worker": false}
+{"k": "ended", "n": 909, "t": 1792832631.94, "pid": 30952, "ppid": 48476, "name": "python.exe", "worker": false}
+{"k": "started", "n": 910, "t": 1792832632.96, "pid": 24064, "ppid": 44796, "name": "git.exe", "worker": false}
+{"k": "started", "n": 910, "t": 1792832632.96, "pid": 44796, "ppid": 18408, "name": "bash.exe", "worker": false}
+{"k": "tick", "n": 912, "t": 1792832635.07}
+{"k": "ended", "n": 914, "t": 1792832637.25, "pid": 24064, "ppid": 44796, "name": "git.exe", "worker": false}
+{"k": "ended", "n": 914, "t": 1792832637.25, "pid": 44796, "ppid": 18408, "name": "bash.exe", "worker": false}

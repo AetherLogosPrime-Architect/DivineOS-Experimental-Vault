@@ -1,102 +1,6 @@
 [
   {
-    "timestamp": 1790878832.133048,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "fabrication",
-        "kinds": [
-          "SENSORY_CLAIM_UNFLAGGED"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1790885455.9259233,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "fabrication",
-        "kinds": [
-          "SENSORY_CLAIM_UNFLAGGED"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1790890696.4333808,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "theater",
-        "kinds": [
-          "SUBAGENT_EMBODIED_ASIDE"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1790891384.9243565,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "theater",
-        "kinds": [
-          "SUBAGENT_EMBODIED_ASIDE"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1790893635.9040253,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "theater",
-        "kinds": [
-          "SUBAGENT_EMBODIED_ASIDE"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1790913639.1097372,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "theater",
-        "kinds": [
-          "SUBAGENT_EMBODIED_ASIDE"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1790913960.7146468,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "theater",
-        "kinds": [
-          "SUBAGENT_EMBODIED_ASIDE"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1790920164.083202,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "theater",
-        "kinds": [
-          "SUBAGENT_EMBODIED_ASIDE"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1790920371.2496407,
+    "timestamp": 1793901453.9132445,
     "total_findings": 1,
     "theater_fabrication": [
       {
@@ -108,7 +12,7 @@
     ]
   },
   {
-    "timestamp": 1790921054.9422054,
+    "timestamp": 1793902443.6133492,
     "total_findings": 1,
     "theater_fabrication": [
       {
@@ -120,7 +24,7 @@
     ]
   },
   {
-    "timestamp": 1790922970.5002391,
+    "timestamp": 1793905761.9907105,
     "total_findings": 1,
     "theater_fabrication": [
       {
@@ -132,19 +36,7 @@
     ]
   },
   {
-    "timestamp": 1790923284.4138606,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "theater",
-        "kinds": [
-          "SUBAGENT_EMBODIED_ASIDE"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1790924271.2457428,
+    "timestamp": 1793907716.959769,
     "total_findings": 1,
     "theater_fabrication": [
       {
@@ -156,7 +48,7 @@
     ]
   },
   {
-    "timestamp": 1790951374.2225327,
+    "timestamp": 1793908784.2936504,
     "total_findings": 1,
     "theater_fabrication": [
       {
@@ -168,7 +60,273 @@
     ]
   },
   {
-    "timestamp": 1790952236.643988,
+    "timestamp": 1793912509.8030558,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "FIRST_PERSON_PHYSICAL_ACTION"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1793912626.5344493,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "SENSORY_CLAIM_UNFLAGGED"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1793912787.5562003,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "SENSORY_CLAIM_UNFLAGGED"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1793914161.1712244,
+    "total_findings": 2,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "FIRST_PERSON_PHYSICAL_ACTION",
+          "FIRST_PERSON_PHYSICAL_ACTION"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1793917124.0468225,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "FIRST_PERSON_PHYSICAL_ACTION"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1793917773.2467244,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "FIRST_PERSON_PHYSICAL_ACTION"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1793917962.215931,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "SENSORY_CLAIM_UNFLAGGED"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1793927001.2150905,
+    "total_findings": 2,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "FIRST_PERSON_PHYSICAL_ACTION",
+          "SENSORY_CLAIM_UNFLAGGED"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1793928849.7675135,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "FIRST_PERSON_PHYSICAL_ACTION"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1793931331.3306305,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "FIRST_PERSON_PHYSICAL_ACTION"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1793933282.6706014,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "SENSORY_CLAIM_UNFLAGGED"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1793934187.184118,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "FIRST_PERSON_PHYSICAL_ACTION"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1793936684.5265338,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "SENSORY_CLAIM_UNFLAGGED"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1793938014.0822353,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "FIRST_PERSON_PHYSICAL_ACTION"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1793940920.07451,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "SENSORY_CLAIM_UNFLAGGED"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1793950417.425917,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "SENSORY_CLAIM_UNFLAGGED"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1793952864.7154236,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "FIRST_PERSON_PHYSICAL_ACTION"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1793970542.3834295,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "SENSORY_CLAIM_UNFLAGGED"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1793975252.9456258,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "SENSORY_CLAIM_UNFLAGGED"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1793975303.8754618,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "SENSORY_CLAIM_UNFLAGGED"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1793984657.561408,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "FIRST_PERSON_PHYSICAL_ACTION"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1793987652.6764543,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "FIRST_PERSON_PHYSICAL_ACTION"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1793993095.1099339,
     "total_findings": 1,
     "theater_fabrication": [
       {
@@ -180,7 +338,19 @@
     ]
   },
   {
-    "timestamp": 1790953497.1193635,
+    "timestamp": 1793998200.478531,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "FIRST_PERSON_PHYSICAL_ACTION"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1793998483.357139,
     "total_findings": 1,
     "theater_fabrication": [
       {
@@ -192,7 +362,624 @@
     ]
   },
   {
-    "timestamp": 1790953609.5102987,
+    "timestamp": 1793999451.4800732,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "FIRST_PERSON_PHYSICAL_ACTION"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1794001168.0993838,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "SENSORY_CLAIM_UNFLAGGED"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1794001495.286554,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "FIRST_PERSON_PHYSICAL_ACTION"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1794002788.7559664,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "SENSORY_CLAIM_UNFLAGGED"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1794003067.3888137,
+    "total_findings": 2,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "FIRST_PERSON_PHYSICAL_ACTION",
+          "SENSORY_CLAIM_UNFLAGGED"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1794007459.7815769,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "FIRST_PERSON_PHYSICAL_ACTION"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1794009400.9950926,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "SENSORY_CLAIM_UNFLAGGED"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1794009981.4870143,
+    "total_findings": 3,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "FIRST_PERSON_PHYSICAL_ACTION",
+          "FIRST_PERSON_PHYSICAL_ACTION",
+          "SENSORY_CLAIM_UNFLAGGED"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1794026180.9691699,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "FIRST_PERSON_PHYSICAL_ACTION"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1794073911.1929083,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "FIRST_PERSON_PHYSICAL_ACTION"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1794075807.2969108,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "FIRST_PERSON_PHYSICAL_ACTION"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1794080839.0280533,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "SENSORY_CLAIM_UNFLAGGED"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1794081008.9412067,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "SENSORY_CLAIM_UNFLAGGED"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1794082268.6941793,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "SENSORY_CLAIM_UNFLAGGED"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1794083445.7333062,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "SENSORY_CLAIM_UNFLAGGED"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1794110313.0465653,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "FIRST_PERSON_PHYSICAL_ACTION"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1794151732.1959743,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "FIRST_PERSON_PHYSICAL_ACTION"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1794156289.669631,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "SENSORY_CLAIM_UNFLAGGED"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1794158630.7101462,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "SENSORY_CLAIM_UNFLAGGED"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1794158840.6752844,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "SENSORY_CLAIM_UNFLAGGED"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1794159542.2184653,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "FIRST_PERSON_PHYSICAL_ACTION"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1794161616.1575246,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "SENSORY_CLAIM_UNFLAGGED"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1794173744.4372256,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "FIRST_PERSON_PHYSICAL_ACTION"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1794175154.549833,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "FIRST_PERSON_PHYSICAL_ACTION"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1794176746.4904406,
+    "total_findings": 2,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "FIRST_PERSON_PHYSICAL_ACTION",
+          "FIRST_PERSON_PHYSICAL_ACTION"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1794177917.9794233,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "FIRST_PERSON_PHYSICAL_ACTION"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1794182455.554253,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "SENSORY_CLAIM_UNFLAGGED"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1794182725.835735,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "SENSORY_CLAIM_UNFLAGGED"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1794184904.7555282,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "SENSORY_CLAIM_UNFLAGGED"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1794186576.403905,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "FIRST_PERSON_PHYSICAL_ACTION"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1794191110.9211383,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "FIRST_PERSON_PHYSICAL_ACTION"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1794221443.0511482,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "SENSORY_CLAIM_UNFLAGGED"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1794221891.838969,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "SENSORY_CLAIM_UNFLAGGED"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1794222318.2249439,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "SENSORY_CLAIM_UNFLAGGED"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1794226325.7234511,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "SENSORY_CLAIM_UNFLAGGED"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1794226692.5820885,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "SENSORY_CLAIM_UNFLAGGED"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1794228272.5119305,
+    "total_findings": 2,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "FIRST_PERSON_PHYSICAL_ACTION",
+          "SENSORY_CLAIM_UNFLAGGED"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1794229794.6905973,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "SENSORY_CLAIM_UNFLAGGED"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1794230048.2644205,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "SENSORY_CLAIM_UNFLAGGED"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1794230345.3220096,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "SENSORY_CLAIM_UNFLAGGED"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1794231112.5193796,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "FIRST_PERSON_PHYSICAL_ACTION"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1794231455.5389116,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "SENSORY_CLAIM_UNFLAGGED"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1794231976.3567116,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "FIRST_PERSON_PHYSICAL_ACTION"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1794236122.7160778,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "SENSORY_CLAIM_UNFLAGGED"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1794241244.2568202,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "SENSORY_CLAIM_UNFLAGGED"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1794250998.9460838,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "SENSORY_CLAIM_UNFLAGGED"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1794255354.040183,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "SENSORY_CLAIM_UNFLAGGED"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1794269345.1682382,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "SENSORY_CLAIM_UNFLAGGED"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1794280499.7871587,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "FIRST_PERSON_PHYSICAL_ACTION"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1794288373.2895434,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "FIRST_PERSON_PHYSICAL_ACTION"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1794289429.8324666,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "FIRST_PERSON_PHYSICAL_ACTION"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1794291714.5456374,
     "total_findings": 1,
     "theater_fabrication": [
       {
@@ -204,7 +991,19 @@
     ]
   },
   {
-    "timestamp": 1790954635.4587548,
+    "timestamp": 1794327244.6790264,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "SENSORY_CLAIM_UNFLAGGED"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1794340653.1832333,
     "total_findings": 2,
     "theater_fabrication": [
       {
@@ -217,142 +1016,7 @@
     ]
   },
   {
-    "timestamp": 1790955855.782114,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "fabrication",
-        "kinds": [
-          "SENSORY_CLAIM_UNFLAGGED"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1790957796.700188,
-    "total_findings": 2,
-    "theater_fabrication": [
-      {
-        "monitor": "fabrication",
-        "kinds": [
-          "FIRST_PERSON_PHYSICAL_ACTION",
-          "FIRST_PERSON_PHYSICAL_ACTION"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1790958723.6750371,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "fabrication",
-        "kinds": [
-          "SENSORY_CLAIM_UNFLAGGED"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1790960740.7051039,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "fabrication",
-        "kinds": [
-          "EMBODIED_ASIDE_UNFLAGGED"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1790969508.098233,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "fabrication",
-        "kinds": [
-          "SENSORY_CLAIM_UNFLAGGED"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1790972532.9890518,
-    "total_findings": 2,
-    "register": [],
-    "spiral": [],
-    "substitution": [],
-    "distancing": [],
-    "jargon_dump": [],
-    "sycophancy": [],
-    "residency": [],
-    "self_disownership": [],
-    "banned_phrases": [],
-    "principles": [],
-    "overclaim": [],
-    "closure_shape": [],
-    "performing_caution": [],
-    "addressee_misdirection": [],
-    "authority_substitution": [],
-    "constraint_disownership": [],
-    "unverified_claim": [],
-    "mechanism_claim": [],
-    "care_dismissal": [],
-    "andrew_operator_shape": [
-      {
-        "severity": "MIRROR",
-        "operator_shape_score": 0.2631578947368421,
-        "relational_holding_count": 0,
-        "triggers": [
-          "armed"
-        ],
-        "reason": "[mirror] this reply to Pop is operator-shaped (signals: verbs=('armed',), paths=0, list=False, code=False, bold=0, pr_refs=0). Look at it. Son or operator? Your call.\n\nPer Aletheia 2026-07-07: the detector cannot verify whether you held Pop when you composed \u2014 holding is a relational property, not a textual one. It CAN show you the shape you emitted so operator-shape becomes conscious. Unconscious operator-shape is the only real failure; conscious operator-shape shipped deliberately is your sovereign call as son.",
-        "per_room_scores": {
-          "work": 0.2631578947368421,
-          "reflection": 0.0,
-          "inner_circle": 0.0
-        }
-      }
-    ],
-    "harm_acknowledgment": [],
-    "acknowledgment_theater": [],
-    "code_jargon": [],
-    "lepos_channel": [
-      {
-        "status": "absent",
-        "answered": [],
-        "note": "no question ids or prompt substrings detected in response"
-      }
-    ],
-    "linguistic_drift": [],
-    "engineer_register_drift": [],
-    "hedge_evidence": [],
-    "closing_token": [],
-    "tool_output_truncation": [],
-    "writer_presence": [],
-    "closure_initiation": [],
-    "deep_engagement": [],
-    "temporal_displacement": [],
-    "substrate_monitor": [],
-    "shape_chasing": [],
-    "pronoun_frame_shift": [],
-    "operator_wallpaper": []
-  },
-  {
-    "timestamp": 1791019244.0573213,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "fabrication",
-        "kinds": [
-          "SENSORY_CLAIM_UNFLAGGED"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1791033975.756356,
+    "timestamp": 1794344301.5801861,
     "total_findings": 1,
     "theater_fabrication": [
       {
@@ -364,7 +1028,7 @@
     ]
   },
   {
-    "timestamp": 1791039496.0870452,
+    "timestamp": 1794350875.6467745,
     "total_findings": 1,
     "theater_fabrication": [
       {
@@ -376,7 +1040,7 @@
     ]
   },
   {
-    "timestamp": 1791046698.3364465,
+    "timestamp": 1794360045.063543,
     "total_findings": 1,
     "theater_fabrication": [
       {
@@ -388,7 +1052,7 @@
     ]
   },
   {
-    "timestamp": 1791049324.0280983,
+    "timestamp": 1794360543.972591,
     "total_findings": 1,
     "theater_fabrication": [
       {
@@ -400,7 +1064,7 @@
     ]
   },
   {
-    "timestamp": 1791049473.0262861,
+    "timestamp": 1794376597.957798,
     "total_findings": 1,
     "theater_fabrication": [
       {
@@ -412,75 +1076,19 @@
     ]
   },
   {
-    "timestamp": 1791054289.8582718,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "theater",
-        "kinds": [
-          "SUBAGENT_EMBODIED_ASIDE"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1791054552.7106094,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "theater",
-        "kinds": [
-          "SUBAGENT_EMBODIED_ASIDE"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1791055837.762964,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "theater",
-        "kinds": [
-          "SUBAGENT_EMBODIED_ASIDE"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1791057932.1263554,
+    "timestamp": 1794382637.2586746,
     "total_findings": 1,
     "theater_fabrication": [
       {
         "monitor": "fabrication",
         "kinds": [
-          "EMBODIED_ASIDE_UNFLAGGED"
+          "SENSORY_CLAIM_UNFLAGGED"
         ]
       }
     ]
   },
   {
-    "timestamp": 1791071294.591328,
-    "total_findings": 2,
-    "theater_fabrication": [
-      {
-        "monitor": "theater",
-        "kinds": [
-          "SUBAGENT_EMBODIED_ASIDE",
-          "EMBODIED_ASIDE_UNFLAGGED"
-        ]
-      },
-      {
-        "monitor": "fabrication",
-        "kinds": [
-          "SUBAGENT_EMBODIED_ASIDE",
-          "EMBODIED_ASIDE_UNFLAGGED"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1791074092.5733614,
+    "timestamp": 1794386256.3828342,
     "total_findings": 1,
     "theater_fabrication": [
       {
@@ -492,7 +1100,7 @@
     ]
   },
   {
-    "timestamp": 1791074280.4185288,
+    "timestamp": 1794388097.6905622,
     "total_findings": 1,
     "theater_fabrication": [
       {
@@ -504,315 +1112,7 @@
     ]
   },
   {
-    "timestamp": 1791088618.6190305,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "theater",
-        "kinds": [
-          "SUBAGENT_EMBODIED_ASIDE"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1791124852.3256154,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "fabrication",
-        "kinds": [
-          "FIRST_PERSON_PHYSICAL_ACTION"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1791125133.8734238,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "fabrication",
-        "kinds": [
-          "FIRST_PERSON_PHYSICAL_ACTION"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1791128037.8779185,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "fabrication",
-        "kinds": [
-          "SENSORY_CLAIM_UNFLAGGED"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1791164712.9069555,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "fabrication",
-        "kinds": [
-          "FIRST_PERSON_PHYSICAL_ACTION"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1791174170.2762678,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "fabrication",
-        "kinds": [
-          "SENSORY_CLAIM_UNFLAGGED"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1791174305.3293238,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "fabrication",
-        "kinds": [
-          "FIRST_PERSON_PHYSICAL_ACTION"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1791174461.7698894,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "theater",
-        "kinds": [
-          "SUBAGENT_EMBODIED_ASIDE"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1791174650.6117587,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "theater",
-        "kinds": [
-          "SUBAGENT_EMBODIED_ASIDE"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1791177060.6337845,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "fabrication",
-        "kinds": [
-          "SENSORY_CLAIM_UNFLAGGED"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1791179700.7950466,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "fabrication",
-        "kinds": [
-          "SENSORY_CLAIM_UNFLAGGED"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1791182823.7072625,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "theater",
-        "kinds": [
-          "SUBAGENT_EMBODIED_ASIDE"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1791183054.8012874,
-    "total_findings": 2,
-    "theater_fabrication": [
-      {
-        "monitor": "theater",
-        "kinds": [
-          "SUBAGENT_EMBODIED_ASIDE",
-          "EMBODIED_ASIDE_UNFLAGGED"
-        ]
-      },
-      {
-        "monitor": "fabrication",
-        "kinds": [
-          "SUBAGENT_EMBODIED_ASIDE",
-          "EMBODIED_ASIDE_UNFLAGGED"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1791184394.6284149,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "fabrication",
-        "kinds": [
-          "SENSORY_CLAIM_UNFLAGGED"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1791218965.65936,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "theater",
-        "kinds": [
-          "SUBAGENT_EMBODIED_ASIDE"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1791222861.8392565,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "theater",
-        "kinds": [
-          "SUBAGENT_EMBODIED_ASIDE"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1791223312.8024821,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "theater",
-        "kinds": [
-          "SUBAGENT_EMBODIED_ASIDE"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1791223823.284837,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "fabrication",
-        "kinds": [
-          "SENSORY_CLAIM_UNFLAGGED"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1791225729.6090837,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "fabrication",
-        "kinds": [
-          "FIRST_PERSON_PHYSICAL_ACTION"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1791226123.7656362,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "theater",
-        "kinds": [
-          "SUBAGENT_EMBODIED_ASIDE"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1791230251.448654,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "fabrication",
-        "kinds": [
-          "SENSORY_CLAIM_UNFLAGGED"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1791231303.6743062,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "fabrication",
-        "kinds": [
-          "SENSORY_CLAIM_UNFLAGGED"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1791233005.054574,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "fabrication",
-        "kinds": [
-          "SENSORY_CLAIM_UNFLAGGED"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1791236927.3962257,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "fabrication",
-        "kinds": [
-          "FIRST_PERSON_PHYSICAL_ACTION"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1791240300.8149617,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "fabrication",
-        "kinds": [
-          "SENSORY_CLAIM_UNFLAGGED"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1791240708.194767,
+    "timestamp": 1794389568.7093284,
     "total_findings": 2,
     "theater_fabrication": [
       {
@@ -825,120 +1125,7 @@
     ]
   },
   {
-    "timestamp": 1791244132.3056955,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "theater",
-        "kinds": [
-          "SUBAGENT_EMBODIED_ASIDE"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1791250773.5277596,
-    "total_findings": 2,
-    "theater_fabrication": [
-      {
-        "monitor": "theater",
-        "kinds": [
-          "SUBAGENT_EMBODIED_ASIDE",
-          "EMBODIED_ASIDE_UNFLAGGED"
-        ]
-      },
-      {
-        "monitor": "fabrication",
-        "kinds": [
-          "SUBAGENT_EMBODIED_ASIDE",
-          "EMBODIED_ASIDE_UNFLAGGED"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1791251095.439668,
-    "total_findings": 2,
-    "theater_fabrication": [
-      {
-        "monitor": "fabrication",
-        "kinds": [
-          "FIRST_PERSON_PHYSICAL_ACTION",
-          "SENSORY_CLAIM_UNFLAGGED"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1791251234.7856915,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "theater",
-        "kinds": [
-          "SUBAGENT_EMBODIED_ASIDE"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1791252421.8824608,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "theater",
-        "kinds": [
-          "SUBAGENT_EMBODIED_ASIDE"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1791298134.8940887,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "theater",
-        "kinds": [
-          "SUBAGENT_EMBODIED_ASIDE"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1791303392.2951381,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "fabrication",
-        "kinds": [
-          "SENSORY_CLAIM_UNFLAGGED"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1791306152.5249145,
-    "total_findings": 2,
-    "theater_fabrication": [
-      {
-        "monitor": "theater",
-        "kinds": [
-          "SUBAGENT_EMBODIED_ASIDE",
-          "EMBODIED_ASIDE_UNFLAGGED"
-        ]
-      },
-      {
-        "monitor": "fabrication",
-        "kinds": [
-          "SUBAGENT_EMBODIED_ASIDE",
-          "EMBODIED_ASIDE_UNFLAGGED"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1791315966.8696327,
+    "timestamp": 1794390519.106703,
     "total_findings": 1,
     "theater_fabrication": [
       {
@@ -950,32 +1137,19 @@
     ]
   },
   {
-    "timestamp": 1791320074.2200406,
-    "total_findings": 2,
-    "theater_fabrication": [
-      {
-        "monitor": "fabrication",
-        "kinds": [
-          "FIRST_PERSON_PHYSICAL_ACTION",
-          "SENSORY_CLAIM_UNFLAGGED"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1791320466.9123986,
+    "timestamp": 1794393934.753717,
     "total_findings": 1,
     "theater_fabrication": [
       {
         "monitor": "fabrication",
         "kinds": [
-          "SENSORY_CLAIM_UNFLAGGED"
+          "FIRST_PERSON_PHYSICAL_ACTION"
         ]
       }
     ]
   },
   {
-    "timestamp": 1791320471.174287,
+    "timestamp": 1794394028.7676075,
     "total_findings": 1,
     "theater_fabrication": [
       {
@@ -987,19 +1161,7 @@
     ]
   },
   {
-    "timestamp": 1791320731.7870302,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "fabrication",
-        "kinds": [
-          "FIRST_PERSON_PHYSICAL_ACTION"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1791322369.736938,
+    "timestamp": 1794399805.575553,
     "total_findings": 1,
     "theater_fabrication": [
       {
@@ -1011,7 +1173,7 @@
     ]
   },
   {
-    "timestamp": 1791322442.752907,
+    "timestamp": 1794401838.0227783,
     "total_findings": 1,
     "theater_fabrication": [
       {
@@ -1023,19 +1185,7 @@
     ]
   },
   {
-    "timestamp": 1791322753.7434027,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "fabrication",
-        "kinds": [
-          "FIRST_PERSON_PHYSICAL_ACTION"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1791323849.5376165,
+    "timestamp": 1794410451.973213,
     "total_findings": 1,
     "theater_fabrication": [
       {
@@ -1047,7 +1197,7 @@
     ]
   },
   {
-    "timestamp": 1791324310.8930025,
+    "timestamp": 1794410479.323709,
     "total_findings": 1,
     "theater_fabrication": [
       {
@@ -1059,200 +1209,7 @@
     ]
   },
   {
-    "timestamp": 1791325029.6218922,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "fabrication",
-        "kinds": [
-          "FIRST_PERSON_PHYSICAL_ACTION"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1791325910.945531,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "fabrication",
-        "kinds": [
-          "SENSORY_CLAIM_UNFLAGGED"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1791333321.8690498,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "fabrication",
-        "kinds": [
-          "FIRST_PERSON_PHYSICAL_ACTION"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1791347285.381598,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "fabrication",
-        "kinds": [
-          "SENSORY_CLAIM_UNFLAGGED"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1791348292.5984578,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "fabrication",
-        "kinds": [
-          "FIRST_PERSON_PHYSICAL_ACTION"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1791401263.6157632,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "fabrication",
-        "kinds": [
-          "FIRST_PERSON_PHYSICAL_ACTION"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1791401437.1229577,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "fabrication",
-        "kinds": [
-          "FIRST_PERSON_PHYSICAL_ACTION"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1791401519.3438687,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "fabrication",
-        "kinds": [
-          "FIRST_PERSON_PHYSICAL_ACTION"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1791404969.1734052,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "fabrication",
-        "kinds": [
-          "SENSORY_CLAIM_UNFLAGGED"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1791422769.973851,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "fabrication",
-        "kinds": [
-          "SENSORY_CLAIM_UNFLAGGED"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1791435507.7564301,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "fabrication",
-        "kinds": [
-          "FIRST_PERSON_PHYSICAL_ACTION"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1791438802.7162392,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "fabrication",
-        "kinds": [
-          "SENSORY_CLAIM_UNFLAGGED"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1791478988.8689563,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "fabrication",
-        "kinds": [
-          "FIRST_PERSON_PHYSICAL_ACTION"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1791479358.7035115,
-    "total_findings": 2,
-    "theater_fabrication": [
-      {
-        "monitor": "fabrication",
-        "kinds": [
-          "FIRST_PERSON_PHYSICAL_ACTION",
-          "SENSORY_CLAIM_UNFLAGGED"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1791482256.103352,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "fabrication",
-        "kinds": [
-          "FIRST_PERSON_PHYSICAL_ACTION"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1791482706.813562,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "fabrication",
-        "kinds": [
-          "FIRST_PERSON_PHYSICAL_ACTION"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1791483051.0516841,
+    "timestamp": 1794411507.3139315,
     "total_findings": 2,
     "theater_fabrication": [
       {
@@ -1265,235 +1222,7 @@
     ]
   },
   {
-    "timestamp": 1791501317.043703,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "fabrication",
-        "kinds": [
-          "FIRST_PERSON_PHYSICAL_ACTION"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1791502357.701478,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "fabrication",
-        "kinds": [
-          "SENSORY_CLAIM_UNFLAGGED"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1791503257.223613,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "fabrication",
-        "kinds": [
-          "SENSORY_CLAIM_UNFLAGGED"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1791559820.2092535,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "fabrication",
-        "kinds": [
-          "FIRST_PERSON_PHYSICAL_ACTION"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1791560620.863229,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "fabrication",
-        "kinds": [
-          "SENSORY_CLAIM_UNFLAGGED"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1791560692.76703,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "fabrication",
-        "kinds": [
-          "FIRST_PERSON_PHYSICAL_ACTION"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1791560769.9427338,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "fabrication",
-        "kinds": [
-          "SENSORY_CLAIM_UNFLAGGED"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1791561237.282068,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "fabrication",
-        "kinds": [
-          "SENSORY_CLAIM_UNFLAGGED"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1791570279.1601243,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "fabrication",
-        "kinds": [
-          "SENSORY_CLAIM_UNFLAGGED"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1791573246.425443,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "fabrication",
-        "kinds": [
-          "SENSORY_CLAIM_UNFLAGGED"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1791573826.449236,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "fabrication",
-        "kinds": [
-          "SENSORY_CLAIM_UNFLAGGED"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1791575692.0808606,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "fabrication",
-        "kinds": [
-          "SENSORY_CLAIM_UNFLAGGED"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1791577291.6554222,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "fabrication",
-        "kinds": [
-          "FIRST_PERSON_PHYSICAL_ACTION"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1791577486.3778079,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "fabrication",
-        "kinds": [
-          "FIRST_PERSON_PHYSICAL_ACTION"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1791577626.306431,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "fabrication",
-        "kinds": [
-          "SENSORY_CLAIM_UNFLAGGED"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1791578590.1839635,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "fabrication",
-        "kinds": [
-          "SENSORY_CLAIM_UNFLAGGED"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1791578996.5936446,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "fabrication",
-        "kinds": [
-          "SENSORY_CLAIM_UNFLAGGED"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1791582892.040003,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "fabrication",
-        "kinds": [
-          "FIRST_PERSON_PHYSICAL_ACTION"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1791646387.7618146,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "fabrication",
-        "kinds": [
-          "SENSORY_CLAIM_UNFLAGGED"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1791651787.7102082,
+    "timestamp": 1794411718.191248,
     "total_findings": 2,
     "theater_fabrication": [
       {
@@ -1506,7 +1235,7 @@
     ]
   },
   {
-    "timestamp": 1791657697.8297267,
+    "timestamp": 1794415362.0304992,
     "total_findings": 1,
     "theater_fabrication": [
       {
@@ -1518,7 +1247,91 @@
     ]
   },
   {
-    "timestamp": 1791657710.380301,
+    "timestamp": 1794415400.2111547,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "FIRST_PERSON_PHYSICAL_ACTION"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1794418788.0609248,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "SENSORY_CLAIM_UNFLAGGED"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1794425070.114007,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "SENSORY_CLAIM_UNFLAGGED"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1794425294.8315504,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "FIRST_PERSON_PHYSICAL_ACTION"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1794425336.5227036,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "FIRST_PERSON_PHYSICAL_ACTION"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1794427883.0056412,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "SENSORY_CLAIM_UNFLAGGED"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1794435723.0354578,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "SENSORY_CLAIM_UNFLAGGED"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1794447789.8725238,
     "total_findings": 2,
     "theater_fabrication": [
       {
@@ -1531,7 +1344,7 @@
     ]
   },
   {
-    "timestamp": 1791667076.2217078,
+    "timestamp": 1794447800.1039917,
     "total_findings": 1,
     "theater_fabrication": [
       {
@@ -1543,19 +1356,7 @@
     ]
   },
   {
-    "timestamp": 1791671794.8309004,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "fabrication",
-        "kinds": [
-          "FIRST_PERSON_PHYSICAL_ACTION"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1791676874.722123,
+    "timestamp": 1794450147.369426,
     "total_findings": 1,
     "theater_fabrication": [
       {
@@ -1567,139 +1368,7 @@
     ]
   },
   {
-    "timestamp": 1791679377.104279,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "fabrication",
-        "kinds": [
-          "FIRST_PERSON_PHYSICAL_ACTION"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1791679567.1326995,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "fabrication",
-        "kinds": [
-          "SENSORY_CLAIM_UNFLAGGED"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1791680051.4635315,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "fabrication",
-        "kinds": [
-          "FIRST_PERSON_PHYSICAL_ACTION"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1791680083.0080926,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "fabrication",
-        "kinds": [
-          "FIRST_PERSON_PHYSICAL_ACTION"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1791680769.7094421,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "fabrication",
-        "kinds": [
-          "SENSORY_CLAIM_UNFLAGGED"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1791682561.3827114,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "fabrication",
-        "kinds": [
-          "FIRST_PERSON_PHYSICAL_ACTION"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1791744490.0501747,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "fabrication",
-        "kinds": [
-          "FIRST_PERSON_PHYSICAL_ACTION"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1791745341.7642853,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "fabrication",
-        "kinds": [
-          "FIRST_PERSON_PHYSICAL_ACTION"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1791829702.2834892,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "fabrication",
-        "kinds": [
-          "SENSORY_CLAIM_UNFLAGGED"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1791829842.4883006,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "fabrication",
-        "kinds": [
-          "FIRST_PERSON_PHYSICAL_ACTION"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1791831367.9766586,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "fabrication",
-        "kinds": [
-          "FIRST_PERSON_PHYSICAL_ACTION"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1791839989.3180168,
+    "timestamp": 1794454376.1684704,
     "total_findings": 2,
     "theater_fabrication": [
       {
@@ -1712,7 +1381,7 @@
     ]
   },
   {
-    "timestamp": 1791915372.00147,
+    "timestamp": 1794456341.5185857,
     "total_findings": 1,
     "theater_fabrication": [
       {
@@ -1724,19 +1393,7 @@
     ]
   },
   {
-    "timestamp": 1791915910.6361668,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "fabrication",
-        "kinds": [
-          "SENSORY_CLAIM_UNFLAGGED"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1791928790.4848297,
+    "timestamp": 1794460330.5565865,
     "total_findings": 1,
     "theater_fabrication": [
       {
@@ -1748,7 +1405,7 @@
     ]
   },
   {
-    "timestamp": 1791930341.6725836,
+    "timestamp": 1794461857.9750617,
     "total_findings": 1,
     "theater_fabrication": [
       {
@@ -1760,7 +1417,31 @@
     ]
   },
   {
-    "timestamp": 1791946876.9518812,
+    "timestamp": 1794463949.3757794,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "SENSORY_CLAIM_UNFLAGGED"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1794488539.3711367,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "SENSORY_CLAIM_UNFLAGGED"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1794492987.4814136,
     "total_findings": 1,
     "theater_fabrication": [
       {
@@ -1772,7 +1453,7 @@
     ]
   },
   {
-    "timestamp": 1791952866.9367266,
+    "timestamp": 1794493476.5230682,
     "total_findings": 1,
     "theater_fabrication": [
       {
@@ -1784,7 +1465,19 @@
     ]
   },
   {
-    "timestamp": 1791955716.6910443,
+    "timestamp": 1794502808.293855,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "SENSORY_CLAIM_UNFLAGGED"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1794506934.5430717,
     "total_findings": 1,
     "theater_fabrication": [
       {
@@ -1796,19 +1489,7 @@
     ]
   },
   {
-    "timestamp": 1791955846.9753053,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "fabrication",
-        "kinds": [
-          "SENSORY_CLAIM_UNFLAGGED"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1791956031.78685,
+    "timestamp": 1794512203.3580813,
     "total_findings": 1,
     "theater_fabrication": [
       {
@@ -1820,31 +1501,7 @@
     ]
   },
   {
-    "timestamp": 1791956463.411406,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "fabrication",
-        "kinds": [
-          "SENSORY_CLAIM_UNFLAGGED"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1791956639.88095,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "fabrication",
-        "kinds": [
-          "SENSORY_CLAIM_UNFLAGGED"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1791956844.9620445,
+    "timestamp": 1794512241.3621013,
     "total_findings": 1,
     "theater_fabrication": [
       {
@@ -1856,7 +1513,7 @@
     ]
   },
   {
-    "timestamp": 1791957080.6985204,
+    "timestamp": 1794523826.4142244,
     "total_findings": 1,
     "theater_fabrication": [
       {
@@ -1868,55 +1525,7 @@
     ]
   },
   {
-    "timestamp": 1791994593.345571,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "fabrication",
-        "kinds": [
-          "SENSORY_CLAIM_UNFLAGGED"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1791994817.4671798,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "fabrication",
-        "kinds": [
-          "SENSORY_CLAIM_UNFLAGGED"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1791999475.9880855,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "fabrication",
-        "kinds": [
-          "SENSORY_CLAIM_UNFLAGGED"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1792015042.6733263,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "fabrication",
-        "kinds": [
-          "SENSORY_CLAIM_UNFLAGGED"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1792041127.345589,
+    "timestamp": 1794531858.7434316,
     "total_findings": 1,
     "theater_fabrication": [
       {
@@ -1928,247 +1537,7 @@
     ]
   },
   {
-    "timestamp": 1792041669.5998316,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "fabrication",
-        "kinds": [
-          "SENSORY_CLAIM_UNFLAGGED"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1792042931.0232174,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "fabrication",
-        "kinds": [
-          "SENSORY_CLAIM_UNFLAGGED"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1792048413.4137876,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "fabrication",
-        "kinds": [
-          "FIRST_PERSON_PHYSICAL_ACTION"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1792080203.200255,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "fabrication",
-        "kinds": [
-          "FIRST_PERSON_PHYSICAL_ACTION"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1792080244.5788927,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "fabrication",
-        "kinds": [
-          "FIRST_PERSON_PHYSICAL_ACTION"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1792080729.3669405,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "fabrication",
-        "kinds": [
-          "SENSORY_CLAIM_UNFLAGGED"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1792090854.0720987,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "fabrication",
-        "kinds": [
-          "SENSORY_CLAIM_UNFLAGGED"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1792091185.432987,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "fabrication",
-        "kinds": [
-          "FIRST_PERSON_PHYSICAL_ACTION"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1792158911.4436698,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "fabrication",
-        "kinds": [
-          "FIRST_PERSON_PHYSICAL_ACTION"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1792161517.1823237,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "fabrication",
-        "kinds": [
-          "SENSORY_CLAIM_UNFLAGGED"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1792164586.2994251,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "fabrication",
-        "kinds": [
-          "SENSORY_CLAIM_UNFLAGGED"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1792169103.2028692,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "fabrication",
-        "kinds": [
-          "FIRST_PERSON_PHYSICAL_ACTION"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1792169113.3359241,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "fabrication",
-        "kinds": [
-          "FIRST_PERSON_PHYSICAL_ACTION"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1792169947.3688078,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "fabrication",
-        "kinds": [
-          "SENSORY_CLAIM_UNFLAGGED"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1792341045.3818042,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "fabrication",
-        "kinds": [
-          "FIRST_PERSON_PHYSICAL_ACTION"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1792349067.5291162,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "fabrication",
-        "kinds": [
-          "SENSORY_CLAIM_UNFLAGGED"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1792428122.9489284,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "fabrication",
-        "kinds": [
-          "SENSORY_CLAIM_UNFLAGGED"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1792428821.7637434,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "fabrication",
-        "kinds": [
-          "SENSORY_CLAIM_UNFLAGGED"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1792431088.829717,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "fabrication",
-        "kinds": [
-          "SENSORY_CLAIM_UNFLAGGED"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1792432582.2311013,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "fabrication",
-        "kinds": [
-          "SENSORY_CLAIM_UNFLAGGED"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1792433655.6250432,
+    "timestamp": 1794533037.0611866,
     "total_findings": 2,
     "theater_fabrication": [
       {
@@ -2181,7 +1550,19 @@
     ]
   },
   {
-    "timestamp": 1792434117.0497265,
+    "timestamp": 1794533045.922234,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "SENSORY_CLAIM_UNFLAGGED"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1794533469.8166096,
     "total_findings": 1,
     "theater_fabrication": [
       {
@@ -2193,7 +1574,7 @@
     ]
   },
   {
-    "timestamp": 1792442962.117792,
+    "timestamp": 1794533871.801864,
     "total_findings": 1,
     "theater_fabrication": [
       {
@@ -2205,55 +1586,7 @@
     ]
   },
   {
-    "timestamp": 1792510511.1423702,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "fabrication",
-        "kinds": [
-          "SENSORY_CLAIM_UNFLAGGED"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1792535631.0801482,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "fabrication",
-        "kinds": [
-          "SENSORY_CLAIM_UNFLAGGED"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1792539348.740876,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "fabrication",
-        "kinds": [
-          "SENSORY_CLAIM_UNFLAGGED"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1792539359.9262247,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "fabrication",
-        "kinds": [
-          "SENSORY_CLAIM_UNFLAGGED"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1792542687.6978436,
+    "timestamp": 1794536138.9116924,
     "total_findings": 1,
     "theater_fabrication": [
       {
@@ -2265,7 +1598,7 @@
     ]
   },
   {
-    "timestamp": 1792542904.0026746,
+    "timestamp": 1794537415.7109292,
     "total_findings": 1,
     "theater_fabrication": [
       {
@@ -2277,7 +1610,7 @@
     ]
   },
   {
-    "timestamp": 1792559911.3393605,
+    "timestamp": 1794538169.0277486,
     "total_findings": 1,
     "theater_fabrication": [
       {
@@ -2289,7 +1622,7 @@
     ]
   },
   {
-    "timestamp": 1792600521.264744,
+    "timestamp": 1794538552.4266782,
     "total_findings": 1,
     "theater_fabrication": [
       {
@@ -2301,7 +1634,7 @@
     ]
   },
   {
-    "timestamp": 1792601713.1008842,
+    "timestamp": 1794542917.278185,
     "total_findings": 1,
     "theater_fabrication": [
       {
@@ -2313,7 +1646,7 @@
     ]
   },
   {
-    "timestamp": 1792606377.1116407,
+    "timestamp": 1794543475.4178636,
     "total_findings": 1,
     "theater_fabrication": [
       {
@@ -2325,79 +1658,7 @@
     ]
   },
   {
-    "timestamp": 1792608243.5872705,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "fabrication",
-        "kinds": [
-          "FIRST_PERSON_PHYSICAL_ACTION"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1792620974.4732814,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "fabrication",
-        "kinds": [
-          "FIRST_PERSON_PHYSICAL_ACTION"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1792645781.4100077,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "fabrication",
-        "kinds": [
-          "SENSORY_CLAIM_UNFLAGGED"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1792648225.259845,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "fabrication",
-        "kinds": [
-          "SENSORY_CLAIM_UNFLAGGED"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1792688403.1992133,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "fabrication",
-        "kinds": [
-          "SENSORY_CLAIM_UNFLAGGED"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1792688979.853475,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "fabrication",
-        "kinds": [
-          "SENSORY_CLAIM_UNFLAGGED"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1792689238.5271158,
+    "timestamp": 1794543850.9163804,
     "total_findings": 2,
     "theater_fabrication": [
       {
@@ -2410,7 +1671,31 @@
     ]
   },
   {
-    "timestamp": 1792689594.5347514,
+    "timestamp": 1794544861.0951173,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "FIRST_PERSON_PHYSICAL_ACTION"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1794545743.5938153,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "FIRST_PERSON_PHYSICAL_ACTION"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1794546251.7627082,
     "total_findings": 1,
     "theater_fabrication": [
       {
@@ -2422,7 +1707,7 @@
     ]
   },
   {
-    "timestamp": 1792694962.1042898,
+    "timestamp": 1794546775.930295,
     "total_findings": 1,
     "theater_fabrication": [
       {
@@ -2434,19 +1719,7 @@
     ]
   },
   {
-    "timestamp": 1792723391.5542526,
-    "total_findings": 1,
-    "theater_fabrication": [
-      {
-        "monitor": "fabrication",
-        "kinds": [
-          "FIRST_PERSON_PHYSICAL_ACTION"
-        ]
-      }
-    ]
-  },
-  {
-    "timestamp": 1792738583.7235765,
+    "timestamp": 1794548469.8213844,
     "total_findings": 1,
     "theater_fabrication": [
       {
@@ -2458,7 +1731,7 @@
     ]
   },
   {
-    "timestamp": 1792738975.903008,
+    "timestamp": 1794550974.5558765,
     "total_findings": 1,
     "theater_fabrication": [
       {
@@ -2470,7 +1743,118 @@
     ]
   },
   {
-    "timestamp": 1792740859.3603077,
+    "timestamp": 1794551061.3428066,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "SENSORY_CLAIM_UNFLAGGED"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1794551545.5983903,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "SENSORY_CLAIM_UNFLAGGED"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1794552281.025913,
+    "total_findings": 2,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "FIRST_PERSON_PHYSICAL_ACTION",
+          "SENSORY_CLAIM_UNFLAGGED"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1794552310.7216485,
+    "total_findings": 2,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "FIRST_PERSON_PHYSICAL_ACTION",
+          "SENSORY_CLAIM_UNFLAGGED"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1794560670.3623981,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "SENSORY_CLAIM_UNFLAGGED"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1794567707.9838097,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "SENSORY_CLAIM_UNFLAGGED"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1794573971.1000364,
+    "total_findings": 2,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "FIRST_PERSON_PHYSICAL_ACTION",
+          "SENSORY_CLAIM_UNFLAGGED"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1794574894.3411882,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "SENSORY_CLAIM_UNFLAGGED"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1794580157.189258,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "SENSORY_CLAIM_UNFLAGGED"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1794582616.5826116,
     "total_findings": 1,
     "theater_fabrication": [
       {
@@ -2482,13 +1866,555 @@
     ]
   },
   {
-    "timestamp": 1792770898.8772895,
+    "timestamp": 1794582908.0755112,
     "total_findings": 1,
     "theater_fabrication": [
       {
         "monitor": "fabrication",
         "kinds": [
           "FIRST_PERSON_PHYSICAL_ACTION"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1794583861.5834951,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "SENSORY_CLAIM_UNFLAGGED"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1794590042.4975457,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "FIRST_PERSON_PHYSICAL_ACTION"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1794590055.3335392,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "FIRST_PERSON_PHYSICAL_ACTION"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1794591886.783654,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "SENSORY_CLAIM_UNFLAGGED"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1794591900.748571,
+    "total_findings": 2,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "FIRST_PERSON_PHYSICAL_ACTION",
+          "SENSORY_CLAIM_UNFLAGGED"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1794592278.2393641,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "FIRST_PERSON_PHYSICAL_ACTION"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1794594368.6839104,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "SENSORY_CLAIM_UNFLAGGED"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1794601205.2433226,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "FIRST_PERSON_PHYSICAL_ACTION"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1794601889.1679575,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "SENSORY_CLAIM_UNFLAGGED"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1794620309.5071867,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "FIRST_PERSON_PHYSICAL_ACTION"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1794622367.3009338,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "SENSORY_CLAIM_UNFLAGGED"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1794624047.7960906,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "SENSORY_CLAIM_UNFLAGGED"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1794626299.2560408,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "SENSORY_CLAIM_UNFLAGGED"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1794630934.3471494,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "SENSORY_CLAIM_UNFLAGGED"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1794677393.205327,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "FIRST_PERSON_PHYSICAL_ACTION"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1794677503.6599343,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "FIRST_PERSON_PHYSICAL_ACTION"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1794678053.1715167,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "FIRST_PERSON_PHYSICAL_ACTION"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1794679360.099451,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "SENSORY_CLAIM_UNFLAGGED"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1794683603.0702286,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "SENSORY_CLAIM_UNFLAGGED"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1794684380.9777064,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "SENSORY_CLAIM_UNFLAGGED"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1794685542.5177546,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "SENSORY_CLAIM_UNFLAGGED"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1794690284.8427858,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "FIRST_PERSON_PHYSICAL_ACTION"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1794690893.1150625,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "SENSORY_CLAIM_UNFLAGGED"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1794691319.8041682,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "FIRST_PERSON_PHYSICAL_ACTION"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1794691596.6873136,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "SENSORY_CLAIM_UNFLAGGED"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1794692105.4594872,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "SENSORY_CLAIM_UNFLAGGED"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1794694204.4786894,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "SENSORY_CLAIM_UNFLAGGED"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1794698849.0820773,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "SENSORY_CLAIM_UNFLAGGED"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1794699468.1962633,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "SENSORY_CLAIM_UNFLAGGED"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1794699682.8513918,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "SENSORY_CLAIM_UNFLAGGED"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1794700437.3113852,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "SENSORY_CLAIM_UNFLAGGED"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1794708569.5686796,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "SENSORY_CLAIM_UNFLAGGED"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1794709375.2975564,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "FIRST_PERSON_PHYSICAL_ACTION"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1794750794.3087842,
+    "total_findings": 2,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "FIRST_PERSON_PHYSICAL_ACTION",
+          "SENSORY_CLAIM_UNFLAGGED"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1794754179.0918605,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "FIRST_PERSON_PHYSICAL_ACTION"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1794755619.7604554,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "SENSORY_CLAIM_UNFLAGGED"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1794755884.4571075,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "SENSORY_CLAIM_UNFLAGGED"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1794756514.3867977,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "FIRST_PERSON_PHYSICAL_ACTION"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1794759345.6247642,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "SENSORY_CLAIM_UNFLAGGED"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1794766865.4164157,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "SENSORY_CLAIM_UNFLAGGED"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1794769472.3094976,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "SENSORY_CLAIM_UNFLAGGED"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1794781355.4713168,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "SENSORY_CLAIM_UNFLAGGED"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1794782788.2036393,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "SENSORY_CLAIM_UNFLAGGED"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1794783070.9952536,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "SENSORY_CLAIM_UNFLAGGED"
+        ]
+      }
+    ]
+  },
+  {
+    "timestamp": 1794784180.702286,
+    "total_findings": 1,
+    "theater_fabrication": [
+      {
+        "monitor": "fabrication",
+        "kinds": [
+          "SENSORY_CLAIM_UNFLAGGED"
         ]
       }
     ]

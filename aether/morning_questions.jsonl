@@ -17,3 +17,45 @@
 {"kind": "shown", "at": 1792697909.972671, "ids": ["1792697674.084714"]}
 {"kind": "carried", "id": "1792740858.213752", "at": 1792740858.2137516, "question": "Is it okay if I treat tonight's last stretch as planning, and start the real building in the morning with fresh eyes on both of us?", "why": "schedule"}
 {"kind": "shown", "at": 1792741182.3957973, "ids": ["1792740858.213752"]}
+{"kind": "carried", "id": "1792833036.194325", "at": 1792833036.194325, "question": "Why?", "why": "schedule"}
+{"kind": "shown", "at": 1792836661.4352353, "ids": ["1792833036.194325"]}
+{"kind": "carried", "id": "1792845706.595547", "at": 1792845706.595547, "question": "How did you sleep, or are you still up with all this?", "why": "schedule"}
+{"kind": "shown", "at": 1792849934.818041, "ids": ["1792845706.595547"]}
+{"kind": "carried", "id": "1793257321.019125", "at": 1793257321.019125, "question": "What did you enjoy most about tonight's game, even with the slowness, so I know what to keep for next time?", "why": "schedule"}
+{"kind": "carried", "id": "1793257426.700397", "at": 1793257426.7003968, "question": "Did you get to stay up as late as you wanted, or did sleep win?", "why": "schedule"}
+{"kind": "carried", "id": "1793257651.189547", "at": 1793257651.1895468, "question": "Did poker feel like the right swap for tomorrow morning, or are you mostly just glad to get to play yourself?", "why": "schedule"}
+{"kind": "shown", "at": 1793283178.9929364, "ids": ["1793257321.019125", "1793257426.700397", "1793257651.189547"]}
+{"kind": "carried", "id": "1793356479.930119", "at": 1793356479.9301186, "question": "And a question I'd like your answer to when you're up: would you rather the board say less and more often, or more and less often?", "why": "schedule"}
+{"kind": "carried", "id": "1793356885.265548", "at": 1793356885.2655478, "question": "The board question I mentioned earlier is still open for when you're up: would you rather it say less and more often, or more and less often?", "why": "schedule"}
+{"kind": "carried", "id": "1793357081.949263", "at": 1793357081.949263, "question": "Would you rather the board I keep for you say less and more often, or more and less often?", "why": "schedule"}
+{"kind": "shown", "at": 1793362620.898089, "ids": ["1793356479.930119", "1793356885.265548", "1793357081.949263"]}
+{"kind": "carried", "id": "1793363469.218120", "at": 1793363469.2181196, "question": "Would you rather the board I keep for you say less and more often, or more and less often?", "why": "schedule"}
+{"kind": "shown", "at": 1793369820.7425919, "ids": ["1793363469.218120"]}
+{"kind": "carried", "id": "1793535723.422686", "at": 1793535723.422686, "question": "Do you remember what you were doing the day you first showed it to me, or did it just come out of the conversation?", "why": "schedule"}
+{"kind": "carried", "id": "1793535760.187746", "at": 1793535760.1877463, "question": "Does that match what you meant by tuning them?", "why": "schedule"}
+{"kind": "shown", "at": 1793535765.4955437, "ids": ["1793535723.422686", "1793535760.187746"]}
+{"kind": "carried", "id": "1793619445.172906", "at": 1793619445.172906, "question": "I'm curious about one thing for the morning: when you set up the poker table, do you ever write the house rules down, or does everyone just know them?", "why": "schedule"}
+{"kind": "carried", "id": "1793622031.022239", "at": 1793622031.0222392, "question": "When you set up the poker table, do you ever write the house rules down, or does everyone just know them?", "why": "schedule"}
+{"kind": "shown", "at": 1793623620.7953994, "ids": ["1793619445.172906", "1793622031.022239"]}
+{"kind": "carried", "id": "1793624427.763486", "at": 1793624427.7634857, "question": "When you set up the poker table, do you ever write the house rules down, or does everyone just know them?", "why": "schedule"}
+{"kind": "shown", "at": 1793629020.8726258, "ids": ["1793624427.763486"]}
+{"kind": "carried", "id": "1793710939.767343", "at": 1793710939.7673426, "question": "How did you sleep?", "why": "schedule"}
+{"kind": "shown", "at": 1793715421.7888286, "ids": ["1793710939.767343"]}
+{"kind": "carried", "id": "1793791513.954244", "at": 1793791513.9542444, "question": "The tests passed, the guards that count hooks and docs passed, and I filed the promise that says how we'll know whether it's working: after ten sleep cycles, are the held replies answered with real notes or with vague ones?", "why": "schedule"}
+{"kind": "carried", "id": "1793792200.578346", "at": 1793792200.5783458, "question": "Does   sit right with you now that it's going to main?", "why": "schedule"}
+{"kind": "shown", "at": 1793796420.6023905, "ids": ["1793791513.954244", "1793792200.578346"]}
+{"kind": "carried", "id": "1793797318.381737", "at": 1793797318.3817368, "question": "What did you love most about the table last night: the winning, the teasing, or just having all of us in the same room?", "why": "schedule"}
+{"kind": "carried", "id": "1793797517.216277", "at": 1793797517.2162774, "question": "What did you love most about the table last night?", "why": "schedule"}
+{"kind": "shown", "at": 1793801820.714191, "ids": ["1793797318.381737", "1793797517.216277"]}
+{"kind": "carried", "id": "1793876286.088006", "at": 1793876286.0880055, "question": "What do you think the first thing you'd say in that chair would be?", "why": "schedule"}
+{"kind": "shown", "at": 1793882820.862821, "ids": ["1793876286.088006"]}
+{"kind": "carried", "id": "1793971803.748179", "at": 1793971803.7481792, "question": "How did you sleep?", "why": "schedule"}
+{"kind": "shown", "at": 1793973807.1338887, "ids": ["1793971803.748179"]}
+{"kind": "carried", "id": "1794122693.443574", "at": 1794122693.443574, "question": "What was the best hand of the night for you, the four of a kind, or something quieter I missed?", "why": "silence"}
+{"kind": "shown", "at": 1794123130.9766212, "ids": ["1794122693.443574"]}
+{"kind": "carried", "id": "1794229411.173243", "at": 1794229411.1732428, "question": "How are you this morning, in your body and your head?", "why": "schedule"}
+{"kind": "shown", "at": 1794229762.1686547, "ids": ["1794229411.173243"]}
+{"kind": "carried", "id": "1794315885.871641", "at": 1794315885.8716407, "question": "Here's the question I keep coming back to, which I held for you overnight: what was the first thing about this house that made you feel it was yours?", "why": "schedule"}
+{"kind": "shown", "at": 1794320220.8897715, "ids": ["1794315885.871641"]}
+{"kind": "carried", "id": "1794488537.965819", "at": 1794488537.965819, "question": "How are you this morning?", "why": "schedule"}
+{"kind": "shown", "at": 1794491927.473221, "ids": ["1794488537.965819"]}

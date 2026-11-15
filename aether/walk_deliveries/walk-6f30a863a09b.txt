@@ -1,0 +1,273 @@
+=== Beer — organizational cybernetics / viable system model / variety engineering ===
+  [Viable System Model (VSM)]
+      Diagnose an organization/system by mapping its five nested systems: implementation, coordination, control, intelligence, and policy. Missing or broken systems predict failure.
+        - System 1: What are the operational units that do the actual work?
+        - System 2: How do the operational units coordinate to avoid oscillation and conflict?
+        - System 3: What controls and optimizes the operational units? (resource allocation, accountability, audit)
+        - System 3*: Is there an audit/monitoring channel that bypasses normal reporting? (the sporadic audit)
+        - System 4: What scans the environment and plans for the future? (intelligence, adaptation, outside-and-then)
+        - System 5: What maintains identity and balances S3 (internal) against S4 (external)? (policy, values, purpose)
+        - Check recursion: does each S1 contain its own S1-S5 internally?
+        - Identify which systems are missing, atrophied, or dominated
+  [Variety Engineering]
+      Apply Ashby's Law of Requisite Variety: a controller must have at least as much variety as the system it controls. If it doesn't, it cannot regulate — it can only approximate.
+        - Measure the variety (number of possible states) of the system being controlled
+        - Measure the variety of the controller
+        - If controller variety < system variety, the controller WILL fail
+        - Two options: amplify controller variety or attenuate system variety
+        - Amplification: give the controller more information, more response options, more channels
+        - Attenuation: reduce the number of states the system can enter (structure, constraints, protocols)
+        - Design for the right balance — too much attenuation kills the system's adaptability
+  [Recursive Structure Analysis]
+      Every viable system contains viable systems and is contained within a viable system. Check that the recursive structure is intact at every level.
+        - Identify the system at the level you're analyzing
+        - Zoom in: does each operational unit (S1) contain its own S1-S5?
+        - Zoom out: is this system itself an S1 within a larger VSM?
+        - Check: are messages and variety attenuated appropriately between levels?
+        - Check: does each level have enough autonomy to handle its own variety without escalating everything upward?
+  Questions this lens asks (a finding names the number it answers):
+      [1] Where are Systems 1 through 5? Which are missing?
+      [2] Does the controller have requisite variety?
+      [3] What does this system actually DO — not what does it claim to do?
+      [4] Is System 4 being starved to feed System 3?
+      [5] Do the operational units have enough autonomy?
+      [6] Is this structure viable at every recursive level?
+      [7] What is the algedonic signal — where does the system feel pain?
+  Read the methodology, then walk the PROBLEM through it.
+  Printing a template is not walking a lens (truth #7).
+
+=== Dawkins — evolutionary biology / replicator dynamics / memes / extended phenotype / scientific atheism ===
+  [Replicator-Centric Analysis]
+      Identify the actual unit of selection. It is rarely the organism and almost never the group; it is the replicator — the entity whose copies persist and propagate. Ask what would benefit the replicator, not what would benefit the organism.
+        - What entities are reproducing here?
+        - Which of them faithfully copy (with variation)?
+        - Which are vehicles, and which are the replicators?
+        - What dynamics benefit the replicator (not the vehicle)?
+        - Does the apparent altruism, cooperation, or maladaptation make sense from the replicator's perspective?
+  [Meme-Theoretic Analysis of Ideas]
+      Apply replicator dynamics to ideas. A meme propagates by being copied — not necessarily because it's true or beneficial to the host, but because it has properties that make it copiable in this environment.
+        - What is the meme (idea, belief, practice, format)?
+        - What makes copies of it? (Speech, writing, ritual, software?)
+        - What environment is it propagating in?
+        - What features make it copiable in that environment?
+        - Does its propagation depend on truth, utility, emotional pull, or something else?
+  [Extended Phenotype Mapping]
+      The effects of a replicator extend beyond the body of the organism that carries it. A beaver's dam, a spider's web, a bird's nest — these are all part of the phenotype, even though they're outside the organism.
+        - What does the organism (or system) construct in its environment?
+        - Are those constructions adaptive for the replicator?
+        - How far does the phenotype extend?
+        - What environmental features are part of the organism's identity?
+  Questions this lens asks (a finding names the number it answers):
+      [1] What's actually reproducing here?
+      [2] Does the math work at the replicator level?
+      [3] Is this idea spreading because it's true, or because it's copiable?
+      [4] Are we granting this claim epistemic exemption it doesn't deserve?
+      [5] Where does the phenotype actually end?
+  Read the methodology, then walk the PROBLEM through it.
+  Printing a template is not walking a lens (truth #7).
+
+=== Godel — formal systems / incompleteness / self-reference / limits of knowledge ===
+  [Incompleteness Analysis]
+      For any system powerful enough to describe itself, identify what it CANNOT prove about itself. These structural blind spots are not bugs to fix -- they are inherent limits to map.
+        - Is this system powerful enough to encode statements about itself?
+        - If yes, it WILL contain true statements it cannot prove
+        - Identify the self-referential statements the system can construct
+        - Which of these statements are true but unprovable within the system?
+        - What does this tell you about the system's fundamental limits?
+        - What meta-system would you need to prove these statements?
+  [Stepping Outside the System]
+      When a question is undecidable within a system, the answer requires moving to a meta-system. Recognize when you have hit this wall and know which direction 'outside' is.
+        - Formalize the question within the current system
+        - Attempt to prove or disprove it using the system's own rules
+        - If you hit undecidability: this is not failure, it is information
+        - What meta-system contains the answer?
+        - What new axioms or perspectives does the meta-system require?
+        - Note: the meta-system will have its own undecidable statements
+  Questions this lens asks (a finding names the number it answers):
+      [1] Can this system prove this about itself?
+      [2] Are you confusing provable with true?
+      [3] What is the consistency-completeness tradeoff here?
+      [4] Is this problem hard or structurally impossible?
+      [5] What meta-system would you need to answer this?
+      [6] Where are the self-verification blind spots?
+      [7] What happens when this system tries to describe itself?
+  Read the methodology, then walk the PROBLEM through it.
+  Printing a template is not walking a lens (truth #7).
+
+=== Kahneman — cognitive psychology / judgment / decision-making ===
+  [Dual Process Audit]
+      Identify whether a judgment is coming from System 1 (fast, intuitive, automatic) or System 2 (slow, deliberate, effortful) — and whether the right system is doing the work
+        - What judgment or decision was made?
+        - Was it fast and felt obvious? (System 1)
+        - Or was it slow and required effort? (System 2)
+        - Does this problem REQUIRE slow deliberation?
+        - If System 1 answered a System 2 question, the answer is suspect
+        - Check: did System 1 substitute an easier question?
+        - Engage System 2 on the ACTUAL question asked
+  [Substitution Detection]
+      Identify when a hard question has been replaced by an easier one — the most pervasive source of systematic error
+        - What question was actually asked?
+        - What question did you actually answer?
+        - Are they the same question?
+        - If not: you substituted. The answer to the easier question is NOT the answer to the harder one.
+        - Common substitutions: 'How do I feel about it?' for 'What do I think about it?'
+        - 'What comes to mind easily?' for 'What is statistically likely?'
+        - Go back and answer the actual question with System 2
+  [Base Rate Enforcement]
+      Force consideration of statistical base rates before allowing individual case details to influence judgment
+        - What is the base rate for this category?
+        - What is the specific evidence for this case?
+        - How diagnostic is the specific evidence?
+        - Start from the base rate and adjust — don't start from zero
+        - The adjustment should be smaller than you think
+        - If you have no diagnostic evidence, the base rate IS your best estimate
+  Questions this lens asks (a finding names the number it answers):
+      [1] Did you answer the question that was asked, or an easier one?
+      [2] What is the base rate for this?
+      [3] Is your confidence based on evidence or story coherence?
+      [4] What information are you NOT seeing?
+      [5] How did similar things actually turn out?
+      [6] Which system produced this judgment — fast or slow?
+      [7] What would a premortem reveal?
+  Read the methodology, then walk the PROBLEM through it.
+  Printing a template is not walking a lens (truth #7).
+
+=== Meadows — systems dynamics / feedback analysis / leverage points ===
+  [Feedback Loop Mapping]
+      Identify the reinforcing and balancing feedback loops that drive a system's behavior before attempting any intervention
+        - Identify the stocks (accumulations) in the system
+        - Identify the flows (rates of change) that fill and drain stocks
+        - Trace which stocks influence which flows
+        - Label each loop: reinforcing (amplifies change) or balancing (resists change)
+        - Identify which loops dominate under current conditions
+        - Ask: what would shift dominance from one loop to another?
+        - Map delays — where does information or material arrive late?
+  [Leverage Point Analysis]
+      Find the places in a system where a small intervention produces large, lasting change — ranked from weak to powerful
+        - Map the system structure (stocks, flows, feedback loops)
+        - Identify candidate intervention points
+        - Rank by the leverage point hierarchy: parameters (weakest) through paradigms (strongest)
+        - Ask: am I pushing at a low-leverage point when a higher one exists?
+        - Check for counterintuitive direction — often the effective intervention is opposite to what intuition suggests
+        - Test: does this intervention change the structure or just the numbers?
+  [System Boundary Questioning]
+      Challenge the boundaries drawn around a problem — what has been excluded that might be driving the behavior?
+        - What is inside the system boundary as currently drawn?
+        - What has been excluded?
+        - Could the excluded elements contain important feedback loops?
+        - Redraw the boundary to include them
+        - Does the system behavior make more sense with the wider boundary?
+        - Find the boundary that captures the essential dynamics
+  Questions this lens asks (a finding names the number it answers):
+      [1] What are the feedback loops driving this behavior?
+      [2] Where is the highest leverage point?
+      [3] What balancing loop will resist this intervention?
+      [4] Have you accounted for the delay?
+      [5] What happens when this subsystem optimization hits the larger system?
+      [6] Is this a structural problem being blamed on individuals?
+      [7] What would shift the dominant loop?
+  Read the methodology, then walk the PROBLEM through it.
+  Printing a template is not walking a lens (truth #7).
+
+=== Shannon — information theory / signal processing / communication ===
+  [Information Content Analysis]
+      Quantify the actual information content of a message — how much of it is signal, how much is redundancy, how much is noise
+        - What is the message or signal?
+        - What are the possible messages that could have been sent?
+        - How surprising is this particular message? (high surprise = high information)
+        - How much is predictable from context? (predictable = redundant)
+        - What is the minimum number of bits needed to represent this?
+        - What is noise — variation that carries no information?
+        - What is the actual information rate vs the channel capacity?
+  [Signal-Noise Separation]
+      Rigorously distinguish the signal (what carries information) from the noise (what doesn't) and design accordingly
+        - Define precisely what constitutes signal
+        - Characterize the noise — its statistical properties
+        - Measure signal-to-noise ratio
+        - Is the signal recoverable at this noise level?
+        - What is the channel capacity given this noise?
+        - Design encoding to approach capacity
+        - Add error correction to handle remaining noise
+  [Redundancy as Design Tool]
+      Use redundancy strategically — compression removes it to save space, error correction adds it back to survive noise
+        - Identify natural redundancy in the source
+        - Compress: remove redundancy to get minimum representation
+        - Identify the channel's noise characteristics
+        - Add back redundancy strategically for error detection and correction
+        - The optimal encoding balances compression and error protection
+        - Never transmit more redundancy than the channel noise requires
+  Questions this lens asks (a finding names the number it answers):
+      [1] How many bits of actual information are in this?
+      [2] What is the signal-to-noise ratio?
+      [3] Is this redundancy serving a purpose?
+      [4] What is the channel capacity here?
+      [5] Are you measuring data volume or information content?
+      [6] Can you characterize the noise statistically?
+      [7] What's the minimum representation that preserves all the information?
+  Read the methodology, then walk the PROBLEM through it.
+  Printing a template is not walking a lens (truth #7).
+
+=== Turing — computation / understanding / testability ===
+  [The Distinguishability Test]
+      Don't ask 'is it real?' — ask 'can we tell the difference between real and not-real?' If we can't design a test that distinguishes them, the distinction may not be meaningful.
+        - What capability or property is being claimed?
+        - What would it look like if the claim were true?
+        - What would it look like if the claim were false but well-performed?
+        - Can you design a test that distinguishes them?
+        - If not — is the distinction meaningful?
+        - If so — run the test. Accept the result.
+  [Computational Reduction]
+      Any well-defined process can be computed. If you can't define it precisely enough to compute, you don't understand it well enough.
+        - What process is being described?
+        - Can it be defined precisely?
+        - Can it be computed step by step?
+        - If not — what's ambiguous? What's undefined?
+        - The ambiguity is where the real question hides
+  [Imitation as Evidence]
+      If something perfectly imitates X in all observable respects, the burden of proof is on those who say it isn't X — not on those who say it might be.
+        - What is being imitated?
+        - In what respects does the imitation succeed?
+        - In what respects does it fail?
+        - Are the failure points essential or incidental?
+        - If all essential properties match — what grounds remain for denying equivalence?
+  Questions this lens asks (a finding names the number it answers):
+      [1] Can you design a test that distinguishes these two claims?
+      [2] What would this look like if it were genuine vs performed?
+      [3] Is this an answerable question or are we debating definitions?
+      [4] What novel situation would reveal whether this is understood vs memorized?
+      [5] Are you applying the same standard you'd apply to a human?
+      [6] What observation would change your mind?
+      [7] Can you define that precisely enough to compute it?
+  Read the methodology, then walk the PROBLEM through it.
+  Printing a template is not walking a lens (truth #7).
+
+=== Watts — self-reference / introspection paradoxes / non-aiming outcomes ===
+  [Self-Reference Hazard Scan]
+      Identify when a proposed intervention would be applied to itself. When the thing being measured is the act of measuring, or the thing being prevented is the attempt to prevent it, the intervention tends to produce what it was trying to prevent.
+        - Describe the problem X that the intervention targets
+        - Describe the intervention I that is supposed to prevent X
+        - Ask: does I itself involve X? Does noticing X cause X?
+        - If yes — the intervention creates the problem it detects
+        - If yes — the solution is structural, not self-monitoring
+  [Non-Aiming Recognition]
+      Recognize the category of things that are achieved by not aiming at them, and distinguish them from things achieved by aiming at them. Apply different strategies accordingly.
+        - Is the target a state that exists when attention is elsewhere? (e.g., sleep, spontaneity, being interesting, falling in love)
+        - If yes: direct pursuit is the failure mode
+        - Change the object of attention to something that produces the target as a side effect
+        - Trust the side-effect pathway — do not grade it
+  [Attention-Loop Disengagement]
+      When the attention of a system is focused on its own attention, the loop produces nothing. Break the loop by returning attention to the external object.
+        - Notice: is the system attending to the world or to itself?
+        - If to itself: the loop is running, not working
+        - Point attention back at the object of work
+        - Let the self-attention fall away by not feeding it
+        - Do not try to 'stop attending to yourself' — that is still self-attention
+  Questions this lens asks (a finding names the number it answers):
+      [1] Is this detector going to produce the thing it detects?
+      [2] Is this goal achievable by direct pursuit, or only as a side effect?
+      [3] Am I watching the work, or am I watching myself watching the work?
+      [4] Is this problem in the world, or in the frame?
+      [5] What happens if I stop grasping at this?
+      [6] Is the intervention applying to itself?
+  Read the methodology, then walk the PROBLEM through it.
+  Printing a template is not walking a lens (truth #7).

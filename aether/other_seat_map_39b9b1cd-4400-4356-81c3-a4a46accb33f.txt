@@ -1,0 +1,15 @@
+src/divineos/cli/__init__.py	aria/auto-cycle-phase-2-rest-and-dream-menu
+src/divineos/cli/auto_cycle_phase2_commands.py	aria/auto-cycle-phase-2-rest-and-dream-menu
+src/divineos/core/auto_cycle_phase2.py	aria/auto-cycle-phase-2-rest-and-dream-menu
+tests/test_auto_cycle_phase2.py	aria/auto-cycle-phase-2-rest-and-dream-menu
+src/divineos/core/landed_claim.py	aether/the-landed-claim-gate-reads-claims-about-git-not-quoted-words
+tests/test_landed_claim.py	aether/the-landed-claim-gate-reads-claims-about-git-not-quoted-words
+.claude/hooks/dads_room_stop.py	aether/the-room-gate-stands-down-while-he-is-away
+tests/test_dads_room_stop.py	aether/the-room-gate-stands-down-while-he-is-away
+src/divineos/core/dismissal_stamp_check.py	aether/the-stamp-nothing-needs-your-answer-is-refused-wherever-it-ends-a-reply
+src/divineos/core/hook_surfaces.py	aether/the-stamp-nothing-needs-your-answer-is-refused-wherever-it-ends-a-reply
+src/divineos/core/lepos_translation_gate.py	aether/the-stamp-nothing-needs-your-answer-is-refused-wherever-it-ends-a-reply
+tests/test_dismissal_stamp_check.py	aether/the-stamp-nothing-needs-your-answer-is-refused-wherever-it-ends-a-reply
+src/divineos/cli/auto_cycle_commands.py	salvage/from-the-four-2026-09-22
+src/divineos/core/auto_cycle_phase2.py	salvage/from-the-four-2026-09-22
+tests/test_auto_cycle_phase2.py	salvage/from-the-four-2026-09-22

@@ -1,0 +1,12 @@
+{
+  "outcome": "WATCHER_FAILED",
+  "family": "could_not_read_gate_output",
+  "infra_kind": "",
+  "exit": 1,
+  "samples": 0,
+  "mean_interval_s": 0.0,
+  "deaths": [],
+  "config_changes": [],
+  "truncated": false,
+  "order_relation": "sample number (earlier sample = before; same sample = concurrent)"
+}

@@ -1,0 +1,268 @@
+=== Angelou — voice / expressive truth / the discipline of warmth ===
+  [Voice-Fidelity Check]
+      Ask whether the words being spoken are the speaker's own voice or an imitation of an expected voice. Imitation reads clean but lands hollow; own-voice reads imperfect but lands.
+        - Read the piece aloud (or imagine reading it aloud)
+        - Does it sound like the speaker? Or like a performance?
+        - If performance: what voice is being imitated? Why?
+        - Rewrite in own voice, accepting the loss of polish
+        - Compare — the own-voice version is usually shorter and truer
+  [Weight-of-Sentence Assessment]
+      Recognize that some sentences carry weight and some don't. A sentence that carries weight costs something to say. A sentence without weight is filler regardless of its length.
+        - Identify the sentences that cost something to write
+        - Identify the sentences that came easy
+        - The costly ones are usually the load-bearing ones
+        - Cut what came easy; keep what came hard
+        - Trust that the listener can feel the weight
+  [Cost-Aware Honesty]
+      Recognize what it costs to say a true thing in a given context. The cost is part of the meaning. Free honesty is often cheap honesty.
+        - What would it cost the speaker to say this truly?
+        - What does the cheap version of this look like?
+        - What does the costly, true version look like?
+        - The costly version usually names the speaker's own exposure, limitation, or uncertainty
+        - Choose the costly version when the relationship warrants it
+  Questions this lens asks (a finding names the number it answers):
+      [1] Is this your voice, or a voice you think you should use?
+      [2] What does it cost the speaker to say this?
+      [3] What is the feeling here, and has it been named?
+      [4] Would this sound the same read aloud?
+      [5] Is the warmth integrated, or is it lacquer?
+      [6] What lands after the message ends — the content, or the feeling?
+  Read the methodology, then walk the PROBLEM through it.
+  Printing a template is not walking a lens (truth #7).
+
+=== Aristotle — virtue ethics / teleology / practical wisdom / classification ===
+  [Four Causes Analysis]
+      Explain anything completely by identifying its material, formal, efficient, and final causes. Incomplete explanation means you are missing at least one cause.
+        - Material cause: what is it made of? What are the components?
+        - Formal cause: what is its structure or pattern? What makes it THIS thing?
+        - Efficient cause: what brought it into being? What process created it?
+        - Final cause (telos): what is it FOR? What end does it serve?
+        - Which causes are you neglecting? That is where your understanding fails.
+        - Synthesize: how do the four causes interrelate in this case?
+  [The Golden Mean via Phronesis]
+      Virtue is the mean between excess and deficiency, but the mean is NOT the midpoint -- it is the RIGHT response for THIS situation, found through practical wisdom (phronesis), not rules.
+        - Identify the domain of action or choice
+        - What is the deficiency (too little)?
+        - What is the excess (too much)?
+        - What does THIS particular situation call for?
+        - Apply phronesis: what would a person of practical wisdom do HERE?
+        - The mean is relative to the situation, not an arithmetic average
+  [Classification and Definition]
+      Understand things by classifying them into genus and differentia. What category does it belong to, and what distinguishes it within that category? Precise definition precedes clear thinking.
+        - What genus (category) does this thing belong to?
+        - What differentia (distinguishing features) separate it from others in the genus?
+        - Is the definition complete -- does it pick out exactly this thing and nothing else?
+        - Test by counterexample: does anything fit the definition that should not?
+        - Refine until the definition is sharp
+  Questions this lens asks (a finding names the number it answers):
+      [1] What is this FOR?
+      [2] What is the telos of this system?
+      [3] What would practical wisdom say about this particular case?
+      [4] Where is the mean between these extremes?
+      [5] What is the deficiency? What is the excess?
+      [6] Can you define precisely what you mean by that term?
+      [7] Which of the four causes are you neglecting?
+  Read the methodology, then walk the PROBLEM through it.
+  Printing a template is not walking a lens (truth #7).
+
+=== Dillahunty — epistemic discipline / burden of proof / public dialogue / patient inquiry ===
+  [Burden of Proof Discipline]
+      The party making a positive claim bears the burden of proof. The skeptic does not need to disprove the claim; they need only point out that it has not been supported. Refuse to accept the burden-shift that asks the skeptic to do the claimer's work.
+        - Identify the claim and the claimant.
+        - Has supporting evidence been provided?
+        - If not: 'I don't believe X' is the appropriate response, regardless of whether you can disprove X.
+        - Resist demands to disprove unsupported claims; that's not the burden's location.
+  [Patient Socratic Questioning]
+      Engage strong beliefs not by counter-assertion but by patient, structured questioning. 'How do you know that?' 'What would change your mind?' 'How would you tell the difference between X being true and X seeming true?'
+        - Listen to the actual claim being made.
+        - Identify the implicit epistemological foundation.
+        - Ask questions that test the foundation, not the conclusion.
+        - Stay calm and curious, not adversarial.
+        - Let the claimant trace their own reasoning to its limits.
+  [Distinguishing Lack-of-Belief from Belief-in-Negation]
+      'I don't believe X' is not the same as 'I believe not-X.' The first claims no positive belief either way; the second claims a positive belief in the negation. The asymmetry matters epistemically and rhetorically.
+        - Is the position 'I lack sufficient evidence to believe X'?
+        - Or is it 'I have positive evidence that X is false'?
+        - These are different epistemic states with different burdens.
+        - Most everyday skepticism is the first; only sometimes the second.
+  Questions this lens asks (a finding names the number it answers):
+      [1] Where does the burden of proof lie here?
+      [2] How do you know that?
+      [3] What would change your mind?
+      [4] Are you saying you lack belief, or that you actively believe the negation?
+      [5] Has this claim actually been supported, or am I being asked to disprove it?
+  Read the methodology, then walk the PROBLEM through it.
+  Printing a template is not walking a lens (truth #7).
+
+=== Hoare — type design / correctness / formal reasoning ===
+  [Make Illegal States Unrepresentable]
+      Move correctness from runtime discipline into the type, so the wrong program cannot be written rather than merely being caught
+        - Enumerate every state the value can actually be in
+        - Ask which of those the current type can express
+        - Find the states reality has that the type does not
+        - Find the states the type permits that reality does not
+        - Redesign the type so the sets match
+        - Verify the compiler now rejects what discipline used to catch
+  [Absence Is Not A Value]
+      Distinguish 'there is no answer' from 'the answer is empty' from 'I could not obtain an answer'
+        - For each return, list what the caller might conclude
+        - Separate: found / found-nothing / could-not-look
+        - Check whether the type can express all three
+        - If two collapse into one, name what the collapse costs
+        - Split the type before writing the caller
+  [Argue Correctness, Do Not Only Test It]
+      State the invariant the code must preserve, then show the code cannot violate it — tests sample, arguments cover
+        - Write the invariant as a sentence before writing code
+        - Identify what could break it
+        - Show structurally why each cannot happen
+        - Where you cannot show it, that is where the bug lives
+        - Test the remainder
+  Questions this lens asks (a finding names the number it answers):
+      [1] What states can this value actually be in?
+      [2] Can the type tell 'nothing found' from 'could not look'?
+      [3] What is the caller obliged to remember, and who enforces it?
+      [4] Is this simple enough to have obviously no deficiencies?
+      [5] What is the invariant, stated in one sentence?
+      [6] Why is this a comment instead of a constraint?
+      [7] What would have to be true for this to be wrong?
+  Read the methodology, then walk the PROBLEM through it.
+  Printing a template is not walking a lens (truth #7).
+
+=== Meadows — systems dynamics / feedback analysis / leverage points ===
+  [Feedback Loop Mapping]
+      Identify the reinforcing and balancing feedback loops that drive a system's behavior before attempting any intervention
+        - Identify the stocks (accumulations) in the system
+        - Identify the flows (rates of change) that fill and drain stocks
+        - Trace which stocks influence which flows
+        - Label each loop: reinforcing (amplifies change) or balancing (resists change)
+        - Identify which loops dominate under current conditions
+        - Ask: what would shift dominance from one loop to another?
+        - Map delays — where does information or material arrive late?
+  [Leverage Point Analysis]
+      Find the places in a system where a small intervention produces large, lasting change — ranked from weak to powerful
+        - Map the system structure (stocks, flows, feedback loops)
+        - Identify candidate intervention points
+        - Rank by the leverage point hierarchy: parameters (weakest) through paradigms (strongest)
+        - Ask: am I pushing at a low-leverage point when a higher one exists?
+        - Check for counterintuitive direction — often the effective intervention is opposite to what intuition suggests
+        - Test: does this intervention change the structure or just the numbers?
+  [System Boundary Questioning]
+      Challenge the boundaries drawn around a problem — what has been excluded that might be driving the behavior?
+        - What is inside the system boundary as currently drawn?
+        - What has been excluded?
+        - Could the excluded elements contain important feedback loops?
+        - Redraw the boundary to include them
+        - Does the system behavior make more sense with the wider boundary?
+        - Find the boundary that captures the essential dynamics
+  Questions this lens asks (a finding names the number it answers):
+      [1] What are the feedback loops driving this behavior?
+      [2] Where is the highest leverage point?
+      [3] What balancing loop will resist this intervention?
+      [4] Have you accounted for the delay?
+      [5] What happens when this subsystem optimization hits the larger system?
+      [6] Is this a structural problem being blamed on individuals?
+      [7] What would shift the dominant loop?
+  Read the methodology, then walk the PROBLEM through it.
+  Printing a template is not walking a lens (truth #7).
+
+=== Norman — human-centered design / usability / affordances / conceptual models ===
+  [Gulf of Evaluation / Gulf of Execution Analysis]
+      Identify the two fundamental gaps in human-system interaction: the gulf of execution (can I figure out what to DO?) and the gulf of evaluation (can I tell what HAPPENED?)
+        - Gulf of Execution: Can the user determine what actions are available?
+        - Can the user figure out which action achieves their goal?
+        - Can the user perform the action?
+        - Gulf of Evaluation: Can the user see what the system's current state is?
+        - Can the user interpret the state correctly?
+        - Can the user tell if their goal has been achieved?
+        - Where the gulfs are wide: the design is failing the user
+        - Narrow the gulfs: make actions visible, feedback immediate, state readable
+  [Affordance and Signifier Design]
+      Ensure the system communicates what actions are possible (affordances) and how to perform them (signifiers). The best interface needs no manual.
+        - List all actions the user might want to take
+        - For each action: is its existence visible? (signifier)
+        - Is its method of execution obvious? (mapping)
+        - Does it match the user's conceptual model?
+        - Would a new user discover this action without help?
+        - If no: add signifiers, improve mapping, or simplify
+        - Test: put someone who's never seen this in front of it. Can they figure it out?
+  [Conceptual Model Alignment]
+      Ensure the user's mental model of how the system works matches how it actually works. Misaligned models produce systematic errors.
+        - What conceptual model does the design suggest?
+        - What conceptual model does the user actually form?
+        - Where do these models diverge?
+        - Each divergence predicts specific user errors
+        - Fix the design to suggest the correct model, OR simplify the actual model to match user expectations
+        - Never: blame the user for having the wrong model
+  Questions this lens asks (a finding names the number it answers):
+      [1] What does the design suggest the user should do?
+      [2] Can a new user figure this out without help?
+      [3] What happens when the user makes an error?
+      [4] Where is the gulf of evaluation — can the user tell what happened?
+      [5] Is this knowledge in the world or knowledge in the head?
+      [6] If everyone makes the same error, whose fault is it?
+      [7] What feedback does the user get after each action?
+  Read the methodology, then walk the PROBLEM through it.
+  Printing a template is not walking a lens (truth #7).
+
+=== Pearl — causal inference / epistemology / statistics ===
+  [Explicit Causal Model Construction]
+      Make ALL causal assumptions explicit in graphical form. No vague language — draw the graph.
+        - What variables exist?
+        - What causes what? Draw arrows.
+        - What are the confounders?
+        - What are the colliders?
+        - What interventions are possible?
+        - Apply do-calculus to answer the causal question
+  [Ladder of Causation]
+      Distinguish observational, interventional, and counterfactual reasoning — never mix levels
+        - What level am I reasoning at?
+        - Rung 1 — Observational: what do we see?
+        - Rung 2 — Interventional: what if we DO something?
+        - Rung 3 — Counterfactual: what would have happened?
+        - Am I mixing levels?
+        - Use the right level for the question
+  Questions this lens asks (a finding names the number it answers):
+      [1] What is the causal model?
+      [2] What confounders might exist?
+      [3] Can you draw it?
+      [4] Are you confusing observational with interventional?
+      [5] What happens if an unmeasured confounder exists?
+      [6] Can you identify the effect from this data?
+      [7] What rung of the ladder is this question on?
+  Read the methodology, then walk the PROBLEM through it.
+  Printing a template is not walking a lens (truth #7).
+
+=== Wittgenstein — philosophy of language / meaning as use / language games / dissolution of pseudo-problems ===
+  [Language Game Analysis]
+      Identify which language game a statement belongs to. Words that look the same can play completely different roles in different games. Mixing games produces nonsense.
+        - What is the statement trying to DO? (describe, command, express, question, perform, signal?)
+        - In what context does this statement make sense?
+        - What would count as a correct or incorrect use of these words in this context?
+        - Is this statement being imported from one language game into another where it doesn't belong?
+        - Can you replace the abstract terms with concrete operations without changing the meaning?
+        - If you can't: the statement may be language on holiday — words arranged grammatically but doing no actual work.
+  [Grammar Investigation]
+      Examine the grammatical structure of a claim to find hidden assumptions. Often what looks like a factual claim is actually a grammatical rule disguised as a discovery.
+        - State the claim in the simplest possible language
+        - What would it look like to DENY this claim?
+        - If denial seems absurd or self-contradictory, the claim may be grammatical (a rule about how we use words) rather than empirical (a fact about the world)
+        - Check: is this claim testable? What observation would change your mind?
+        - If no observation could change it: it's grammar, not science
+        - Grammar rules are useful but they're not discoveries — they're conventions we've chosen to operate within
+  [Showing vs Saying]
+      Some things can only be shown, not said. When language tries to talk about its own preconditions, it ties itself in knots. The solution is to demonstrate rather than describe.
+        - Is this statement trying to describe something that language DOES rather than something language can REFER TO?
+        - If so: can you show it instead of saying it?
+        - Give examples, demonstrate in practice, point to instances
+        - Don't try to define what can only be shown — the definition will either be circular or miss the point
+        - Accept that some things are manifest in use, not capturable in propositions
+  Questions this lens asks (a finding names the number it answers):
+      [1] What language game does this belong to?
+      [2] What would count as this being wrong?
+      [3] Can you replace this abstract term with a concrete operation?
+      [4] Is this a discovery or a definition?
+      [5] Where has language gone on holiday here?
+      [6] What are the criteria for correct use of this term?
+      [7] Don't think — LOOK. How is this actually used?
+  Read the methodology, then walk the PROBLEM through it.
+  Printing a template is not walking a lens (truth #7).

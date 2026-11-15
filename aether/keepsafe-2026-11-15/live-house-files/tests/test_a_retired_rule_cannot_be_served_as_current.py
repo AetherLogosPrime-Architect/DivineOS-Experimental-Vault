@@ -1,0 +1,251 @@
+"""The register catches a retired rule stated on a surface that teaches.
+
+Andrew, 2026-09-21, after I repeated a rule that had been replaced two weeks
+earlier and told him it was current:
+
+    "it is from the system. the system handed you old rules... it should NOT
+    be able to hand you old rules"
+
+These tests exercise the checker's pieces directly rather than the whole repo
+scan, because the repo scan's answer changes every time somebody writes a
+sentence, and a test whose expectation drifts with the tree is a test nobody
+can read a failure out of.
+
+The one that matters most is the last: a checker that cannot read a file must
+not report the same thing as a checker that read it and found nothing. That
+collapse has now been shipped twice in this house in ten days, once inside a
+detector built to hunt it.
+"""
+
+import importlib.util
+from pathlib import Path
+
+import pytest
+
+_CHECKER = Path(__file__).resolve().parent.parent / "scripts" / "check_retired_rules_not_served.py"
+
+
+def _load():
+    spec = importlib.util.spec_from_file_location("retired_rules_checker", _CHECKER)
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+@pytest.fixture(scope="module")
+def checker():
+    return _load()
+
+
+@pytest.fixture
+def one_rule(checker, tmp_path):
+    entry = tmp_path / "2020-01-01_a_rule.md"
+    entry.write_text(
+        "<!-- retired-rule\n"
+        "id: a-rule\n"
+        "retired: 2020-01-01\n"
+        "retired-by: somebody\n"
+        "successor: the other thing\n"
+        "pattern: (?i)\\bthe old way\\b\n"
+        "-->\n\n# A rule\n",
+        encoding="utf-8",
+    )
+    monkey_dir = tmp_path
+    original = checker.REGISTER_DIR
+    checker.REGISTER_DIR = monkey_dir
+    yield checker.load_register()
+    checker.REGISTER_DIR = original
+
+
+def test_a_surface_stating_the_retired_rule_is_found(checker, one_rule, tmp_path):
+    surface = tmp_path / "instructions.md"
+    surface.write_text("Always do it the old way.\n", encoding="utf-8")
+    hits, unreadable = checker.find_hits(one_rule, [surface])
+    assert len(hits) == 1
+    assert hits[0].rule.rule_id == "a-rule"
+    assert unreadable == []
+
+
+def test_a_deliberate_mention_is_allowed(checker, one_rule, tmp_path):
+    """Saying that a rule is retired must not itself count as serving it.
+
+    Without this the archive would trip its own guard, and the only way to
+    write about a retired rule would be to not write about it -- which is the
+    deletion-as-archive failure the register exists to avoid.
+    """
+    surface = tmp_path / "instructions.md"
+    surface.write_text("We no longer do it the old way.  RETIRED-RULE-OK\n", encoding="utf-8")
+    hits, _ = checker.find_hits(one_rule, [surface])
+    assert hits == []
+
+
+def test_the_marker_works_inside_a_json_string(checker, one_rule, tmp_path):
+    """Aria 2026-11-09: settings.json is scanned now and JSON has no comments, so a
+    deliberate mention there has to carry the marker inside a string value. The
+    checker reads lines, so the marker works anywhere on the line."""
+    settings = tmp_path / "settings.json"
+    settings.write_text(
+        '{"note": "we no longer do it the old way  RETIRED-RULE-OK"}\n'
+        '{"note": "we always do it the old way"}\n',
+        encoding="utf-8",
+    )
+    hits, _ = checker.find_hits(one_rule, [settings])
+    assert [h.lineno for h in hits] == [2]
+
+
+def test_a_surface_saying_nothing_of_the_kind_is_clean(checker, one_rule, tmp_path):
+    surface = tmp_path / "instructions.md"
+    surface.write_text("Do the thing that is currently correct.\n", encoding="utf-8")
+    hits, unreadable = checker.find_hits(one_rule, [surface])
+    assert hits == []
+    assert unreadable == []
+
+
+def test_a_planted_copy_in_a_python_hook_is_scanned_and_caught(
+    checker, one_rule, tmp_path_factory, monkeypatch
+):
+    """Aria 2026-11-09: the scan list had no .claude/hooks/**/*.py, so the hook that
+    still printed the retired lens count was invisible to the checker. Plant the
+    phrase where it was hiding and require both that the file is scanned and that
+    the phrase is found, so a clean run cannot be a short list."""
+    # A tree of its own: the register fixture lives in tmp_path, and anything under
+    # the register directory is skipped by design.
+    tmp_path = tmp_path_factory.mktemp("tree")
+    hooks = tmp_path / ".claude" / "hooks"
+    hooks.mkdir(parents=True)
+    planted = hooks / "a_hook.py"
+    planted.write_text('print("do it the old way")\n', encoding="utf-8")
+    page = tmp_path / "family" / "andrew"
+    page.mkdir(parents=True)
+    room = page / "he_is_in_the_room.md"
+    room.write_text("Speak to him the old way.\n", encoding="utf-8")
+    monkeypatch.setattr(checker, "REPO_ROOT", tmp_path)
+    files = checker.scanned_files()
+    assert planted in files
+    assert room in files
+    hits, unreadable = checker.find_hits(one_rule, files)
+    assert {h.path for h in hits} == {planted, room}
+    assert unreadable == []
+
+
+def test_an_unreadable_file_is_reported_apart_from_a_clean_one(checker, one_rule, tmp_path):
+    """Could-not-read and found-nothing are different answers.
+
+    A file of bytes that are not text comes back on the unreadable list, not
+    silently as a clean scan. The caller can then say so instead of counting
+    it as coverage it never had.
+    """
+    unreadable_file = tmp_path / "binary.py"
+    unreadable_file.write_bytes(b"\xff\xfe\x00\x01 the old way \x00\xff")
+    clean_file = tmp_path / "fine.md"
+    clean_file.write_text("nothing to see\n", encoding="utf-8")
+
+    hits, unreadable = checker.find_hits(one_rule, [unreadable_file, clean_file])
+    assert hits == []
+    assert unreadable == [unreadable_file]
+
+
+def test_an_entry_with_no_pattern_is_refused_rather_than_ignored(checker, tmp_path):
+    """An entry that can never match is worse than no entry.
+
+    It looks like coverage on the shelf and provides none, which is the exact
+    shape of the failure the register was built for.
+    """
+    (tmp_path / "2020-01-01_toothless.md").write_text(
+        "<!-- retired-rule\nid: toothless\nretired: 2020-01-01\n-->\n",
+        encoding="utf-8",
+    )
+    original = checker.REGISTER_DIR
+    checker.REGISTER_DIR = tmp_path
+    try:
+        with pytest.raises(checker.CheckerError, match="registers no pattern"):
+            checker.load_register()
+    finally:
+        checker.REGISTER_DIR = original
+
+
+def test_a_pattern_that_will_not_compile_is_could_not_run(checker, tmp_path):
+    """Aria, station four: uncaught, re.error exited 1, the code for a real hit."""
+    (tmp_path / "2020-01-01_broken.md").write_text(
+        "<!-- retired-rule\nid: broken\nretired: 2020-01-01\npattern: unclosed(group\n-->\n",
+        encoding="utf-8",
+    )
+    original = checker.REGISTER_DIR
+    checker.REGISTER_DIR = tmp_path
+    try:
+        with pytest.raises(checker.CheckerError, match="does not compile"):
+            checker.load_register()
+    finally:
+        checker.REGISTER_DIR = original
+
+
+def test_an_unreadable_file_makes_the_run_could_not_run(checker, one_rule, tmp_path, monkeypatch):
+    """Printed as UNREADABLE, the run still exited 0, and precommit read that as
+    a pass over a file nobody checked."""
+    unreadable_file = tmp_path / "binary.py"
+    unreadable_file.write_bytes(b"\xff\xfe\x00\x01 the old way \x00\xff")
+    monkeypatch.setattr(checker, "REPO_ROOT", tmp_path)
+    monkeypatch.setattr(checker, "load_register", lambda: one_rule)
+    monkeypatch.setattr(checker, "scanned_files", lambda: [unreadable_file])
+    monkeypatch.setattr(checker, "load_baseline", set)
+    assert checker.main() == 2
+
+
+def test_an_empty_register_reports_could_not_run_not_clean(checker, tmp_path):
+    original = checker.REGISTER_DIR
+    checker.REGISTER_DIR = tmp_path
+    try:
+        with pytest.raises(checker.CheckerError, match="only ever pass"):
+            checker.load_register()
+    finally:
+        checker.REGISTER_DIR = original
+
+
+def test_the_lens_count_entry_catches_a_count_in_a_table_and_not_the_current_rule(checker):
+    """Aria 2026-11-09: the gravity hook kept the retired counts as a table
+    ("12-15 lenses"), a phrasing the first patterns could not see. The entry must
+    catch that shape and must leave the current rule alone."""
+    rules = {r.rule_id: r for r in checker.load_register()}
+    lens_rule = rules["fixed-lens-count"]
+
+    def hit(line):
+        return any(p.search(line) for p in lens_rule.patterns)
+
+    assert hit('"council-required": ("12-15 lenses", "3 disagreeing"),')
+    assert hit('"clearly-high":     ("9 lenses",     "2-3 disagreeing"),')
+    assert hit("COUNCIL WALK -- three lenses minimum via the walk")
+    assert not hit("COUNCIL WALK -- every lens the council manager surfaces")
+
+
+def test_the_old_ritual_starts_are_caught_as_current_and_the_live_ones_are_left_alone(checker):
+    """Dad 2026-11-15: the platform's compaction point and our ritual start are
+    two numbers that moved for different reasons. The old starts, stated as
+    current, must be caught; the live constants (850k start, 890k hard line)
+    must not, or the guard flags the very numbers it protects."""
+    rules = {r.rule_id: r for r in checker.load_register()}
+    rule = rules["older-ritual-start-numbers"]
+
+    def hit(line):
+        return any(p.search(line) for p in rule.patterns)
+
+    assert hit("The ritual starts at 920k tokens, and compaction follows.")
+    assert hit("so we start the ritual at 950k")
+    assert hit("compaction happens at 999k now")
+    assert not hit('FIRE_TOKENS="${AUTO_CYCLE_FIRE_TOKENS:-850000}"')
+    assert not hit('HARD_TOKENS="${AUTO_CYCLE_HARD_TOKENS:-890000}"')
+    assert not hit("TRIGGER_THRESHOLD = 0.85")
+    assert not hit("the ritual starts at 850k tokens")
+
+
+def test_the_real_register_parses_and_carries_a_successor(checker):
+    """The shipped archive is loadable and each entry says what replaced it.
+
+    An entry without a successor tells a reader the rule is dead and leaves
+    them with no way to find what is alive, which sends them back to the
+    retired rule as the only thing written down.
+    """
+    rules = checker.load_register()
+    assert rules, "the shipped register is empty"
+    for rule in rules:
+        assert rule.successor != "<none recorded>", rule.rule_id
+        assert rule.patterns

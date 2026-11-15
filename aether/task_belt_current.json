@@ -9,7 +9,7 @@
     "severity": "HIGH",
     "reach": 1,
     "pulled_at": 1790217082.3688664,
-    "prompts": 2995,
+    "prompts": 6864,
     "reserved": false
   },
   {
@@ -22,7 +22,7 @@
     "severity": "MEDIUM",
     "reach": 1,
     "pulled_at": 1790217082.3857336,
-    "prompts": 2995,
+    "prompts": 6864,
     "reserved": true
   },
   {
@@ -35,7 +35,7 @@
     "severity": "HIGH",
     "reach": 1,
     "pulled_at": 1792170827.3084455,
-    "prompts": 683,
+    "prompts": 4552,
     "reserved": false
   }
 ]

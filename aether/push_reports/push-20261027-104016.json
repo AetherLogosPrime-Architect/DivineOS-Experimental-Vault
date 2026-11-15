@@ -1,0 +1,12 @@
+{
+  "outcome": "NOT_MINE",
+  "family": "stopped_before_tests",
+  "infra_kind": "",
+  "exit": 10,
+  "samples": 2601,
+  "mean_interval_s": 0.86,
+  "deaths": [],
+  "config_changes": [],
+  "truncated": false,
+  "order_relation": "sample number (earlier sample = before; same sample = concurrent)"
+}

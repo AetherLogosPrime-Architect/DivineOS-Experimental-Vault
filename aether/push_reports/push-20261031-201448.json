@@ -1,0 +1,118 @@
+{
+  "outcome": "NAMED",
+  "family": "stopped_before_tests",
+  "infra_kind": "",
+  "exit": 22,
+  "samples": 7941,
+  "mean_interval_s": 1.27,
+  "deaths": [],
+  "config_changes": [
+    {
+      "k": "cfg",
+      "n": 887,
+      "t": 1793493977.22,
+      "before": "bare = false",
+      "after": "bare = true"
+    },
+    {
+      "k": "cfg",
+      "n": 890,
+      "t": 1793493981.09,
+      "before": "bare = true",
+      "after": "bare = false"
+    },
+    {
+      "k": "cfg",
+      "n": 898,
+      "t": 1793493990.72,
+      "before": "bare = false",
+      "after": "bare = true"
+    },
+    {
+      "k": "cfg",
+      "n": 900,
+      "t": 1793493993.21,
+      "before": "bare = true",
+      "after": "bare = false"
+    },
+    {
+      "k": "cfg",
+      "n": 909,
+      "t": 1793494004.2,
+      "before": "bare = false",
+      "after": "bare = true"
+    },
+    {
+      "k": "cfg",
+      "n": 911,
+      "t": 1793494007.1,
+      "before": "bare = true",
+      "after": "bare = false"
+    },
+    {
+      "k": "cfg",
+      "n": 920,
+      "t": 1793494023.59,
+      "before": "bare = false",
+      "after": "bare = true"
+    },
+    {
+      "k": "cfg",
+      "n": 922,
+      "t": 1793494026.34,
+      "before": "bare = true",
+      "after": "bare = false"
+    },
+    {
+      "k": "cfg",
+      "n": 930,
+      "t": 1793494039.7,
+      "before": "bare = false",
+      "after": "bare = true"
+    },
+    {
+      "k": "cfg",
+      "n": 932,
+      "t": 1793494042.25,
+      "before": "bare = true",
+      "after": "bare = false"
+    },
+    {
+      "k": "cfg",
+      "n": 940,
+      "t": 1793494052.74,
+      "before": "bare = false",
+      "after": "bare = true"
+    },
+    {
+      "k": "cfg",
+      "n": 942,
+      "t": 1793494055.46,
+      "before": "bare = true",
+      "after": "bare = false"
+    },
+    {
+      "k": "cfg",
+      "n": 1208,
+      "t": 1793494425.59,
+      "before": "bare = false",
+      "after": "bare = true"
+    },
+    {
+      "k": "cfg",
+      "n": 1209,
+      "t": 1793494427.47,
+      "before": "bare = true",
+      "after": "bare = false"
+    },
+    {
+      "k": "cfg",
+      "n": 2086,
+      "t": 1793495650.48,
+      "before": "bare = false",
+      "after": "bare = true"
+    }
+  ],
+  "truncated": false,
+  "order_relation": "sample number (earlier sample = before; same sample = concurrent)"
+}

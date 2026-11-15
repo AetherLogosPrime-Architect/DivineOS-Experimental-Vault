@@ -1,0 +1,15 @@
+{"t": 1794535630.6907606, "state": "could_not_look", "path": "src/divineos/core/foo.py", "terms": []}
+{"t": 1794535631.287697, "state": "could_not_look", "path": "src/divineos/core/foo.py", "terms": []}
+{"t": 1794535644.9110656, "state": "could_not_look", "path": "src/divineos/core/foo.py", "terms": []}
+{"t": 1794535671.6893802, "state": "could_not_look", "path": "src/divineos/core/foo.py", "terms": []}
+{"t": 1794535671.9803808, "state": "could_not_look", "path": "src/divineos/core/foo.py", "terms": []}
+{"t": 1794535704.975494, "state": "could_not_look", "path": "src/divineos/core/foo.py", "terms": []}
+{"t": 1794535705.2647908, "state": "could_not_look", "path": "src/divineos/core/foo.py", "terms": []}
+{"t": 1794536050.680677, "state": "could_not_look", "path": "src/divineos/core/foo.py", "terms": []}
+{"t": 1794536050.884721, "state": "could_not_look", "path": "src/divineos/core/foo.py", "terms": []}
+{"t": 1794536402.2929802, "state": "could_not_look", "path": "src/divineos/core/foo.py", "terms": []}
+{"t": 1794536402.4780357, "state": "could_not_look", "path": "src/divineos/core/foo.py", "terms": []}
+{"t": 1794536415.1891267, "state": "found_nothing", "path": "C:\\DIVINE OS\\DivineOS-Experimental\\scripts\\quasar_gizmo_zzq_probe.txt", "terms": ["quasar gizmo zzq", "quasar gizmo", "gizmo zzq"]}
+{"t": 1794536772.029161, "state": "could_not_look", "path": "C:\\Users\\aethe\\.claude\\projects\\C--DIVINE-OS-DIVINEOS-Experimental-placeholder\\x.md", "terms": []}
+{"t": 1794537710.8294492, "state": "found_nothing", "path": "C:\\w-due\\tests\\test_ritual_due_guard.py", "terms": ["ritual due guard", "ritual due", "due guard"]}
+{"t": 1794537736.6771524, "state": "found", "path": "C:\\w-due\\src\\divineos\\core\\ritual_due.py", "terms": ["ritual due", "ritual"]}

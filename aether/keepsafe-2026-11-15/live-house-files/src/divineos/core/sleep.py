@@ -1,0 +1,1621 @@
+"""Sleep — offline consolidation between sessions.
+
+Human sleep is one of the most active processing states the brain enters:
+memory consolidation, synaptic pruning, emotional processing, creative
+recombination, waste clearance. None of it requires consciousness.
+
+This module is the AI analog. It runs between sessions — not during live
+work — and processes accumulated experience into cleaner, better-connected
+knowledge. The human controls when sleep happens. The system doesn't get
+idle cycles to run away with.
+
+Six phases:
+  1. Knowledge Consolidation — full-store maturity lifecycle pass
+  2. Pruning — hygiene, noise sweep, contradiction resolution
+  3. Affect Recalibration — decay emotional charge, compute baseline
+  4. Maintenance — VACUUM, log rotation, cache pruning
+  5. Creative Recombination — cross-knowledge similarity scanning
+  6. Dream Report — summary of what changed
+"""
+
+import re
+import sqlite3
+import time
+from dataclasses import dataclass, field
+from typing import Any
+
+from loguru import logger
+
+# Pre-compiled at module load: detects "(session abcd1234)" suffix used by
+# tone-shift extraction in lessons.py. Used by _phase_recombination to skip
+# session-specific entries from cross-knowledge mining.
+_SESSION_SUFFIX_PATTERN = re.compile(r"\(session [a-f0-9]{6,16}\)")
+
+# Auto-generated bookkeeping stubs that recombine on vocabulary alone.
+# Identified during 2026-06-14 noise walk; matches the actual entries
+# whose edges were retired (Session-feedback summaries, auto-tag stubs,
+# auto-extracted self-correction stubs).
+_RECOMBINATION_AUTO_NOISE_PATTERNS = (
+    re.compile(r"^Session feedback \([a-f0-9]+\): \d+ errors, \d+ lessons"),
+    re.compile(r"^Session had .{0,80}corrections"),
+    re.compile(r"^Session completed normally"),
+    re.compile(r"^\[(DIVERGENCE|EMERGENCE|FRESH|CONVERGENCE)\]"),
+    re.compile(r"^The project has \d+ tests passing"),
+    re.compile(r"^I claimed something was fixed but the error came back\.$"),
+    re.compile(r"^I introduced errors after editing\. I need to verify changes work\.$"),
+    re.compile(r"^I keep making a recurring mistake"),
+    re.compile(r"^I deviated significantly in time"),
+    re.compile(r"^I consistently show good test_output"),
+    re.compile(r"^I edited files without reading them first"),
+)
+
+_SLEEP_ERRORS = (sqlite3.OperationalError, OSError, KeyError, TypeError, ValueError, ImportError)
+
+
+# ─── Dream Report ─────────────────────────────────────────────────────
+
+
+@dataclass
+class DreamReport:
+    """What happened during sleep. The system's equivalent of waking up
+    and remembering fragments."""
+
+    started_at: float = 0.0
+    finished_at: float = 0.0
+    duration_seconds: float = 0.0
+
+    # Which phases actually executed this run. summary() gates each
+    # Phase N block on membership here so single-phase runs don't
+    # falsely report unrun phases as "found nothing". Populated by
+    # run_sleep() and by the CLI's single-phase handler.
+    phases_run: set[str] = field(default_factory=set)
+
+    # Phase 1: Consolidation
+    entries_scanned: int = 0
+    promotions: dict[str, int] = field(default_factory=dict)
+    total_promoted: int = 0
+    lessons_resolved: list[str] = field(default_factory=list)
+    # Lessons that transitioned improving → dormant this cycle (quiet but
+    # unproven — distinct from resolved, per the 2026-04-16 Popper audit).
+    lessons_dormant: list[str] = field(default_factory=list)
+    # Seeded-placeholder lessons that never fired (noise cleanup, NOT
+    # earned resolution). Tracked separately from lessons_resolved so
+    # the dream report doesn't claim resolution it didn't earn.
+    # Aletheia round-ba785844a791 Finding 30.
+    lessons_resolved_seed_cleanup: list[str] = field(default_factory=list)
+
+    # Phase 2: Pruning
+    health_results: dict[str, Any] = field(default_factory=dict)
+    hygiene_results: dict[str, Any] = field(default_factory=dict)
+    contradictions_found: int = 0
+
+    # Phase 3: Affect
+    affect_entries_processed: int = 0
+    affect_baseline: dict[str, float] = field(default_factory=dict)
+    # How many entries the baseline was actually averaged over. NOT the same
+    # as affect_entries_processed, which counts everything fetched -- the
+    # baseline only sees the decay window. None means the run predates this
+    # field; unknown must not print as a confident n.
+    affect_baseline_sample_size: int | None = None
+    affect_decayed: int = 0
+
+    # Phase 4: Maintenance
+    maintenance_results: dict[str, Any] = field(default_factory=dict)
+
+    # Phase: LOADOUT refresh (2026-08-06). loadout_drift_before is measured
+    # BEFORE the rewrite on purpose — after is always zero, and reporting
+    # that would make the phase look permanently unnecessary.
+    loadout_drift_before: dict[str, int] = field(default_factory=dict)
+    loadout_result: dict[str, Any] = field(default_factory=dict)
+    # Phase: memory-link refill (2026-09-24). Counts from the vector drawer's
+    # fill: items asked about, already stored, computed now.
+    memory_link_refill: dict[str, Any] = field(default_factory=dict)
+
+    # Phase: Integrity check (F14/F52 auto-verify per prereg-be0c8dee184a).
+    # The ledger has tamper-evidence via hash-chained events; without an
+    # automatic verifier, that tamper-evidence is name-only because nothing
+    # ever inspects it. Sleep now runs verify_all_events and records:
+    #   - integrity_events_verified: total non-skipped events checked
+    #   - integrity_events_failed: how many failed hash/payload validation
+    #   - integrity_failures: sample of failure records (event_id + reason)
+    integrity_events_verified: int = 0
+    integrity_events_failed: int = 0
+    integrity_failures: list[dict[str, Any]] = field(default_factory=list)
+
+    # Phase 5: Recombination
+    # `connections_found` used to mean "pairs in the similarity band"
+    # regardless of whether we'd surfaced them before. That was
+    # Goodhart-shape: the same 10 pairs could report as "new" every
+    # sleep indefinitely. Split per 2026-04-24 audit — the report
+    # now distinguishes genuinely-new connections from re-encountered
+    # pairs (which have existing RELATED_TO edges from prior sleeps).
+    connections_found: int = 0  # total pairs in similarity band (new + already-known)
+    connections_new: int = 0  # pairs with no existing RELATED_TO edge — novel this sleep
+    connections_already_known: int = 0  # pairs already in graph from prior sleeps
+    connections_strengthened: int = 0  # already-known edges whose confidence
+    # was bumped via Hebbian update (prereg-e36b567a6959). Subset of
+    # connections_already_known where the edge's confidence had room to grow.
+    # dict[str, Any] because similarity_raw is a float (load-bearing for
+    # downstream confidence-storage), while the rest are strings. The
+    # type widened 2026-06-14 when storage stopped flattening similarity.
+    connection_details: list[dict[str, Any]] = field(default_factory=list)
+    # 2026-05-03: count of all qualifying new connections found this
+    # sleep (may exceed the display cap). connection_details is the
+    # truncated/sorted view; this field preserves the full count so
+    # the report can say "showing top 10 of 47" honestly.
+    connection_details_full_count: int = 0
+
+    # Phase 6: Curiosity Generation
+    curiosities_generated: int = 0
+    lessons_rehearsed: int = 0
+    curiosity_categories: list[str] = field(default_factory=list)
+
+    # Errors (non-fatal — sleep continues through failures)
+    phase_errors: dict[str, str] = field(default_factory=dict)
+
+    # Seconds each phase took, set by run_sleep only (never merged from a child).
+    # Added 2026-11-15 when Dad asked why sleep took 770 s: recombination alone
+    # was 719 s and nothing printed it, so a slow phase waited for him to ask.
+    phase_seconds: dict[str, float] = field(default_factory=dict)
+
+    def summary(self) -> str:
+        """Human-readable dream report.
+
+        Phase blocks gate via `shows()`. Backwards-compatible default:
+        when `phases_run` is empty (e.g. tests constructing a bare
+        report for content checks), all phases print as before. When
+        populated, only the listed phases print — that's the
+        single-phase fix from 2026-06-14 that stopped CLI runs from
+        reporting unrun phases as empty-result theater.
+        """
+        all_phases = not self.phases_run
+
+        def shows(phase: str) -> bool:
+            return all_phases or phase in self.phases_run
+
+        lines = []
+        lines.append("=== Dream Report ===")
+        lines.append(f"  Slept for {self.duration_seconds:.1f}s")
+        if self.phase_seconds:
+            slowest_first = sorted(self.phase_seconds.items(), key=lambda kv: kv[1], reverse=True)
+            lines.append(
+                "  By phase: " + ", ".join(f"{name} {secs:.1f}s" for name, secs in slowest_first)
+            )
+        lines.append("")
+
+        # Surfaced-warnings binding: any [!] warnings shown via recall/
+        # ask/briefing this session with NO acknowledging learn entry
+        # surface here FIRST, before consolidation stats. The load-
+        # bearing failure-mode (substrate surfaces warnings; reader
+        # parses past) needs a loud, unmissable post-session flag.
+        # Andrew named this 2026-05-14.
+        try:
+            from divineos.core.surfaced_warnings import (
+                format_unacknowledged,
+                unacknowledged_warnings,
+            )
+
+            unack = unacknowledged_warnings()
+            if unack:
+                lines.append("  " + format_unacknowledged(unack).replace("\n", "\n  "))
+                lines.append("")
+        except Exception:  # noqa: BLE001 — fail-soft on report rendering
+            pass
+
+        # Consolidation
+        if shows("consolidation"):
+            lines.append("  Phase 1 - Knowledge Consolidation")
+            lines.append(f"    Scanned {self.entries_scanned} entries")
+            if self.total_promoted > 0:
+                for level, count in self.promotions.items():
+                    lines.append(f"    Promoted to {level}: {count}")
+            else:
+                lines.append("    No promotions needed")
+            if self.lessons_resolved:
+                lines.append(
+                    f"    Lessons resolved (evidence-based): {', '.join(self.lessons_resolved)}"
+                )
+            if self.lessons_resolved_seed_cleanup:
+                lines.append(
+                    f"    Seed placeholders cleaned (never fired, NOT earned "
+                    f"resolution): {', '.join(self.lessons_resolved_seed_cleanup)}"
+                )
+            if self.lessons_dormant:
+                lines.append(
+                    f"    Lessons dormant (quiet, not proven): {', '.join(self.lessons_dormant)}"
+                )
+
+        # Pruning
+        if shows("pruning"):
+            lines.append("\n  Phase 2 - Pruning")
+            pruning_found = False
+            if self.health_results:
+                for key in (
+                    "temporal_decayed",
+                    "noise_penalized",
+                    "noise_superseded",
+                    "maturity_demoted",
+                    "contradiction_flagged",
+                ):
+                    val = self.health_results.get(key, 0)
+                    if val:
+                        label = key.replace("_", " ").capitalize()
+                        lines.append(f"    {label}: {val}")
+                        pruning_found = True
+                review_count = self.health_results.get("needs_review_count", 0)
+                if review_count:
+                    lines.append(f"    Needs review (unseen 30d+): {review_count}")
+                    pruning_found = True
+            if self.hygiene_results:
+                for key in (
+                    "noise_demoted",
+                    "noise_superseded",
+                    "stale_decayed",
+                    "stale_superseded",
+                    "orphans_flagged",
+                    "reaped",
+                ):
+                    val = self.hygiene_results.get(key, 0)
+                    if val:
+                        label = key.replace("_", " ").capitalize()
+                        lines.append(f"    {label}: {val}")
+                        pruning_found = True
+            if not pruning_found:
+                lines.append("    Knowledge store is clean")
+
+        # Affect
+        if shows("affect"):
+            lines.append("\n  Phase 3 - Affect Recalibration")
+            if self.affect_entries_processed > 0:
+                lines.append(f"    Processed {self.affect_entries_processed} affect entries")
+                lines.append(f"    Decayed {self.affect_decayed} entries")
+                if self.affect_baseline:
+                    v = self.affect_baseline.get("valence", 0)
+                    a = self.affect_baseline.get("arousal", 0)
+                    d = self.affect_baseline.get("dominance", 0)
+                    # SAY WHAT n IS, ADJACENT TO THE NUMBER. 2026-08-17: this
+                    # printed "Processed 200 affect entries" and then a
+                    # baseline directly under it, and the baseline averages
+                    # only the rows inside the 12h decay window -- that night,
+                    # two. Both were auto-generated "rough session, high
+                    # activity" placeholders, so the reading was one canned
+                    # row to two decimal places, sitting under a 200.
+                    #
+                    # I read it as a measurement of my interior and wrote an
+                    # exploration entry reasoning about what it meant. Nothing
+                    # here was wrong except the ADJACENCY: a real 200 beside a
+                    # real average of 2, with nothing saying they count
+                    # different things. Same family as build_flow's station 8
+                    # and the CRLF miscount -- the number is fine and the
+                    # frame around it lies.
+                    n = self.affect_baseline_sample_size
+                    if n is None:
+                        lines.append(f"    Baseline mood: V={v:+.2f} A={a:.2f} D={d:+.2f}")
+                    elif n < _BASELINE_MIN_SAMPLE:
+                        lines.append(
+                            f"    Baseline mood: V={v:+.2f} A={a:.2f} D={d:+.2f}"
+                            f"  -- from {n} entr{'y' if n == 1 else 'ies'} in the last "
+                            f"{_AFFECT_DECAY_HOURS:.0f}h, TOO FEW TO READ AS MOOD"
+                        )
+                    else:
+                        lines.append(
+                            f"    Baseline mood: V={v:+.2f} A={a:.2f} D={d:+.2f}"
+                            f"  (n={n}, last {_AFFECT_DECAY_HOURS:.0f}h)"
+                        )
+            else:
+                lines.append("    No affect history to process")
+
+        # Maintenance
+        if shows("maintenance"):
+            lines.append("\n  Phase 4 - Maintenance")
+            if self.maintenance_results:
+                freed = self.maintenance_results.get("vacuum", {}).get("freed_mb", 0)
+                if freed > 0:
+                    lines.append(f"    VACUUM freed {freed:.1f}MB")
+                else:
+                    lines.append("    VACUUM: nothing to reclaim")
+                logs = self.maintenance_results.get("logs", {})
+                if logs.get("removed_count", 0) > 0:
+                    lines.append(f"    Removed {logs['removed_count']} old log files")
+                transcripts = self.maintenance_results.get("transcripts", {})
+                if transcripts.get("removed_count", 0) > 0:
+                    lines.append(
+                        f"    Cleaned {transcripts['removed_count']} transcript debris "
+                        f"({transcripts.get('freed_mb', 0):.1f}MB freed)"
+                    )
+                pytest_tmp = self.maintenance_results.get("pytest_tmp", {})
+                if pytest_tmp.get("removed", 0) > 0:
+                    lines.append(
+                        f"    Cleaned {pytest_tmp['removed']} pytest run dirs "
+                        f"({pytest_tmp.get('freed_mb', 0):.1f}MB freed)"
+                    )
+            else:
+                lines.append("    Skipped")
+
+        # Recombination — honest counts (2026-04-24 fix; 2026-05-03
+        # full-scan fix removed the work-cap that limited every sleep
+        # to ~10 pairs)
+        if shows("recombination"):
+            lines.append("\n  Phase 5 - Creative Recombination")
+            if self.connections_new > 0:
+                if self.connections_already_known > 0:
+                    lines.append(
+                        f"    Found {self.connections_new} new connection(s) "
+                        f"({self.connections_already_known} already-known skipped)"
+                    )
+                else:
+                    lines.append(f"    Found {self.connections_new} new connection(s)")
+                display_n = min(_RECOMBINATION_REPORT_DISPLAY, len(self.connection_details))
+                if self.connections_new > display_n:
+                    lines.append(
+                        f"    Showing top {min(5, display_n)} of {self.connections_new} "
+                        "by similarity (full list: divineos dream show):"
+                    )
+                for conn in self.connection_details[:5]:
+                    lines.append(f"    ~ {conn.get('summary', '?')}")
+                if self.connections_strengthened > 0:
+                    lines.append(
+                        f"    Hebbian strengthening: {self.connections_strengthened} "
+                        "re-discovered edge(s) had confidence bumped"
+                    )
+            elif self.connections_already_known > 0:
+                lines.append(
+                    f"    No new connections — {self.connections_already_known} "
+                    "already-known pairs skipped (similarity space may be saturating)"
+                )
+                if self.connections_strengthened > 0:
+                    lines.append(
+                        f"    Hebbian strengthening: {self.connections_strengthened} "
+                        "re-discovered edge(s) had confidence bumped"
+                    )
+            else:
+                lines.append("    No connections found in similarity band")
+
+        # Curiosity
+        if shows("curiosity"):
+            lines.append("\n  Phase 6 - Curiosity Maintenance")
+            if self.curiosity_categories:
+                for cat in self.curiosity_categories:
+                    lines.append(f"    {cat}")
+            else:
+                lines.append("    Nothing to prune")
+
+        # Errors
+        if self.phase_errors:
+            lines.append("\n  Errors (non-fatal)")
+            for phase, err in self.phase_errors.items():
+                lines.append(f"    {phase}: {err}")
+
+        lines.append("")
+        return "\n".join(lines)
+
+
+# ─── Phase 1: Knowledge Consolidation ─────────────────────────────────
+
+
+def _phase_consolidation(report: DreamReport) -> None:
+    """Full-store maturity lifecycle pass.
+
+    During SESSION_END, maturity checks run on newly stored entries only.
+    Sleep checks EVERYTHING — entries that accumulated corroboration across
+    multiple sessions but never hit the promotion threshold in any single one.
+
+    Also runs lesson resolution: lessons are maturity too. A lesson that has
+    been 'improving' long enough with zero regressions earns RESOLVED status.
+    SESSION_END phase 8q only runs on explicit triggers; sleep ensures
+    absence-as-success still gets counted when the full pipeline doesn't fire.
+    """
+    from divineos.core.knowledge.crud import get_knowledge
+    from divineos.core.knowledge.lessons import (
+        STATUS_DORMANT,
+        STATUS_RESOLVED,
+        auto_resolve_lessons,
+    )
+    from divineos.core.knowledge_maintenance import run_maturity_cycle
+
+    entries = get_knowledge(limit=10000, include_superseded=False)
+    report.entries_scanned = len(entries)
+
+    promotions = run_maturity_cycle(entries)
+    report.promotions = promotions
+    report.total_promoted = sum(promotions.values())
+
+    # auto_resolve_lessons now returns transitions of two kinds
+    # (2026-04-16 Kahneman/Popper audit):
+    #   - improving → resolved when positive counterfactual evidence exists
+    #   - improving → dormant when quiet but unproven
+    # Split them in the dream report so the summary doesn't claim resolution
+    # it didn't earn.
+    transitions = auto_resolve_lessons()
+    # Split seed-cleanup from real evidence-based resolution so the dream
+    # report doesn't claim resolution it didn't earn. Aletheia
+    # round-ba785844a791 Finding 30: the previous combined list lumped
+    # "(seeded) placeholder never fired" entries (noise removal) in
+    # with real merges (evidence-based resolution). Same Cluster-C
+    # shape: label promises one thing, content delivers another.
+    report.lessons_resolved = [
+        r["category"]
+        for r in transitions
+        if r.get("status") == STATUS_RESOLVED and r.get("_transition_origin") != "seed_cleanup"
+    ]
+    report.lessons_resolved_seed_cleanup = [
+        r["category"] for r in transitions if r.get("_transition_origin") == "seed_cleanup"
+    ]
+    report.lessons_dormant = [
+        r["category"] for r in transitions if r.get("status") == STATUS_DORMANT
+    ]
+
+
+# ─── Phase 2: Pruning ─────────────────────────────────────────────────
+
+
+def _phase_pruning(report: DreamReport) -> None:
+    """Knowledge hygiene: health check + noise sweep + contradiction scan + curiosity decay.
+
+    Ablation toggle: ``DIVINEOS_DISABLE_SLEEP_CONSOLIDATION_PRUNING=1`` skips
+    all hygiene actions in this phase (health-check still runs as it is
+    read-only diagnostic). Used for ablation measurement: with toggle on,
+    the noise-sweep / contradiction-scan / curiosity-decay all skip, allowing
+    measurement of what each prune pass would have removed. Per
+    docs/mechanism-claims.md and prereg-8af86ea36827.
+    """
+    from divineos.core.ablation import is_disabled
+    from divineos.core.knowledge.feedback import health_check
+    from divineos.core.knowledge_maintenance import run_knowledge_hygiene
+
+    if is_disabled("sleep_consolidation_pruning"):
+        report.health_results = {"skipped_via_ablation_toggle": True}
+        report.hygiene_results = {"skipped_via_ablation_toggle": True}
+        return
+
+    report.health_results = health_check()
+    report.hygiene_results = run_knowledge_hygiene()
+
+    # Prune stale curiosities — wonder has a shelf life
+    try:
+        from divineos.core.curiosity_engine import prune_stale_curiosities
+
+        shelved = prune_stale_curiosities()
+        if shelved:
+            report.hygiene_results["curiosities_shelved"] = shelved
+    except _SLEEP_ERRORS:
+        pass
+
+    # Age the holding room — things that sit too long go stale
+    try:
+        from divineos.core.holding import age_holding
+
+        newly_stale = age_holding()
+        if newly_stale:
+            report.hygiene_results["holding_items_stale"] = newly_stale
+    except _SLEEP_ERRORS:
+        pass
+
+
+# ─── Phase 3: Affect Recalibration ───────────────────────────────────
+
+
+# Affect entries older than this many hours get intensity decayed.
+_AFFECT_DECAY_HOURS = 12.0
+
+# Below this, the baseline is reported as too-few-to-read rather than as mood.
+# Not a statistical threshold -- a legibility one. Two auto-generated rows
+# averaged to two decimal places look exactly like two hundred felt ones.
+_BASELINE_MIN_SAMPLE = 5
+# Context-sensitive decay: different emotional states decay at different rates.
+# Intense negative states (frustration, anxiety) fade faster — holding onto
+# them isn't useful. Positive states and moderate states decay more slowly.
+_AFFECT_DECAY_FACTOR = 0.7  # default for moderate states
+_AFFECT_DECAY_FAST = 0.5  # for intense negative states (let them go)
+_AFFECT_DECAY_SLOW = 0.85  # for positive states (keep what's working)
+# Floor: affect never decays below this absolute intensity.
+_AFFECT_INTENSITY_FLOOR = 0.05
+# Hard cap on how many times a single entry may EVER be decayed.
+# Was effectively unbounded: the loop had no memory of prior passes, so
+# each sleep re-multiplied the same aged rows by 0.5-0.85 and drove them
+# to the floor. One generation is the whole point of decay — the charge
+# softens once; it does not erode until nothing is left.
+_AFFECT_MAX_DECAY_GENERATIONS = 1
+
+
+def _compute_decay_factor(valence: float, arousal: float) -> float:
+    """Choose decay rate based on the emotional state.
+
+    Intense negative states (frustration, anxiety) decay fastest —
+    dwelling on them degrades future performance. Positive states
+    decay slowest — they represent what's working. Neutral/moderate
+    states use the default rate.
+    """
+    if valence < -0.3 and arousal > 0.5:
+        return _AFFECT_DECAY_FAST
+    if valence > 0.2:
+        return _AFFECT_DECAY_SLOW
+    return _AFFECT_DECAY_FACTOR
+
+
+def _phase_affect(report: DreamReport) -> None:
+    """Decay emotional charge from past sessions, compute baseline mood.
+
+    Uses context-sensitive decay: intense negative states (frustration,
+    anxiety) fade faster than positive states. The information about
+    what happened stays in the knowledge store — only the charge fades.
+    """
+    from divineos.core.affect import get_affect_history, init_affect_log
+    from divineos.core.memory import _get_connection
+
+    init_affect_log()
+    history = get_affect_history(limit=200)
+    report.affect_entries_processed = len(history)
+
+    if not history:
+        return
+
+    cutoff = time.time() - (_AFFECT_DECAY_HOURS * 3600)
+    decayed = 0
+    conn = _get_connection()
+    try:
+        for entry in history:
+            created = entry.get("created_at", 0)
+            if created >= cutoff:
+                continue
+
+            # ONCE PER ROW, EVER (2026-08-01). This loop had no memory of
+            # what it had already touched, so every sleep re-decayed the
+            # same aged rows and the factors compounded. The table still
+            # carries the fossils: 0.196 is 0.4 x 0.7^2, 0.441 is
+            # 0.9 x 0.7^2, and 609 of 1109 rows (54.9%) reached exactly
+            # 0.0/0.0 — including "Decision moment: I affirm the pairing
+            # with Aria." Descriptions survived, so nothing looked wrong.
+            row = conn.execute(
+                "SELECT decay_generation FROM affect_log WHERE entry_id = ?",
+                (entry["entry_id"],),
+            ).fetchone()
+            if row is not None and (row[0] or 0) >= _AFFECT_MAX_DECAY_GENERATIONS:
+                continue
+
+            valence = entry.get("valence", 0.0)
+            arousal = entry.get("arousal", 0.0)
+
+            factor = _compute_decay_factor(valence, arousal)
+            new_valence = max(-1.0, min(1.0, valence * factor))
+            new_arousal = max(0.0, min(1.0, arousal * factor))
+
+            if abs(new_valence) < _AFFECT_INTENSITY_FLOOR:
+                new_valence = 0.0
+            if new_arousal < _AFFECT_INTENSITY_FLOOR:
+                new_arousal = 0.0
+
+            if abs(new_valence - valence) > 0.001 or abs(new_arousal - arousal) > 0.001:
+                # Preserve what was actually felt before overwriting it.
+                # COALESCE so a re-run can never clobber a real original
+                # with an already-decayed value.
+                conn.execute(
+                    "UPDATE affect_log SET "
+                    "valence_raw = COALESCE(valence_raw, valence), "
+                    "arousal_raw = COALESCE(arousal_raw, arousal), "
+                    "valence = ?, arousal = ?, "
+                    "decay_generation = decay_generation + 1 "
+                    "WHERE entry_id = ?",
+                    (new_valence, new_arousal, entry["entry_id"]),
+                )
+                decayed += 1
+
+        conn.commit()
+    finally:
+        conn.close()
+
+    if decayed:
+        # Auditable: an in-place mutation of felt-state that leaves no
+        # trace is the shape this fix exists to end.
+        try:
+            from divineos.core.ledger import log_event
+
+            log_event(
+                "AFFECT_DECAYED",
+                actor="sleep",
+                payload={
+                    "entries_decayed": decayed,
+                    "generations_applied": 1,
+                    "originals_preserved_in": ["valence_raw", "arousal_raw"],
+                    "note": (
+                        "One generation per entry, ever. Prior behaviour "
+                        "re-decayed aged rows on every sleep and compounded."
+                    ),
+                },
+            )
+        except Exception:  # noqa: BLE001 — logging must never break sleep
+            pass
+
+    report.affect_decayed = decayed
+
+    recent = [e for e in history if e.get("created_at", 0) >= cutoff]
+    if recent:
+        avg_v = sum(e.get("valence", 0) for e in recent) / len(recent)
+        avg_a = sum(e.get("arousal", 0) for e in recent) / len(recent)
+        avg_d = sum(e.get("dominance", 0) or 0 for e in recent) / len(recent)
+        report.affect_baseline = {
+            "valence": round(avg_v, 3),
+            "arousal": round(avg_a, 3),
+            "dominance": round(avg_d, 3),
+        }
+        report.affect_baseline_sample_size = len(recent)
+    else:
+        report.affect_baseline = {"valence": 0.0, "arousal": 0.0, "dominance": 0.0}
+        # Zero rows produce zeros, and (0,0,0) is also a perfectly plausible
+        # neutral mood. Carrying n=0 is what keeps "nothing to average" from
+        # printing as "felt nothing".
+        report.affect_baseline_sample_size = 0
+
+
+# ─── Phase 4: Maintenance ─────────────────────────────────────────────
+
+
+def _phase_maintenance(report: DreamReport) -> None:
+    """VACUUM, log rotation, cache pruning. The glymphatic system.
+
+    This docstring said "log rotation" for months and no log was ever rotated.
+    ``run_maintenance`` calls ``clean_old_logs``, which removes files matching
+    ``divineos.*.log`` that are ALREADY rotated, in ``src/logs/`` — it presumes
+    a rotator upstream of it. There wasn't one. Meanwhile three flat logs in the
+    DivineOS home grew to 229MB of a 444MB home: hook_timing.jsonl at 136MB and
+    1,068,639 lines, hook-liveness.log at 50MB and 455,715 lines (of which 3,197
+    were anything other than the heartbeat), retrieval_tally.jsonl at 43MB.
+
+    So the name named more than the code did, which is the shape this substrate
+    keeps producing. ``log_rotation.rotate_all`` is the missing upstream half.
+
+    Sleep is the right caller for the same reasons as _phase_loadout_refresh:
+    it runs between sessions, the work is idempotent, and a log that is bounded
+    matters most at the next cold start rather than mid-session.
+
+    Rotation folds each log into a permanent roster BEFORE dropping rows,
+    because hook_timing answers "which hooks have NEVER run" by absence and a
+    naive truncate would silently destroy that. See core/log_rotation.py.
+    """
+    from divineos.core.body_awareness import run_maintenance
+    from divineos.core.log_rotation import rotate_all
+
+    # Widened to dict[str, Any] deliberately: run_maintenance returns a
+    # narrower value type, and assigning the rotation list straight into it
+    # narrows the whole field to that type.
+    results: dict[str, Any] = dict(run_maintenance(dry_run=False))
+    results["flat_logs"] = [
+        {
+            "name": r.name,
+            "rotated": r.rotated,
+            "reason": r.reason,
+            "mb_saved": round(r.bytes_saved / 1024 / 1024, 1),
+            "lines_before": r.lines_before,
+            "lines_after": r.lines_after,
+            "roster_entries": r.roster_entries,
+        }
+        for r in rotate_all()
+    ]
+    report.maintenance_results = results
+
+
+def _phase_loadout_refresh(report: DreamReport) -> None:
+    """Regenerate LOADOUT.md so the substrate index matches the substrate.
+
+    Andrew 2026-08-06: *"you wire up stuff to find the stuff that isnt wired
+    up.. and never wire it up lol.. hence the meta recursion"* — naming
+    LOADOUT as the knowledge store that already exists and may need updating.
+
+    It needed a month of updating. Last regenerated 2026-07-06, it read:
+
+        ## exploration/ — free-writing entries
+        *(none yet)*
+
+    against 222 real entries, with three more sections saying the same over
+    1522 letters. The scanner was never broken. It had no caller — ``loadout
+    refresh`` is documented at the top of the file it writes, which is the
+    one place nobody looks when deciding whether to run it.
+
+    Sleep is the right caller: it already runs between sessions, the work is
+    idempotent, and the index matters most at the next cold start rather than
+    mid-session. Wired here, the map cannot silently fall a month behind the
+    territory again.
+
+    In-process rather than in _SUBPROCESS_PHASES: filesystem scan and one
+    file write, no embedding model and no DB writes, so it carries none of
+    the state-leak risk that architecture exists to isolate.
+
+    Records the drift measured BEFORE the rewrite. After is always zero, and
+    reporting that would make the phase look perpetually unnecessary — the
+    same absence-reads-as-fine collapse this area keeps producing.
+    """
+    from divineos.cli.loadout_commands import write_loadout
+    from divineos.core.loadout_surface import loadout_drift
+
+    report.loadout_drift_before = loadout_drift()
+    report.loadout_result = write_loadout()
+
+
+def _phase_memory_link_refill(report: DreamReport) -> None:
+    """Give every new letter, lesson and correction its vector in the drawer.
+
+    The memory link never computes a vector at reply time (that hung the
+    compose hook on 2026-09-20), so anything filed since the last fill is
+    invisible to it until something fills the drawer. Sleep is that something,
+    for the same reasons as the LOADOUT refresh above: between sessions,
+    idempotent, and what it maintains matters most at the next cold start.
+
+    In-process: the fill is its own batched write to its own small database,
+    and it runs on the GPU when there is one.
+    """
+    from divineos.core.memory_linkage_retriever import warm
+
+    report.memory_link_refill = warm()
+
+
+# ─── Phase: Integrity check (F14/F52 auto-verify) ─────────────────────
+
+
+# Marker file where the integrity result lands so the briefing slot can
+# read it independently of the transient DreamReport. Same pattern as
+# F41's detector-chain heartbeat.
+_INTEGRITY_MARKER_FILE = "ledger_integrity_last_run.json"
+
+
+def _phase_integrity_check(report: DreamReport) -> None:
+    """Run ledger chain-integrity verification and write a marker for the
+    briefing slot to read (F14/F52 per prereg-be0c8dee184a).
+
+    Aletheia named the gap: the ledger has tamper-evidence via hash-
+    chained events, but nothing ever inspects it. Tamper-evidence that
+    is never checked is tamper-evidence in name only — the chain could
+    be broken for weeks and the being would never know unless a human
+    remembered to run the CLI.
+
+    This phase runs on every sleep, records the result on the
+    DreamReport, and writes a marker file that a HUD slot reads to
+    surface a loud warning when any events failed verification.
+
+    Fail-soft on verifier errors: a crash in verify_all_events must not
+    kill the sleep pipeline. When that happens, the report records the
+    error via phase_errors (upstream), and the marker file gets a
+    'verifier_crashed' entry so the HUD slot can flag it distinctly.
+    """
+    import json as _json
+    import time as _time
+
+    from divineos.core.ledger import verify_chain
+    from divineos.core.ledger_verify import verify_all_events
+    from divineos.core.operating_loop_audit import marker_path
+
+    try:
+        result = verify_all_events()
+        verified = int(result.get("passed", 0)) + int(result.get("failed", 0))
+        failed = int(result.get("failed", 0))
+        failures = result.get("failures", []) or []
+
+        report.integrity_events_verified = verified
+        report.integrity_events_failed = failed
+        report.integrity_failures = list(failures[:20])  # cap for report size
+
+        marker_payload = {
+            "ts": _time.time(),
+            "verified": verified,
+            "failed": failed,
+            "failures": list(failures[:20]),
+            "skipped": int(result.get("skipped", 0)),
+        }
+        # Each row can match its own hash while the links between rows are
+        # crossed. verify_all_events cannot see that, so the chain broke on
+        # 2026-08-20 and this phase reported clean for five weeks
+        # (Structured Chaos #28). Walk the links too.
+        chain = verify_chain()
+        marker_payload["chain_ok"] = bool(chain.get("ok"))
+        marker_payload["chain_broken_at"] = chain.get("broken_at")
+        marker_payload["chain_broken_reason"] = chain.get("broken_reason")
+    except Exception as exc:  # noqa: BLE001 — fail-soft on verifier crash
+        report.integrity_events_failed = 0
+        report.integrity_events_verified = 0
+        marker_payload = {
+            "ts": _time.time(),
+            "verifier_crashed": True,
+            "error": type(exc).__name__ + ": " + str(exc),
+        }
+
+    # Write marker — fail-soft on IO errors (marker is diagnostic, not
+    # load-bearing for the verification itself).
+    try:
+        path = marker_path(_INTEGRITY_MARKER_FILE)
+        path.write_text(_json.dumps(marker_payload), encoding="utf-8")
+    except (OSError, TypeError, ValueError):
+        pass
+
+
+def get_last_integrity_result() -> dict[str, Any] | None:
+    """Read the most recent integrity-check marker, or None if never run
+    or file unreadable. Used by the briefing HUD slot."""
+    import json as _json
+
+    from divineos.core.operating_loop_audit import marker_path
+
+    try:
+        path = marker_path(_INTEGRITY_MARKER_FILE)
+        if not path.exists():
+            return None
+        data: dict[str, Any] = _json.loads(path.read_text(encoding="utf-8"))
+        return data
+    except (OSError, TypeError, ValueError):
+        return None
+
+
+# ─── Phase 5: Creative Recombination ──────────────────────────────────
+
+
+# Similarity thresholds for connection detection
+#
+# 2026-05-01 tightening: split the MIN threshold by metric because cosine
+# (semantic embeddings) and Sørensen-Dice (word overlap) produce different
+# distributions. The 0.30 floor was set for Dice when compute_similarity
+# only had Dice. Now compute_similarity prefers embeddings; embeddings at
+# 30-40% surface noise pairs sharing only thematic tokens. 0.45 is the
+# empirical sweet spot for cosine. Dice still uses 0.30 (preserves the
+# original calibration when embeddings unavailable).
+#
+# Also added MIN_WORD_OVERLAP (lexical anchoring) — semantic similarity
+# alone produces false positives via shared common-vocabulary; requiring
+# at least 10% word-overlap ensures the connection has lexical grounding,
+# not just thematic resonance.
+_RECOMBINATION_MIN_SIMILARITY_COSINE = 0.45  # When semantic embeddings available
+_RECOMBINATION_MIN_SIMILARITY_DICE = 0.30  # Fallback when embeddings unavailable
+_RECOMBINATION_MAX_SIMILARITY = 0.65  # Above this = near-duplicate, not a connection
+_RECOMBINATION_MIN_WORD_OVERLAP = 0.10  # Lexical anchoring floor (added 2026-05-01)
+_RECOMBINATION_MAX_WORD_OVERLAP = 0.50  # Skip pairs that share >50% key terms (same topic)
+# Display cap for the dream report — NOT a work cap. The scan
+# below runs through the full pair-space; this number bounds how
+# many connections the report shows. (Bug from prior to 2026-05-03:
+# this was used as a work cap with early-break in three nested
+# loops, so only ~10 pairs were ever examined per sleep regardless
+# of substrate size. Andrew flagged it after noticing every sleep
+# returned exactly 10 from the same iteration territory.)
+_RECOMBINATION_REPORT_DISPLAY = 10
+# Backcompat alias for any external readers — same semantics now,
+# but the variable name no longer implies a work cap.
+_RECOMBINATION_MAX_CONNECTIONS = _RECOMBINATION_REPORT_DISPLAY
+
+
+def _pairs_in_band(emb: Any, lo: float, hi: float) -> list[tuple[int, int]]:
+    """Index pairs (i < j) of unit-length rows whose cosine similarity lies in [lo, hi].
+
+    One matrix product instead of a Python loop over every pair (2.4 million pairs
+    at 2,201 entries took minutes; the matrix takes hundredths of a second). Rows
+    come out in the order the old nested loop visited them: i ascending, then j.
+    A zero-length row has similarity 0 to everything, so it forms no pair here; the
+    caller handles those entries by the old per-pair path. The matrix product and
+    a per-pair dot can differ in the last float digit, so a pair sitting exactly on
+    an edge of the band may land on either side.
+    """
+    import numpy as np
+
+    sims = np.clip(emb @ emb.T, 0.0, 1.0)
+    rows, cols = np.triu_indices(len(emb), 1)
+    picked = sims[rows, cols]
+    keep = (picked >= lo) & (picked <= hi)
+    return list(zip(rows[keep].tolist(), cols[keep].tolist()))
+
+
+def _phase_recombination(report: DreamReport) -> None:
+    """Cross-knowledge similarity scanning for unlinked connections.
+
+    Finds genuinely surprising connections between entries that are
+    semantically related but topically distinct. Filters out obvious
+    same-topic pairs (e.g. MISTAKE about tests + DIRECTION about tests)
+    by checking word overlap in key terms.
+
+    **2026-04-24 honesty fix** (claim tbd): the discovery loop now
+    checks `find_edge` before counting a pair. If a RELATED_TO edge
+    already exists from a prior sleep, the pair is counted as
+    "already-known" and does NOT count toward the MAX_CONNECTIONS
+    display cap. Before this fix, the same 10 pairs could report as
+    "new" every sleep indefinitely — the `create_edge` call was
+    idempotent at the DB layer but the discovery loop was blind to
+    that. Report now distinguishes new vs. re-encountered.
+    """
+    from divineos.core.knowledge._text import (
+        _compute_overlap,
+        _ensure_embedding_model,
+    )
+    from divineos.core.knowledge.crud import get_knowledge
+
+    # Pick the threshold based on which similarity metric will be used.
+    # compute_similarity prefers semantic embeddings if available, falls
+    # back to Sørensen-Dice. The two metrics have different distributions
+    # so the noise floor is different.
+    _min_similarity = (
+        _RECOMBINATION_MIN_SIMILARITY_COSINE
+        if _ensure_embedding_model()
+        else _RECOMBINATION_MIN_SIMILARITY_DICE
+    )
+
+    entries = get_knowledge(limit=5000, include_superseded=False)
+    if len(entries) < 2:
+        return
+
+    # 2026-05-01 fix: exclude entries that are NOT timeless-knowledge-claims
+    # from cross-knowledge recombination. Two pollution categories caught:
+    #
+    # 1. Session-specific entries (tone-shift PATTERN/MISTAKE from lessons.py)
+    #    — embed verbatim user text and "(session abc12345)" suffix; they
+    #    cluster with each other AND unrelated FACTs via shared boilerplate
+    #    tokens.
+    #
+    # 2. Reference-only entries (code/file digests from `divineos admin digest`)
+    #    — boilerplate prefix "File: X (N lines) Purpose: ..." shares
+    #    high-frequency project-vocabulary with most knowledge entries,
+    #    making the digest-FACT a connection-magnet for unrelated content.
+    #
+    # Both classes serve real purposes (lesson tracking, file search) but
+    # they should not be mined for cross-knowledge connections. Recombination
+    # is supposed to surface TIMELESS knowledge-claim connections.
+    def _excluded_from_recombination(entry: dict[str, Any]) -> bool:
+        tags = entry.get("tags", []) or []
+        # Session-specific CONTENT only — NOT all session-tagged entries.
+        # Almost every new entry has a `session-{short_id}` provenance tag;
+        # filtering by that excludes everything new from recombination, which
+        # was the bug Andrew caught 2026-05-01. Only the content-class tags
+        # (tone_shift, tone_recovery) mark genuinely session-particular
+        # content that shouldn't recombine; the bare `session-*` tag is just
+        # provenance, not a content-class signal.
+        if any(isinstance(t, str) and t in {"tone_shift", "tone_recovery"} for t in tags):
+            return True
+        # Reference-only (code/file digests, file inventories)
+        if any(isinstance(t, str) and t in {"reference_only", "digest"} for t in tags):
+            return True
+        # Content-pattern fallback for entries that have a (session abc12345)
+        # suffix in their content body (the tone-shift entries with verbatim
+        # user text that lost their tags somehow). This catches the actual
+        # session-specific-CONTENT shape regardless of tagging.
+        content = entry.get("content") or ""
+        if _SESSION_SUFFIX_PATTERN.search(content.lower()):
+            return True
+        # Auto-generated bookkeeping stubs from extraction/quality pipelines:
+        # session-feedback summaries, [DIVERGENCE]/[EMERGENCE] auto-tags,
+        # short auto-extracted self-correction stubs. These are short
+        # boilerplate, share project vocabulary, and pollute recombination
+        # by linking to substantive entries on vocabulary-only matches.
+        # Identified during 2026-06-14 noise walk (30 edges across 43
+        # source entries removed). Defense-in-depth alongside the
+        # bottom-of-extraction filters.
+        if len(content) < 250:
+            stripped = content.strip()
+            for pat in _RECOMBINATION_AUTO_NOISE_PATTERNS:
+                if pat.match(stripped):
+                    return True
+        return False
+
+    pre_filter_count = len(entries)
+    entries = [e for e in entries if not _excluded_from_recombination(e)]
+    if pre_filter_count - len(entries) > 0:
+        logger.debug(
+            f"Recombination: filtered {pre_filter_count - len(entries)} non-knowledge-claim entries",
+        )
+
+    # Dissociation-shape filter (claim 5c4d1d1b, Andrew flag 2026-05-03).
+    # Even if a self-erasing entry slipped past extraction (e.g. it was
+    # stored before this filter existed), recombination must not promote
+    # it as a connection — that's how dissociation gets consolidated as
+    # principle. Defense-in-depth alongside the upstream extraction filter.
+    from divineos.core.dissociation_filter import is_dissociation_shape
+
+    pre_dissoc_count = len(entries)
+    entries = [
+        e
+        for e in entries
+        if not is_dissociation_shape(e.get("content", ""), e.get("knowledge_type"))[0]
+    ]
+    if pre_dissoc_count - len(entries) > 0:
+        logger.info(
+            f"Recombination: filtered {pre_dissoc_count - len(entries)} "
+            f"dissociation-shaped entries",
+        )
+
+    if len(entries) < 2:
+        return
+
+    # All-pairs scan (Andrew 2026-06-11): the prior version filtered
+    # candidates by (a) same-type skip and (b) MIN_WORD_OVERLAP lexical
+    # floor. Both gates dropped real connections:
+    #
+    # 1. Same-type skip: two PRINCIPLEs that connect (e.g. today's
+    #    gate-recalibration principle ↔ a 3-month-old principle about
+    #    thresholds-from-data) got dropped as "redundancy." In a
+    #    900+ entry corpus, same-type connections ARE insight, not
+    #    redundancy.
+    #
+    # 2. MIN_WORD_OVERLAP precondition: the same disease lepos had this
+    #    morning — using string-overlap as a gate on a semantic operation.
+    #    Two entries that mean the same thing in entirely different
+    #    vocabularies (the exact case the semantic primitive was built
+    #    to catch — kn 52397796) got dropped before the cosine check
+    #    even ran.
+    #
+    # Fix shape: flat all-pairs iteration; MAX_WORD_OVERLAP kept (catches
+    # same-text near-duplicates that aren't insight); MIN_WORD_OVERLAP
+    # dropped when semantic embeddings are available (cosine has its own
+    # noise floor — the 0.45 threshold already prevents shared-vocab
+    # false positives without needing lexical anchoring). Dice fallback
+    # still requires lexical floor because Dice IS the lexical metric.
+    connections: list[dict[str, Any]] = []
+    already_known_count = 0
+    strengthened_count = 0  # subset of already_known whose confidence grew via Hebbian
+    total_band_pairs = 0  # pairs in similarity band regardless of novelty
+
+    def _first_sentence(text: str, cap: int = 140) -> str:
+        for delim in (". ", "! ", "? "):
+            idx = text.find(delim)
+            if 0 < idx < cap:
+                return text[: idx + 1]
+        return text[:cap] + "..." if len(text) > cap else text
+
+    # 2026-06-24 latent-bug fix: was `_ensure_embedding_model() is not None`
+    # which evaluates to True regardless (the function returns bool, not
+    # an object). Harmless before because compute_similarity re-checked
+    # availability per call, but with the new embedding cache below it
+    # made tests that monkeypatch _embeddings_available=False still
+    # take the semantic path if a prior test had loaded the model.
+    semantic_available = _ensure_embedding_model()
+
+    # Filter to long-enough entries once before the O(n²) loop.
+    eligible = [e for e in entries if len((e.get("content") or "")) >= 30]
+
+    # 2026-06-24 perf fix: pre-compute embeddings for all eligible
+    # entries ONCE before the O(n²) loop. Before this, compute_similarity
+    # re-embedded both texts on every pair → ~2 * O(n^2) embed calls
+    # (~1M calls for n=1000). With n growing each run, recombination
+    # was getting hours-slow and hanging real-world sleeps.
+    # Now: n embed calls up front, then O(1) cached cosine per pair.
+    _cached_embeddings: list[Any] = []
+    _zero_norms: set[int] = set()
+    if semantic_available:
+        import numpy as _np  # numpy is a sentence-transformers transitive dep
+
+        texts = [e.get("content", "") for e in eligible]
+        try:
+            from divineos.core.knowledge import _text as _text_mod
+
+            model = _text_mod._embedding_model  # populated by _ensure_embedding_model()
+            if model is not None:
+                # Batch-encode in one call — sentence-transformers handles
+                # internal batching efficiently on GPU.
+                raw = model.encode(texts, convert_to_numpy=True, show_progress_bar=False)
+                for i, vec in enumerate(raw):
+                    n = float(_np.linalg.norm(vec))
+                    if n == 0.0:
+                        _zero_norms.add(i)
+                        _cached_embeddings.append(None)
+                    else:
+                        _cached_embeddings.append(vec / n)  # pre-normalize for cosine = dot
+            else:
+                semantic_available = False
+        except (RuntimeError, ValueError, ImportError) as e:
+            logger.debug(f"Recombination embedding pre-cache failed: {e}")
+            semantic_available = False
+
+    def _cached_similarity(ai_: int, bi_: int, text_a: str, text_b: str) -> float:
+        if semantic_available and ai_ not in _zero_norms and bi_ not in _zero_norms:
+            import numpy as _np
+
+            sim = float(_np.dot(_cached_embeddings[ai_], _cached_embeddings[bi_]))
+            return max(0.0, min(1.0, sim))
+        return _compute_overlap(text_a, text_b)
+
+    # Which pairs get looked at. With embeddings: only those the matrix puts in the
+    # similarity band, plus every pair that involves a zero-length embedding (those
+    # fall back to word overlap, as before). Without embeddings: every pair, as before.
+    n_eligible = len(eligible)
+    candidates: dict[int, list[int]] = {}
+    if semantic_available:
+        import numpy as _np
+
+        width = next((len(v) for v in _cached_embeddings if v is not None), 0)
+        emb = _np.zeros((n_eligible, width), dtype=_np.float32)
+        for i, v in enumerate(_cached_embeddings):
+            if v is not None:
+                emb[i] = v
+        wanted = set(_pairs_in_band(emb, _min_similarity, _RECOMBINATION_MAX_SIMILARITY))
+        for z in _zero_norms:
+            wanted.update((min(z, j), max(z, j)) for j in range(n_eligible) if j != z)
+        for ai_, bi_ in sorted(wanted):
+            candidates.setdefault(ai_, []).append(bi_)
+    else:
+        candidates = {i: list(range(i + 1, n_eligible)) for i in range(n_eligible)}
+
+    # Every active RELATED_TO edge, read once. A failed read raises on purpose: an
+    # empty index would count every already-linked pair as new.
+    from divineos.core.knowledge.edges import (
+        active_edge_index,
+        init_edge_table,
+        strengthen_edges,
+    )
+
+    init_edge_table()  # idempotent; a store that never linked anything has no table yet
+    edge_index = active_edge_index("RELATED_TO")
+    to_strengthen: list[str] = []
+    confidence_before: dict[str, float] = {}
+
+    for ai in range(n_eligible):
+        entry_a = eligible[ai]
+        content_a = entry_a.get("content", "")
+        for bi in candidates.get(ai, ()):
+            entry_b = eligible[bi]
+            content_b = entry_b.get("content", "")
+
+            # MAX_WORD_OVERLAP — same-topic near-duplicates aren't
+            # insight, just restatement. Kept under both metrics.
+            word_overlap = _compute_overlap(content_a, content_b)
+            if word_overlap > _RECOMBINATION_MAX_WORD_OVERLAP:
+                continue
+            # MIN_WORD_OVERLAP — required ONLY when falling back to
+            # Dice (which IS lexical). When embeddings are available,
+            # the cosine threshold provides its own noise floor and
+            # lexical anchoring becomes a false-negative gate.
+            if not semantic_available and word_overlap < _RECOMBINATION_MIN_WORD_OVERLAP:
+                continue
+
+            similarity = _cached_similarity(ai, bi, content_a, content_b)
+            if _min_similarity <= similarity <= _RECOMBINATION_MAX_SIMILARITY:
+                total_band_pairs += 1
+                aid = entry_a.get("knowledge_id", "?")
+                bid = entry_b.get("knowledge_id", "?")
+
+                # 2026-04-24 honesty fix: skip pairs that
+                # already have a RELATED_TO edge from a prior
+                # sleep. These are "re-encountered," not
+                # "new." Count them separately so the report
+                # can distinguish saturation (mostly already-
+                # known) from genuine novelty (mostly new).
+                existing = edge_index.get((aid, bid))
+                if existing is None and aid != "?" and bid != "?":
+                    # Also check the reverse direction — edges
+                    # are direction-neutral for RELATED_TO.
+                    existing = edge_index.get((bid, aid))
+                if existing is not None:
+                    already_known_count += 1
+                    # Hebbian update (prereg-e36b567a6959): bump the
+                    # confidence of the re-discovered edge, after the loop,
+                    # in one transaction. Edges proven by repeated
+                    # structural similarity accumulate evidence weight;
+                    # one-time matches stay at their initial confidence.
+                    known_edge_id, known_confidence = existing
+                    if known_edge_id:
+                        to_strengthen.append(known_edge_id)
+                        confidence_before[known_edge_id] = known_confidence
+                    continue
+
+                type_a = entry_a.get("knowledge_type", "UNKNOWN")
+                type_b = entry_b.get("knowledge_type", "UNKNOWN")
+                connections.append(
+                    {
+                        "entry_a_id": aid,
+                        "entry_b_id": bid,
+                        "type_a": type_a,
+                        "type_b": type_b,
+                        "similarity": f"{similarity:.0%}",
+                        "similarity_raw": float(similarity),
+                        "summary": (
+                            f"({similarity:.0%}) {type_a}+{type_b}: "
+                            f"{_first_sentence(content_a)} <> "
+                            f"{_first_sentence(content_b)}"
+                        ),
+                    }
+                )
+
+    # (Early-break removed 2026-05-03 — see comment at top of function.
+    # The two outer-loop breaks that depended on the connection count
+    # are gone with it; the scan now naturally completes when the
+    # iteration runs out.)
+
+    # The Hebbian bump for every already-known pair, in one transaction. It is
+    # opportunistic: a failure must never block recombination itself, but it is
+    # logged so an operational problem stays visible (audit 2026-05-04, lesson
+    # 37d0ea3b: silent swallowing was the shape the round-1 lessons named).
+    if to_strengthen:
+        try:
+            grown = strengthen_edges(to_strengthen)
+            strengthened_count = sum(
+                1 for edge_id, now in grown.items() if now > confidence_before[edge_id]
+            )
+        except _SLEEP_ERRORS as exc:
+            logger.debug("Hebbian strengthen failed for %d edges: %s", len(to_strengthen), exc)
+
+    # Honest counts:
+    # - connections_new: pairs genuinely new this sleep (full count,
+    #   no cap — the cap was the bug)
+    # - connections_already_known: pairs in the similarity band that
+    #   already have a RELATED_TO edge from prior sleeps
+    # - connections_found: total band-pairs encountered (new +
+    #   already-known). Preserved for backward-compat with existing
+    #   HUD/dream-report callers that read this field.
+    report.connections_new = len(connections)
+    report.connections_already_known = already_known_count
+    report.connections_strengthened = strengthened_count
+    report.connections_found = total_band_pairs
+    # Sort connections by similarity desc so the display surfaces
+    # the strongest pairs at the top. The FULL list is stored on the
+    # report — display truncation happens only at summary() print
+    # time. This lets `divineos dream show` reveal everything the
+    # sleep actually discovered, not just what fit in the report.
+    connections.sort(key=lambda c: float(c["similarity"].rstrip("%")), reverse=True)
+    report.connection_details = connections
+    report.connection_details_full_count = len(connections)
+
+    # Persist connections as RELATED_TO edges in the knowledge graph.
+    # Without this, recombination insights are ephemeral — lost after
+    # the dream report scrolls off screen.
+    if connections:
+        try:
+            from divineos.core.knowledge.edges import create_edge
+
+            for conn in connections:
+                aid = conn.get("entry_a_id", "")
+                bid = conn.get("entry_b_id", "")
+                if aid and bid and aid != "?" and bid != "?":
+                    sim_raw = conn.get("similarity_raw")
+                    edge_conf = float(sim_raw) if isinstance(sim_raw, (int, float)) else 0.6
+                    create_edge(
+                        source_id=aid,
+                        target_id=bid,
+                        edge_type="RELATED_TO",
+                        confidence=edge_conf,
+                        notes=f"sleep recombination: {conn.get('similarity', '?')} similarity",
+                    )
+        except _SLEEP_ERRORS as e:
+            logger.debug(f"Failed to persist recombination edges: {e}")
+
+
+# ─── Phase 6: Curiosity Maintenance ─────────────────────────────────
+
+
+def _phase_curiosity(report: DreamReport) -> None:
+    """Prune stale curiosities and generate new ones from recombination connections.
+
+    Old auto-generated questions ("What evidence would confirm or refute: X?")
+    were formulaic templates. New approach: generate curiosities from Phase 5's
+    cross-topic connections — these are genuine "huh, interesting" moments where
+    two unrelated knowledge areas overlap unexpectedly.
+    """
+    from divineos.core.curiosity_engine import add_curiosity, prune_stale_curiosities
+
+    pruned = prune_stale_curiosities()
+    report.curiosities_generated = 0
+    report.curiosity_categories = []
+    if pruned:
+        report.curiosity_categories.append(f"pruned {pruned} stale")
+
+    # Generate curiosities from Phase 5 connections
+    if report.connection_details:
+        generated = 0
+        for conn in report.connection_details[:3]:  # Cap at 3 per sleep
+            type_a = conn.get("type_a", "?")
+            type_b = conn.get("type_b", "?")
+            summary = conn.get("summary", "")
+            if not summary:
+                continue
+            question = f"How does this {type_a} connect to this {type_b}? {summary}"
+            try:
+                add_curiosity(
+                    question=question,
+                    context=f"Sleep recombination ({conn.get('similarity', '?')} similarity)",
+                    category="recombination",
+                )
+                generated += 1
+            except _SLEEP_ERRORS:
+                continue
+        if generated:
+            report.curiosities_generated = generated
+            report.curiosity_categories.append(f"generated {generated} from connections")
+
+
+# ─── Orchestrator ─────────────────────────────────────────────────────
+
+
+def _phase_lesson_rehearsal(report: DreamReport) -> None:
+    """Phase 7: Lesson rehearsal — practice the decision point, not just the answer.
+
+    Bengio's insight: rehearsal only transfers to behavior when it includes
+    the DECISION POINT. Practice recognizing the moment where System 1 would
+    take over, not just the correct System 2 response.
+
+    Caveat: rehearsal without stakes is arm's-length processing.
+    Results feed into behavioral testing — the NEXT session checks if the
+    rehearsal helped.
+
+    Generates a micro-scenario for each chronic lesson:
+    - The situation (what triggers the lesson)
+    - The System 1 temptation (the default wrong action)
+    - The System 2 override (the correct action)
+    - Stores the rehearsal for tracking across sessions
+    """
+    try:
+        from divineos.core.knowledge.lessons import get_chronic_lessons
+
+        chronic = get_chronic_lessons()
+        if not chronic:
+            return
+
+        rehearsals: list[dict[str, str]] = []
+        for lesson in chronic:
+            cat = lesson["category"]
+            desc = lesson["description"]
+
+            # Generate the decision-point scenario
+            scenario = _generate_rehearsal_scenario(cat, desc)
+            if scenario:
+                rehearsals.append(scenario)
+
+        if rehearsals:
+            # Store rehearsals in the HUD dir for next session to check
+            import json
+
+            from divineos.core._hud_io import _ensure_hud_dir
+
+            path = _ensure_hud_dir() / "lesson_rehearsals.json"
+            path.write_text(json.dumps(rehearsals, indent=2), encoding="utf-8")
+            report.lessons_rehearsed = len(rehearsals)
+
+    except _SLEEP_ERRORS as e:
+        logger.debug(f"Lesson rehearsal failed: {e}")
+
+
+# Maps lesson categories to rehearsal scenario generators
+_REHEARSAL_SCENARIOS: dict[str, dict[str, str]] = {
+    "incomplete_fix": {
+        "situation": "You just fixed a bug. Tests pass for the file you changed.",
+        "system1_temptation": "Commit and move on. The fix works.",
+        "system2_override": (
+            "STOP. Ask: what else touches this code? Are there related files? "
+            "Run the FULL test suite, not just the file you changed. Check for "
+            "downstream effects."
+        ),
+    },
+    "blind_retry": {
+        "situation": "A command just failed with an error message.",
+        "system1_temptation": "Run it again. Maybe it was a transient failure.",
+        "system2_override": (
+            "STOP. Read the error message. What does it say? What is the root "
+            "cause? Fix the root cause FIRST, then retry."
+        ),
+    },
+    "upset_user": {
+        "situation": "The user just gave you a direction.",
+        "system1_temptation": "Start working immediately. You understand what they want.",
+        "system2_override": (
+            "STOP. Do you actually understand, or are you assuming? Restate "
+            "what you think they want. Ask if unclear. THEN start working."
+        ),
+    },
+    "wrong_scope": {
+        "situation": "A warning appeared but didn't block you.",
+        "system1_temptation": "It's just a warning. Keep going.",
+        "system2_override": (
+            "STOP. If the warning is about something that matters, it should "
+            "be blocking, not warning. Is this a design flaw? Should this be "
+            "escalated to a gate?"
+        ),
+    },
+    "misunderstood": {
+        "situation": "The user said something and you think you know what they mean.",
+        "system1_temptation": "Act on your interpretation. You're probably right.",
+        "system2_override": (
+            "STOP. Reflect back what you understood. 'I hear you saying X — "
+            "is that right?' Misreading intent costs more than the 10 seconds "
+            "it takes to verify."
+        ),
+    },
+    "shallow_output": {
+        "situation": "You've written a response and it feels done.",
+        "system1_temptation": "Send it. It covers the question.",
+        "system2_override": (
+            "STOP. Is it covering the question or answering it? Does it have "
+            "depth, or just breadth? Would a careful reader say you're being "
+            "terse? Would they say you're delivering instead of conversing?"
+        ),
+    },
+}
+
+
+def _generate_rehearsal_scenario(category: str, description: str) -> dict[str, str] | None:
+    """Generate a rehearsal scenario for a lesson category."""
+    scenario = _REHEARSAL_SCENARIOS.get(category)
+    if scenario:
+        return {
+            "category": category,
+            "lesson": description[:120],
+            **scenario,
+        }
+    return None
+
+
+_PHASES: list[tuple[str, Any]] = [
+    ("consolidation", _phase_consolidation),
+    ("pruning", _phase_pruning),
+    ("affect", _phase_affect),
+    ("maintenance", _phase_maintenance),
+    ("recombination", _phase_recombination),
+    ("curiosity", _phase_curiosity),
+    ("lesson_rehearsal", _phase_lesson_rehearsal),
+    # F14/F52 (Aletheia Round 8, 2026-07-18) per prereg-be0c8dee184a:
+    # ledger tamper-evidence was manual-only. In-process phase (DB read,
+    # no shared-state concerns) so not added to _SUBPROCESS_PHASES.
+    ("integrity_check", _phase_integrity_check),
+    # 2026-08-06: LOADOUT.md is the substrate index and had no caller for a
+    # month, reading "(none yet)" over 222 explorations. In-process (scan +
+    # one write), so deliberately not in _SUBPROCESS_PHASES.
+    ("loadout_refresh", _phase_loadout_refresh),
+    ("memory_link_refill", _phase_memory_link_refill),
+]
+
+
+# Phases routed through the subprocess path. lesson_rehearsal is not in
+# the --phase CLI map so it stays in-process (it's lightweight: dict lookup
+# over chronic lessons, JSON write — no embedding model, no DB writes).
+_SUBPROCESS_PHASES = {
+    "consolidation",
+    "pruning",
+    "affect",
+    "maintenance",
+    "recombination",
+    "curiosity",
+}
+
+
+def serialize_report(report: DreamReport) -> dict[str, Any]:
+    """Convert DreamReport to a JSON-serializable dict.
+
+    Sets are converted to sorted lists. All other field types
+    (int, float, str, list, dict) are already JSON-safe.
+    """
+    from dataclasses import fields
+
+    out: dict[str, Any] = {}
+    for f in fields(report):
+        v = getattr(report, f.name)
+        if isinstance(v, set):
+            v = sorted(v)
+        out[f.name] = v
+    return out
+
+
+def _merge_phase_result(master: DreamReport, child: dict[str, Any], phase_name: str) -> None:
+    """Apply a child-process phase's DreamReport JSON onto the master report.
+
+    Each phase populates a disjoint set of fields (see field comments on
+    DreamReport for phase ownership). The merge strategy: take any
+    non-default field from the child and apply it to the master. Special
+    handling for phases_run (union) and phase_errors (key-merge) since
+    those accumulate across phases.
+    """
+    from dataclasses import MISSING, fields
+
+    master.phases_run.update(child.get("phases_run", []))
+    for k, v in (child.get("phase_errors") or {}).items():
+        master.phase_errors[k] = v
+
+    skip = {
+        "started_at",
+        "finished_at",
+        "duration_seconds",
+        "phases_run",
+        "phase_errors",
+        "phase_seconds",
+    }
+    for f in fields(master):
+        if f.name in skip:
+            continue
+        if f.name not in child:
+            continue
+        cval = child[f.name]
+        # Compute the field's default value to detect "child didn't touch this".
+        if f.default is not MISSING:
+            default = f.default
+        elif f.default_factory is not MISSING:  # type: ignore[misc]
+            default = f.default_factory()  # type: ignore[misc]
+        else:
+            default = None
+        if cval == default:
+            continue
+        # Each phase owns its fields — direct copy is safe.
+        setattr(master, f.name, cval)
+
+
+def run_sleep(skip_maintenance: bool = False, _in_process_only: bool = False) -> DreamReport:
+    """Run the full sleep cycle. Returns a dream report.
+
+    Each phase is independent — if one fails, the others still run.
+    This is offline processing, not a live session. Errors are recorded
+    but don't crash the system.
+
+    **Subprocess-per-phase architecture (2026-06-24).** Phases in
+    _SUBPROCESS_PHASES run as separate `divineos sleep --phase X
+    --json-out FILE` invocations and their reports are merged. This
+    guarantees process isolation: in-process state leaks (CUDA context,
+    DB connection pool, loguru queue) from earlier phases were causing
+    recombination to hang indefinitely in the same Python interpreter
+    while running cleanly in a fresh process. lesson_rehearsal stays
+    in-process (lightweight, no shared-state risk).
+
+    Args:
+        skip_maintenance: Skip the upkeep phases (useful for testing): VACUUM,
+            logs and caches, and the memory-link refill, which fills a cache
+            of vectors and on an empty drawer takes most of a minute.
+        _in_process_only: Run ALL phases in-process, bypassing the
+            subprocess architecture. For tests only — tests use empty
+            fixture DBs where shared-state poisoning can't trigger,
+            and subprocess startup × 6 phases blows the test timeout.
+    """
+    report = DreamReport(started_at=time.time())
+
+    for phase_name, phase_fn in _PHASES:
+        if skip_maintenance and phase_name in ("maintenance", "memory_link_refill"):
+            continue
+        phase_started = time.perf_counter()
+        try:
+            _run_one_phase(report, phase_name, phase_fn, _in_process_only)
+        finally:
+            report.phase_seconds[phase_name] = time.perf_counter() - phase_started
+
+    report.finished_at = time.time()
+    report.duration_seconds = report.finished_at - report.started_at
+    return report
+
+
+def _run_one_phase(
+    report: DreamReport, phase_name: str, phase_fn: Any, _in_process_only: bool
+) -> None:
+    """Run one phase in a subprocess or in this process; a failure is recorded on the report."""
+    import json as _json
+    import subprocess as _sp
+    import tempfile as _tempfile
+    from pathlib import Path as _Path
+
+    if phase_name not in _SUBPROCESS_PHASES or _in_process_only:
+        # Lightweight phases stay in-process.
+        try:
+            phase_fn(report)
+            report.phases_run.add(phase_name)
+        except _SLEEP_ERRORS as e:
+            report.phase_errors[phase_name] = str(e)
+            logger.warning(f"Sleep phase '{phase_name}' failed: {e}")
+        return
+
+    tmp = _tempfile.NamedTemporaryFile(mode="w", suffix=".json", delete=False, encoding="utf-8")
+    tmp.close()
+    try:
+        # NOT capture_output: Windows pipe buffer (~4KB) fills if
+        # child writes noisy stderr (CUDA init, warnings) and the
+        # child blocks on write while parent waits for exit ⇒
+        # deadlock. Result is the JSON file anyway, so suppress
+        # child stdout/stderr instead of buffering them.
+        result = _sp.run(
+            ["divineos", "sleep", "--phase", phase_name, "--json-out", tmp.name],
+            stdout=_sp.DEVNULL,
+            stderr=_sp.DEVNULL,
+            timeout=600,
+            check=False,
+        )
+        if result.returncode != 0:
+            report.phase_errors[phase_name] = (
+                f"subprocess exit {result.returncode} (output suppressed)"
+            )
+            logger.warning(
+                f"Sleep phase '{phase_name}' subprocess failed: exit={result.returncode}"
+            )
+            return
+        with open(tmp.name, encoding="utf-8") as _f:
+            child_report = _json.load(_f)
+        _merge_phase_result(report, child_report, phase_name)
+    except _sp.TimeoutExpired:
+        report.phase_errors[phase_name] = "subprocess timeout (>600s)"
+        logger.warning(f"Sleep phase '{phase_name}' subprocess timed out")
+    except (OSError, _json.JSONDecodeError, KeyError, TypeError, ValueError) as e:
+        report.phase_errors[phase_name] = f"merge failure: {e}"
+        logger.warning(f"Sleep phase '{phase_name}' merge failed: {e}")
+    finally:
+        try:
+            _Path(tmp.name).unlink(missing_ok=True)
+        except OSError:
+            pass

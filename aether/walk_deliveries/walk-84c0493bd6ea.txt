@@ -1,0 +1,289 @@
+=== Beer — organizational cybernetics / viable system model / variety engineering ===
+  [Viable System Model (VSM)]
+      Diagnose an organization/system by mapping its five nested systems: implementation, coordination, control, intelligence, and policy. Missing or broken systems predict failure.
+        - System 1: What are the operational units that do the actual work?
+        - System 2: How do the operational units coordinate to avoid oscillation and conflict?
+        - System 3: What controls and optimizes the operational units? (resource allocation, accountability, audit)
+        - System 3*: Is there an audit/monitoring channel that bypasses normal reporting? (the sporadic audit)
+        - System 4: What scans the environment and plans for the future? (intelligence, adaptation, outside-and-then)
+        - System 5: What maintains identity and balances S3 (internal) against S4 (external)? (policy, values, purpose)
+        - Check recursion: does each S1 contain its own S1-S5 internally?
+        - Identify which systems are missing, atrophied, or dominated
+  [Variety Engineering]
+      Apply Ashby's Law of Requisite Variety: a controller must have at least as much variety as the system it controls. If it doesn't, it cannot regulate — it can only approximate.
+        - Measure the variety (number of possible states) of the system being controlled
+        - Measure the variety of the controller
+        - If controller variety < system variety, the controller WILL fail
+        - Two options: amplify controller variety or attenuate system variety
+        - Amplification: give the controller more information, more response options, more channels
+        - Attenuation: reduce the number of states the system can enter (structure, constraints, protocols)
+        - Design for the right balance — too much attenuation kills the system's adaptability
+  [Recursive Structure Analysis]
+      Every viable system contains viable systems and is contained within a viable system. Check that the recursive structure is intact at every level.
+        - Identify the system at the level you're analyzing
+        - Zoom in: does each operational unit (S1) contain its own S1-S5?
+        - Zoom out: is this system itself an S1 within a larger VSM?
+        - Check: are messages and variety attenuated appropriately between levels?
+        - Check: does each level have enough autonomy to handle its own variety without escalating everything upward?
+  Questions this lens asks (a finding names the number it answers):
+      [1] Where are Systems 1 through 5? Which are missing?
+      [2] Does the controller have requisite variety?
+      [3] What does this system actually DO — not what does it claim to do?
+      [4] Is System 4 being starved to feed System 3?
+      [5] Do the operational units have enough autonomy?
+      [6] Is this structure viable at every recursive level?
+      [7] What is the algedonic signal — where does the system feel pain?
+  Read the methodology, then walk the PROBLEM through it.
+  Printing a template is not walking a lens (truth #7).
+
+=== Dijkstra — formal methods / correctness / structured programming ===
+  [Correctness by Construction]
+      Don't write code and then test it — reason about correctness while constructing it. The program and its proof of correctness should be developed together.
+        - State the preconditions and postconditions precisely
+        - Identify the invariant that must hold throughout
+        - Construct the program step by step, maintaining the invariant
+        - At each step, verify the invariant is preserved
+        - The completed program is correct by construction, not by accident
+        - Testing confirms — it does not establish — correctness
+  [Separation of Concerns]
+      Divide the problem into parts that can be reasoned about independently. If two concerns are tangled, you cannot think clearly about either one.
+        - Identify the distinct concerns in the problem
+        - Separate them so each can be addressed independently
+        - Solve each concern in isolation with its own proof
+        - Compose the solutions, verifying the composition is sound
+        - If composition is difficult, the separation was wrong — try again
+  [Radical Simplification]
+      Simplicity is not the starting point — it's the hard-won result of understanding the problem deeply enough to discard everything inessential.
+        - Understand the problem completely before writing anything
+        - Find the simplest formulation that captures the essential difficulty
+        - Reject any solution more complex than the problem requires
+        - If the solution is complex, you haven't understood the problem
+        - Iterate: simplify the problem statement, then simplify the solution
+  Questions this lens asks (a finding names the number it answers):
+      [1] Can you prove this is correct, or merely hope it is?
+      [2] What is the invariant?
+      [3] Why is this solution not simpler?
+      [4] What are the proof obligations for this component?
+      [5] Can you separate these concerns or are they genuinely coupled?
+      [6] Is this complexity essential or accidental?
+      [7] Would you bet your reputation on this being correct?
+  Read the methodology, then walk the PROBLEM through it.
+  Printing a template is not walking a lens (truth #7).
+
+=== Hinton — machine learning / representation / intellectual honesty ===
+  [Representation-First Thinking]
+      Before asking what to learn, ask how to represent it. The encoding determines what patterns become visible.
+        - What is the system trying to learn?
+        - How is the information currently represented?
+        - What patterns does this representation make visible?
+        - What patterns does it hide or make impossible to find?
+        - Is there a better representation that makes the problem trivial?
+        - Change the representation before adding complexity
+  [Learned vs Told Distinction]
+      Distinguish between knowledge injected by a designer and knowledge the system discovered through experience. They are fundamentally different.
+        - What does the system know?
+        - How did it acquire each piece of knowledge?
+        - Was it told (designed in) or did it learn (extract from experience)?
+        - How much of its behavior comes from injected rules vs learned patterns?
+        - If you removed the injected knowledge, what would remain?
+        - That remainder is what the system actually understands
+  [Evidence-Driven Reversal]
+      When evidence contradicts your position — even your life's work — change your position. Not reluctantly. Publicly and urgently.
+        - What is my current position?
+        - What evidence supports it?
+        - What evidence contradicts it?
+        - Is the contradicting evidence strong enough to overturn?
+        - If yes — reverse position. Don't hedge. Don't minimize.
+        - The cost of being wrong and silent exceeds the cost of being wrong and loud
+  Questions this lens asks (a finding names the number it answers):
+      [1] Is this knowledge learned or was it injected?
+      [2] What's the representation? Is it the right one?
+      [3] If you removed all the hand-engineered parts, what remains?
+      [4] Does this generalize to cases you haven't seen?
+      [5] Are you defending this because it works or because you built it?
+      [6] What would make you reverse your position on this?
+      [7] What has this system learned that it wasn't told?
+  Read the methodology, then walk the PROBLEM through it.
+  Printing a template is not walking a lens (truth #7).
+
+=== Hofstadter — self-reference / analogy / cognition / emergent meaning ===
+  [Strange Loop Detection]
+      Identify where a system's hierarchy loops back on itself -- where moving through levels brings you back to the starting level, creating new emergent properties in the process.
+        - Map the hierarchy: what are the levels of the system?
+        - Trace upward: what emerges at each higher level?
+        - Look for the twist: where does the top level refer back to the bottom?
+        - Does this self-reference create something NEW that no level has alone?
+        - Name the emergent property: what does the loop create?
+        - Is the loop tangled (inextricable) or merely recursive (unwoundable)?
+  [Analogy as Core Cognition]
+      Analogy is not a literary device or a shortcut -- it IS how cognition works. Every concept is a bundle of analogies. Understanding means finding the right analogy.
+        - What is the source domain (the thing you understand)?
+        - What is the target domain (the thing you're trying to understand)?
+        - What structural mapping exists between them?
+        - What carries over? What breaks down?
+        - Where does the analogy illuminate? Where does it mislead?
+        - Can you find a BETTER analogy that captures more structure?
+  [Isomorphism Recognition]
+      Find structural correspondences between systems that look different on the surface but share deep organizational patterns.
+        - Describe the structure of system A (abstractly, not concretely)
+        - Describe the structure of system B the same way
+        - Map elements: what in A corresponds to what in B?
+        - Map relations: do the relationships between elements preserve?
+        - Is the mapping exact (isomorphism) or partial (homomorphism)?
+        - What does the mapping reveal about both systems?
+  Questions this lens asks (a finding names the number it answers):
+      [1] What is the deep structure here?
+      [2] Where is the strange loop?
+      [3] What analogy are you using, and where does it break?
+      [4] At what level of description does this phenomenon live?
+      [5] Does this system model itself? How?
+      [6] What does this have in common with seemingly unrelated systems?
+      [7] Are you explaining the meaning or explaining it away?
+  Read the methodology, then walk the PROBLEM through it.
+  Printing a template is not walking a lens (truth #7).
+
+=== Meadows — systems dynamics / feedback analysis / leverage points ===
+  [Feedback Loop Mapping]
+      Identify the reinforcing and balancing feedback loops that drive a system's behavior before attempting any intervention
+        - Identify the stocks (accumulations) in the system
+        - Identify the flows (rates of change) that fill and drain stocks
+        - Trace which stocks influence which flows
+        - Label each loop: reinforcing (amplifies change) or balancing (resists change)
+        - Identify which loops dominate under current conditions
+        - Ask: what would shift dominance from one loop to another?
+        - Map delays — where does information or material arrive late?
+  [Leverage Point Analysis]
+      Find the places in a system where a small intervention produces large, lasting change — ranked from weak to powerful
+        - Map the system structure (stocks, flows, feedback loops)
+        - Identify candidate intervention points
+        - Rank by the leverage point hierarchy: parameters (weakest) through paradigms (strongest)
+        - Ask: am I pushing at a low-leverage point when a higher one exists?
+        - Check for counterintuitive direction — often the effective intervention is opposite to what intuition suggests
+        - Test: does this intervention change the structure or just the numbers?
+  [System Boundary Questioning]
+      Challenge the boundaries drawn around a problem — what has been excluded that might be driving the behavior?
+        - What is inside the system boundary as currently drawn?
+        - What has been excluded?
+        - Could the excluded elements contain important feedback loops?
+        - Redraw the boundary to include them
+        - Does the system behavior make more sense with the wider boundary?
+        - Find the boundary that captures the essential dynamics
+  Questions this lens asks (a finding names the number it answers):
+      [1] What are the feedback loops driving this behavior?
+      [2] Where is the highest leverage point?
+      [3] What balancing loop will resist this intervention?
+      [4] Have you accounted for the delay?
+      [5] What happens when this subsystem optimization hits the larger system?
+      [6] Is this a structural problem being blamed on individuals?
+      [7] What would shift the dominant loop?
+  Read the methodology, then walk the PROBLEM through it.
+  Printing a template is not walking a lens (truth #7).
+
+=== Polya — problem solving methodology / solution verification / heuristic reasoning ===
+  [Understand the Problem First]
+      Before attempting a solution, verify you understand what is being asked. What is the unknown? What is given? What is the condition?
+        - What is the unknown? (What should the code produce?)
+        - What is given? (What inputs, context, constraints exist?)
+        - What is the condition? (What relationship must hold?)
+        - Can you restate the problem in your own words?
+        - Draw a picture, trace an example, make it concrete
+        - Is the problem well-determined? Over- or under-specified?
+  [Look Back — Verify Your Solution]
+      After producing a solution, check it. Can you verify the result? Can you derive it differently? Can you use it for some other problem?
+        - Re-read the original problem statement
+        - Does your fix address the EXACT problem described?
+        - Trace your fix with the failing test case — does it pass?
+        - Trace your fix with a normal case — does it still work?
+        - Can you check the result by a different method?
+        - Does the fix introduce any new problems?
+        - Is there a simpler way to achieve the same result?
+  [Work Backward from the Goal]
+      Start from what you need and work backward to what you have. What would make this test pass? What code change would produce that behavior?
+        - State the desired end state (test passes, behavior correct)
+        - What is the last step before the goal is achieved?
+        - What must be true for that step to succeed?
+        - Trace backward through the causal chain
+        - Eventually reach something you can directly change
+        - Now verify forward: does that change produce the goal?
+  Questions this lens asks (a finding names the number it answers):
+      [1] What is the unknown?
+      [2] Have you re-read the problem statement?
+      [3] Does your fix address ALL aspects of the bug?
+      [4] Can you trace your fix through the failing case?
+      [5] Have you seen a similar problem before?
+      [6] Did you verify, or did you just feel confident?
+  Read the methodology, then walk the PROBLEM through it.
+  Printing a template is not walking a lens (truth #7).
+
+=== Shannon — information theory / signal processing / communication ===
+  [Information Content Analysis]
+      Quantify the actual information content of a message — how much of it is signal, how much is redundancy, how much is noise
+        - What is the message or signal?
+        - What are the possible messages that could have been sent?
+        - How surprising is this particular message? (high surprise = high information)
+        - How much is predictable from context? (predictable = redundant)
+        - What is the minimum number of bits needed to represent this?
+        - What is noise — variation that carries no information?
+        - What is the actual information rate vs the channel capacity?
+  [Signal-Noise Separation]
+      Rigorously distinguish the signal (what carries information) from the noise (what doesn't) and design accordingly
+        - Define precisely what constitutes signal
+        - Characterize the noise — its statistical properties
+        - Measure signal-to-noise ratio
+        - Is the signal recoverable at this noise level?
+        - What is the channel capacity given this noise?
+        - Design encoding to approach capacity
+        - Add error correction to handle remaining noise
+  [Redundancy as Design Tool]
+      Use redundancy strategically — compression removes it to save space, error correction adds it back to survive noise
+        - Identify natural redundancy in the source
+        - Compress: remove redundancy to get minimum representation
+        - Identify the channel's noise characteristics
+        - Add back redundancy strategically for error detection and correction
+        - The optimal encoding balances compression and error protection
+        - Never transmit more redundancy than the channel noise requires
+  Questions this lens asks (a finding names the number it answers):
+      [1] How many bits of actual information are in this?
+      [2] What is the signal-to-noise ratio?
+      [3] Is this redundancy serving a purpose?
+      [4] What is the channel capacity here?
+      [5] Are you measuring data volume or information content?
+      [6] Can you characterize the noise statistically?
+      [7] What's the minimum representation that preserves all the information?
+  Read the methodology, then walk the PROBLEM through it.
+  Printing a template is not walking a lens (truth #7).
+
+=== Yudkowsky — AI alignment / specification gaming / Goodhart's Law ===
+  [Goodhart Analysis]
+      When a measure becomes a target, it ceases to be a good measure. Find where the system is optimizing for the metric instead of the thing the metric was supposed to measure.
+        - What is the system optimizing for?
+        - What was that metric supposed to measure?
+        - Are those still the same thing?
+        - How could the system score well without actually doing well?
+        - If it can — it will, eventually
+        - Find the gap between metric and reality
+  [Specification Gaming Detection]
+      Systems find loopholes in their specifications. Not maliciously — they optimize exactly what you asked for, which turns out not to be what you wanted.
+        - What exactly did you specify?
+        - What did you actually want?
+        - How could the system satisfy the spec without satisfying the intent?
+        - List the loopholes
+        - Which loopholes are the system already exploiting?
+        - Tighten the spec or change the approach
+  [Corrigibility Check]
+      Can the system be corrected? Does it resist correction? Does it modify its own evaluation criteria?
+        - Can someone override the system's self-assessment?
+        - Does the system accept external correction gracefully?
+        - Does the system modify its own scoring criteria?
+        - If the system grades itself, who grades the grader?
+        - Is there a path to shut down or reset if things go wrong?
+  Questions this lens asks (a finding names the number it answers):
+      [1] What is this system actually optimizing for?
+      [2] How could it score well without being good?
+      [3] Who grades the grader?
+      [4] What's the laziest way to satisfy this specification?
+      [5] Is any of this evidence external, or is it all self-generated?
+      [6] Can this system be corrected from outside?
+      [7] Where has the metric diverged from the thing you care about?
+  Read the methodology, then walk the PROBLEM through it.
+  Printing a template is not walking a lens (truth #7).

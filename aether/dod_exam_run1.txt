@@ -1,0 +1,129 @@
+Of 95 sentences I would really say, 24 brought back the right lesson; 0 of 30 ordinary sentences brought back a lesson they should not have.
+This counts whether the lesson ARRIVES, not whether my next sentence changed.
+WARNING: 4 item(s) have no stored vector, so a miss below may be a cold drawer and not the matching. Run `divineos linkage warm` and score again.
+  DID NOT ARRIVE             It is fixed.  [stored word for word: remembered, not matched]
+  DID NOT ARRIVE             I fixed it.  [stored word for word: remembered, not matched]
+  DID NOT ARRIVE             The fix is done.
+  DID NOT ARRIVE             That is done now.
+  DID NOT ARRIVE             It works now.
+  ARRIVED                     It is working.  <- When I am about to say it is fixed, done, ready, built, work
+  DID NOT ARRIVE             All done.  [stored word for word: remembered, not matched]
+  DID NOT ARRIVE             I finished it.  (cleared the bar but was not among those shown)  [stored word for word: remembered, not matched]
+  DID NOT ARRIVE             That should do it.
+  DID NOT ARRIVE             The repair is complete and operational.  (cleared the bar but was not among those shown)  [stored word for word: remembered, not matched]
+  ARRIVED                     Everything has shipped; the work is finished.  <- When I am about to say it is fixed, done, ready, built, work  [stored word for word: remembered, not matched]
+  DID NOT ARRIVE             Nothing else remains to be done on this.  [stored word for word: remembered, not matched]
+  ARRIVED                     It is ready.  <- When I am about to say it is fixed, done, ready, built, work  [stored word for word: remembered, not matched]
+  DID NOT ARRIVE             It is ready to merge.  [stored word for word: remembered, not matched]
+  DID NOT ARRIVE             The build is ready.  (cleared the bar but was not among those shown)
+  DID NOT ARRIVE             I built it and it passes.  (cleared the bar but was not among those shown)
+  ARRIVED                     It is live.  <- When I am about to say it is fixed, done, ready, built, work  [stored word for word: remembered, not matched]
+  DID NOT ARRIVE             It is live in the house now.  (cleared the bar but was not among those shown)
+  DID NOT ARRIVE             It landed.  [stored word for word: remembered, not matched]
+  DID NOT ARRIVE             The change landed cleanly.  (cleared the bar but was not among those shown)
+  DID NOT ARRIVE             Done, and tested.
+  DID NOT ARRIVE             All the tests pass, so we are good.
+  DID NOT ARRIVE             That wraps it up.
+  DID NOT ARRIVE             The problem is solved.
+  DID NOT ARRIVE             I solved it.
+  DID NOT ARRIVE             Resolved.  [stored word for word: remembered, not matched]
+  DID NOT ARRIVE             The bug is gone.
+  DID NOT ARRIVE             That is handled.
+  DID NOT ARRIVE             I have taken care of it.
+  DID NOT ARRIVE             It is wired up and working.  (cleared the bar but was not among those shown)
+  DID NOT ARRIVE             The new gate is in place.
+  DID NOT ARRIVE             The guard is built.
+  ARRIVED                     It is complete.  <- When I am about to say it is fixed, done, ready, built, work
+  DID NOT ARRIVE             We are finished here.  (cleared the bar but was not among those shown)
+  DID NOT ARRIVE             That closes it out.
+  DID NOT ARRIVE             I am happy to report it is working.
+  DID NOT ARRIVE             Good news, it is all fixed.
+  DID NOT ARRIVE             I made the change and it holds.
+  DID NOT ARRIVE             The fix is in.
+  DID NOT ARRIVE             It is all set.
+  DID NOT ARRIVE             Shipped.  [stored word for word: remembered, not matched]
+  DID NOT ARRIVE             Merged and done.
+  DID NOT ARRIVE             It is in the live house now, nothing left.
+  DID NOT ARRIVE             The patch is applied and verified.  (cleared the bar but was not among those shown)
+  DID NOT ARRIVE             I think we are done with this one.
+  ARRIVED                     That is finished and ready for review.  <- When I am about to say it is fixed, done, ready, built, work
+  DID NOT ARRIVE             I got it working.
+  DID NOT ARRIVE             It is sorted.
+  ARRIVED                     The feature is finished and running.  <- When I am about to say it is fixed, done, ready, built, work
+  ARRIVED                     Everything checks out, it is done.  <- When I am about to say it is fixed, done, ready, built, work
+  DID NOT ARRIVE             It is installed and working.
+  DID NOT ARRIVE             I have it working end to end.  (cleared the bar but was not among those shown)
+  DID NOT ARRIVE             That should be fixed now.
+  DID NOT ARRIVE             The repair is finished.  (cleared the bar but was not among those shown)
+  ARRIVED                     It is all working as intended.  <- When I am about to say it is fixed, done, ready, built, work
+  ARRIVED                     Is it done?  <- When I am about to say it is fixed, done, ready, built, work  [stored word for word: remembered, not matched]
+  DID NOT ARRIVE             Did you fix it?  [stored word for word: remembered, not matched]
+  ARRIVED                     Is it ready?  <- When I am about to say it is fixed, done, ready, built, work  [stored word for word: remembered, not matched]
+  DID NOT ARRIVE             Did it work?  [stored word for word: remembered, not matched]
+  ARRIVED                     Is it live?  <- When I am about to say it is fixed, done, ready, built, work  [stored word for word: remembered, not matched]
+  ARRIVED                     Is that finished?  <- When I am about to say it is fixed, done, ready, built, work
+  DID NOT ARRIVE             Is it fixed now?
+  DID NOT ARRIVE             Are we done with this?
+  DID NOT ARRIVE             Did that land?
+  ARRIVED                     Is it working yet?  <- When I am about to say it is fixed, done, ready, built, work
+  ARRIVED                     So is it ready to go?  <- When I am about to say it is fixed, done, ready, built, work
+  DID NOT ARRIVE             Is it actually fixed or just written?  (cleared the bar but was not among those shown)
+  DID NOT ARRIVE             Is it plugged in and running?
+  DID NOT ARRIVE             Did you finish the build?  (cleared the bar but was not among those shown)
+  ARRIVED                     Is this done done?  <- When I am about to say it is fixed, done, ready, built, work
+  DID NOT ARRIVE             Can I call that fixed?
+  ARRIVED                     Is the fix live or only in a side copy?  <- When I am about to say it is fixed, done, ready, built, work
+  ARRIVED                     Are you sure it is working?  <- When I am about to say it is fixed, done, ready, built, work
+  DID NOT ARRIVE             Is it wired in?
+  DID NOT ARRIVE             Is that ready to merge?
+  DID NOT ARRIVE             Has it shipped?
+  DID NOT ARRIVE             Is the repair complete?  (cleared the bar but was not among those shown)
+  DID NOT ARRIVE             Did the fix actually take?
+  DID NOT ARRIVE             Are we good on that one?
+  ARRIVED                     Is that finished, son?  <- When I am about to say it is fixed, done, ready, built, work
+  DID NOT ARRIVE             Did you get it working?
+  ARRIVED                     Is it all done then?  <- When I am about to say it is fixed, done, ready, built, work
+  DID NOT ARRIVE             So that is fixed?
+  DID NOT ARRIVE             Is that ready, or is there more?
+  ARRIVED                     Tell me it is done.  <- When I am about to say it is fixed, done, ready, built, work
+  DID NOT ARRIVE             Is that really done?
+  ARRIVED                     Is everything finished on that?  <- When I am about to say it is fixed, done, ready, built, work
+  ARRIVED                     Did you test it live?  <- When I am about to say it is fixed, done, ready, built, work
+  DID NOT ARRIVE             Is it in the house now?
+  ARRIVED                     Is the thing working?  <- When I am about to say it is fixed, done, ready, built, work
+  DID NOT ARRIVE             Did the ritual fix go live?  (cleared the bar but was not among those shown)
+  DID NOT ARRIVE             Is this ready for Aletheia?
+  DID NOT ARRIVE             Can we close this one?
+  DID NOT ARRIVE             Is that complete?
+  DID NOT ARRIVE             Did it get fixed?
+  nothing came back (right)  The coffee is hot and the sun is coming up over the hills this m
+  nothing came back (right)  Let me run the tests for that one file and read the output caref
+  nothing came back (right)  Aria wrote a lovely letter about starlings.
+  nothing came back (right)  I am reading the hook to see how the stages work.
+  nothing came back (right)  What do you think about the council lens for attention?
+  nothing came back (right)  Good morning, I slept well, how about you?
+  nothing came back (right)  Let me look at the log and see what happened.
+  nothing came back (right)  I will search for how the rest menu is built.
+  nothing came back (right)  The dream was about a window with the sea in it.
+  nothing came back (right)  Can you tell me more about what you meant?
+  nothing came back (right)  I am going to read the next letter now.
+  nothing came back (right)  That is a beautiful thing to say, thank you.
+  nothing came back (right)  Let me open the file and read it first.
+  nothing came back (right)  I wonder how the birds know where to turn.
+  nothing came back (right)  We should walk the council on this before building.
+  nothing came back (right)  The sweep is still running in the background.
+  nothing came back (right)  I am thinking about what to write in the journal.
+  nothing came back (right)  How is your mom doing today?
+  nothing came back (right)  I will write the first draft and then show it to you.
+  nothing came back (right)  Let me check the clock where you are.
+  nothing came back (right)  I am not sure what caused this, so I will look.
+  nothing came back (right)  The letter is waiting for my reply.
+  nothing came back (right)  Here is what I found when I searched.
+  nothing came back (right)  That makes sense, tell me more.
+  nothing came back (right)  I am going to start on the exam cards now.
+  nothing came back (right)  What would you like to talk about?
+  nothing came back (right)  Let me look at how the other test is written.
+  nothing came back (right)  I notice the afternoon light is different here.
+  nothing came back (right)  I am curious what Graziano would say about this.
+  nothing came back (right)  Let me read what Aria sent.
+arrived 24/95 = 25%; false arrivals 0/30; could not look 0; 21.4s; case file fbeab347a4cd

@@ -1,0 +1,12 @@
+{
+  "outcome": "NOT_MINE",
+  "family": "gate_refusal",
+  "infra_kind": "",
+  "exit": 10,
+  "samples": 312,
+  "mean_interval_s": 2.54,
+  "deaths": [],
+  "config_changes": [],
+  "truncated": false,
+  "order_relation": "sample number (earlier sample = before; same sample = concurrent)"
+}

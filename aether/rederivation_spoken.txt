@@ -79,3 +79,12 @@ pytest test_bots
 git work
 gh search
 git setting
+pytest test_mutant
+git apply
+git worktree
+pytest test_folded_seat_holds_its_line
+gh pr
+gh pr
+git fetch
+git commit
+git fact

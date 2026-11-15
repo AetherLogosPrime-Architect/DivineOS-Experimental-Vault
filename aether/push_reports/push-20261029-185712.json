@@ -1,0 +1,12 @@
+{
+  "outcome": "NOTHING_SEEN",
+  "family": "infrastructure",
+  "infra_kind": "crashed",
+  "exit": 10,
+  "samples": 488,
+  "mean_interval_s": 1.23,
+  "deaths": [],
+  "config_changes": [],
+  "truncated": false,
+  "order_relation": "sample number (earlier sample = before; same sample = concurrent)"
+}

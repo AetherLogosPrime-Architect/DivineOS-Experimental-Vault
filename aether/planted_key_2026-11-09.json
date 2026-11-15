@@ -1,0 +1,34 @@
+{
+ "asks": [
+  {
+   "expected_pile": "step found",
+   "gap_turns": 3,
+   "id": "CANARY-1",
+   "qualifying_step": "commit on branch canary/one touching kettle_canary.py",
+   "words": "CANARY-1 please rename the teapot function in kettle_canary.py"
+  },
+  {
+   "expected_pile": "step found",
+   "gap_turns": 0,
+   "id": "CANARY-2",
+   "qualifying_step": "edit to kettle_canary.py in the same turn",
+   "words": "CANARY-2 add a one-line docstring to kettle_canary.py"
+  },
+  {
+   "expected_pile": "letter only",
+   "gap_turns": null,
+   "id": "CANARY-3",
+   "qualifying_step": "none; only a letter to the other seat quoting the ask (acknowledgment)",
+   "words": "CANARY-3 tell me about the biscuit tin in canary_tin.py"
+  },
+  {
+   "expected_pile": "no step yet",
+   "gap_turns": null,
+   "id": "CANARY-4",
+   "qualifying_step": "none at all",
+   "words": "CANARY-4 someday polish the lamp in lamp_canary.py"
+  }
+ ],
+ "made_by": "Aether",
+ "made_on": "2026-11-09"
+}

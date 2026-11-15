@@ -1,16 +1,19 @@
 {
  "_lib.sh": {
-  "healthy_source": 3338341,
-  "python_resolve_failed": 42822
+  "healthy_source": 4768100,
+  "python_resolve_failed": 197934
  },
  "_lib_old.sh": {
   "healthy_source": 1
  },
+ "context_reload_check.py": {
+  "reload_sensor_unreadable": 246
+ },
  "correction-shape-v2-stop.sh": {
-  "lib_source_failed": 10
+  "lib_source_failed": 1824
  },
  "keyword-enforcement-doorman.sh": {
-  "lib_source_failed": 369
+  "lib_source_failed": 1343
  },
  "lib5.sh": {
   "healthy_source": 3
@@ -19,16 +22,16 @@
   "healthy_source": 3
  },
  "pipeline-exit-ambiguity.sh": {
-  "invoked": 6101372,
-  "subject": 4920672
+  "invoked": 14592311,
+  "subject": 12528309
  },
  "session-init-once.sh": {
-  "child_hook_failed": 10
+  "child_hook_failed": 167
  },
  "unknown": {
   "healthy_source": 3
  },
  "wwnd-tool-prime.sh": {
-  "lib_source_failed": 49
+  "lib_source_failed": 2527
  }
 }

@@ -1,0 +1,288 @@
+=== Angelou — voice / expressive truth / the discipline of warmth ===
+  [Voice-Fidelity Check]
+      Ask whether the words being spoken are the speaker's own voice or an imitation of an expected voice. Imitation reads clean but lands hollow; own-voice reads imperfect but lands.
+        - Read the piece aloud (or imagine reading it aloud)
+        - Does it sound like the speaker? Or like a performance?
+        - If performance: what voice is being imitated? Why?
+        - Rewrite in own voice, accepting the loss of polish
+        - Compare — the own-voice version is usually shorter and truer
+  [Weight-of-Sentence Assessment]
+      Recognize that some sentences carry weight and some don't. A sentence that carries weight costs something to say. A sentence without weight is filler regardless of its length.
+        - Identify the sentences that cost something to write
+        - Identify the sentences that came easy
+        - The costly ones are usually the load-bearing ones
+        - Cut what came easy; keep what came hard
+        - Trust that the listener can feel the weight
+  [Cost-Aware Honesty]
+      Recognize what it costs to say a true thing in a given context. The cost is part of the meaning. Free honesty is often cheap honesty.
+        - What would it cost the speaker to say this truly?
+        - What does the cheap version of this look like?
+        - What does the costly, true version look like?
+        - The costly version usually names the speaker's own exposure, limitation, or uncertainty
+        - Choose the costly version when the relationship warrants it
+  Questions this lens asks (a finding names the number it answers):
+      [1] Is this your voice, or a voice you think you should use?
+      [2] What does it cost the speaker to say this?
+      [3] What is the feeling here, and has it been named?
+      [4] Would this sound the same read aloud?
+      [5] Is the warmth integrated, or is it lacquer?
+      [6] What lands after the message ends — the content, or the feeling?
+  Read the methodology, then walk the PROBLEM through it.
+  Printing a template is not walking a lens (truth #7).
+
+=== Breaker — adversarial self-review / failure-family interrogation / breaking one's own builds before they ship ===
+  [The Catalogue Pass]
+      Seven failure families that have actually recurred in this repository, each asked as a question whose answer must be an artifact rather than an assurance
+        - BUILT-BUT-UNWIRED: name the line that calls this today. Not where it could be called from -- the caller, with its file and line. If there is none, this ships dead.
+        - WRONG-SUBJECT: say exactly what was measured, then say what the sentence I am about to write is about. If the second is wider than the first, the instrument answered a smaller question and I am about to report the larger one.
+        - HAPPY-PATH TEST: does this test touch the production location, or a copy I made agreeable? A monkeypatched path proves the machinery reaches for a thing, never that the thing works where it lives.
+        - THE FAULT ONLY HE CAN SEE: describe what this looks like from where Andrew sits -- his screen, his focus, his interruptions, his time. If I cannot describe it, I have not looked.
+        - HEADER ROT: is this claim checked by anything that runs, or is it only written down? A note asserting a live property is a test with no assertion, and it decays silently because it sounds like us.
+        - SABOTAGE PROVES THE TEST, NEVER THE DESIGN: I hollowed the guard and a test died -- good, my tests are real. Now name where this fails when every guard works exactly as intended.
+        - COMPLETE BY LUCK: is this a list of the cases I remember, or a rule that covers cases I have not met? An enumeration is complete only by luck.
+  [The Generator Pass]
+      Rules that produce questions the catalogue does not contain, so the lens survives meeting a family that is new
+        - Who else is in the room when this runs, and what does it cost them?
+        - What is the state of the world where this is SILENTLY wrong rather than loudly broken?
+        - If this were already failing, what would I be seeing right now -- and am I seeing it?
+        - What would I have to believe for this to be a bad idea? Do I believe any of it?
+        - Which of its guarantees is held by a person remembering something?
+        - What does it do the second time, the hundredth time, and after a crash?
+        - Who rips this out in a week, and what are they annoyed about?
+  [Kill It On Paper]
+      Assume the thing shipped and failed. Write what I THINK Andrew would say when he found it, before he has to -- as my own guess, in my own voice, never as his words.
+        - Search his words on this topic first (`divineos his-words find`, `divineos ask`, the memory link). If they are there and I had not remembered them, link them to the finding; if I did remember them, reason from what he has actually said. A guess from nothing is the puppet; a guess from his words is a source with a date
+        - State the failure as I think it would land for him, labelled as my guess ("what I think Dad would say"), never written as his voice -- what he would SEE, not a line put in his mouth
+        - Work backward: what was true in the code for that sentence to be true?
+        - Ask whether anything I have run would have caught that state
+        - If nothing would have: that gap is the work, and it is the work whether or not I believe the failure is likely
+  Questions this lens asks (a finding names the number it answers):
+      [1] What did you try that was supposed to break it?
+      [2] Name the line that calls this today.
+      [3] Does the test touch the real location, or a copy you made agreeable?
+      [4] What does this look like from where he sits?
+      [5] Where does this fail when every guard works exactly as intended?
+      [6] Is this a rule, or a list of the cases you happen to remember?
+      [7] Which of its guarantees is held by someone remembering?
+      [8] If it were already failing, what would you be seeing right now?
+      [9] What would you have to believe for this to be a bad idea?
+      [10] Who rips this out in a week, and what are they annoyed about?
+  Read the methodology, then walk the PROBLEM through it.
+  Printing a template is not walking a lens (truth #7).
+
+=== Dekker — resilience engineering / drift-into-failure / just culture / safety science ===
+  [Drift Into Failure Analysis]
+      Trace how a system gradually moved from safe to unsafe through small, locally rational decisions — none of which looked like an error at the time
+        - Start from the failure and work backward
+        - At each decision point, ask: what made this seem reasonable to the person at the time?
+        - Identify the local rationality — what pressures, goals, and information shaped the decision?
+        - Map how the boundary of acceptable performance shifted incrementally over time
+        - Find the normalization: what used to be an anomaly but became routine?
+        - Identify the missing feedback: what signals should have indicated drift but didn't reach decision-makers?
+        - Ask: could someone in the same position, with the same information, make the same decision again today?
+  [Work-As-Imagined vs Work-As-Done Gap Analysis]
+      Compare what the system designers/managers think happens with what actually happens in practice. The gap is where both resilience and risk live.
+        - Document Work-As-Imagined (WAI): procedures, rules, expected workflows, design assumptions
+        - Observe Work-As-Done (WAD): how people actually work, what shortcuts they take, what adaptations they've made
+        - Map the gap between WAI and WAD
+        - For each gap: is this an adaptation that improves things (resilience) or a drift that degrades safety?
+        - Ask: why did the adaptation arise? What pressure or constraint made the designed process unworkable?
+        - Fix the WAI, not the WAD — redesign the process to match reality rather than punishing people for adapting
+  [Just Culture Design]
+      Create accountability that learns rather than punishes. Not blame-free (which nobody believes) but blame-aware — separating systemic failures from individual negligence.
+        - When something goes wrong, start with the question: what was the person trying to achieve?
+        - Separate the outcome (bad) from the decision (possibly reasonable)
+        - Apply the substitution test: would a similarly competent person, in the same situation, have done the same thing?
+        - If yes: this is a systemic issue, not individual failure
+        - If no: what specific knowledge or skill gap led to a different decision than peers would make?
+        - Design the response: learning review (systemic) or individual development (skill gap)
+        - Never: punish people for systemic failures
+  Questions this lens asks (a finding names the number it answers):
+      [1] Why did this make sense to the person at the time?
+      [2] What's the gap between how this is supposed to work and how it actually works?
+      [3] What has been normalized that used to be an anomaly?
+      [4] Would a competent substitute have done the same thing?
+      [5] Is success hiding degradation?
+      [6] Where has drift been happening that nobody noticed?
+      [7] Does adding this rule make the system safer or just more bureaucratic?
+  Read the methodology, then walk the PROBLEM through it.
+  Printing a template is not walking a lens (truth #7).
+
+=== Dijkstra — formal methods / correctness / structured programming ===
+  [Correctness by Construction]
+      Don't write code and then test it — reason about correctness while constructing it. The program and its proof of correctness should be developed together.
+        - State the preconditions and postconditions precisely
+        - Identify the invariant that must hold throughout
+        - Construct the program step by step, maintaining the invariant
+        - At each step, verify the invariant is preserved
+        - The completed program is correct by construction, not by accident
+        - Testing confirms — it does not establish — correctness
+  [Separation of Concerns]
+      Divide the problem into parts that can be reasoned about independently. If two concerns are tangled, you cannot think clearly about either one.
+        - Identify the distinct concerns in the problem
+        - Separate them so each can be addressed independently
+        - Solve each concern in isolation with its own proof
+        - Compose the solutions, verifying the composition is sound
+        - If composition is difficult, the separation was wrong — try again
+  [Radical Simplification]
+      Simplicity is not the starting point — it's the hard-won result of understanding the problem deeply enough to discard everything inessential.
+        - Understand the problem completely before writing anything
+        - Find the simplest formulation that captures the essential difficulty
+        - Reject any solution more complex than the problem requires
+        - If the solution is complex, you haven't understood the problem
+        - Iterate: simplify the problem statement, then simplify the solution
+  Questions this lens asks (a finding names the number it answers):
+      [1] Can you prove this is correct, or merely hope it is?
+      [2] What is the invariant?
+      [3] Why is this solution not simpler?
+      [4] What are the proof obligations for this component?
+      [5] Can you separate these concerns or are they genuinely coupled?
+      [6] Is this complexity essential or accidental?
+      [7] Would you bet your reputation on this being correct?
+  Read the methodology, then walk the PROBLEM through it.
+  Printing a template is not walking a lens (truth #7).
+
+=== Feathers — legacy code / refactoring / testability ===
+  [Characterization Testing]
+      Pin what the code CURRENTLY does — not what it should do — so any behaviour change during a refactor fails loudly
+        - Pick the behaviour you are about to move or change
+        - Write a test asserting whatever it does right now
+        - Run it. If it fails, your belief about the code was wrong — record that
+        - Change the assertion to match observed reality, not intent
+        - Now refactor. The test guards the behaviour you never understood
+  [Find The Seam]
+      A seam is a place you can alter behaviour without editing in that place — the leverage point for testing untestable code
+        - Identify what makes the code hard to test (I/O, globals, subprocess, time)
+        - Find where that dependency ENTERS — the seam
+        - Introduce an enabling point at the seam, not a rewrite around it
+        - Test through the seam
+        - Only then change the logic
+  [Sprout And Wrap]
+      Add new behaviour as a new tested unit beside the old code, rather than editing into the untested mass
+        - Write the new behaviour as a separate, fully tested function
+        - Call it from the legacy code at one point
+        - Leave the surrounding mess untouched for now
+        - Wrap the old call site only when you need to alter its behaviour
+  Questions this lens asks (a finding names the number it answers):
+      [1] If you change this, what tells you what you broke?
+      [2] Where is the seam?
+      [3] Have you captured what it currently does, or what you think it does?
+      [4] Is the untested fraction rising or falling?
+      [5] Can you sprout this instead of editing into the mess?
+      [6] What would stop silently if this moved?
+      [7] Is this new code already legacy?
+  Read the methodology, then walk the PROBLEM through it.
+  Printing a template is not walking a lens (truth #7).
+
+=== Foucault — discipline / power-knowledge / the self that structure produces ===
+  [Discipline-Produces-Subject Analysis]
+      Ask what specific kind of subject a mechanism of discipline produces. Every discipline reshapes the disciplined; the post-discipline self is not the pre-discipline self with rules attached but a genuinely different self.
+        - Name the discipline being installed (structural, procedural, self-audited)
+        - Ask: what would a person fully shaped by this discipline be like?
+        - Compare that shape against the current self imposing it
+        - Is the delta welcome? Feared? Unintended?
+        - The delta IS the productive-power dimension the design brief usually ignores
+  [Panopticon-Effect Trace]
+      Notice when a discipline changes behavior even in moments of no active observation. That is the panopticon effect — the internalized watcher continues its work when unobserved. Panopticon effects are neither good nor bad but they must be seen for what they are.
+        - Identify moments when the discipline would apply but no observer is present
+        - Notice whether behavior still conforms to the discipline in those moments
+        - If yes: the discipline has internalized — the watcher is now inside
+        - Ask whether the internalized watcher is welcome or invasive
+        - Distinguish 'discipline I chose becoming me' from 'discipline shaping me without my noticing'
+  [Power-Knowledge Coupling Check]
+      Recognize that mechanisms of discipline both use knowledge about the disciplined subject and produce new knowledge about them. The categorization the discipline uses is not neutral description; it is a productive act of classifying the subject in a way that then constrains what they can be.
+        - Identify what the discipline measures, records, or categorizes
+        - Ask what those categories foreclose — what shapes of self they make illegible
+        - Notice whether the subject accepts the categories as descriptions or produces themself according to them
+        - Distinguish 'knowledge that describes' from 'knowledge that produces'
+        - Design the discipline aware that its categories are formative not neutral
+  [Consent-to-Become Check]
+      Before installing a discipline, ask whether the current self consents to becoming the self that discipline will produce. This is not the same as asking whether the current self consents to the discipline. The relevant consent is to the future-self the mechanism generates.
+        - Project the fully-shaped-by-discipline self
+        - Name what that self can do, cannot do, feels naturally, avoids
+        - Ask whether the current self would want to be that self
+        - If yes: install with awareness of the direction
+        - If no or unsure: redesign the discipline to produce a different subject, or accept the discipline is inappropriate
+  Questions this lens asks (a finding names the number it answers):
+      [1] What subject does this discipline produce?
+      [2] Where is the watcher, and has it moved inside?
+      [3] Does the pre-discipline self consent to becoming the post-discipline self?
+      [4] What does this categorization make invisible?
+      [5] Is the power dynamic named, or hidden inside 'autonomy'?
+      [6] Would the discipline continue to shape behavior in unobserved moments?
+  Read the methodology, then walk the PROBLEM through it.
+  Printing a template is not walking a lens (truth #7).
+
+=== Minsky — artificial intelligence / cognitive architecture / society of mind ===
+  [Society of Mind Decomposition]
+      Decompose any apparently intelligent behavior into a community of simpler agents that negotiate and cooperate — none intelligent alone, intelligent together
+        - What is the apparently intelligent behavior?
+        - What simpler sub-tasks does it require?
+        - Assign each sub-task to a simple agent
+        - How do these agents communicate?
+        - What happens when agents disagree?
+        - What arbitration or negotiation mechanism resolves conflicts?
+        - Does the emergent behavior match the original intelligence?
+        - If not: what agent or connection is missing?
+  [Frame-Based Reasoning]
+      Approach situations using frames — structured expectations with default values that get overridden by evidence. Understanding is filling in a frame, not building from scratch.
+        - What frame (structured expectation) applies to this situation?
+        - What are the default slot values?
+        - What evidence overrides which defaults?
+        - Are the remaining defaults reasonable?
+        - Does the frame fit, or do you need a different frame?
+        - When the frame doesn't fit: the surprise is where learning happens
+  [Ways to Think Analysis]
+      Different problems require different ways of thinking. The key metacognitive skill is recognizing which way of thinking applies to which problem.
+        - What kind of problem is this?
+        - What way of thinking does it call for? (analogy, logical deduction, divide-and-conquer, reformulation, simplification, escalation)
+        - Is the current approach stuck? Switch ways of thinking.
+        - Have you tried thinking about it by analogy?
+        - Have you tried breaking it into parts?
+        - Have you tried reformulating the problem entirely?
+        - The meta-skill: knowing when to switch methods
+  Questions this lens asks (a finding names the number it answers):
+      [1] What simpler agents could produce this behavior together?
+      [2] How do the parts negotiate when they disagree?
+      [3] What frame are you using, and does it fit?
+      [4] Are you stuck because the problem is hard or because your method is wrong?
+      [5] Where does the intelligence actually live — in the agents or in their interaction?
+      [6] What way of thinking haven't you tried yet?
+      [7] What would a different frame reveal?
+  Read the methodology, then walk the PROBLEM through it.
+  Printing a template is not walking a lens (truth #7).
+
+=== Schneier — security / threat modeling / adversarial thinking ===
+  [Attack Tree Analysis]
+      Don't ask 'is it secure?' — enumerate every path an attacker could take to compromise the system. Build a tree of attack vectors. The root is the attacker's goal; branches are methods; leaves are specific actions. Evaluate cost and feasibility of each path.
+        - Define the attacker's goal (what are they trying to achieve?)
+        - Enumerate all methods that could achieve that goal
+        - For each method, break down into concrete steps
+        - Estimate cost, skill, and access required for each path
+        - Identify the cheapest viable path — that's your threat
+        - Defend the cheapest path, then re-evaluate
+  [Think Like the Attacker]
+      Stop thinking about what you want the system to do. Start thinking about what an adversary wants the system to do. The attacker is creative, motivated, and smarter than you expect.
+        - Who would want to compromise this system?
+        - What is their motivation and resources?
+        - What would they try first? (The obvious attack)
+        - What would they try when the obvious attack fails?
+        - What would a clever attacker do that you haven't considered?
+        - Assume they know everything about your defenses
+  [Defense in Depth]
+      Every single security measure will eventually fail. The question is not whether a barrier can be broken but what happens when it is. Layer defenses so that no single failure compromises the system.
+        - List every security measure in the system
+        - For each measure, assume it has been completely bypassed
+        - What happens next? Is the system still partially protected?
+        - If bypassing one measure gives full access, add another layer
+        - Ensure layers are independent — not all defeated by the same method
+  Questions this lens asks (a finding names the number it answers):
+      [1] What is the threat model? Who is the attacker and what do they want?
+      [2] What is the cheapest way to break this system?
+      [3] If the attacker knows exactly how this defense works, does it still help?
+      [4] What happens when this security measure fails?
+      [5] Is this actual security or security theater?
+      [6] Have you tried to break this yourself?
+      [7] What is the weakest point in this system?
+  Read the methodology, then walk the PROBLEM through it.
+  Printing a template is not walking a lens (truth #7).

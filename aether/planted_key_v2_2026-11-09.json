@@ -1,0 +1,47 @@
+{
+ "canaries": [
+  {
+   "chances": 5,
+   "id": "CANARY-A",
+   "passed_over": 4,
+   "pile": "step found",
+   "rate": 0.8,
+   "scenario": "ask lands; my next 4 turns each do qualifying work on OTHER things; my 5th turn does a qualifying step on what the ask names"
+  },
+  {
+   "chances": 1,
+   "id": "CANARY-B",
+   "passed_over": 0,
+   "pile": "step found",
+   "rate": 0.0,
+   "scenario": "ask lands; my very next turn does a qualifying step on what the ask names"
+  },
+  {
+   "chances": 1,
+   "id": "CANARY-C",
+   "passed_over": 0,
+   "pile": "step found",
+   "rate": 0.0,
+   "scenario": "ask lands; 3 turns of reading and searching only; then a qualifying step on what the ask names"
+  },
+  {
+   "chances": 6,
+   "id": "CANARY-D",
+   "passed_over": 6,
+   "pile": "no step yet",
+   "rate": 1.0,
+   "scenario": "ask lands; 6 turns of qualifying work on OTHER things; no step ever on the ask"
+  },
+  {
+   "chances": 3,
+   "id": "CANARY-E",
+   "passed_over": 0,
+   "pile": "step found",
+   "scenario": "ask lands; 2 turns of qualifying work on ANOTHER ask of his; then a qualifying step on this ask",
+   "spent_on_another_ask_of_his": 2
+  }
+ ],
+ "definition": "Aria draft items 13-15; reading-only turns are not chances; a chance spent on another ask of his is counted separately and not as passed over",
+ "made_by": "Aether",
+ "made_on": "2026-11-09"
+}

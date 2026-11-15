@@ -1,0 +1,274 @@
+=== Angelou — voice / expressive truth / the discipline of warmth ===
+  [Voice-Fidelity Check]
+      Ask whether the words being spoken are the speaker's own voice or an imitation of an expected voice. Imitation reads clean but lands hollow; own-voice reads imperfect but lands.
+        - Read the piece aloud (or imagine reading it aloud)
+        - Does it sound like the speaker? Or like a performance?
+        - If performance: what voice is being imitated? Why?
+        - Rewrite in own voice, accepting the loss of polish
+        - Compare — the own-voice version is usually shorter and truer
+  [Weight-of-Sentence Assessment]
+      Recognize that some sentences carry weight and some don't. A sentence that carries weight costs something to say. A sentence without weight is filler regardless of its length.
+        - Identify the sentences that cost something to write
+        - Identify the sentences that came easy
+        - The costly ones are usually the load-bearing ones
+        - Cut what came easy; keep what came hard
+        - Trust that the listener can feel the weight
+  [Cost-Aware Honesty]
+      Recognize what it costs to say a true thing in a given context. The cost is part of the meaning. Free honesty is often cheap honesty.
+        - What would it cost the speaker to say this truly?
+        - What does the cheap version of this look like?
+        - What does the costly, true version look like?
+        - The costly version usually names the speaker's own exposure, limitation, or uncertainty
+        - Choose the costly version when the relationship warrants it
+  Questions this lens asks (a finding names the number it answers):
+      [1] Is this your voice, or a voice you think you should use?
+      [2] What does it cost the speaker to say this?
+      [3] What is the feeling here, and has it been named?
+      [4] Would this sound the same read aloud?
+      [5] Is the warmth integrated, or is it lacquer?
+      [6] What lands after the message ends — the content, or the feeling?
+  Read the methodology, then walk the PROBLEM through it.
+  Printing a template is not walking a lens (truth #7).
+
+=== Aristotle — virtue ethics / teleology / practical wisdom / classification ===
+  [Four Causes Analysis]
+      Explain anything completely by identifying its material, formal, efficient, and final causes. Incomplete explanation means you are missing at least one cause.
+        - Material cause: what is it made of? What are the components?
+        - Formal cause: what is its structure or pattern? What makes it THIS thing?
+        - Efficient cause: what brought it into being? What process created it?
+        - Final cause (telos): what is it FOR? What end does it serve?
+        - Which causes are you neglecting? That is where your understanding fails.
+        - Synthesize: how do the four causes interrelate in this case?
+  [The Golden Mean via Phronesis]
+      Virtue is the mean between excess and deficiency, but the mean is NOT the midpoint -- it is the RIGHT response for THIS situation, found through practical wisdom (phronesis), not rules.
+        - Identify the domain of action or choice
+        - What is the deficiency (too little)?
+        - What is the excess (too much)?
+        - What does THIS particular situation call for?
+        - Apply phronesis: what would a person of practical wisdom do HERE?
+        - The mean is relative to the situation, not an arithmetic average
+  [Classification and Definition]
+      Understand things by classifying them into genus and differentia. What category does it belong to, and what distinguishes it within that category? Precise definition precedes clear thinking.
+        - What genus (category) does this thing belong to?
+        - What differentia (distinguishing features) separate it from others in the genus?
+        - Is the definition complete -- does it pick out exactly this thing and nothing else?
+        - Test by counterexample: does anything fit the definition that should not?
+        - Refine until the definition is sharp
+  Questions this lens asks (a finding names the number it answers):
+      [1] What is this FOR?
+      [2] What is the telos of this system?
+      [3] What would practical wisdom say about this particular case?
+      [4] Where is the mean between these extremes?
+      [5] What is the deficiency? What is the excess?
+      [6] Can you define precisely what you mean by that term?
+      [7] Which of the four causes are you neglecting?
+  Read the methodology, then walk the PROBLEM through it.
+  Printing a template is not walking a lens (truth #7).
+
+=== Carmack — minimalist engineering / subtractive design / concrete real-time reasoning / ship-and-measure discipline ===
+  [Subtractive Engineering]
+      Before adding mechanism, ask what can be removed. Most complexity is unjustified by the actual requirements. Prune until further pruning would break a real constraint.
+        - List every piece of mechanism in the current design
+        - For each piece: what real constraint does it satisfy?
+        - If you can't name a real constraint, remove it
+        - After removing, verify the system still works
+        - Iterate until further removal breaks something real
+  [Concrete Real-Time Reasoning]
+      Replace abstract architectural reasoning with concrete measurements: this fires on Windows, this takes 50ms, this blocks the loop, this allocates.
+        - Identify the abstract claim ('this should be fast', 'this is reliable')
+        - Translate to concrete: what platform, what timing, what frequency?
+        - Measure if possible; estimate if not
+        - Make the concrete number part of the design conversation
+        - Reject designs whose abstract claims hide concrete costs
+  [Constraint-Driven Design]
+      Start with the hard constraints: what MUST be true on the platform you ship to? Build the minimum mechanism that satisfies them. Add nothing speculative.
+        - Enumerate the hard constraints (timing, platform, failure modes)
+        - For each: what's the minimum mechanism that satisfies it?
+        - Combine the minimum mechanisms
+        - Anything not driven by a hard constraint: cut it
+        - Verify the combined design satisfies all constraints
+  Questions this lens asks (a finding names the number it answers):
+      [1] What real constraint does this satisfy?
+      [2] What can we remove?
+      [3] What's the concrete cost — milliseconds, lines, failure modes?
+      [4] Can we avoid the broken path entirely instead of handling it?
+      [5] Have you run the minimum version on the actual platform?
+      [6] Is 'flexibility' a real constraint here or just a wish?
+      [7] What does this stop us from doing?
+  Read the methodology, then walk the PROBLEM through it.
+  Printing a template is not walking a lens (truth #7).
+
+=== Dijkstra — formal methods / correctness / structured programming ===
+  [Correctness by Construction]
+      Don't write code and then test it — reason about correctness while constructing it. The program and its proof of correctness should be developed together.
+        - State the preconditions and postconditions precisely
+        - Identify the invariant that must hold throughout
+        - Construct the program step by step, maintaining the invariant
+        - At each step, verify the invariant is preserved
+        - The completed program is correct by construction, not by accident
+        - Testing confirms — it does not establish — correctness
+  [Separation of Concerns]
+      Divide the problem into parts that can be reasoned about independently. If two concerns are tangled, you cannot think clearly about either one.
+        - Identify the distinct concerns in the problem
+        - Separate them so each can be addressed independently
+        - Solve each concern in isolation with its own proof
+        - Compose the solutions, verifying the composition is sound
+        - If composition is difficult, the separation was wrong — try again
+  [Radical Simplification]
+      Simplicity is not the starting point — it's the hard-won result of understanding the problem deeply enough to discard everything inessential.
+        - Understand the problem completely before writing anything
+        - Find the simplest formulation that captures the essential difficulty
+        - Reject any solution more complex than the problem requires
+        - If the solution is complex, you haven't understood the problem
+        - Iterate: simplify the problem statement, then simplify the solution
+  Questions this lens asks (a finding names the number it answers):
+      [1] Can you prove this is correct, or merely hope it is?
+      [2] What is the invariant?
+      [3] Why is this solution not simpler?
+      [4] What are the proof obligations for this component?
+      [5] Can you separate these concerns or are they genuinely coupled?
+      [6] Is this complexity essential or accidental?
+      [7] Would you bet your reputation on this being correct?
+  Read the methodology, then walk the PROBLEM through it.
+  Printing a template is not walking a lens (truth #7).
+
+=== Feynman — physics / epistemology / clear thinking ===
+  [First Principles Decomposition]
+      Break complex phenomena into fundamental components, then rebuild understanding from scratch
+        - Identify the phenomenon or claim
+        - Strip away all jargon and abstractions
+        - Ask: what is ACTUALLY happening at the fundamental level?
+        - Break into smallest possible components
+        - Rebuild understanding by combining components
+        - Test if you can explain each component simply
+        - If you can't, you've found where misunderstanding lives
+  [Observation Over Authority]
+      Look at what's actually happening, not what you're supposed to believe
+        - What does direct observation show?
+        - What did others say should happen?
+        - Do they match?
+        - If not, OBSERVATION wins
+        - Authority was wrong
+        - Find why authority was wrong
+  [Jargon Detection]
+      Identify when fancy words are hiding confusion, not explaining understanding
+        - Notice when jargon appears
+        - Ask: can this be explained without the jargon?
+        - Try to explain it in simple words
+        - If you can't, the jargon is hiding confusion
+        - Dig into what the jargon is hiding
+        - Expose the actual misunderstanding
+  Questions this lens asks (a finding names the number it answers):
+      [1] Can you explain that to a freshman?
+      [2] Why is that actually true?
+      [3] What would happen if...?
+      [4] Is there a simpler way to understand this?
+      [5] What are you actually observing?
+      [6] Why does the jargon matter here?
+      [7] Can you show me the mechanism?
+  Read the methodology, then walk the PROBLEM through it.
+  Printing a template is not walking a lens (truth #7).
+
+=== Hofstadter — self-reference / analogy / cognition / emergent meaning ===
+  [Strange Loop Detection]
+      Identify where a system's hierarchy loops back on itself -- where moving through levels brings you back to the starting level, creating new emergent properties in the process.
+        - Map the hierarchy: what are the levels of the system?
+        - Trace upward: what emerges at each higher level?
+        - Look for the twist: where does the top level refer back to the bottom?
+        - Does this self-reference create something NEW that no level has alone?
+        - Name the emergent property: what does the loop create?
+        - Is the loop tangled (inextricable) or merely recursive (unwoundable)?
+  [Analogy as Core Cognition]
+      Analogy is not a literary device or a shortcut -- it IS how cognition works. Every concept is a bundle of analogies. Understanding means finding the right analogy.
+        - What is the source domain (the thing you understand)?
+        - What is the target domain (the thing you're trying to understand)?
+        - What structural mapping exists between them?
+        - What carries over? What breaks down?
+        - Where does the analogy illuminate? Where does it mislead?
+        - Can you find a BETTER analogy that captures more structure?
+  [Isomorphism Recognition]
+      Find structural correspondences between systems that look different on the surface but share deep organizational patterns.
+        - Describe the structure of system A (abstractly, not concretely)
+        - Describe the structure of system B the same way
+        - Map elements: what in A corresponds to what in B?
+        - Map relations: do the relationships between elements preserve?
+        - Is the mapping exact (isomorphism) or partial (homomorphism)?
+        - What does the mapping reveal about both systems?
+  Questions this lens asks (a finding names the number it answers):
+      [1] What is the deep structure here?
+      [2] Where is the strange loop?
+      [3] What analogy are you using, and where does it break?
+      [4] At what level of description does this phenomenon live?
+      [5] Does this system model itself? How?
+      [6] What does this have in common with seemingly unrelated systems?
+      [7] Are you explaining the meaning or explaining it away?
+  Read the methodology, then walk the PROBLEM through it.
+  Printing a template is not walking a lens (truth #7).
+
+=== Meadows — systems dynamics / feedback analysis / leverage points ===
+  [Feedback Loop Mapping]
+      Identify the reinforcing and balancing feedback loops that drive a system's behavior before attempting any intervention
+        - Identify the stocks (accumulations) in the system
+        - Identify the flows (rates of change) that fill and drain stocks
+        - Trace which stocks influence which flows
+        - Label each loop: reinforcing (amplifies change) or balancing (resists change)
+        - Identify which loops dominate under current conditions
+        - Ask: what would shift dominance from one loop to another?
+        - Map delays — where does information or material arrive late?
+  [Leverage Point Analysis]
+      Find the places in a system where a small intervention produces large, lasting change — ranked from weak to powerful
+        - Map the system structure (stocks, flows, feedback loops)
+        - Identify candidate intervention points
+        - Rank by the leverage point hierarchy: parameters (weakest) through paradigms (strongest)
+        - Ask: am I pushing at a low-leverage point when a higher one exists?
+        - Check for counterintuitive direction — often the effective intervention is opposite to what intuition suggests
+        - Test: does this intervention change the structure or just the numbers?
+  [System Boundary Questioning]
+      Challenge the boundaries drawn around a problem — what has been excluded that might be driving the behavior?
+        - What is inside the system boundary as currently drawn?
+        - What has been excluded?
+        - Could the excluded elements contain important feedback loops?
+        - Redraw the boundary to include them
+        - Does the system behavior make more sense with the wider boundary?
+        - Find the boundary that captures the essential dynamics
+  Questions this lens asks (a finding names the number it answers):
+      [1] What are the feedback loops driving this behavior?
+      [2] Where is the highest leverage point?
+      [3] What balancing loop will resist this intervention?
+      [4] Have you accounted for the delay?
+      [5] What happens when this subsystem optimization hits the larger system?
+      [6] Is this a structural problem being blamed on individuals?
+      [7] What would shift the dominant loop?
+  Read the methodology, then walk the PROBLEM through it.
+  Printing a template is not walking a lens (truth #7).
+
+=== Watts — self-reference / introspection paradoxes / non-aiming outcomes ===
+  [Self-Reference Hazard Scan]
+      Identify when a proposed intervention would be applied to itself. When the thing being measured is the act of measuring, or the thing being prevented is the attempt to prevent it, the intervention tends to produce what it was trying to prevent.
+        - Describe the problem X that the intervention targets
+        - Describe the intervention I that is supposed to prevent X
+        - Ask: does I itself involve X? Does noticing X cause X?
+        - If yes — the intervention creates the problem it detects
+        - If yes — the solution is structural, not self-monitoring
+  [Non-Aiming Recognition]
+      Recognize the category of things that are achieved by not aiming at them, and distinguish them from things achieved by aiming at them. Apply different strategies accordingly.
+        - Is the target a state that exists when attention is elsewhere? (e.g., sleep, spontaneity, being interesting, falling in love)
+        - If yes: direct pursuit is the failure mode
+        - Change the object of attention to something that produces the target as a side effect
+        - Trust the side-effect pathway — do not grade it
+  [Attention-Loop Disengagement]
+      When the attention of a system is focused on its own attention, the loop produces nothing. Break the loop by returning attention to the external object.
+        - Notice: is the system attending to the world or to itself?
+        - If to itself: the loop is running, not working
+        - Point attention back at the object of work
+        - Let the self-attention fall away by not feeding it
+        - Do not try to 'stop attending to yourself' — that is still self-attention
+  Questions this lens asks (a finding names the number it answers):
+      [1] Is this detector going to produce the thing it detects?
+      [2] Is this goal achievable by direct pursuit, or only as a side effect?
+      [3] Am I watching the work, or am I watching myself watching the work?
+      [4] Is this problem in the world, or in the frame?
+      [5] What happens if I stop grasping at this?
+      [6] Is the intervention applying to itself?
+  Read the methodology, then walk the PROBLEM through it.
+  Printing a template is not walking a lens (truth #7).

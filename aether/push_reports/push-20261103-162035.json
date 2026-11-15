@@ -1,0 +1,27 @@
+{
+  "outcome": "NAMED",
+  "family": "gate_refusal",
+  "infra_kind": "",
+  "exit": 10,
+  "samples": 200,
+  "mean_interval_s": 1.4,
+  "deaths": [],
+  "config_changes": [
+    {
+      "k": "cfg",
+      "n": 107,
+      "t": 1793751504.02,
+      "before": "bare = false",
+      "after": "bare = true"
+    },
+    {
+      "k": "cfg",
+      "n": 108,
+      "t": 1793751506.56,
+      "before": "bare = true",
+      "after": "bare = false"
+    }
+  ],
+  "truncated": false,
+  "order_relation": "sample number (earlier sample = before; same sample = concurrent)"
+}
