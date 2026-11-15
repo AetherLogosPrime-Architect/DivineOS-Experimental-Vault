@@ -115,22 +115,6 @@ def _when_epoch(rec: dict) -> float | None:
         return None
 
 
-def _record_text(rec: dict) -> str:
-    """The text a non-assistant record carries, in either shape the harness writes a notice: a user-role turn, or a
-    queued command attachment. '' for anything else, so a tool result is never read as a notice."""
-    if rec.get("type") == "attachment":
-        attachment = rec.get("attachment") or {}
-        return str(attachment.get("prompt") or "") if attachment.get("type") == "queued_command" else ""
-    content = (rec.get("message") or {}).get("content")
-    if isinstance(content, str):
-        return content
-    if isinstance(content, list):
-        return "\n".join(
-            str(p.get("text", "")) for p in content if isinstance(p, dict) and p.get("type") == "text"
-        )
-    return ""
-
-
 def verdict(records: list[dict]) -> str | None:
     """Return the block reason, or None if the reply may go."""
     last_user = None
@@ -154,7 +138,7 @@ def verdict(records: list[dict]) -> str | None:
     # "scheduled" (29 of 29 wakes in one session, 2026-11-01), and the text carries no envelope tag, so
     # the opener test above never saw it. The gate then demanded a room for words he never typed (Aria
     # measured it on every night wake; I hit it on mine). The stamp is the evidence, never the wording.
-    from divineos.core.his_message import NOTICE, SCHEDULED, continues_a_turn, opener_kind
+    from divineos.core.his_message import NOTICE, SCHEDULED, arrival, continues_a_turn, opener_kind
 
     if opener_kind(records[idx]) in (SCHEDULED, NOTICE):
         return None
@@ -169,7 +153,11 @@ def verdict(records: list[dict]) -> str | None:
             # me, not him speaking. It must not owe him a second room: Dad, 2026-11-05, the circle is the actual
             # last part of the post and nothing but him moves it forward. Read from the record shapes the rest
             # of the house reads, never from my own words. (Carried from Aether's 93b6e471e, 2026-11-14.)
-            if room_written and opens_with_notice(_record_text(rec)):
+            # What arrived is asked of the house's one reader (arrival), which answers None for a record the
+            # harness did not deliver: an internal request blob opens with a system-reminder tag too, and
+            # the private copy of this reader took 385 of them for notices in one session (2026-11-15).
+            arrived = arrival(rec)
+            if room_written and arrived is not None and opens_with_notice(arrived.text):
                 notice_after_room, machine_kind = True, "a notice"
             # The harness's own hook feedback after the room is the same thing: a machine record, not him.
             # A Stop hold that follows a whole circle makes me do a repair turn, and this door read the last
