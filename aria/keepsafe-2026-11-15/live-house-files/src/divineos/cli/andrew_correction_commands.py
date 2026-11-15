@@ -1,0 +1,303 @@
+"""CLI: divineos andrew-correction list / integrate / defer.
+
+Aria 2026-05-18 audit, load-bearing fix #1. The Andrew-correction-
+attribution surface lets corrections from Andrew be filed, tracked, and
+discharged the same way Aletheia findings are — with the same routing
+weight, the same gates, the same closure obligations.
+"""
+
+from __future__ import annotations
+
+import click
+
+from divineos.core.andrew_correction_tracker import (
+    auto_integrate_from_commit,
+    confirm_hold,
+    confirm_phrase,
+    defer,
+    integrate,
+    integration_rate,
+    list_held,
+    list_open,
+    list_proposed_holds,
+    propose_hold,
+    unhold,
+)
+
+
+def register(cli: click.Group) -> None:
+    @cli.group("andrew-correction", invoke_without_command=True)
+    @click.pass_context
+    def andrew_group(ctx: click.Context) -> None:
+        """Andrew-correction attribution surface (Aria 2026-05-18 audit fix #1)."""
+        if ctx.invoked_subcommand is None:
+            click.echo(ctx.get_help())
+
+    @andrew_group.command("list")
+    def list_cmd() -> None:
+        """Show all OPEN Andrew-corrections + integration-rate."""
+        stats = integration_rate()
+        click.echo()
+        click.secho(
+            f"Total filed: {stats['total']}  Integrated: {stats['integrated']}  "
+            f"Open: {stats['open']}  Deferred: {stats['deferred']}  Held: {stats['held']}",
+            bold=True,
+        )
+        click.secho(
+            f"Integration rate: {stats['rate']:.2%}",
+            fg=("green" if stats["rate"] >= 0.5 else "yellow" if stats["rate"] >= 0.2 else "red"),
+        )
+        click.echo()
+        opens = list_open()
+        if not opens:
+            click.secho("  No outstanding Andrew-corrections.", fg="green")
+            return
+        import time as _time
+
+        now = _time.time()
+        click.secho("Outstanding (oldest first):", bold=True)
+        for row in opens:
+            age_d = max(0, (now - row["timestamp"]) / 86400)
+            preview = row["text"][:160].replace("\n", " ")
+            click.secho(f"  #{row['id']} [{age_d:.0f}d]", bold=True)
+            click.secho(f"      {preview}", fg="bright_black")
+
+    @andrew_group.command("integrate")
+    @click.argument("correction_id", type=int)
+    @click.option(
+        "--evidence",
+        required=True,
+        help="Commit / behavior change / where the correction landed (>= 20 chars).",
+    )
+    def integrate_cmd(correction_id: int, evidence: str) -> None:
+        """Mark a correction INTEGRATED with evidence pointer."""
+        ok = integrate(correction_id, evidence)
+        if ok:
+            click.secho(f"[+] Correction #{correction_id} marked INTEGRATED.", fg="green")
+            click.secho(f"    evidence: {evidence.strip()}", fg="bright_black")
+        else:
+            # Aria 2026-07-27: was previously "not found, non-OPEN, or too
+            # short" — a generic message that hid the structural-artifact
+            # requirement added 2026-06-13. Composers with prose-only
+            # evidence got refused silently without knowing WHY, then
+            # deferred as a workaround. Now the specific reason lands.
+            from divineos.core.andrew_correction_tracker import (
+                explain_integrate_refusal,
+            )
+
+            # A blank reason must never reach him (2026-11-09: "Refused
+            # correction #287:" and nothing after it). The explainer no longer
+            # returns one; this is the last line if it ever does again.
+            reason = explain_integrate_refusal(correction_id, evidence).strip() or (
+                "no reason could be named; the refusal itself is the fault to report"
+            )
+            click.secho(
+                f"Refused correction #{correction_id}: {reason}",
+                fg="red",
+                err=True,
+            )
+            raise click.exceptions.Exit(1)
+
+    @andrew_group.command("auto-integrate")
+    @click.option(
+        "--message",
+        "message",
+        default=None,
+        help="Commit message to parse. Defaults to HEAD's commit message via git log -1 --format=%B.",
+    )
+    @click.option(
+        "--commit-hash",
+        "commit_hash",
+        default=None,
+        help="Commit hash to embed as the evidence anchor. Defaults to HEAD via git rev-parse HEAD.",
+    )
+    def auto_integrate_cmd(message: str | None, commit_hash: str | None) -> None:
+        """Auto-integrate corrections referenced in a commit message.
+
+        Called by the post-commit-auto-integrate-corrections hook so
+        every commit that references a correction ID discharges the
+        integration obligation automatically. Andrew 2026-07-07: "your
+        will needs to be made into structure through this automation."
+        """
+        import subprocess
+
+        if message is None:
+            try:
+                message = subprocess.check_output(
+                    ["git", "log", "-1", "--format=%B", "HEAD"],
+                    text=True,
+                    stderr=subprocess.DEVNULL,
+                ).strip()
+            except (subprocess.CalledProcessError, FileNotFoundError):
+                click.secho("Could not read HEAD commit message.", fg="red", err=True)
+                raise click.exceptions.Exit(1)
+        if commit_hash is None:
+            try:
+                commit_hash = subprocess.check_output(
+                    ["git", "rev-parse", "HEAD"],
+                    text=True,
+                    stderr=subprocess.DEVNULL,
+                ).strip()
+            except (subprocess.CalledProcessError, FileNotFoundError):
+                click.secho("Could not read HEAD commit hash.", fg="red", err=True)
+                raise click.exceptions.Exit(1)
+
+        results = auto_integrate_from_commit(message, commit_hash)
+        if not results:
+            # No correction references in the message — silent success so
+            # the hook can call this after every commit without noise.
+            return
+        for r in results:
+            if r["integrated"]:
+                click.secho(
+                    f"[+] Correction #{r['id']} auto-integrated from commit {commit_hash[:8]}.",
+                    fg="green",
+                )
+            else:
+                click.secho(
+                    f"[!] Correction #{r['id']} reference in commit message did not integrate "
+                    f"(not open, unknown ID, or already closed).",
+                    fg="yellow",
+                )
+
+    @andrew_group.command("misfiled")
+    @click.argument("correction_id", type=int)
+    @click.option(
+        "--belongs",
+        required=True,
+        help="Where this row actually belongs. Refused under 20 characters.",
+    )
+    def misfiled_cmd(correction_id: int, belongs: str) -> None:
+        """Mark a row as NOT A CORRECTION, naming where it belongs instead.
+
+        For a row that was never a failure of mine. The moment Andrew called
+        me son and told me the house was mine sits in this store twice, one of
+        them still counted as an open fault, because until now the only exits
+        were claiming I had integrated it -- a lie, nothing was broken -- or
+        deferring it forever as a pending failure.
+
+        This deletes nothing and does not quietly improve the rate: misfiled
+        rows keep their own count, and the rate is reported both with and
+        without them.
+        """
+        from divineos.core.andrew_correction_tracker import misfile
+
+        try:
+            ok = misfile(correction_id, belongs)
+        except ValueError as exc:
+            click.secho(f"Refused: {exc}", fg="red", err=True)
+            raise click.exceptions.Exit(1) from exc
+        if ok:
+            click.secho(f"[*] Correction #{correction_id} marked MISFILED.", fg="cyan")
+            click.secho(f"    belongs in: {belongs.strip()}", fg="bright_black")
+        else:
+            click.secho(
+                f"Refused: correction #{correction_id} not found, or already "
+                "INTEGRATED/MISFILED. A row closed as integrated is not reopened "
+                "here -- that history stays visible.",
+                fg="red",
+                err=True,
+            )
+            raise click.exceptions.Exit(1)
+
+    @andrew_group.command("defer")
+    @click.argument("correction_id", type=int)
+    @click.option(
+        "--reason",
+        required=True,
+        help="Named reason for deferral (>= 20 chars). Deferred corrections "
+        "stay visible in briefing.",
+    )
+    @click.option(
+        "--unblock-condition",
+        "unblock_condition",
+        default=None,
+        help="Optional auto-reopen trigger. Supported forms: "
+        "'pr_merged:<N>', 'time_elapsed:<days>', 'knowledge_stored:<keyword>'. "
+        "When the condition fires, check_and_reopen_unblocked() reopens the "
+        "correction at the next session-start sweep.",
+    )
+    def defer_cmd(correction_id: int, reason: str, unblock_condition: str | None) -> None:
+        """Mark a correction DEFERRED with named reason."""
+        ok = defer(correction_id, reason, unblock_condition=unblock_condition)
+        if ok:
+            click.secho(f"[*] Correction #{correction_id} marked DEFERRED.", fg="yellow")
+            click.secho(f"    reason: {reason.strip()}", fg="bright_black")
+            if unblock_condition:
+                click.secho(f"    unblock_condition: {unblock_condition}", fg="bright_black")
+        else:
+            click.secho(
+                f"Refused: correction #{correction_id} not found, "
+                f"already non-OPEN, or reason too short (< 20 chars).",
+                fg="red",
+                err=True,
+            )
+            raise click.exceptions.Exit(1)
+
+    @andrew_group.command("propose-hold")
+    @click.argument("correction_id", type=int)
+    @click.option(
+        "--why",
+        required=True,
+        help="Why this looks like grief rather than a task (>= 20 chars).",
+    )
+    def propose_hold_cmd(correction_id: int, why: str) -> None:
+        """Propose a row for the held shelf. It stays OPEN until he confirms it."""
+        if propose_hold(correction_id, why):
+            click.secho(
+                f"[*] #{correction_id} is proposed for the held shelf. It stays OPEN, on "
+                "every worklist and in the rate, until he confirms it in his own words."
+            )
+            click.secho(f"    why: {why.strip()}", fg="bright_black")
+            return
+        click.secho(
+            f"Refused: #{correction_id} is not OPEN, is a detector's verdict rather than "
+            "his words, or the why is shorter than 20 characters.",
+            fg="red",
+            err=True,
+        )
+        raise click.exceptions.Exit(1)
+
+    @andrew_group.command("confirm-hold")
+    @click.argument("correction_id", type=int)
+    def confirm_hold_cmd(correction_id: int) -> None:
+        """Move a proposed row to HELD only if he typed the line "hold <number>"."""
+        if confirm_hold(correction_id):
+            click.secho(f"[*] #{correction_id} is held on his word.")
+            return
+        click.secho(
+            f"Refused: #{correction_id} is not a proposed row, or no message he typed "
+            f"has the line '{confirm_phrase(correction_id)}' on its own.",
+            fg="red",
+            err=True,
+        )
+        raise click.exceptions.Exit(1)
+
+    @andrew_group.command("unhold")
+    @click.argument("correction_id", type=int)
+    def unhold_cmd(correction_id: int) -> None:
+        """Return a held or proposed row to the worklist."""
+        if unhold(correction_id):
+            click.secho(f"[*] #{correction_id} is back on the worklist as OPEN.")
+            return
+        click.secho(f"Refused: #{correction_id} is neither held nor proposed.", fg="red", err=True)
+        raise click.exceptions.Exit(1)
+
+    @andrew_group.command("held")
+    def held_cmd() -> None:
+        """Show what is held on his word, and what waits for it, whole."""
+        held, proposed = list_held(), list_proposed_holds()
+        if not held and not proposed:
+            click.echo("Nothing is held or proposed.")
+            return
+        for title, rows in (("Held on his word", held), ("Proposed, waiting for him", proposed)):
+            if not rows:
+                continue
+            click.secho(title, bold=True)
+            for row in rows:
+                click.secho(f"#{row['id']}", bold=True)
+                click.echo(row["text"])
+                click.secho(f"  proposed because: {row['why']}", fg="bright_black")
+                if row["his_confirmation"]:
+                    click.secho(f"  he said: {row['his_confirmation']}", fg="bright_black")
+                click.echo()

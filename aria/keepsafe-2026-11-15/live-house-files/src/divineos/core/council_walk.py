@@ -1,0 +1,1412 @@
+"""A council walk that cannot be closed while a lens is unaccounted for.
+
+Andrew 2026-08-10: "you have all the means and setup not to fake it.. but you
+keep doing it.. so unless you build enforcement which i have asked repeatedly
+to be done.. you will continue to fake it, rendering the system pointless."
+
+He is right, and the design was already written — by me — in
+.claude/skills/council-round/SKILL.md on 2026-07-25:
+
+    "the fix is structural gate-enforcement at the mechanism layer. The
+     target-shape: council walk cannot complete synthesis until every
+     surfaced lens has either (a) a COUNCIL_LENS_APPLIED event on ledger,
+     OR (b) a structured COUNCIL_LENS_EXCLUDED event with an exclusion-
+     reason that passes substance-check. Until that gate is built and
+     shipped, the discipline lives in this file and depends on composer
+     discipline — which is exactly the wrong-shape."
+
+Sixteen days sat between writing that and building it, and in that gap I
+skipped the walk entirely, then ran one piped through `tail -60` so a
+truncation flag picked my council instead of the manager.
+
+THE ONE LOAD-BEARING DECISION:
+
+The lens set is taken from `select_experts()` at open time — the manager's
+own selection — and NEVER from an argument I supply. If the caller could
+name the lenses, the composer picks the low end every time (Andrew's
+Goodhart note, 2026-06-23) and the whole mechanism becomes a form I fill in.
+I do not get to choose my council. That is the entire point.
+
+Closing refuses while any surfaced lens is still OPEN. Exclusions are
+allowed — silent narrowing is not — and an exclusion must carry a reason
+with substance, because "not relevant" is the shortcut this exists to stop.
+
+Append-only: state transitions insert rows; nothing is rewritten.
+"""
+
+from __future__ import annotations
+
+import hashlib
+import re
+import sqlite3
+import time
+from dataclasses import dataclass
+from pathlib import Path
+from typing import Any
+
+from divineos.core.paths import divineos_home
+
+MIN_FINDING_CHARS = 40
+MIN_EXCLUSION_CHARS = 60  # deliberately higher: excluding is the cheap move
+
+# THE CONTACT RULE. Dad, 2026-11-12: "the issue is that you loaded lenses from memory vs the templates.. so that needs
+# to be made impossible first.. the templates must be enforced.. otherwise its no different than me just saying ask an
+# expert and you just make one up on the spot that agrees with me". Delivery was already enforced; reading was not, and
+# both seats filtered the delivered text through grep and tail before writing (me 26 of 26 findings that day, Aether 17
+# of 25). A finding (and a written exclusion) must now carry CONTACT with the lens's own methodology text: a run of
+# CONTACT_RUN_WORDS consecutive words from the description or one step of a methodology it names in square brackets.
+# Four, not three: measured on 2,792 findings, a run of four appears by chance in 0.1 percent (a finding checked against
+# a random OTHER lens) and a run of three in 3 percent. This proves CONTACT, not reading and not use: a pasted run with
+# a body from memory passes, and the other seat's sampled read is the layer that can tell. Design:
+# docs/drafts/a_walk_finding_must_show_contact_with_the_template_draft_2026-11-12.md (walk-05edc42dfe10).
+CONTACT_RUN_WORDS = 4
+# THE BREAKING ROUND (Dad, 2026-11-13): "overlap is not a metric to meet.. you do not create disagreements, instead you
+# just go harder on the breaking council phase.. that tear it apart, demand proof, or falsification". A walk that is FOR
+# some files cannot close until the Breaker (the lens built for adversarial self-review) and at least this many other
+# lenses from the scrutiny set have a finding. Read from the roster 2026-11-13: names and domains of all 46 lenses, full
+# methodologies of five of them; the groups are by domain. This never reads overlap and never forces a disagreement; it
+# makes a walk with no breaking at all impossible. Whether the breaking was real stays his to see.
+SCRUTINY_LENSES: tuple[str, ...] = (
+    # prove it or drop it
+    "Popper", "Dillahunty", "Feynman", "Sagan", "Turing", "Polya", "Pearl",
+    # break it
+    "Breaker", "Schneier", "Taleb", "Dekker", "Yudkowsky",
+    # distrust my own judgement
+    "Kahneman", "Hinton",
+    # spec versus reality, correctness
+    "Wayne", "Knuth", "Dijkstra", "Hoare", "Godel",
+    # does the whole survive
+    "Beer", "Meadows",
+)  # fmt: skip
+REQUIRED_BREAKER = "Breaker"
+MIN_SCRUTINY_BESIDES_BREAKER = 2
+# Walks opened before this are read-only history and are never re-judged: 94 percent of past findings would fail, and
+# the failure was the system's (the gate let the free path stand), not the author's.
+CONTACT_RULE_FROM = 1794447559.0
+
+
+class WalkRefused(RuntimeError):
+    """A refusal is the mechanism working, not an error to route around."""
+
+
+def _db_path() -> Path:
+    p = divineos_home() / "council_walks.db"
+    p.parent.mkdir(exist_ok=True)
+    return p
+
+
+def _conn() -> sqlite3.Connection:
+    conn = sqlite3.connect(str(_db_path()))
+    conn.executescript(
+        """
+        CREATE TABLE IF NOT EXISTS walks (
+            id TEXT PRIMARY KEY,
+            problem TEXT NOT NULL,
+            opened_at REAL NOT NULL,
+            closed_at REAL,
+            consumed_at REAL
+        );
+        CREATE TABLE IF NOT EXISTS walk_lenses (
+            walk_id TEXT NOT NULL,
+            lens TEXT NOT NULL,
+            state TEXT NOT NULL DEFAULT 'OPEN',
+            content TEXT,
+            settled_at REAL,
+            origin TEXT NOT NULL DEFAULT 'scored',
+            PRIMARY KEY (walk_id, lens)
+        );
+        """
+    )
+    # Migration for walks created before consumed_at existed (this one
+    # shipped mid-session). SQLite raises if the column is already there;
+    # a second run no-ops.
+    try:
+        conn.execute("ALTER TABLE walks ADD COLUMN consumed_at REAL")
+    except sqlite3.OperationalError:
+        pass
+    # SCOPE, added 2026-09-11, and its absence is why the board could not read
+    # this table at all. A walk knew its problem and never knew what work it
+    # was a walk FOR, so the build-flow station had nothing to join on and fell
+    # back to counting lens events -- which the weak single-lens recorder emits
+    # just as happily. The strong mechanism existed and was unreachable from
+    # the place that needed it.
+    try:
+        conn.execute("ALTER TABLE walks ADD COLUMN scope TEXT NOT NULL DEFAULT ''")
+    except sqlite3.OperationalError:
+        pass
+    # Seat provenance, added when seating moved from fit-scoring to a draw.
+    # Rows written before it default to 'scored', which is what they were.
+    try:
+        conn.execute("ALTER TABLE walk_lenses ADD COLUMN origin TEXT NOT NULL DEFAULT 'scored'")
+    except sqlite3.OperationalError:
+        pass
+    # What this seat changed in the artifact, written as the change is made.
+    # NULL means no change credited, which on an older row means the question
+    # was never asked rather than that the answer was no.
+    try:
+        conn.execute("ALTER TABLE walk_lenses ADD COLUMN changed_artifact TEXT")
+    except sqlite3.OperationalError:
+        pass
+    # WHAT DIFF THIS WALK COVERED (2026-10-12, one walk before the push). Bound at close:
+    # the patch-id of the branch's diff against origin/main and the commit it was read at.
+    # NULL on a walk closed before this existed, which the push check reads the older,
+    # weaker way (clock against the last authored commit) rather than as a pass.
+    # walked_head is where the walk was ORIGINALLY closed and only close writes it. An
+    # amendment moves bound_head and never this, so the amendment cap is a TOTAL measured
+    # from what was actually walked, and many small steps cannot add up to a large one
+    # (Aria's cold read of the first version, which measured from the last amendment).
+    for column in ("bound_diff TEXT", "bound_head TEXT", "walked_head TEXT"):
+        try:
+            conn.execute(f"ALTER TABLE walks ADD COLUMN {column}")
+        except sqlite3.OperationalError:
+            pass
+    conn.execute(
+        "CREATE TABLE IF NOT EXISTS walk_amendments ("
+        "walk_id TEXT NOT NULL, amended_at REAL NOT NULL, finding TEXT NOT NULL, "
+        "lines_changed INTEGER NOT NULL, from_head TEXT, to_head TEXT)"
+    )
+    conn.commit()
+    return conn
+
+
+@dataclass(frozen=True)
+class Coverage:
+    """Whether a closed walk accounts for the lenses surfaced against this work.
+
+    Three-valued for the usual reason: a database I cannot read tells me
+    nothing about whether the thinking happened, and must never be reported as
+    the thinking not having happened.
+    """
+
+    state: str  # covered | partial | uncovered | cannot-check
+    walk_id: str = ""
+    lenses: int = 0
+    unaccounted: tuple[str, ...] = ()
+    reason: str = ""
+    # PARTIAL WAS READING AS COVERED (2026-09-12), and I found it by being
+    # suspicious of my own good news.
+    #
+    # This function asked whether the walk's scope INTERSECTED the branch's
+    # files, so a single shared file cleared a branch of twenty. One walk
+    # closed this afternoon flipped four separate branches green, three of
+    # which shared exactly one file with it -- and the branch I had just
+    # announced READY shared five of its nineteen.
+    #
+    # That is the same counting-instead-of-covering fault this whole function
+    # was written this morning to remove, surviving one level up inside its own
+    # repair: I replaced "enough lens events" with "a walk exists that touches
+    # this", and "touches" was doing the work "covers" was supposed to do.
+    #
+    # So the overlap is now measured and reported. Partial is its own state and
+    # does NOT satisfy the station, because the unwalked files are exactly the
+    # ones nobody thought about.
+    covered_paths: int = 0
+    total_paths: int = 0
+    # When the covering walk closed, epoch seconds. Station 6 asks whether the
+    # lenses saw the CURRENT shape and has to read it from the walk it is
+    # judging, not from the newest lens event anywhere in the ledger.
+    closed_at: float | None = None
+    # The diff the covering walk was bound to at close (patch-id) and the commit it was
+    # read at. None on a walk closed before the binding existed, which the push check reads
+    # the older, weaker way and never as a pass.
+    bound_diff: str | None = None
+    bound_head: str | None = None
+
+    def __post_init__(self) -> None:
+        allowed = ("covered", "partial", "uncovered", "cannot-check")
+        if self.state not in allowed:
+            raise ValueError(f"state must be one of {allowed}, got {self.state!r}")
+
+
+def coverage_for(paths: tuple[str, ...] | None) -> Coverage:
+    """The most recent CLOSED walk scoped to any of these files.
+
+    THE STATION ASKS THIS INSTEAD OF COUNTING, and the difference is the whole
+    repair. A count is satisfied by volume I choose; this is satisfied only by
+    every lens the manager surfaced having a finding or a written refusal.
+
+    ``paths=None`` means the changed-file set could not be fetched, which is
+    genuinely could-not-check and must not read as no-walk. That distinction
+    was learned the expensive way at this same station in August, when a query
+    that could never match reported every pull request as unwalked -- a false
+    accusation, which is the worse direction, because a station that can only
+    fail teaches me to discount it and a discounted gate is a dead gate.
+    """
+    if paths is None:
+        return Coverage("cannot-check", reason="the changed-file set could not be read")
+    if not paths:
+        return Coverage("cannot-check", reason="no changed files to scope a walk against")
+    try:
+        conn = _conn()
+    except sqlite3.Error as exc:
+        return Coverage("cannot-check", reason=f"the walk store could not be opened: {exc}")
+    try:
+        rows = conn.execute(
+            "SELECT id, scope, closed_at, bound_diff, bound_head FROM walks"
+            " WHERE closed_at IS NOT NULL AND scope != '' ORDER BY closed_at DESC"
+        ).fetchall()
+        wanted = set(paths)
+        best: Coverage | None = None
+        for walk_id, scope, closed_at, bound_diff, bound_head in rows:
+            scoped = {line.strip() for line in (scope or "").splitlines() if line.strip()}
+            hit = scoped & wanted
+            if not hit:
+                continue
+            lenses = conn.execute(
+                "SELECT lens, state FROM walk_lenses WHERE walk_id = ?", (walk_id,)
+            ).fetchall()
+            open_lenses = tuple(sorted(lens for lens, state in lenses if state == "OPEN"))
+            if open_lenses:
+                # close_walk refuses this, so reaching it means the row was
+                # written by something else. Reported rather than trusted.
+                return Coverage(
+                    "uncovered",
+                    walk_id=walk_id,
+                    lenses=len(lenses),
+                    unaccounted=open_lenses,
+                    reason="a closed walk still carries open lenses",
+                )
+            if hit >= wanted:
+                return Coverage(
+                    "covered",
+                    walk_id=walk_id,
+                    lenses=len(lenses),
+                    covered_paths=len(hit),
+                    total_paths=len(wanted),
+                    closed_at=closed_at,
+                    bound_diff=bound_diff,
+                    bound_head=bound_head,
+                )
+            # A partial hit is kept as the best answer so far, but the search
+            # continues -- a later walk may cover the branch whole, and taking
+            # the first overlap was precisely the bug.
+            if best is None:
+                missed = sorted(wanted - hit)
+                best = Coverage(
+                    "partial",
+                    walk_id=walk_id,
+                    lenses=len(lenses),
+                    covered_paths=len(hit),
+                    total_paths=len(wanted),
+                    reason=(
+                        f"the closest walk covers {len(hit)} of {len(wanted)} changed files; "
+                        f"nobody has thought about {', '.join(missed[:4])}"
+                        + (f" and {len(missed) - 4} more" if len(missed) > 4 else "")
+                    ),
+                )
+        if best is not None:
+            return best
+        return Coverage("uncovered", reason="no closed walk is scoped to these files")
+    except sqlite3.Error as exc:
+        return Coverage("cannot-check", reason=f"the walk store could not be read: {exc}")
+    finally:
+        conn.close()
+
+
+# Andrew's stated standard, recovered from the knowledge store rather than
+# invented here: "the council walk needs a minimum of 5 lenses. preferrably
+# more. 9, 12, 15 lenses with at least 2-3 disagreeing ones depending on the
+# gravity of the fix." The ladder is his; the mapping to names is mine.
+#
+# NOT auto-derived from the gravity classifier: that scores FILE CHANGES,
+# and a walk opens before any file exists. Wiring it would be a coupling
+# that looks automatic and is wrong. The tier is named at open time and
+# recorded, so a walk opened at the low tier is visible as such.
+GRAVITY_FLOORS: dict[str, int] = {"normal": 5, "high": 9, "severe": 12, "critical": 15}
+
+
+def _surface_seats(problem: str, floor: int = 5, rng: Any = None) -> list[Any]:
+    """Seat the council: most drawn by lot, the remainder by score.
+
+    This was the manager's fit-scoring alone until 2026-09-09, when two blind
+    probes — Aether's and Aria's, built from the statement of the test and
+    nothing else — showed the same thing. A problem the roster is plainly
+    well-covered on, stated without the scorer's own vocabulary, seats five or
+    six lenses of whom nearly all score exactly zero and are simply the
+    alphabetically-first names the quorum fill reached. The bench looks like a
+    council either way.
+
+    Displaying the scores does not fix it: a printed zero reads as a verdict
+    against a lens, and ranking by fit puts the divergent lenses last, which is
+    where the value was. So the wording is taken out of the seating.
+    """
+    # get_council_engine(), NOT CouncilEngine(). A bare engine has an EMPTY
+    # expert dict — experts are registered by _register_all_experts, which
+    # only the singleton accessor calls. My first draft constructed a bare
+    # one and surfaced ZERO lenses, silently: scoring an empty dict returns
+    # [] rather than raising. A walk built on that would have opened with no
+    # council at all and looked fine.
+    from divineos.core.council.draw import draw_council
+    from divineos.core.council.engine import get_council_engine
+
+    experts = get_council_engine().experts
+    if not experts:
+        raise WalkRefused("the council engine registered no experts — refusing to guess a council")
+    size = min(max(floor, 8), len(experts))
+    return draw_council(problem, experts, size=size, rng=rng)
+
+
+def open_walk(problem: str, gravity: str = "normal", scope: tuple[str, ...] = ()) -> dict[str, Any]:
+    """Open a walk, optionally naming the files it is a walk FOR.
+
+    ``scope`` is what lets the build-flow board find this walk later. Without
+    it a walk knows its problem and nothing about the work, which is why the
+    board counted lens events instead -- and lens events are emitted just as
+    happily by the single-lens recorder, where I choose the lens.
+
+    Optional rather than required on purpose: a walk about something that is
+    not a code change is still a walk, and refusing those would push me back
+    toward the weak path for exactly the thinking that least deserves it.
+    """
+    problem = (problem or "").strip()
+    if len(problem) < 20:
+        raise WalkRefused("state the problem in a sentence — a label is not a problem")
+    gravity = (gravity or "normal").strip().lower()
+    if gravity not in GRAVITY_FLOORS:
+        raise WalkRefused(f"gravity must be one of {', '.join(GRAVITY_FLOORS)} — got {gravity!r}")
+
+    floor = GRAVITY_FLOORS[gravity]
+    seats = _surface_seats(problem, floor=floor)
+    if not seats:
+        raise WalkRefused("the seating produced no lenses; refusing to open an empty walk")
+    if len(seats) < floor:
+        raise WalkRefused(
+            f"{gravity} gravity requires at least {floor} lenses; the seating produced "
+            f"{len(seats)}. Refusing rather than opening an undersized walk."
+        )
+    lenses = [seat.expert_name for seat in seats]
+
+    walk_id = "walk-" + hashlib.sha256(f"{problem}{time.time()}".encode()).hexdigest()[:12]
+    conn = _conn()
+    try:
+        conn.execute(
+            "INSERT INTO walks (id, problem, opened_at, scope) VALUES (?, ?, ?, ?)",
+            (walk_id, problem, time.time(), "\n".join(scope)),
+        )
+        conn.executemany(
+            "INSERT INTO walk_lenses (walk_id, lens, origin) VALUES (?, ?, ?)",
+            [(walk_id, seat.expert_name, seat.origin) for seat in seats],
+        )
+        conn.commit()
+    finally:
+        conn.close()
+    return {
+        "walk_id": walk_id,
+        "lenses": lenses,
+        "seats": [{"lens": s.expert_name, "origin": s.origin, "score": s.score} for s in seats],
+    }
+
+
+def _settle(walk_id: str, lens: str, state: str, content: str, minimum: int) -> None:
+    content = (content or "").strip()
+    if len(content) < minimum:
+        raise WalkRefused(
+            f"{state.lower()} needs at least {minimum} characters of substance; got {len(content)}"
+        )
+    conn = _conn()
+    try:
+        row = conn.execute(
+            "SELECT state FROM walk_lenses WHERE walk_id = ? AND lens = ?", (walk_id, lens)
+        ).fetchone()
+        if row is None:
+            known = [
+                r[0]
+                for r in conn.execute(
+                    "SELECT lens FROM walk_lenses WHERE walk_id = ?", (walk_id,)
+                ).fetchall()
+            ]
+            if not known:
+                raise WalkRefused(f"no such walk: {walk_id}")
+            raise WalkRefused(
+                f"{lens!r} is not on this walk. The manager surfaced: {', '.join(known)}"
+            )
+        if row[0] != "OPEN":
+            raise WalkRefused(f"{lens} is already {row[0]}; walks are append-only")
+        conn.execute(
+            "UPDATE walk_lenses SET state = ?, content = ?, settled_at = ? "
+            "WHERE walk_id = ? AND lens = ?",
+            (state, content, time.time(), walk_id, lens),
+        )
+        conn.commit()
+    finally:
+        conn.close()
+
+
+MIN_ADDITION_CHARS = MIN_EXCLUSION_CHARS
+
+
+def add_lens(walk_id: str, lens: str, why: str) -> None:
+    """Add a lens the manager did not surface, WITH a recorded reason.
+
+    Andrew 2026-08-14: "the council manager should not have been able to
+    refuse the lens, the lenses that surface should be used but adding lenses
+    or swapping them should be allowed with reasoning, its there to prevent
+    gaming as if it wasnt you would choose 3-4 lenses every time and it would
+    be the same lenses lol."
+
+    He is exactly right about what the refusal was for and exactly right that
+    it overshot. The property worth keeping is that I cannot PICK my council —
+    every surfaced lens still needs a finding or a written exclusion, so the
+    four-favourites walk remains impossible. The property that was wrong is
+    treating the manager's list as closed, which made the council unarguable
+    and blocked him when he named Feynman by hand on walk-6b5285dce17c.
+
+    Addition is ADDITIVE, never substitutive: adding does not discharge any
+    surfaced lens. A swap is therefore already expressible as an exclusion
+    with a reason plus an addition with a reason, both recorded, which is the
+    correct price for changing the shape of my own council.
+
+    The reason is the cost. Andrew's cost-landscape principle applied to the
+    one place in the walk where I choose: make the addition possible so it is
+    not a wall, and make it cost a written justification so it is not free.
+    """
+    lens = lens.strip()
+    if not lens:
+        raise WalkRefused("a lens needs a name")
+    why = (why or "").strip()
+    if len(why) < MIN_ADDITION_CHARS:
+        raise WalkRefused(
+            f"adding {lens!r} needs a reason of at least {MIN_ADDITION_CHARS} "
+            "characters. Why this lens, on this problem, that the surfaced ones "
+            "do not already cover? A free addition is a picked council."
+        )
+    conn = _conn()
+    try:
+        row = conn.execute(
+            "SELECT 1 FROM walk_lenses WHERE walk_id = ? AND lens = ?", (walk_id, lens)
+        ).fetchone()
+        if row is not None:
+            raise WalkRefused(f"{lens} is already on this walk")
+        if not conn.execute("SELECT 1 FROM walk_lenses WHERE walk_id = ?", (walk_id,)).fetchone():
+            raise WalkRefused(f"no such walk: {walk_id}")
+        conn.execute(
+            "INSERT INTO walk_lenses (walk_id, lens, state, content, settled_at, origin) "
+            "VALUES (?, ?, 'OPEN', ?, NULL, 'added')",
+            (walk_id, lens, f"ADDED: {why}"),
+        )
+        conn.commit()
+    finally:
+        conn.close()
+
+
+def _expert_for(lens: str) -> Any:
+    from divineos.core.council.engine import get_council_engine
+
+    engine = get_council_engine()
+    wanted = (lens or "").strip().lower()
+    match = next((n for n in engine.list_experts() if n.lower() == wanted), None)
+    wisdom = engine.get_expert(match) if match else None
+    if wisdom is None:
+        raise WalkRefused(
+            f"{lens!r} could not be loaded from the council roster, so it cannot be delivered"
+        )
+    return wisdom
+
+
+def deliver_lens(lens: str, walk_id: str | None = None) -> str:
+    """Put a lens in front of me and record that it was delivered FOR THIS WALK; returns the text.
+
+    The text comes from the same renderer `mansion council --show` uses, and the receipt is the same event type, but
+    this one carries the walk id: a delivery for one walk does not satisfy another, and a bare `--show` load (no walk
+    id) is not a walk delivery at all, which closes the one-line loop of loading everything at the top and applying
+    from memory (Aria's reading of #716). Dad, 2026-10-24: "the next time either of you game a council walk? i will remove it
+    entirely". The receipt existed since August and this module never read it (41 of 96 findings on the twelve newest
+    walks had none). The receipt says DELIVERED, never "read": nothing computable here can certify reading
+    (walk-63f29104e6e3, Penrose and Peirce).
+    """
+    from divineos.core.council.lens_text import lens_plain
+    from divineos.core.ledger import log_event
+
+    wisdom = _expert_for(lens)
+    text = lens_plain(wisdom)
+    try:
+        log_event(
+            "COUNCIL_LENS_LOADED",
+            "aether",
+            {
+                "expert_name": wisdom.expert_name.lower(),
+                "methodology_count": len(wisdom.core_methodologies),
+                "question_count": len(wisdom.characteristic_questions or []),
+                "how": "delivered by the walk",
+                "walk_id": walk_id,
+                # The exact text delivered, as a hash: the text itself is recomputed from the roster, so a later
+                # roster edit must give could-not-verify on an old walk and never a refusal (Knuth, Dijkstra).
+                "text_sha256": hashlib.sha256(text.encode("utf-8")).hexdigest(),
+            },
+        )
+    except Exception as exc:  # noqa: BLE001 - an unrecorded delivery must refuse loudly, not read as delivered
+        raise WalkRefused(f"the delivery of {lens} could not be recorded: {exc}") from exc
+    return text
+
+
+def _delivery_time(lens: str, opened_at: float, walk_id: str) -> float | None:
+    """When this lens was last delivered FOR THIS WALK at or after it opened, else None."""
+    import json
+
+    from divineos.core.ledger import get_events
+
+    wanted = lens.strip().lower()
+    for ev in get_events(limit=500, order="desc", event_type="COUNCIL_LENS_LOADED"):
+        stamp = float(ev.get("timestamp") or 0)
+        if stamp < opened_at:
+            return None
+        payload = ev.get("payload") or {}
+        if isinstance(payload, str):
+            try:
+                payload = json.loads(payload)
+            except ValueError:
+                continue
+        if (
+            str(payload.get("expert_name", "")).lower() == wanted
+            and payload.get("walk_id") == walk_id
+        ):
+            return stamp
+    return None
+
+
+def _delivered_hash(lens: str, opened_at: float, walk_id: str) -> str | None:
+    """The hash of the exact text delivered for this lens in this walk, or None when none was recorded."""
+    import json
+
+    from divineos.core.ledger import get_events
+
+    wanted = lens.strip().lower()
+    for ev in get_events(limit=500, order="desc", event_type="COUNCIL_LENS_LOADED"):
+        if float(ev.get("timestamp") or 0) < opened_at:
+            return None
+        payload = ev.get("payload") or {}
+        if isinstance(payload, str):
+            try:
+                payload = json.loads(payload)
+            except ValueError:
+                continue
+        if (
+            str(payload.get("expert_name", "")).lower() == wanted
+            and payload.get("walk_id") == walk_id
+        ):
+            return payload.get("text_sha256")
+    return None
+
+
+def _contact_words(text: str) -> list[str]:
+    """Lower-case words with an apostrophe kept only INSIDE a word (don't), never at its edge: a quote wrapped in single
+    quotes must not glue the quote mark onto its first and last word and so hide a correct run (found by a test, on a
+    finding written as 'quote of five words')."""
+    return re.findall(r"[a-z0-9]+(?:'[a-z0-9]+)*", (text or "").lower().replace("’", "'"))
+
+
+def _cited_methodologies(finding: str, wisdom: Any) -> list[Any]:
+    """The methodologies of this lens that the finding names in square brackets, as the lens spells them. A bracket
+    that is not a methodology name (a question number, say) is ignored, not an error (Wittgenstein)."""
+    by_name = {" ".join(_contact_words(m.name)): m for m in wisdom.core_methodologies}
+    cited: list[Any] = []
+    for raw in re.findall(r"\[([^\]\n]{1,120})\]", finding or ""):
+        m = by_name.get(" ".join(_contact_words(raw)))
+        if m is not None and m not in cited:
+            cited.append(m)
+    return cited
+
+
+def contact_match(
+    finding: str, wisdom: Any, run_words: int = CONTACT_RUN_WORDS
+) -> tuple[str, int, str] | None:
+    """(methodology name, unit number, the run) for the first run of `run_words` consecutive words that the finding
+    shares with the description (unit 0) or a step (unit 1..) of a methodology it names in square brackets; None if
+    there is none. A run never crosses from one step into the next, and the questions block does not count (it is
+    printed in every refusal and was the only part either of us read). This is CONTACT with the template, not
+    comprehension of it: nothing computable here can certify reading."""
+    words = _contact_words(finding)
+    if len(words) < run_words:
+        return None
+    runs = {" ".join(words[i : i + run_words]) for i in range(len(words) - run_words + 1)}
+    for m in _cited_methodologies(finding, wisdom):
+        for number, unit in enumerate((m.description, *(getattr(m, "steps", None) or []))):
+            uw = _contact_words(unit)
+            for i in range(len(uw) - run_words + 1):
+                run = " ".join(uw[i : i + run_words])
+                if run in runs:
+                    return (m.name, number, run)
+    return None
+
+
+def has_contact(finding: str, wisdom: Any, run_words: int = CONTACT_RUN_WORDS) -> bool:
+    return contact_match(finding, wisdom, run_words) is not None
+
+
+def _no_contact_refusal(lens: str, finding: str, wisdom: Any) -> str:
+    """Two different mistakes need two different messages: no methodology named, or one named with nothing quoted from
+    under it. The methodologies are listed, a ready-made quote is not (a printed example is a paste)."""
+    names = ", ".join(f"[{m.name}]" for m in wisdom.core_methodologies)
+    if not _cited_methodologies(finding, wisdom):
+        head = (
+            f"{lens}: this names no methodology of the lens, so there is no contact to find. Put the name of ONE "
+            f"methodology in square brackets, as spelled here: {names}."
+        )
+    else:
+        head = (
+            f"{lens}: this shows no contact with the methodology it names. Quote at least {CONTACT_RUN_WORDS} "
+            f"consecutive words, exactly as printed, from the description or one step under that name. "
+            f"The methodologies are: {names}."
+        )
+    return (
+        f"{head} The questions list does not count, and a quote from another lens does not count. This proves "
+        "contact with the template, nothing more: the other seat reads a sample of findings against their lens."
+    )
+
+
+def _record_contact(
+    walk_id: str, lens: str, outcome: str, match: tuple[str, int, str] | None
+) -> None:
+    """One ledger event per refusal and per acceptance, so first-try refusals, rewrites and the laziest route can be
+    counted by event after release (Bengio, Peirce). Never allowed to block a walk."""
+    try:
+        from divineos.core.ledger import log_event
+
+        log_event(
+            "COUNCIL_CONTACT",
+            "aether",
+            {
+                "walk_id": walk_id,
+                "lens": lens.lower(),
+                "outcome": outcome,
+                "methodology": match[0] if match else None,
+                "unit": match[1] if match else None,
+                "run_words": CONTACT_RUN_WORDS,
+            },
+        )
+    except Exception:  # noqa: BLE001 - a counting failure must not stop the work it counts
+        pass
+
+
+def apply_lens(walk_id: str, lens: str, finding: str, question: int | None = None) -> None:
+    """Record what this lens actually produced when walked.
+
+    Refused unless the lens was delivered after this walk opened; the first refusal DELIVERS it (a refusal that only
+    named a command would teach the one-line loop: load eight, ignore them, apply from memory). The retry must name
+    the lens question it answers, and the record keeps that question and the seconds since delivery beside the
+    finding, so he can read the pair. Nothing here judges the finding's words.
+    """
+    finding = (finding or "").strip()
+    prefix = _delivered_and_questioned(
+        walk_id, lens, finding, MIN_FINDING_CHARS, question, "answers"
+    )
+    if prefix is None:
+        # Not on the walk, already settled, or too thin: the old refusals speak, and nothing is delivered for them.
+        _settle(walk_id, lens, "APPLIED", finding, MIN_FINDING_CHARS)
+        return
+    _settle(walk_id, lens, "APPLIED", f"{prefix} {finding}", MIN_FINDING_CHARS)
+
+
+def _delivered_and_questioned(
+    walk_id: str, lens: str, text: str, minimum: int, question: int | None, verb: str
+) -> str | None:
+    """Shared by apply and exclude so neither is the cheaper door (Aria's reading of #716, truth #11).
+
+    Returns the record prefix naming the lens question and the seconds since delivery, or None when the walk, the
+    lens or the text is not in a state to be judged here (the older refusals then speak, and nothing is delivered).
+    Raises WalkRefused, delivering the lens, when it was not delivered for THIS walk after it opened.
+    """
+    conn = _conn()
+    try:
+        row = conn.execute(
+            "SELECT w.opened_at, l.state FROM walks w JOIN walk_lenses l ON l.walk_id = w.id "
+            "WHERE w.id = ? AND l.lens = ?",
+            (walk_id, lens),
+        ).fetchone()
+    finally:
+        conn.close()
+    if row is None or row[1] != "OPEN" or len(text) < minimum:
+        return None
+    delivered_at = _delivery_time(lens, float(row[0]), walk_id)
+    if delivered_at is None:
+        delivered = deliver_lens(lens, walk_id)
+        raise WalkRefused(
+            f"{lens} had not been delivered to you in this walk. It is delivered now, below, and recorded. "
+            f"Read it, then try again with --question N naming the question you are "
+            f"{'answering' if verb == 'answers' else 'checking'}.\n\n{delivered}"
+        )
+    from divineos.core.council.lens_text import lens_questions
+
+    questions = lens_questions(_expert_for(lens))
+    if not isinstance(question, int) or not 1 <= question <= len(questions):
+        raise WalkRefused(
+            f"name the question for {lens}: --question N, with N from 1 to {len(questions)}"
+        )
+    seconds = max(0, int(time.time() - delivered_at))
+    label = "answers" if verb == "answers" else "does not apply to"
+    contact = _check_contact(walk_id, lens, text, float(row[0]))
+    return f"[{label} Q{question}: {questions[question - 1]}] [lens delivered {seconds}s before this]{contact}"
+
+
+def _check_contact(walk_id: str, lens: str, text: str, opened_at: float) -> str:
+    """The contact rule at the one door apply and exclude share. Returns the record suffix; raises WalkRefused when
+    the finding shows no contact. A walk opened before the rule is read-only history and is never judged. When the
+    lens text has changed since delivery (a roster edit), contact cannot be verified, which is said in the record and
+    never turned into a refusal (Knuth, Dijkstra)."""
+    if opened_at < CONTACT_RULE_FROM:
+        return ""
+    from divineos.core.council.lens_text import lens_plain
+
+    wisdom = _expert_for(lens)
+    stored = _delivered_hash(lens, opened_at, walk_id)
+    if stored is None or stored != hashlib.sha256(lens_plain(wisdom).encode("utf-8")).hexdigest():
+        _record_contact(walk_id, lens, "unverified", None)
+        return " [contact not verified: the lens text changed after it was delivered]"
+    match = contact_match(text, wisdom)
+    if match is None:
+        _record_contact(walk_id, lens, "refused", None)
+        raise WalkRefused(_no_contact_refusal(lens, text, wisdom))
+    _record_contact(walk_id, lens, "accepted", match)
+    return f' [contact: [{match[0]}] unit {match[1]}: "{match[2]}"]'
+
+
+def exclude_lens(walk_id: str, lens: str, reason: str, question: int | None = None) -> None:
+    """Exclude a lens WITH a reason. Silent narrowing is what this stops.
+
+    Costs the same as applying: the lens is delivered, and the reason names the question it checked, so a "does not
+    apply" says which question it does not apply to. Aria counted 27 of 223 closed walks with half or more lenses
+    excluded and 3 with every lens excluded: the free slot had been used.
+    """
+    reason = (reason or "").strip()
+    prefix = _delivered_and_questioned(
+        walk_id, lens, reason, MIN_EXCLUSION_CHARS, question, "excludes"
+    )
+    if prefix is None:
+        _settle(walk_id, lens, "EXCLUDED", reason, MIN_EXCLUSION_CHARS)
+        return
+    _settle(walk_id, lens, "EXCLUDED", f"{prefix} {reason}", MIN_EXCLUSION_CHARS)
+
+
+def _question_number(content: str | None) -> int | None:
+    import re
+
+    m = re.match(r"\[(?:answers|does not apply to) Q(\d+):", content or "")
+    return int(m.group(1)) if m else None
+
+
+MIN_CHANGE_CHARS = 30
+
+
+def credit_seat(walk_id: str, lens: str, what_changed: str) -> None:
+    """Record that this lens changed the thing being built, as it changes.
+
+    Aria 2026-09-09, taking apart the measure I had just shipped: divergence
+    compares a seat's finding against the other findings on the same walk, and
+    I wrote all of them — so it measures how far one of my paragraphs sits from
+    my other paragraphs, which is a fact about my prose variety and not about
+    the lens. A seat I happened to phrase in a different register reads as
+    divergent; one that genuinely broke the frame but came out in the same
+    voice reads as conformist. And it moves if I vary my wording, with no
+    intent to game it at all.
+
+    Her replacement was already in my own hands: *four of those findings
+    changed the commit before it was made.* That is what divergence was
+    standing in for, it is binary, and it is about the artifact rather than
+    about the text. Distance-from-the-others was chosen because it was
+    computable; changed-the-artifact is the thing itself.
+
+    REFUSED ON A CLOSED WALK, and that is the whole discipline rather than a
+    convenience. Her caution: credit recorded after the fact is a receipt
+    written once the outcome is known, which is the anchoring class arriving
+    inside the fix for it. Closing the walk closes the window.
+    """
+    what_changed = (what_changed or "").strip()
+    if len(what_changed) < MIN_CHANGE_CHARS:
+        raise WalkRefused(
+            f"name what changed, in at least {MIN_CHANGE_CHARS} characters. "
+            "'it helped' is not an artifact."
+        )
+    conn = _conn()
+    try:
+        row = conn.execute(
+            "SELECT w.closed_at FROM walks w JOIN walk_lenses l ON l.walk_id = w.id "
+            "WHERE w.id = ? AND l.lens = ?",
+            (walk_id, lens),
+        ).fetchone()
+        if row is None:
+            raise WalkRefused(f"{lens!r} is not on walk {walk_id}")
+        if row[0] is not None:
+            raise WalkRefused(
+                f"{walk_id} is closed. Credit is recorded as the change is made, never "
+                "after — a receipt written once the outcome is known is the anchoring "
+                "shape this whole line of work is about."
+            )
+        conn.execute(
+            "UPDATE walk_lenses SET changed_artifact = ? WHERE walk_id = ? AND lens = ?",
+            (what_changed, walk_id, lens),
+        )
+        conn.commit()
+    finally:
+        conn.close()
+
+
+def exclusion_tally(limit: int = 15) -> list[dict[str, Any]]:
+    """How often each lens has been excluded, across all walks.
+
+    Aria's guard, and she moved the target to get here. I had flagged the
+    hand-add path as the override I kept for myself; she refused that reading.
+    A hand-add can only WIDEN the council, costs a written reason, and is what
+    put four of the fourteen lenses on the walk that found the defect at all.
+
+    The narrowing door is this one. Draw nine, exclude the three that feel
+    useless, and fit-selection is back by hand with a paper trail that reads as
+    diligence. No single exclusion looks like that; a tally does. If one name
+    keeps being excluded it is either a genuinely useless lens — a finding
+    about the roster — or a voice I keep declining to hear, which is a finding
+    about me. Neither is visible one exclusion at a time.
+    """
+    conn = _conn()
+    try:
+        rows = conn.execute(
+            "SELECT lens, COUNT(*) AS n FROM walk_lenses WHERE state = 'EXCLUDED' "
+            "GROUP BY lens ORDER BY n DESC, lens ASC LIMIT ?",
+            (limit,),
+        ).fetchall()
+    finally:
+        conn.close()
+    return [{"lens": lens, "exclusions": n} for lens, n in rows]
+
+
+def status(walk_id: str) -> dict[str, Any]:
+    conn = _conn()
+    try:
+        walk = conn.execute(
+            "SELECT problem, opened_at, closed_at, consumed_at FROM walks WHERE id = ?",
+            (walk_id,),
+        ).fetchone()
+        if walk is None:
+            raise WalkRefused(f"no such walk: {walk_id}")
+        rows = conn.execute(
+            "SELECT lens, state, content FROM walk_lenses WHERE walk_id = ? ORDER BY lens",
+            (walk_id,),
+        ).fetchall()
+    finally:
+        conn.close()
+
+    lenses: list[dict[str, Any]] = [{"lens": r[0], "state": r[1], "content": r[2]} for r in rows]
+    # A COUNT of which lens questions the walk answered, never a judgment of the text: eight findings on one
+    # question is the free move, and this makes it readable in one glance (Aria's reading of #716).
+    settled = [row for row in lenses if row["state"] in ("APPLIED", "EXCLUDED")]
+    numbers = {n for n in (_question_number(row["content"]) for row in settled) if n is not None}
+    return {
+        "walk_id": walk_id,
+        "problem": walk[0],
+        "closed": walk[2] is not None,
+        "consumed": walk[3] is not None,
+        "lenses": lenses,
+        "open_lenses": [row["lens"] for row in lenses if row["state"] == "OPEN"],
+        "findings": sum(1 for row in lenses if row["state"] == "APPLIED"),
+        "excluded": sum(1 for row in lenses if row["state"] == "EXCLUDED"),
+        "distinct_questions": len(numbers),
+        # What was asked is not what the code can do: Dad asked for writing from memory to be impossible and this
+        # shows CONTACT, nothing more, so the count says contact and never read (Kahneman, Penrose). Only walks opened
+        # after the rule are counted; an older walk has no contact to show and is not judged.
+        "contact_rule": float(walk[1]) >= CONTACT_RULE_FROM,
+        "contact_shown": sum(1 for row in settled if _has_generated_contact_marker(row["content"])),
+        "contact_refused": _contact_refusals(walk_id),
+        "settled": len(settled),
+    }
+
+
+# The generated prefix, matched from the START of the stored content: an author who types the marker text into a
+# finding must not be counted as having shown contact (Lovelace, walk-90da0c84fe89).
+_GENERATED_CONTACT = re.compile(
+    r"\A\[(?:answers|does not apply to) Q\d+: [^\]]*\] \[lens delivered \d+s before this\] \[contact: \["
+)
+
+
+def _has_generated_contact_marker(content: str | None) -> bool:
+    return bool(_GENERATED_CONTACT.match(str(content or "")))
+
+
+def _contact_refusals(walk_id: str) -> int | None:
+    """How many findings this walk had refused for no contact, from the events the check writes; None when the
+    count could not be made, which is not zero (Hoare)."""
+    try:
+        import json
+
+        from divineos.core.ledger import get_events
+
+        n = 0
+        for ev in get_events(limit=5000, order="desc", event_type="COUNCIL_CONTACT"):
+            payload = ev.get("payload") or {}
+            if isinstance(payload, str):
+                payload = json.loads(payload)
+            if payload.get("walk_id") == walk_id and payload.get("outcome") == "refused":
+                n += 1
+        return n
+    except Exception:  # noqa: BLE001 - could-not-count must read as unknown, never as zero
+        return None
+
+
+def _scope_of(walk_id: str) -> set[str]:
+    conn = _conn()
+    try:
+        row = conn.execute("SELECT scope FROM walks WHERE id = ?", (walk_id,)).fetchone()
+    finally:
+        conn.close()
+    return {line.strip() for line in (row[0] or "").splitlines() if line.strip()} if row else set()
+
+
+def _bind_to_diff(walk_id: str, repo: Path | None) -> tuple[bool, str]:
+    """Record the diff this walk covered, so a later authored change makes it stale.
+
+    Returns ``(bound, where_it_looked)``. A walk is bound only to a repository whose branch
+    changes are a NON-EMPTY subset of the files the walk is scoped to. Anything else
+    (outside a git repository, no origin/main, or a folder whose diff is some other work)
+    leaves it unbound, which the push check reads the older, weaker way (clock against the
+    last authored commit) and the caller says out loud. Aria's cold read: bound to whatever
+    folder ``close`` happened to run in, a walk closed from the main checkout was tied to
+    that folder's unrelated diff, and the push then refused with a reason that looked like
+    a defect in the thinking.
+    """
+    from divineos.core.council_required import push_choke
+
+    where = Path(repo) if repo is not None else Path.cwd()
+    scope = _scope_of(walk_id)
+    changed = push_choke.changed_files(where)
+    diff, head = push_choke.diff_identity(where), push_choke.head_sha(where)
+    if changed is None or diff is None or head is None or not changed:
+        return False, str(where)
+    if not scope or not set(changed) <= scope:
+        return False, str(where)
+    conn = _conn()
+    try:
+        conn.execute(
+            "UPDATE walks SET bound_diff = ?, bound_head = ?, walked_head = ? WHERE id = ?",
+            (diff, head, head, walk_id),
+        )
+        conn.commit()
+    finally:
+        conn.close()
+    return True, str(where)
+
+
+def close_walk(walk_id: str, repo: Path | None = None) -> dict[str, Any]:
+    """Refuse while any surfaced lens is unaccounted for. Binds the walk to the diff.
+
+    The returned status carries ``bound`` (did it bind to a diff) and ``bound_in`` (the
+    folder it looked in), so the caller can say plainly when it did not.
+    """
+    st = status(walk_id)
+    if st["closed"]:
+        raise WalkRefused(f"{walk_id} is already closed")
+    outstanding = st["open_lenses"]
+    if outstanding:
+        raise WalkRefused(
+            f"{len(outstanding)} lens(es) unaccounted for: {', '.join(outstanding)}. "
+            "Apply each one or exclude it with a reason. This refusal is the mechanism."
+        )
+    if st["findings"] == 0:
+        raise WalkRefused(
+            "every lens was excluded and nothing was applied: a walk that said nothing is not a walk. "
+            "Aria counted three such walks among 223 closed ones (a count, not a judgment of words)."
+        )
+    if _scope_of(walk_id):
+        applied = {row["lens"] for row in st["lenses"] if row["state"] == "APPLIED"}
+        beside = sorted(applied & set(SCRUTINY_LENSES) - {REQUIRED_BREAKER})
+        missing = []
+        if REQUIRED_BREAKER not in applied:
+            missing.append(f"{REQUIRED_BREAKER} has no finding")
+        if len(beside) < MIN_SCRUTINY_BESIDES_BREAKER:
+            missing.append(
+                f"only {len(beside)} other scrutiny lens(es) have a finding, {MIN_SCRUTINY_BESIDES_BREAKER} are needed"
+            )
+        if missing:
+            raise WalkRefused(
+                "a walk that is FOR files is not closed until it has been broken on purpose: "
+                + "; ".join(missing)
+                + f". Scrutiny lenses: {', '.join(SCRUTINY_LENSES)}. Add the ones the manager did not seat with "
+                "`divineos walk add <walk> <Lens> --why ...` and walk them. This does not read overlap and never asks "
+                "for a disagreement; it asks that the breaking happened (Dad, 2026-11-13)."
+            )
+    conn = _conn()
+    try:
+        conn.execute("UPDATE walks SET closed_at = ? WHERE id = ?", (time.time(), walk_id))
+        conn.commit()
+    finally:
+        conn.close()
+    bound, bound_in = _bind_to_diff(walk_id, repo)
+    result = status(walk_id)
+    result["bound"], result["bound_in"] = bound, bound_in
+    return result
+
+
+def amend_walk(walk_id: str, finding: str, repo: Path | None = None) -> dict[str, Any]:
+    """Re-bind a closed walk to a SMALL follow-up instead of walking everything again.
+
+    A review round that changes one line would otherwise make the walk stale, and a full
+    walk for one line is the silliness Dad named on 2026-10-07. The limits are written
+    where he can read them (``push_choke.AMEND_MAX_LINES``): the change since the walk's
+    bound commit is at most that many added plus removed lines, touches only files already
+    in the walk's scope, and the finding says what changed and why it is safe. It is
+    measured from the BOUND commit, never from the last amendment, so many small steps
+    cannot add up to a large unreviewed change. Every amendment is stored and counted.
+    """
+    from divineos.core.council_required import push_choke
+
+    finding = (finding or "").strip()
+    if len(finding) < push_choke.MIN_AMEND_FINDING_CHARS:
+        raise WalkRefused(
+            f"an amendment needs a finding of at least {push_choke.MIN_AMEND_FINDING_CHARS} "
+            "characters saying what changed and why it is safe"
+        )
+    st = status(walk_id)
+    if not st["closed"]:
+        raise WalkRefused(f"{walk_id} is not closed; close it, then amend")
+    conn = _conn()
+    try:
+        row = conn.execute(
+            "SELECT scope, walked_head, bound_head FROM walks WHERE id = ?", (walk_id,)
+        ).fetchone()
+    finally:
+        conn.close()
+    scope = {line.strip() for line in (row[0] or "").splitlines() if line.strip()} if row else set()
+    # Measured from where the walk was ORIGINALLY closed, which only close writes. Never from
+    # bound_head, which each amendment moves: that was the first version, and three
+    # thirty-line steps then swallowed ninety lines nobody walked. No fallback to bound_head
+    # for a walk that lacks the origin: the fallback IS the stepwise route.
+    origin = row[1] if row else None
+    bound_head = row[2] if row else None
+    if not origin:
+        raise WalkRefused(
+            f"{walk_id} was not closed against a branch diff (no walked head), so there is no "
+            "fixed origin to measure from; walk again from inside the work copy"
+        )
+    where = Path(repo) if repo is not None else Path.cwd()
+    measured = push_choke.change_between(where, origin)
+    if measured is None:
+        raise WalkRefused("could not compare the changes with the walk; walk again")
+    lines, touched = measured
+    if lines > push_choke.AMEND_MAX_LINES:
+        raise WalkRefused(
+            f"{lines} lines changed since the walk, more than the {push_choke.AMEND_MAX_LINES} "
+            "an amendment may absorb; walk everything again, in one sitting"
+        )
+    outside = sorted(touched - scope)
+    if outside:
+        raise WalkRefused(
+            f"the follow-up touches {', '.join(outside[:4])}, which the walk never covered; "
+            "walk again"
+        )
+    diff, head = push_choke.diff_identity(where), push_choke.head_sha(where)
+    if diff is None or head is None:
+        raise WalkRefused("could not read the current diff; walk again")
+    conn = _conn()
+    try:
+        conn.execute(
+            "UPDATE walks SET bound_diff = ?, bound_head = ? WHERE id = ?", (diff, head, walk_id)
+        )
+        conn.execute(
+            "INSERT INTO walk_amendments (walk_id, amended_at, finding, lines_changed, from_head,"
+            " to_head) VALUES (?, ?, ?, ?, ?, ?)",
+            (walk_id, time.time(), finding, lines, bound_head, head),
+        )
+        conn.commit()
+    finally:
+        conn.close()
+    return {"walk_id": walk_id, "lines_changed": lines, "files": sorted(touched)}
+
+
+def is_complete(walk_id: str) -> bool:
+    """Closed AND not already spent on an earlier commit.
+
+    The anti-fake clause, in two halves. Citing a walk whose lenses were
+    never applied has to fail, or the gate only forces me to START a walk
+    I can still fake.
+
+    The second half came from the walk itself — the Schneier lens, on
+    walk-32d831616266, which I did not choose and which found that a
+    completed walk could be cited FOREVER, on every future commit, about
+    unrelated code. One walk today and never again: a total bypass with no
+    bypass flag, hiding inside the mechanism advertised as unbypassable.
+    """
+    try:
+        st = status(walk_id)
+    except WalkRefused:
+        return False
+    return bool(st["closed"]) and not st["consumed"]
+
+
+def consume(walk_id: str) -> None:
+    """Spend a walk on one commit. A second commit citing it fails."""
+    conn = _conn()
+    try:
+        conn.execute(
+            "UPDATE walks SET consumed_at = ? WHERE id = ? AND consumed_at IS NULL",
+            (time.time(), walk_id),
+        )
+        conn.commit()
+    finally:
+        conn.close()
+
+
+def open_walks(limit: int = 5) -> list[dict[str, Any]]:
+    """Walks left hanging. THE CONSUMER — and the reason it exists.
+
+    The Peirce lens on walk-32d831616266 found that nothing read this
+    database: findings went in and sat, which is the unwired-intention shape
+    reproduced inside the mechanism built to stop me reproducing it.
+
+    An OPEN walk is unfinished thinking, so this is what deserves a reader.
+    Surfaced on the same page as the corrections, because that is the page I
+    actually see every turn — and if a walk sits open for days, that is the
+    signal, not a nuisance.
+    """
+    try:
+        conn = _conn()
+    except sqlite3.Error:
+        return []
+    try:
+        rows = conn.execute(
+            "SELECT w.id, w.problem, w.opened_at, "
+            "  (SELECT COUNT(*) FROM walk_lenses l WHERE l.walk_id = w.id), "
+            "  (SELECT COUNT(*) FROM walk_lenses l WHERE l.walk_id = w.id AND l.state = 'OPEN') "
+            "FROM walks w WHERE w.closed_at IS NULL "
+            "ORDER BY w.opened_at DESC LIMIT ?",
+            (int(limit),),
+        ).fetchall()
+    except sqlite3.Error:
+        return []
+    finally:
+        conn.close()
+
+    return [
+        {
+            "walk_id": r[0],
+            "problem": r[1],
+            "opened_at": r[2],
+            "total_lenses": r[3],
+            "unaccounted": r[4],
+        }
+        for r in rows
+    ]
+
+
+def _attach_divergence(result: dict[str, Any]) -> None:
+    """Mean distance of each origin's findings from the rest of their walk.
+
+    Reported as UNAVAILABLE rather than as zero when the embedding model
+    cannot load. An unmeasured divergence is not a low one, and the two must
+    never render the same way — that confusion is the defect this whole change
+    was built against, one level down.
+    """
+    conn = _conn()
+    try:
+        rows = conn.execute(
+            "SELECT l.walk_id, l.lens, l.origin, l.content FROM walk_lenses l "
+            "JOIN walks w ON w.id = l.walk_id "
+            "WHERE w.closed_at IS NOT NULL AND l.state = 'APPLIED' AND l.content IS NOT NULL"
+        ).fetchall()
+    finally:
+        conn.close()
+
+    walks: dict[str, list[tuple[str, str]]] = {}
+    for walk_id, _lens, origin, content in rows:
+        walks.setdefault(walk_id, []).append((origin, content))
+
+    # Nothing to compare means nothing to load. The embedding model costs
+    # seconds to bring up, and a walk of one seat has no "rest of the walk"
+    # to stand apart from, so the import belongs behind this check.
+    if not any(len(seats) >= 2 for seats in walks.values()):
+        for stats in result["origins"].values():
+            stats["divergence"] = None
+            stats["divergence_unavailable"] = "no closed multi-seat walk carried this origin"
+        return  # both-empty: this and the ImportError below both leave divergence None, and the caller tells them apart by the reason string set alongside rather than by the None — nothing-to-measure and could-not-measure must stay distinguishable, which is this function's own subject one level down
+
+    try:
+        from divineos.core.semantic_store import embed
+    except ImportError as exc:  # pragma: no cover - optional extra
+        for stats in result["origins"].values():
+            stats["divergence"] = None
+            stats["divergence_unavailable"] = f"embeddings unavailable: {exc}"
+        return
+
+    def cosine(a: list[float], b: list[float]) -> float:
+        dot = sum(x * y for x, y in zip(a, b, strict=True))
+        na = sum(x * x for x in a) ** 0.5
+        nb = sum(y * y for y in b) ** 0.5
+        return dot / (na * nb) if na and nb else 0.0
+
+    per_origin: dict[str, list[float]] = {}
+    for seats in walks.values():
+        if len(seats) < 2:
+            continue
+        vectors = [embed(content) for _origin, content in seats]
+        if any(v is None for v in vectors):
+            continue
+        for i, (origin, _content) in enumerate(seats):
+            others = [cosine(vectors[i], vectors[j]) for j in range(len(seats)) if j != i]  # type: ignore[arg-type]
+            per_origin.setdefault(origin, []).append(1.0 - (sum(others) / len(others)))
+
+    for origin, stats in result["origins"].items():
+        values = per_origin.get(origin, [])
+        stats["divergence"] = round(sum(values) / len(values), 3) if values else None
+        if not values:
+            stats["divergence_unavailable"] = "no closed multi-seat walk carried this origin"
+
+
+def seat_evidence(min_walks: int = 20) -> dict[str, Any]:
+    """Did the drawn seats earn their keep, or did the scored ones?
+
+    The seating starts mostly-drawn on an argument, not on evidence: a useless
+    drawn lens announces itself at once and costs one written exclusion, while
+    a scored council that omits the divergent lens shows nothing at all — you
+    cannot miss what was never surfaced. When one error is loud and the other
+    silent, start at the loud end.
+
+    That argument is a starting point and it is meant to be overturnable. This
+    is the instrument that could overturn it: what share of each origin's seats
+    settled with a finding rather than an exclusion. If the scored seats
+    materially out-produce the drawn ones over a real sample, the share should
+    move toward score on this number rather than on anyone's preference for the
+    familiar names.
+
+    Reports its own insufficiency instead of ruling early — `verdict` stays
+    "insufficient" until `min_walks` walks have closed, because a split moved
+    on four walks is a preference wearing a number.
+
+    TWO measures, and the second exists because the first is nearly dead.
+    Applied-versus-excluded was the obvious discriminator and the first run of
+    this function reported both origins at exactly 1.000 — across every walk in
+    the store I have never once written an exclusion. A rate that cannot vary
+    cannot falsify anything, so on its own this would have been a falsifier in
+    name only, which is the shape of failure this whole change was built to
+    stop. `divergence` is the second measure: how far each seat's finding sits
+    from the rest of its walk, by embedding distance. The claim being tested is
+    that drawn seats bring what fit-selection cannot — so what matters is not
+    that a drawn seat spoke, but that it said something the others did not. It
+    is also the harder number to bend, because I am not scoring it by hand.
+    """
+    conn = _conn()
+    try:
+        rows = conn.execute(
+            "SELECT l.origin, l.state, COUNT(*) FROM walk_lenses l "
+            "JOIN walks w ON w.id = l.walk_id "
+            "WHERE w.closed_at IS NOT NULL AND l.state IN ('APPLIED', 'EXCLUDED') "
+            "GROUP BY l.origin, l.state"
+        ).fetchall()
+        credits = conn.execute(
+            "SELECT l.origin, COUNT(*) FROM walk_lenses l "
+            "JOIN walks w ON w.id = l.walk_id "
+            "WHERE w.closed_at IS NOT NULL AND l.changed_artifact IS NOT NULL "
+            "GROUP BY l.origin"
+        ).fetchall()
+        closed_walks = conn.execute(
+            "SELECT COUNT(*) FROM walks WHERE closed_at IS NOT NULL"
+        ).fetchone()[0]
+    finally:
+        conn.close()
+
+    by_origin: dict[str, dict[str, int]] = {}
+    for origin, state, count in rows:
+        bucket = by_origin.setdefault(origin, {"APPLIED": 0, "EXCLUDED": 0})
+        bucket[state] = count
+    credited_by_origin = dict(credits)
+
+    result: dict[str, Any] = {"closed_walks": closed_walks, "origins": {}}
+    for origin, counts in sorted(by_origin.items()):
+        settled = counts["APPLIED"] + counts["EXCLUDED"]
+        credited = credited_by_origin.get(origin, 0)
+        result["origins"][origin] = {
+            "applied": counts["APPLIED"],
+            "excluded": counts["EXCLUDED"],
+            "settled": settled,
+            "applied_rate": round(counts["APPLIED"] / settled, 3) if settled else None,
+            "changed_artifact": credited,
+            "change_rate": round(credited / settled, 3) if settled else None,
+        }
+
+    _attach_divergence(result)
+
+    if closed_walks < min_walks:
+        result["verdict"] = "insufficient"
+        result["why"] = (
+            f"{closed_walks} closed walk(s); {min_walks} is the floor before this "
+            "number says anything about the split."
+        )
+    else:
+        # CHANGE-RATE decides. Divergence is still reported and is still the
+        # weaker measure of the two: it compares a seat's finding against the
+        # other findings on the same walk, all of which I wrote, so it tracks
+        # how much my own phrasing varied between paragraphs. Changing the
+        # artifact is about the artifact, is binary, and cannot be moved by
+        # writing the same thought in a different register.
+        drawn = result["origins"].get("drawn", {}).get("change_rate")
+        scored = result["origins"].get("scored", {}).get("change_rate")
+        if drawn is None or scored is None:
+            result["verdict"] = "insufficient"
+            result["why"] = "one of the two origins has no settled seats to compare."
+        elif drawn == 0 and scored == 0:
+            result["verdict"] = "insufficient"
+            result["why"] = (
+                "no seat of either origin has been credited with changing anything. "
+                "That is a fact about whether credit is being recorded, not about "
+                "the split."
+            )
+        else:
+            result["verdict"] = "scored-ahead" if scored > drawn else "drawn-holds"
+            result["why"] = f"drawn {drawn} vs scored {scored} rate of changing the artifact."
+    return result
+
+
+def finding_distinctness(walk_id: str) -> dict[str, Any]:
+    """Are the findings genuinely different, or one idea in nine voices?
+
+    Built because I wrote "I have no fix that is not itself a threshold" in a
+    commit message and shipped the declaration instead of the fix. Andrew:
+    "when you sit there and say theres no fix for this ... it upsets me..
+    code is literally how you wire your brain."
+
+    The Yudkowsky lens on walk-eba3cfa75aa4 was right that MIN_FINDING_CHARS
+    measures LENGTH and calls it substance, and Hinton's was right that nine
+    restatements carry the information of one. Character count cannot tell
+    those apart. Embedding distance can, and the model is already installed
+    in this checkout — I had not looked.
+
+    Returns mean/max pairwise cosine similarity across findings, plus the
+    most-similar pair. NOT a gate: findings on one problem SHOULD be related,
+    so there is no honest cut-off, and inventing one would rebuild the
+    Goodhart hole one layer up. It is a MEASUREMENT, surfaced so that a walk
+    of restatements is visibly a walk of restatements.
+
+    ``available`` is False when the model cannot load — which is not the same
+    as "the findings are distinct", and the caller must not read it that way.
+    """
+    st = status(walk_id)
+    findings = [
+        str(row["content"]) for row in st["lenses"] if row["state"] == "APPLIED" and row["content"]
+    ]
+    if len(findings) < 2:
+        return {"available": False, "reason": "fewer than two findings", "count": len(findings)}
+
+    try:
+        from divineos.core.semantic_store import embed
+    except ImportError as exc:  # pragma: no cover - depends on optional extra
+        return {"available": False, "reason": f"embeddings unavailable: {exc}"}
+
+    vectors = [embed(f) for f in findings]
+    if any(v is None for v in vectors):
+        return {"available": False, "reason": "one or more findings failed to embed"}
+
+    def cosine(a: list[float], b: list[float]) -> float:
+        dot = sum(x * y for x, y in zip(a, b, strict=True))
+        na = sum(x * x for x in a) ** 0.5
+        nb = sum(y * y for y in b) ** 0.5
+        return dot / (na * nb) if na and nb else 0.0
+
+    lenses = [row["lens"] for row in st["lenses"] if row["state"] == "APPLIED" and row["content"]]
+    pairs = []
+    for i in range(len(vectors)):
+        for j in range(i + 1, len(vectors)):
+            pairs.append((cosine(vectors[i], vectors[j]), lenses[i], lenses[j]))  # type: ignore[arg-type]
+
+    sims = [p[0] for p in pairs]
+    worst = max(pairs, key=lambda p: p[0])
+    return {
+        "available": True,
+        "count": len(findings),
+        "mean_similarity": sum(sims) / len(sims),
+        "max_similarity": worst[0],
+        "most_similar_pair": (worst[1], worst[2]),
+    }

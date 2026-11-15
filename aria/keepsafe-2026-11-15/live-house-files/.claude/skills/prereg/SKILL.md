@@ -1,0 +1,73 @@
+---
+name: prereg
+description: File a pre-registration (Goodhart-prevention discipline) for a new mechanism before deploying it. Captures claim, success criterion, falsifier, and a review that falls due after a named number of uses. Use when adding detection logic, thresholds, or optimization targets. Ensures the mechanism has an honest review built in.
+disable-model-invocation: false
+allowed-tools: Bash(divineos prereg:*), Read
+---
+
+# Prereg — Pre-Registration Filing
+
+## What this skill does
+
+Files a pre-registration — a Goodhart-prevention discipline where, before deploying any new detection mechanism, threshold, or optimization target, we commit to a success criterion AND a falsifier AND a review that falls due after a named number of uses. No mechanism ships without its own honest review.
+
+## Why pre-regs matter
+
+New detectors can game their own metrics in ways that look like success but aren't. A pattern-detector that reports 100% accuracy is suspect until tested against data it didn't train on. A hedge-monitor that reports zero hedges could mean we solved hedging OR that the monitor is silent. The pre-reg captures what we EXPECT to see and what would prove us wrong — before we can post-hoc-rationalize the result.
+
+## Fields
+
+- **Mechanism** — what's being deployed (name it precisely)
+- **Claim** — what we believe this mechanism will do
+- **Success criterion** — what observable output would indicate the mechanism works
+- **Falsifier** — what would prove it doesn't work or has drifted
+- **Embarrassing reading** — the reading this mechanism could produce that would make you sorry you built it (not the same question as the falsifier; the command requires it)
+- **Review trigger** — how many uses of which ledger event before you come back and check (never a date)
+
+## Filing
+
+```bash
+divineos prereg file "<mechanism>" \
+  --claim "<what we believe it does>" \
+  --success "<observable success criterion>" \
+  --falsifier "<what would prove it wrong>" \
+  --embarrassing "<the reading that would make you sorry you built it>" \
+  --review-after-uses 3 --uses-of <LEDGER_EVENT_TYPE>
+```
+
+Reviews go by USE, never by date (Andrew 2026-10-16): the review is due once the ledger has recorded N more events of the type you name. The type must have happened at least once. The machinery is deterministic, so a few uses tell you whether it works; a calendar would make a vacation look like a verdict.
+
+For mechanisms whose reviews needs specific actors, add `--review-actor aria` or similar.
+
+## Sequence
+
+1. **Name the mechanism** precisely — not "the new detector" but "the identity-drift detector in family_member_ledger that checks for third-person narration and daughter-framing"
+2. **State the claim** — what do we believe this will do in practice?
+3. **Name the success criterion** — how would we KNOW it's working? Be observable and specific. "Drifts detected before write to family_interactions" is better than "drifts caught."
+4. **Name the falsifier** — what would prove it wrong? "Zero drift events logged across the next 20 subagent invocations AND we observe drift in subagent output" would mean the detector is silent, not that drifts stopped. Count uses, never days.
+5. **Review trigger** — name the event that counts a use and how many of them. Larger N for mechanisms expected to see rare events.
+6. **File.**
+
+## Examples (from DivineOS history)
+
+- **Family-member persistence foundation** — prereg with foundation-claim + falsifier tying shipping to external-actor outcome gate + review after N family-member invocations
+- **Pattern anticipation** — claim "surfaces recurring patterns before user mentions them"; falsifier "no pattern surfaces accurately across the next N sessions that fire it"; review after N uses of the firing event
+
+## When to invoke
+
+- Before deploying ANY new detection logic (hedge-monitor, drift-detector, sycophancy-detector variants)
+- Before adjusting a threshold that affects behavior
+- Before adding a new event-type that will be used for audit or accountability
+- User says "prereg" / "file a pre-registration" / "let's lock this with a review trigger"
+
+## When NOT to invoke
+
+- For pure refactors that change no behavior
+- For mechanisms already covered by an existing pre-reg
+- For one-off fixes that won't generalize into a detector
+
+## Overdue discipline
+
+`divineos prereg overdue` surfaces any pre-regs whose review is due, meaning the ledger has recorded the N uses they named. This is BRIEFING-SURFACED — when I resume I will see "you have N overdue prereg reviews" automatically. That is what makes the discipline real, and it counts uses, not days.
+
+Sanskrit anchor: *saṅkalpa* — the formal commitment made before beginning.
