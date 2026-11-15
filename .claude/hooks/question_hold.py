@@ -73,9 +73,15 @@ def main() -> int:
         return 0
 
     if event == "Stop":
-        from divineos.core.hook_surfaces import _last_assistant_text
+        from divineos.core.hook_surfaces import _last_assistant_blocks
 
-        reply = _last_assistant_text(data)
+        # THE REPLY BEING ENDED, never the pile since his last message (2026-11-15). The joined text
+        # runs back to his last REAL message, so after one of his, every notice-driven turn joined it
+        # and an old circle's question was judged buried by every later short reply: nine blocks in
+        # four hours on one question. The last piece is the stretch just written; a question in an
+        # earlier piece was asked and settled in its own reply.
+        blocks = _last_assistant_blocks(data)
+        reply = blocks[-1] if blocks else ""
         if not reply:
             return 0
         if not data.get("stop_hook_active"):
