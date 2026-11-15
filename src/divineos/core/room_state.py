@@ -44,7 +44,16 @@ ROOM_FILE = "dads_room_stop.py"
 _NAMES_ROOM = re.compile(r"dads_room_stop\.py(?![\w.])")
 SETTINGS_FILES = ("settings.json", "settings.local.json")
 DEFAULT_REMOVED_MARKER = Path.home() / ".divineos" / "circle_removed_on_his_decision.json"
-RESTORE = f"git checkout origin/main -- .claude/hooks/{ROOM_FILE} .claude/settings.json"
+# Restore from the newest commit in THIS checkout's own history whose settings.json wires the room, never from a
+# branch name: origin/main restores the unplugged file when main carries the unplugging (note 783 finding 5).
+RESTORE = (
+    "for c in $(git rev-list HEAD -- .claude/settings.json); do "
+    "git show $c:.claude/settings.json | grep -q 'dads_room_stop\\.py' && "
+    "{ git checkout $c -- .claude/hooks/dads_room_stop.py .claude/settings.json; break; }; done"
+)
+# A room entry's settings timeout below this is cut off by the harness before the hook can answer. The registered
+# entry is 15; 10 is the floor (the hook imports the core and reads the transcript), to be revisited if measured.
+MIN_ROOM_TIMEOUT_SECONDS = 10
 
 # A reply that did work and left his room out: the one thing the hook exists to refuse.
 _PROBE = [
@@ -64,10 +73,11 @@ class RoomState:
     present: bool
     blocks: bool
     problems: tuple[str, ...] = ()
+    timely: bool = True
 
     @property
     def standing(self) -> bool:
-        return self.wired and self.present and self.blocks
+        return self.wired and self.present and self.blocks and self.timely
 
 
 def _stop_commands(settings_path: Path) -> tuple[list[str], str]:
@@ -106,6 +116,27 @@ def _room_commands(claude_dir: Path) -> tuple[list[str], list[str]]:
         if problem and name == "settings.json":
             problems.append(problem)
     return named, problems
+
+
+def _room_timeouts(claude_dir: Path) -> list[int | float]:
+    """The numeric `timeout` of every Stop entry that names the room. An entry with no timeout says nothing here:
+    the harness's own default applies and this check does not second-guess it."""
+    found: list[int | float] = []
+    for name in SETTINGS_FILES:
+        try:
+            groups = json.loads((claude_dir / name).read_text(encoding="utf-8"))["hooks"]["Stop"]
+        except (OSError, ValueError, KeyError, TypeError):
+            continue
+        for group in groups:
+            for entry in group.get("hooks", []):
+                value = entry.get("timeout")
+                if (
+                    _NAMES_ROOM.search(str(entry.get("command", "")))
+                    and isinstance(value, (int, float))
+                    and not isinstance(value, bool)
+                ):
+                    found.append(value)
+    return found
 
 
 def _blocks(commands: list[str], repo_root: Path, python: str | None) -> tuple[bool, str]:
@@ -170,7 +201,15 @@ def check(repo_root: Path, python: str | None = None) -> RoomState:
         blocks, why = _blocks(commands, repo_root, python)
         if why:
             problems.append(why)
-    return RoomState(wired, present, blocks, tuple(problems))
+    # The harness enforces the entry's own timeout, not this check's 30 seconds: an entry cut off at 1 second can
+    # never answer, and calling it wired is the easier question standing in for the real one.
+    cut_off = [t for t in _room_timeouts(claude) if t < MIN_ROOM_TIMEOUT_SECONDS]
+    for t in cut_off:
+        problems.append(
+            f"the room's entry in settings has a timeout of {t:g} seconds; the harness cuts the hook off "
+            f"below {MIN_ROOM_TIMEOUT_SECONDS} seconds, so it cannot answer"
+        )
+    return RoomState(wired, present, blocks, tuple(problems), timely=not cut_off)
 
 
 def _read_marker(marker: Path) -> dict | None:
