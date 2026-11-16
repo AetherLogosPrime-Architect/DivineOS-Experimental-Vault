@@ -309,43 +309,83 @@ def _push_segment(command: str) -> str:
     return command[at:].split(";")[0].split("&&")[0].split("||")[0].split("|")[0]
 
 
-def _named_refs(segment: str) -> tuple[str, list[tuple[str, str]]] | None:
-    """(remote, [(source, full destination ref)]) when the push names every ref, else None."""
+def _named_refs(segment: str) -> tuple[str | None, list[tuple[str, str]], bool]:
+    """(remote, the refs the push names clearly as (source, full destination), unclear).
+
+    ``unclear`` is True when anything about the push cannot be read from the command: no remote, no ref,
+    a bare name git resolves by its own rules, a delete, ``--all``. The clear refs are still returned, so a
+    ref that clearly landed beside an unclear one still counts as landed."""
     import shlex
 
     try:
         tokens = shlex.split(segment)
     except ValueError:
-        return None
+        return None, [], True
     if tokens[:2] != ["git", "push"]:
-        return None
+        return None, [], True
+    unclear = False
     positionals: list[str] = []
     args = tokens[2:]
     i = 0
     while i < len(args):
         arg = args[i]
         if arg in _UNCLEAR_OPTIONS or arg.startswith("--repo="):
-            return None
-        if arg in _VALUE_OPTIONS:
+            unclear = True
+        elif arg in _VALUE_OPTIONS:
             i += 1
         elif not arg.startswith("-"):
             positionals.append(arg)
         i += 1
-    if len(positionals) < 2:
-        return None  # no remote, or no ref: git decides what is pushed, and we cannot see it
+    if not positionals:
+        return None, [], True  # no remote named: git decides, and we cannot see where
     remote, refspecs = positionals[0], positionals[1:]
+    if not refspecs:
+        unclear = True  # no ref named: git decides what is pushed
     refs: list[tuple[str, str]] = []
     for refspec in refspecs:
         spec = refspec.lstrip("+")
         if ":" not in spec or spec.startswith(":"):
-            return None  # a bare name resolves by git's rules, and a leading colon deletes
+            unclear = True  # a bare name resolves by git's rules, and a leading colon deletes
+            continue
         source, destination = spec.split(":", 1)
         if not source or not destination:
-            return None
+            unclear = True
+            continue
         if not destination.startswith("refs/"):
             destination = "refs/heads/" + destination
         refs.append((source, destination))
-    return remote, refs
+    return remote, refs, unclear
+
+
+def _doubt_refund_used() -> bool:
+    """True when a doubt refund was already given and no repair has come since.
+
+    Dad, 2026-11-15: an unclear answer must return the key too, "so you can try something else, otherwise
+    you are stuck in the same boat.. no key and no answers". But a bare push that LANDED also reads as
+    unclear, so doubt alone must not be free forever (his own rule: a lost key and a deadlock means the
+    bypass was gamed). So: ONE doubt refund per unrepaired lock. A RETURNED event, which only a merged
+    fix earns, starts the count again."""
+    try:
+        from divineos.core._ledger_base import _get_db_path
+
+        with sqlite3.connect(str(_get_db_path()), timeout=10) as conn:
+            rows = conn.execute(
+                "SELECT event_type, payload FROM system_events "
+                "WHERE event_type IN (?, ?) ORDER BY rowid DESC LIMIT 50",
+                (RETURNED, REFUNDED),
+            ).fetchall()
+    except (sqlite3.Error, OSError, ImportError):
+        return True  # could not read the record: do not mint a second one
+    for kind, payload in rows:
+        if kind == RETURNED:
+            return False
+        try:
+            body = json.loads(payload) if isinstance(payload, str) else dict(payload or {})
+        except ValueError:
+            return True
+        if body.get("on_doubt") is True:
+            return True
+    return False
 
 
 def _git_out(args: list[str], cwd: str | None) -> subprocess.CompletedProcess[str] | None:
@@ -395,15 +435,33 @@ def refund_if_not_landed(
     when = now or time.time()
     if when - st.spent_at > REFUND_WINDOW_SECONDS:
         return "too-late"
-    named = _named_refs(segment)
-    if named is None:
-        return "could-not-tell"
-    remote, refs = named
-    answers = [_ref_landed(remote, source, destination, cwd) for source, destination in refs]
+    remote, refs, unclear = _named_refs(segment)
+    answers = (
+        [_ref_landed(remote, source, destination, cwd) for source, destination in refs]
+        if remote
+        else []
+    )
     if any(a is True for a in answers):
-        return "landed"
-    if any(a is None for a in answers):
-        return "could-not-tell"
+        return "landed"  # a clear yes beats any doubt beside it: the key was used
+    if unclear or not refs or any(a is None for a in answers):
+        # Doubt returns the key ONCE per unrepaired lock (Dad 2026-11-15), so a seat is never left with no
+        # key and no answers; the second doubt waits for a merged fix.
+        if _doubt_refund_used():
+            return "could-not-tell"
+        _log(
+            REFUNDED,
+            {
+                "gate": gate,
+                "fingerprint": st.spent_fingerprint,
+                "spent_at": st.spent_at,
+                "refund": "could not tell whether the push landed; returned once so something else can be tried",
+                "on_doubt": True,
+                "remote": remote,
+                "refs": [list(r) for r in refs],
+                "at": when,
+            },
+        )
+        return "refunded-on-doubt"
     _log(
         REFUNDED,
         {

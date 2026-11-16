@@ -111,13 +111,69 @@ def test_everything_up_to_date_keeps_the_key_spent(world) -> None:
     assert not bk.status().held
 
 
-def test_a_remote_that_does_not_answer_keeps_the_key_spent(world) -> None:
-    """Could-not-tell never mints a key: the remote path is gone."""
+def test_a_remote_that_does_not_answer_returns_the_key_once_on_doubt(world) -> None:
+    """Dad, 2026-11-15: an unclear answer must return the key too, "so you can try something else,
+    otherwise you are stuck in the same boat.. no key and no answers". The remote path is gone."""
     command = "git push origin HEAD:refs/heads/backup/x"
     _spend(command)
     shutil.rmtree(world["bare"])
     result = bk.refund_if_not_landed(GATE, command, cwd=str(world["work"]), now=110.0)
-    assert result == "could-not-tell", result
+    assert result == "refunded-on-doubt", result
+    assert bk.status().held
+    assert bk.status().last_reissue.get("on_doubt") is True, "a doubt refund says it was one"
+
+
+def test_a_second_doubt_without_a_repair_between_does_not_return_the_key(world) -> None:
+    """The guard that makes Dad's rule safe: a bare push that LANDED reads as unclear, so doubt alone
+    must not be free forever. One doubt refund per unrepaired lock; the next waits for a merged fix."""
+    command = "git push"
+    _spend(command)
+    assert (
+        bk.refund_if_not_landed(GATE, command, cwd=str(world["work"]), now=110.0)
+        == "refunded-on-doubt"
+    )
+    bk.spend(GATE, command, now=120.0)
+    assert (
+        bk.refund_if_not_landed(GATE, command, cwd=str(world["work"]), now=130.0)
+        == "could-not-tell"
+    )
+    assert not bk.status().held
+
+
+def test_a_repair_resets_the_doubt_refund(world) -> None:
+    command = "git push"
+    _spend(command)
+    assert (
+        bk.refund_if_not_landed(GATE, command, cwd=str(world["work"]), now=110.0)
+        == "refunded-on-doubt"
+    )
+    bk.spend(GATE, command, now=120.0)
+    bk._log(bk.RETURNED, {"gate": GATE, "fingerprint": command, "repaired": "a merged fix"})
+    bk.spend(GATE, command, now=130.0)
+    assert (
+        bk.refund_if_not_landed(GATE, command, cwd=str(world["work"]), now=140.0)
+        == "refunded-on-doubt"
+    )
+
+
+def test_a_clear_no_does_not_use_up_the_doubt_refund(world) -> None:
+    command = "git push origin HEAD:refs/heads/backup/x"
+    _spend(command)
+    assert bk.refund_if_not_landed(GATE, command, cwd=str(world["work"]), now=110.0) == "refunded"
+    bk.spend(GATE, "git push", now=120.0)
+    assert (
+        bk.refund_if_not_landed(GATE, "git push", cwd=str(world["work"]), now=130.0)
+        == "refunded-on-doubt"
+    )
+
+
+def test_a_clear_yes_is_never_refunded_on_doubt(world) -> None:
+    """A landed ref beside an unclear one is still LANDED: doubt is for when nothing is known to have landed."""
+    command = "git push origin HEAD:refs/heads/a HEAD"
+    _spend(command)
+    _git(world["work"], "push", "-q", "origin", "HEAD:refs/heads/a")
+    result = bk.refund_if_not_landed(GATE, command, cwd=str(world["work"]), now=110.0)
+    assert result == "landed", result
     assert not bk.status().held
 
 
@@ -131,13 +187,14 @@ def test_a_remote_that_was_never_added_is_a_clear_no(world) -> None:
     assert bk.status().held
 
 
-def test_a_url_or_path_that_cannot_be_asked_is_not_a_clear_no(world, tmp_path: Path) -> None:
-    """A url or a path is not a configured remote name, so 'no such remote' proves nothing about it."""
+def test_a_url_or_path_that_cannot_be_asked_is_doubt_not_a_clear_no(world, tmp_path: Path) -> None:
+    """A url or a path is not a configured remote name, so 'no such remote' proves nothing about it:
+    it is doubt, and doubt returns the key once."""
     command = f"git push {tmp_path / 'nowhere.git'} HEAD:refs/heads/backup/x"
     _spend(command)
     result = bk.refund_if_not_landed(GATE, command, cwd=str(world["work"]), now=110.0)
-    assert result == "could-not-tell", result
-    assert not bk.status().held
+    assert result == "refunded-on-doubt", result
+    assert bk.status().held
 
 
 @pytest.mark.parametrize(
@@ -151,11 +208,13 @@ def test_a_url_or_path_that_cannot_be_asked_is_not_a_clear_no(world, tmp_path: P
         "git push origin --delete gone",
     ],
 )
-def test_a_push_that_names_no_clear_ref_keeps_the_key_spent(world, command: str) -> None:
+def test_a_push_that_names_no_clear_ref_is_doubt_and_returns_the_key_once(
+    world, command: str
+) -> None:
     _spend(command)
     result = bk.refund_if_not_landed(GATE, command, cwd=str(world["work"]), now=110.0)
-    assert result == "could-not-tell", result
-    assert not bk.status().held
+    assert result == "refunded-on-doubt", result
+    assert bk.status().held
 
 
 def test_a_different_push_than_the_one_that_spent_it_is_not_refunded(world) -> None:

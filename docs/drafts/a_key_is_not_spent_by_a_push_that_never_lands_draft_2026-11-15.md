@@ -29,6 +29,12 @@ A post-push hook asks one mechanical question and acts only on a clear answer: *
 
 A push that lands cannot be refunded (the remote says so). A push made to fail gets the key back but gained nothing from the bypass. A command with a second clause (`git push ... ; exit 1`) does not match the spent fingerprint and is not refunded; the refund compares the same push segment the spend recorded.
 
+## Dad's change, same evening: an unclear answer returns the key too
+
+I had written that anything unclear leaves the key spent, because could-not-tell must never mint a key. Dad, 2026-11-15: *"an unclear answer should return the key as well so you can try something else, otherwise you are stuck in the same boat.. no key and no answers"*. He is right that a seat with a spent key and no clear answer is the same deadlock the fix exists to remove.
+
+So doubt returns the key, **once per unrepaired lock**: a `BYPASS_KEY_REFUNDED` event with `on_doubt: true`. The guard is not distrust; it is his own rule (a lost key and a second deadlock means the bypass was gamed). A bare `git push` that LANDED also reads as unclear, so doubt alone must not be free forever. A `RETURNED` event, which only a merged fix earns, starts the count again. A clear yes still keeps the key spent even beside an unclear ref; a clear no is a refund that does not use up the doubt allowance. The hook says which it was in one plain line.
+
 ## What the walk changed (`walk-5195f6e0680e`, nine lenses plus Breaker)
 
 - **A refund is its own event type, `BYPASS_KEY_REFUNDED`, not `BYPASS_KEY_RETURNED`** (Tannen, framing). A RETURNED means "you repaired the lock"; a refund means "it was never used". One type would let a later reader take a refund for a repair. `status()` counts the new type as held and the briefing can name it separately. This replaces the payload field in the section above.

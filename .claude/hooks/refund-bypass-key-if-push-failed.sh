@@ -38,6 +38,12 @@ try:
             '(The remote was asked, not the exit code.)',
             file=sys.stderr,
         )
+    elif result == 'refunded-on-doubt':
+        print(
+            '[bypass-key] I could not tell whether that push landed (check git ls-remote), so your key is '
+            'back, once, so you can try something else. A second doubt waits for a merged fix.',
+            file=sys.stderr,
+        )
 except Exception:
     sys.exit(0)
 " 2>/dev/null
