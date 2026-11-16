@@ -223,6 +223,70 @@ if [[ "${DIVINEOS_SUBSTRATE_BRANCH:-0}" != "1" ]]; then
     fi
 fi
 
+# ─── 0b. Is a hook this push ADDS called by anything? (blocking, over additions only) ──────
+#
+# Dad 2026-11-10: "NOTHING is to even push to github without it being FULLY WIRED UP.. PLUGGED IN AND WORKING
+# LIVE" and "who the fuck says a test passes on something THAT WAS NEVER FUCKING USED". scripts/check_hook_wiring.py
+# (Andrew 2026-08-05) already knows which hooks are registered, but it ran only in scripts/precommit.sh, which Aether
+# wrote on 2026-10-08 "is wired to nothing" -- so a finished, tested hook (PR 845) reached GitHub dark. The push is the
+# one place every branch passes, so it runs here, beside the other checks that moved here for the same reason.
+#
+# NO WAY AROUND IT, BY DESIGN (Dad 2026-11-10: "nothing should be manual, optional or be needed to remember" and
+# "options are the optimizers attack surface"): no bypass variable, and a header note saying a hook is unwired on
+# purpose does NOT clear it. An added hook is reached by something the house reads (settings.json, a launcher or a
+# table) or it does not go up. The exception that is real, a hook git itself calls, is a fact the checker's roster
+# reads, not a choice made here. If this blocks wrongly, the check is what gets fixed.
+#
+# A RATCHET over what THIS push adds, never the backlog: a dark hook already on main blocks nothing. Placed before
+# the test stage on purpose: it costs milliseconds and should not wait behind ten minutes of pytest. It reads the
+# checked-out tree, which is what is being pushed for the usual push of the current branch; a push of some other ref
+# is the edge it cannot see. A merge base it cannot find, or a checker that cannot run, says COULD NOT CHECK and is
+# never a pass. It covers hooks only, and registered is not USED: it cannot prove a hook ever fired.
+if [[ -d "$REPO_ROOT/.claude/hooks" ]]; then
+    WIRE_SCRIPT="$REPO_ROOT/scripts/check_hook_wiring.py"
+    if [[ -f "$WIRE_SCRIPT" ]]; then
+        WIRE_BASE="$(git merge-base HEAD origin/main 2>/dev/null || git merge-base HEAD main 2>/dev/null || true)"
+        if [[ -z "$WIRE_BASE" ]]; then
+            echo "[push-readiness] Hook wiring: COULD NOT CHECK — no merge base with main. This is not a pass." >&2
+        else
+            mapfile -t WIRE_ADDED < <(git diff --name-only --diff-filter=A "$WIRE_BASE" HEAD -- .claude/hooks/ | sed 's#.*/##')
+            if [[ ${#WIRE_ADDED[@]} -gt 0 ]]; then
+                WIRE_REGISTERED="$(cd "$REPO_ROOT" && python -c "
+import sys
+from pathlib import Path
+sys.path.insert(0, 'scripts')
+import check_hook_wiring as c
+out, err = c.classify(Path('.claude/hooks'), Path('.claude/settings.json'))
+if err:
+    sys.exit(3)
+print('\n'.join(out['REGISTERED']))
+" 2>/dev/null)"
+                WIRE_RC=$?
+                WIRE_DARK=()
+                if [[ $WIRE_RC -ne 0 ]]; then
+                    echo "[push-readiness] Hook wiring: COULD NOT CHECK (the checker or settings.json could not be read). This is not a pass." >&2
+                else
+                    for _h in "${WIRE_ADDED[@]}"; do
+                        if ! grep -qxF "$_h" <<< "$WIRE_REGISTERED"; then
+                            WIRE_DARK+=("$_h")
+                        fi
+                    done
+                    echo "[push-readiness] Hook wiring: ${#WIRE_ADDED[@]} hook(s) added by this push, ${#WIRE_DARK[@]} not wired"
+                fi
+                if [[ ${#WIRE_DARK[@]} -gt 0 ]]; then
+                    echo "[push-readiness] BLOCKED — a hook this push adds is not wired (exit 25):" >&2
+                    for _h in "${WIRE_DARK[@]}"; do
+                        echo "[push-readiness]   $_h" >&2
+                    done
+                    echo "[push-readiness] Nothing calls it. Register it and use it live before it goes up." >&2
+                    echo "[push-readiness] A note that it is unwired on purpose does not clear this (Dad 2026-11-10)." >&2
+                    exit 25
+                fi
+            fi
+        fi
+    fi
+fi
+
 # ─── 1. Test suite ──────────────────────────────────────────────────────
 #
 # Path-scoped fast path (Andrew 2026-06-10 PR-throughput ordeal): the
@@ -874,6 +938,24 @@ if [[ "${DIVINEOS_SKIP_MULTIPARTY_CHECK:-0}" != "1" ]]; then
     if [[ -f "$MP_SCRIPT" ]]; then
         echo "$HOOK_STDIN" | python "$MP_SCRIPT" --mode=pre-push --warn-only 2>&1 || true
     fi
+fi
+
+# ─── 2a-ter. New-hook lock (warn-only until the branch has caught up) ────
+# Dad 2026-11-12: a new hook must not be addable without a reason filed first, or the
+# hundred-hook sprawl returns. The check (divineos.core.hook_lock, council walks
+# walk-e91f08327219 and walk-7b0c47393643) compares the hooks at the merge-base with
+# origin/main against the tracked settings now. Run on the real branch 2026-11-15 it
+# named seven hooks added since the fork, so a hard stop here would refuse every push
+# from a branch that is behind main. Warn-only now, like step 2a began; it becomes a
+# blocking step once branches have caught up with main. Exit 2 (could not read the
+# base) is printed too: it is never read as "no hooks". The refusal is NOT redirected
+# away -- a refusal nobody can read is a silent block (walk-d63e509a117b, Breaker).
+_hook_lock_rc=0
+python "$REPO_ROOT/scripts/check_new_hooks.py" || _hook_lock_rc=$?
+if [[ $_hook_lock_rc -eq 0 ]]; then
+    echo "[push-readiness]   new-hook lock: OK"
+else
+    echo "[push-readiness]   new-hook lock: exit $_hook_lock_rc (warn-only; pushing anyway)" >&2
 fi
 
 # ─── 2a-bis. Audit-export freshness ─────────────────────────────────────
