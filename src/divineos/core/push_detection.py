@@ -131,6 +131,128 @@ def pushes_only_tags(command: str) -> bool:
     return bool(pushes) and all(_segment_pushes_only_tags(s) for s in pushes)
 
 
+# THE VAULT (Dad, 2026-11-15): the repo for what we do not want to lose that has not reached main. It takes
+# no pull requests, so the branch check ("would a PR from this look like it deletes work on main?") has no
+# meaning there, and spending the one bypass key to answer it cost two keys on pushes that never landed.
+# walk-8a9bb5b1fc18, walk-fe343c71e718. The skip is read from the remote's real PUSH url, never its name.
+# It is a low-leverage fix: the key being spent before the push can fail is a separate piece, owed.
+VAULT_REPO = "aetherlogosprime-architect/divineos-experimental-vault"
+_VAULT_URL_PREFIXES = (
+    "https://github.com/",
+    "http://github.com/",
+    "ssh://git@github.com/",
+    "git://github.com/",
+    "git@github.com:",
+)
+_CD_SEGMENT_RE = re.compile(r"""^\s*cd\s+("[^"]*"|'[^']*'|\S+)\s*$""")
+# Left over after the harmless tail is cut off, any of these means something else is in the segment.
+_SEGMENT_HAZARD_RE = re.compile(r"[|`()<>&{}]|\$\(")
+_HARMLESS_TAIL_RE = re.compile(r"\s*\|\s*(?:tail|head|cat)\b[^|;&]*$")
+_VAULT_DENIED_OPTIONS = {"--repo", "--delete", "-d", "--mirror", "--all", "--branches"}
+_VAULT_MAIN = {"main", "refs/heads/main"}
+
+
+def is_vault_url(url: str | None) -> bool:
+    """True only when ``url`` is the Vault repo on github.com, in any spelling of it."""
+    if not url:
+        return False
+    u = url.strip().lower().replace("\\", "/").rstrip("/").removesuffix(".git")
+    return any(u == prefix + VAULT_REPO for prefix in _VAULT_URL_PREFIXES)
+
+
+def _push_url_of(remote: str, cwd: str | None) -> str | None:
+    """Where the bytes go: ``--push``, because a remote can carry a separate pushurl."""
+    import subprocess
+
+    try:
+        out = subprocess.run(
+            ["git", "remote", "get-url", "--push", remote],
+            cwd=cwd or None,
+            capture_output=True,
+            text=True,
+            timeout=15,
+            check=False,
+        )
+    except (OSError, subprocess.SubprocessError):
+        return None
+    return (out.stdout.strip() or None) if out.returncode == 0 else None
+
+
+def _vault_segment_remote(segment: str) -> str | None:
+    """The remote this ONE push segment names, when the push is safe for the Vault; else None."""
+    import shlex
+
+    segment = re.sub(r"\s+2>&1\b", "", segment)
+    segment = _HARMLESS_TAIL_RE.sub("", segment)
+    if _SEGMENT_HAZARD_RE.search(segment):
+        return None
+    try:
+        tokens = shlex.split(segment)
+    except ValueError:
+        return None
+    if tokens[:2] != ["git", "push"]:
+        return None
+    args = tokens[2:]
+    tags_flag = False
+    positionals: list[str] = []
+    i = 0
+    while i < len(args):
+        arg = args[i]
+        if arg in _VAULT_DENIED_OPTIONS or arg.startswith("--repo="):
+            return None  # names a remote after a flag, deletes, or sends every branch
+        if arg == "--tags":
+            tags_flag = True
+        elif arg in _VALUE_OPTIONS:
+            i += 1
+        elif not arg.startswith("-"):
+            positionals.append(arg)
+        i += 1
+    if not positionals:
+        return None  # no remote named: git picks one, and it could be origin
+    remote, refspecs = positionals[0], positionals[1:]
+    if not refspecs:
+        return (
+            remote if tags_flag else None
+        )  # a bare push sends the current branch, which may be main
+    for refspec in refspecs:
+        spec = refspec.lstrip("+")
+        if spec.lower() == "head" or spec.startswith(":"):
+            return None  # the same-named branch we cannot see, or a delete
+        destination = (spec.split(":", 1)[1] if ":" in spec else spec).strip().lower()
+        if not destination or destination in _VAULT_MAIN or destination == "head":
+            return None  # empty, or the Vault's own main: both stay under the check
+    return remote
+
+
+def pushes_only_to_vault(
+    command: str,
+    url_of=None,
+    cwd: str | None = None,
+) -> bool:
+    """True only when every push in ``command`` goes to the Vault and the command holds nothing else.
+
+    The hook reads the remote's url BEFORE the chain runs, so a chain that first changes the remote
+    (``git remote set-url vault <main> && git push vault x``) would be read as the Vault and land on
+    main. So the command may hold only pushes and a ``cd``, and the url read is the PUSH url. A remote
+    merely NAMED vault buys nothing. The Vault's own ``main``, a delete and a bare push stay under the
+    check, because Dad's condition was "as long as nothing breaks". Could-not-tell answers False.
+    """
+    segments = [s.strip() for s in re.split(r"&&|;|\|\|", command or "")]
+    segments = [s for s in segments if s]
+    if not segments:
+        return False
+    lookup = url_of if url_of is not None else (lambda remote: _push_url_of(remote, cwd))
+    pushed = False
+    for segment in segments:
+        if _CD_SEGMENT_RE.match(segment):
+            continue
+        remote = _vault_segment_remote(segment)
+        if remote is None or not is_vault_url(lookup(remote)):
+            return False
+        pushed = True
+    return pushed
+
+
 # A 'cd <path>' at the start of the command or after ';', '&&', '||', '|' or an opening
 # bracket. The LAST one before the push whose bracket still encloses the push is the
 # tree being pushed: the pipeline gate requires 'set -o pipefail;' in front of a

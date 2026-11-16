@@ -143,7 +143,12 @@ MARKER_PATH="$(member_home "$MEMBER" "$PYTHON_BIN")/check-branch.disabled"
 # so it only fires on the class it's meant to police.
 DECISION=$(printf '%s' "$INPUT" | "$PYTHON_BIN" -c "
 import json, sys
-from divineos.core.push_detection import is_git_push_command, pushes_only_tags
+from divineos.core.push_detection import (
+    is_git_push_command,
+    push_cwd,
+    pushes_only_tags,
+    pushes_only_to_vault,
+)
 try:
     data = json.loads(sys.stdin.read() or '{}')
 except Exception:
@@ -161,8 +166,19 @@ if not is_git_push_command(cmd):
 if pushes_only_tags(cmd):
     print('ALLOW_TAGS_ONLY')
     sys.exit(0)
+# The Vault takes no pull requests and no checks (Dad 2026-11-15). Read from the remote's real push
+# url, never its name, and only for a command that holds nothing but pushes and a cd: see
+# push_detection.pushes_only_to_vault (walk-8a9bb5b1fc18, walk-fe343c71e718).
+if pushes_only_to_vault(cmd, cwd=push_cwd(cmd)):
+    print('ALLOW_VAULT_ONLY')
+    sys.exit(0)
 print('CHECK')
 " 2>/dev/null)
+
+# A pass is never silent: say what was skipped, and that nothing was scanned.
+if [ "$DECISION" = "ALLOW_VAULT_ONLY" ]; then
+    echo "[check-branch-on-push] push to the Vault: no branch check, no key spent. The Vault is public and nothing is scanned here." >&2
+fi
 
 # Anything other than CHECK means allow — command is not a push, so the
 # kill-switch is irrelevant. Fixes the "empty marker blocks every bash"

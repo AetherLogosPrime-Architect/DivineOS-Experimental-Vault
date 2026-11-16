@@ -390,6 +390,18 @@ ROOT_CAUSE_AUDIT="$REPO_ROOT/scripts/check_root_cause_audit.py"
 PUSH_READINESS="$REPO_ROOT/scripts/check_push_readiness.sh"
 
 # Capture stdin once — every gate that reads ref-update lines uses it.
+# 0a. THE VAULT TAKES NO CHECKS (Dad 2026-11-15: "the vault needs no checks or tests or anything"; walk-8a9bb5b1fc18).
+# $2 is the URL git itself is about to send the bytes to, so a remote merely NAMED vault buys nothing. These
+# checks were written for pull requests to main, and the freshness one measures origin/main whatever it is
+# pushing to. Exact spellings only, so a lookalike repo name is not the Vault.
+case "${2:-}" in
+    https://github.com/AetherLogosPrime-Architect/DivineOS-Experimental-Vault|https://github.com/AetherLogosPrime-Architect/DivineOS-Experimental-Vault.git|git@github.com:AetherLogosPrime-Architect/DivineOS-Experimental-Vault.git)
+        cat >/dev/null
+        echo "[pre-push] push to the Vault: no checks run. The Vault is public and nothing is scanned here." >&2
+        exit 0
+        ;;
+esac
+
 HOOK_STDIN=$(cat)
 
 # Is every ref in this push a tag? Computed here because step 1 below needs
