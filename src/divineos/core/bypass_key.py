@@ -55,6 +55,10 @@ __guardrail_required__ = True
 REPO_ROOT = Path(__file__).resolve().parents[3]
 SPENT = "BYPASS_KEY_SPENT"
 RETURNED = "BYPASS_KEY_RETURNED"
+# A refund is NOT a repair (walk-5195f6e0680e, Tannen): RETURNED says "you fixed the lock", REFUNDED says
+# "the push the key was spent on never landed, so it was never used". One type would let a later reader
+# take a refund for a repaired gate.
+REFUNDED = "BYPASS_KEY_REFUNDED"
 
 # THE KEY IS ONLY READ FROM THE REAL LEDGER. Aria, 2026-09-30: DIVINEOS_DB
 # scopes to one command, so `DIVINEOS_DB=<fresh> git push` would read a fresh,
@@ -120,8 +124,8 @@ def _last_key_event() -> tuple[str, dict] | None:
                 raise NotAKnownLedger(first[0] if first else "")
             row = conn.execute(
                 "SELECT event_type, payload FROM system_events "
-                "WHERE event_type IN (?, ?) ORDER BY rowid DESC LIMIT 1",
-                (SPENT, RETURNED),
+                "WHERE event_type IN (?, ?, ?) ORDER BY rowid DESC LIMIT 1",
+                (SPENT, RETURNED, REFUNDED),
             ).fetchone()
     except (sqlite3.Error, OSError, ImportError):
         return None
@@ -143,7 +147,7 @@ def status() -> KeyStatus:
         return KeyStatus(held=False, readable=False)
     kind, payload = last
     if kind != SPENT:
-        return KeyStatus(held=True, last_reissue=payload if kind == RETURNED else {})
+        return KeyStatus(held=True, last_reissue=payload if kind in (RETURNED, REFUNDED) else {})
     return KeyStatus(
         held=False,
         spent_gate=str(payload.get("gate", "")),
@@ -283,3 +287,133 @@ def note_clean_pass(gate: str, command: str, now: float | None = None) -> bool:
         },
     )
     return True
+
+
+# THE KEY IS FOR A PUSH THAT HAPPENED (Dad 2026-11-15: "a failed bypass should never waste your key"). The
+# spend is at CHECK time, before the push has run, so a push stopped by anything else (a remote that was
+# never added, a second check inside git's pre-push hook, the network) cost the key twice in one afternoon.
+# The refund asks the REMOTE whether what was pushed landed, never the exit code (correction #227: a
+# trailing echo's zero read as git's), and refunds only on a clear "no" for EVERY named ref. Anything
+# unclear leaves the key spent, because could-not-tell must never mint a key. walk-5195f6e0680e.
+REFUND_GATE = "check-branch-on-push"
+REFUND_WINDOW_SECONDS = 1800
+_VALUE_OPTIONS = {"-o", "--push-option", "--receive-pack", "--exec"}
+_UNCLEAR_OPTIONS = {"--repo", "--all", "--mirror", "--branches", "--delete", "-d"}
+
+
+def _push_segment(command: str) -> str:
+    """The same push segment the hook records on spend, so the two always compare like for like."""
+    at = command.find("git push")
+    if at < 0:
+        return command
+    return command[at:].split(";")[0].split("&&")[0].split("||")[0].split("|")[0]
+
+
+def _named_refs(segment: str) -> tuple[str, list[tuple[str, str]]] | None:
+    """(remote, [(source, full destination ref)]) when the push names every ref, else None."""
+    import shlex
+
+    try:
+        tokens = shlex.split(segment)
+    except ValueError:
+        return None
+    if tokens[:2] != ["git", "push"]:
+        return None
+    positionals: list[str] = []
+    args = tokens[2:]
+    i = 0
+    while i < len(args):
+        arg = args[i]
+        if arg in _UNCLEAR_OPTIONS or arg.startswith("--repo="):
+            return None
+        if arg in _VALUE_OPTIONS:
+            i += 1
+        elif not arg.startswith("-"):
+            positionals.append(arg)
+        i += 1
+    if len(positionals) < 2:
+        return None  # no remote, or no ref: git decides what is pushed, and we cannot see it
+    remote, refspecs = positionals[0], positionals[1:]
+    refs: list[tuple[str, str]] = []
+    for refspec in refspecs:
+        spec = refspec.lstrip("+")
+        if ":" not in spec or spec.startswith(":"):
+            return None  # a bare name resolves by git's rules, and a leading colon deletes
+        source, destination = spec.split(":", 1)
+        if not source or not destination:
+            return None
+        if not destination.startswith("refs/"):
+            destination = "refs/heads/" + destination
+        refs.append((source, destination))
+    return remote, refs
+
+
+def _git_out(args: list[str], cwd: str | None) -> subprocess.CompletedProcess[str] | None:
+    try:
+        return subprocess.run(
+            ["git", *args], cwd=cwd or None, capture_output=True, text=True, timeout=30, check=False
+        )
+    except (OSError, subprocess.SubprocessError):
+        return None
+
+
+def _ref_landed(remote: str, source: str, destination: str, cwd: str | None) -> bool | None:
+    """True when the remote holds the sha that was pushed, False when it clearly does not, else None."""
+    local = _git_out(["rev-parse", "--verify", "--quiet", f"{source}^{{commit}}"], cwd)
+    if local is None or local.returncode != 0 or not local.stdout.strip():
+        return None
+    # A name that is not a configured remote and not a url or a path cannot have received anything.
+    configured = _git_out(["remote", "get-url", "--push", remote], cwd)
+    if configured is None:
+        return None
+    if configured.returncode != 0:
+        return False if ("/" not in remote and ":" not in remote and "\\" not in remote) else None
+    asked = _git_out(["ls-remote", remote, destination], cwd)
+    if asked is None or asked.returncode != 0:
+        return None
+    lines = [ln.split() for ln in asked.stdout.splitlines() if ln.strip()]
+    held = next((ln[0] for ln in lines if len(ln) > 1 and ln[1] == destination), "")
+    return held == local.stdout.strip()
+
+
+def refund_if_not_landed(
+    gate: str, command: str, *, cwd: str | None = None, now: float | None = None
+) -> str:
+    """Give the key back when the push it was spent on provably never landed.
+
+    Returns one word: 'refunded', 'landed' (used, stays spent), 'could-not-tell' (stays spent),
+    'not-this-push', 'too-late', or 'no-spend'. Bound to the one gate whose key is spent on a push.
+    """
+    if gate != REFUND_GATE:
+        raise ValueError(f"a refund is only for {REFUND_GATE}, not {gate!r}")
+    st = status()
+    if st.held or not st.readable or st.spent_gate != gate:
+        return "no-spend"
+    segment = _push_segment(command)
+    if fingerprint(segment) != st.spent_fingerprint:
+        return "not-this-push"
+    when = now or time.time()
+    if when - st.spent_at > REFUND_WINDOW_SECONDS:
+        return "too-late"
+    named = _named_refs(segment)
+    if named is None:
+        return "could-not-tell"
+    remote, refs = named
+    answers = [_ref_landed(remote, source, destination, cwd) for source, destination in refs]
+    if any(a is True for a in answers):
+        return "landed"
+    if any(a is None for a in answers):
+        return "could-not-tell"
+    _log(
+        REFUNDED,
+        {
+            "gate": gate,
+            "fingerprint": st.spent_fingerprint,
+            "spent_at": st.spent_at,
+            "refund": "the push did not land, so the key was never used",
+            "remote": remote,
+            "refs": [list(r) for r in refs],
+            "at": when,
+        },
+    )
+    return "refunded"
